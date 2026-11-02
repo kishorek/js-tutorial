@@ -1,35 +1,35 @@
 <article class="lesson" id="lesson-4-3" data-lesson="4-3">
   <header class="lesson-head">
-    <p class="eyebrow">தொகுதி 04 · JavaScript அடிப்படைகள்</p>
-    <h1>Loops மற்றும் collections</h1>
-    <p class="lesson-lede">உண்மையான நிரல்கள் ஒன்றுக்கு மேற்பட்ட மதிப்புகளுடன் வேலை செய்கின்றன. பட்டியல்களை arrays-ல் சேமிக்க, loop கொண்டு ஒவ்வொரு item-ஐயும் பார்க்க, அதே loop-ஐ மீண்டும் மீண்டும் எழுதுவதற்குப் பதிலாக map, filter, reduce கொண்டு தரவை மாற்றக் கற்றுக்கொள்ளுங்கள்.</p>
+    <p class="eyebrow">Module 04 · JavaScript foundations</p>
+    <h1>Loops and collections</h1>
+    <p class="lesson-lede">உண்மையான programs ஒரு value-ஐ விட அதிகமா வேலை செய்யும். Lists-ஐ arrays-ல store பண்ண, loop கொண்டு ஒவ்வொரு item-ஐயும் visit பண்ண, அதே loop-ஐ திரும்ப திரும்ப எழுதாம map, filter, reduce கொண்டு data-ஐ transform பண்ண கற்றுக்கொள்ளுங்கள்.</p>
     <div class="chips">
-      <span class="chip chip--accent">பாடம் 4.3</span>
-      <span class="chip">60–75 நிமிடங்கள்</span>
-      <span class="chip">தொடக்கநிலை</span>
+      <span class="chip chip--accent">Lesson 4.3</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
     </div>
     <div class="brief">
       <div>
-        <h3>இறுதியில் நீங்கள் செய்யக்கூடியவை</h3>
+        <h3>By the end, you can</h3>
         <ul>
-          <li>Arrays உருவாக்கி, அவற்றின் items-ஐப் படிக்கவும் மாற்றவும் முடியும்.</li>
-          <li><code>for</code>, <code>while</code> மற்றும் <code>for...of</code> கொண்டு வேலையை மீண்டும் செய்ய முடியும்.</li>
-          <li><code>map</code>, <code>filter</code> மற்றும் <code>reduce</code> கொண்டு பட்டியல்களை மாற்ற முடியும்.</li>
-          <li>வேலைக்குப் பொருந்தும் loop-ஐத் தேர்ந்தெடுக்க முடியும்.</li>
+          <li>Arrays create பண்ணி, அவற்றின் items-ஐ read அல்லது change பண்ணலாம்.</li>
+          <li><code>for</code>, <code>while</code>, <code>for...of</code> கொண்டு வேலையை repeat பண்ணலாம்.</li>
+          <li><code>map</code>, <code>filter</code>, <code>reduce</code> கொண்டு lists-ஐ transform பண்ணலாம்.</li>
+          <li>வேலைக்குப் பொருத்தமான loop-ஐ choose பண்ணலாம்.</li>
         </ul>
       </div>
       <div>
-        <h3>உங்களுக்குத் தேவையானவை</h3>
+        <h3>You need</h3>
         <ul>
-          <li>பாடம் 4.2-இன் நிபந்தனைகள் மற்றும் truthiness.</li>
-          <li>விரைவான சோதனைகளுக்கான console.</li>
-          <li>Off-by-one பிழைகளுக்குப் பொறுமை.</li>
+          <li>Lesson 4.2 conditions மற்றும் truthiness.</li>
+          <li>Quick experiments-க்கு ஒரு console.</li>
+          <li>Off-by-one errors-க்குப் பொறுமை.</li>
         </ul>
       </div>
     </div>
   </header>
-  <h2>Arrays வரிசைப்படுத்தப்பட்ட பட்டியல்களை வைத்திருக்கின்றன</h2>
-  <p>Array பல மதிப்புகளை வரிசையாகச் சேமிக்கிறது. Square brackets ஒன்றை உருவாக்கும்; ஒவ்வொரு item-க்கும் ஒரு index உண்டு. Indexes பூஜ்ஜியத்தில் தொடங்கும்; எனவே முதல் item <code>1</code>-ல் அல்ல, <code>0</code>-ல் இருக்கும்.</p>
+  <h2>Arrays hold ordered lists</h2>
+  <p>Array பல values-ஐ order-ல store பண்ணும். Square brackets ஒன்றை உருவாக்கும், ஒவ்வொரு item-க்கும் ஒரு index உண்டு. Indexes zero-ல start ஆகும், அதனால முதல் item <code>0</code>-ல, <code>1</code>-ல இல்ல.</p>
   <div class="code-block" data-code>
 <script type="text/plain">const fruits = ["apple", "banana", "cherry"];
 console.log(fruits.length);            // 3
@@ -43,12 +43,12 @@ console.log(last);                     // "date"
 console.log(fruits.length);            // 3</script>
   </div>
   <ul>
-    <li><code>push(item)</code> இறுதியில் சேர்க்கும்; புதிய length-ஐத் திருப்பித் தரும்.</li>
-    <li><code>pop()</code> கடைசி item-ஐ நீக்கி அதைத் திருப்பித் தரும்.</li>
-    <li><code>shift()</code> மற்றும் <code>unshift()</code> தொடக்கத்தில் வேலை செய்கின்றன; ஆனால் பெரிய arrays-ல் மெதுவாக இருக்கும்.</li>
-    <li>முடிவுக்கு அப்பால் படித்தால் <code>undefined</code> கிடைக்கும்; error வீசாது.</li>
+    <li><code>push(item)</code> end-ல add பண்ணி புது length-ஐ return பண்ணும்.</li>
+    <li><code>pop()</code> கடைசி item-ஐ remove பண்ணி அதை return பண்ணும்.</li>
+    <li><code>shift()</code> மற்றும் <code>unshift()</code> start-ல வேலை செய்யும், ஆனா பெரிய arrays-ல slow.</li>
+    <li>End-க்கு மேல read பண்ணினா <code>undefined</code> கிடைக்கும்; error throw ஆகாது.</li>
   </ul>
-  <p>Arrays எந்த வகையையும் வைத்திருக்கலாம்; மற்ற arrays-ஐயும் வைத்திருக்கலாம். தொடக்கநிலையில் ஒரு array-க்கு ஒரு வகை மதிப்பை மட்டும் வைத்தால் code-ஐப் புரிந்துகொள்வது எளிதாகும்.</p>
+  <p>Arrays எந்த type-ஐயும் hold பண்ணும், மற்ற arrays உட்பட. Beginners-க்கு, ஒரு array-ல ஒரே வகை value வைத்திருந்தா code-ஐ reason பண்ண எளிது.</p>
   <div class="code-block" data-code>
 <script type="text/plain">const mixed = ["Maya", 28, true];
 const grid = [
@@ -58,8 +58,8 @@ const grid = [
 console.log(mixed[1]);    // 28
 console.log(grid[1][0]);  // 4</script>
   </div>
-  <h2>for loops வேலையை மீண்டும் செய்கின்றன</h2>
-  <p><code>for</code> loop-க்கு மூன்று பகுதிகள் உண்டு: தொடக்கப் புள்ளி, அது தொடர்ந்து இயங்க நிபந்தனை, ஒவ்வொரு சுற்றுக்குப் பிறகு update. ஒவ்வொரு iteration-க்கும் முன் நடுப்பகுதி சரிபார்க்கப்படும்.</p>
+  <h2>for loops repeat work</h2>
+  <p><code>for</code> loop-க்கு மூன்று parts: ஒரு starting point, அது ஓடிக்கொண்டிருக்க ஒரு condition, ஒவ்வொரு pass-க்குப் பிறகு ஒரு update. நடுப் part ஒவ்வொரு iteration-க்கும் முன்னாடி check ஆகும்.</p>
   <div class="code-block" data-code>
 <script type="text/plain">for (let i = 0; i < 5; i = i + 1) {
   console.log(`Step ${i}`);
@@ -69,7 +69,7 @@ for (let i = 0; i < 3; i++) {
   console.log(i);
 }</script>
   </div>
-  <p>Indexes கொண்டு array மீது loop செய்யும்போது <code>0</code>-ல் தொடங்கி, index <code>array.length</code>-ஐவிடச் சிறியதாக இருக்கும் வரை தொடருங்கள். <code>&lt;=</code> பயன்படுத்தினால் முடிவுக்கு அப்பால் ஒரு item படிக்கப்பட்டு <code>undefined</code> கிடைக்கும்.</p>
+  <p>Indexes கொண்டு array-ஐ loop பண்ணும்போது <code>0</code>-ல start பண்ணி, index <code>array.length</code>-ஐ விட குறைவா இருக்கும்போது நிறுத்துங்க. <code>&lt;=</code> use பண்ணினா end-க்கு ஒரு item extra read ஆகி <code>undefined</code> கிடைக்கும்.</p>
   <div class="code-block" data-code>
 <script type="text/plain">const scores = [72, 88, 95, 61];
 let total = 0;
@@ -79,7 +79,7 @@ for (let i = 0; i < scores.length; i++) {
 console.log(total);                  // 316
 console.log(total / scores.length);  // 79</script>
   </div>
-  <p><code>while</code> loop ஒரு நிபந்தனை true ஆக இருக்கும் வரை மீண்டும் இயங்கும். எத்தனை சுற்றுகள் என்று முன்கூட்டியே தெரியாதபோது இதைப் பயன்படுத்துங்கள்; ஆனால் loop-க்குள் ஏதாவது மாறுகிறது என்பதை உறுதிசெய்யுங்கள்.</p>
+  <p><code>while</code> loop ஒரு condition true-ஆ இருக்கும் வரை repeat ஆகும். Passes எண்ணிக்கை முன்கூட்டியே தெரியாதபோது use பண்ணுங்க, ஆனா loop-க்கு உள்ளே ஏதாவது மாற்றம் நடக்கிறதா என்று பாருங்க.</p>
   <div class="code-block" data-code>
 <script type="text/plain">let count = 3;
 while (count > 0) {
@@ -89,11 +89,11 @@ while (count > 0) {
 console.log("Lift off!");</script>
   </div>
   <div class="callout callout--warn">
-    <span class="callout__label">முடிவில்லா loop-ஐத் தவிர்க்கவும்</span>
-    <p>நிபந்தனை ஒருபோதும் false ஆகவில்லை என்றால் பக்கம் முடங்கும். Loop body நிபந்தனையில் பயன்படுத்தப்படும் மதிப்பை update செய்கிறதா என்று பாருங்கள். Browser-ல் tab-ஐ மூட வேண்டியிருக்கலாம்.</p>
+    <span class="callout__label">Avoid the infinite loop</span>
+    <p>Condition எப்பவும் false ஆகலைனா page freeze ஆகும். Loop body, condition-ல use ஆகிற value-ஐ update பண்ணுதா என்று check பண்ணுங்க. Browser-ல tab-ஐ close பண்ண வேண்டியிருக்கலாம்.</p>
   </div>
-  <h3>for...of மதிப்புகளை நேரடியாகப் படிக்கிறது</h3>
-  <p>ஒவ்வொரு மதிப்பு மட்டும் தேவைப்பட்டால், index loop-ஐவிட <code>for...of</code> சுருக்கமானது, தவறு செய்வதும் கடினம். இது மதிப்புகளை வரிசையாகப் பார்க்கும்.</p>
+  <h3>for...of reads values directly</h3>
+  <p>ஒவ்வொரு value மட்டும் தேவைப்பட்டா, <code>for...of</code> index loop-ஐ விட சின்னதும் தவறு ஆவதும் கஷ்டமானதும். அது values-ஐ order-ல visit பண்ணும்.</p>
   <div class="code-block" data-code>
 <script type="text/plain">const scores = [72, 88, 95];
 let total = 0;
@@ -105,18 +105,18 @@ for (const fruit of ["apple", "pear"]) {
   console.log(fruit.toUpperCase());
 }</script>
   </div>
-  <p>மதிப்புடன் index-ம் தேவைப்பட்டால், அல்லது சில items-ஐத் தவிர்க்க வேண்டுமானால் classic <code>for</code> loop பயன்படுத்துங்கள். ஒவ்வொரு item-ஐ மட்டும் விரும்பினால் <code>for...of</code> பயன்படுத்துங்கள்.</p>
-  <h2>map, filter மற்றும் reduce கொண்டு மாற்றுங்கள்</h2>
-  <p>பல loops இதே மூன்று முறைகளைப் பின்பற்றுகின்றன: ஒவ்வொரு item-ஐயும் மாற்றுவது, சில items-ஐ வைத்திருப்பது, அல்லது பட்டியலை ஒரே மதிப்பாகச் சுருக்குவது. JavaScript ஒவ்வொன்றுக்கும் ஒரு method தருகிறது.</p>
+  <p>Index-ஐயும் value-ஐயும் சேர்த்து தேவைப்பட்டா, அல்லது items-ஐ skip பண்ண வேண்டியிருந்தா classic <code>for</code> loop use பண்ணுங்க. ஒவ்வொரு item மட்டும் வேண்டும்னா <code>for...of</code> use பண்ணுங்க.</p>
+  <h2>Transform with map, filter, and reduce</h2>
+  <p>பல loops ஒரே மூன்று patterns-ஐ follow பண்ணும்: ஒவ்வொரு item-ஐயும் change பண்ணு, சில items-ஐ வைத்துக்கொள், அல்லது list-ஐ ஒரே value-ஆ சுருக்கு. JavaScript ஒவ்வொன்றுக்கும் ஒரு method தருகிறது.</p>
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th scope="col">Method</th><th scope="col">வேலை</th><th scope="col">திருப்பித் தருவது</th></tr>
+        <tr><th scope="col">Method</th><th scope="col">Job</th><th scope="col">Returns</th></tr>
       </thead>
       <tbody>
-        <tr><td><code>map</code></td><td>ஒவ்வொரு item-ஐயும் மாற்று</td><td>அதே length உள்ள புதிய array</td></tr>
-        <tr><td><code>filter</code></td><td>சோதனையில் தேர்ச்சி பெறும் items-ஐ வைத்திரு</td><td>புதிய, பொதுவாகச் சிறிய array</td></tr>
-        <tr><td><code>reduce</code></td><td>எல்லா items-ஐயும் ஒரே மதிப்பாக இணை</td><td>ஒரே மதிப்பு</td></tr>
+        <tr><td><code>map</code></td><td>ஒவ்வொரு item-ஐயும் transform பண்ணு</td><td>அதே length உள்ள புது array</td></tr>
+        <tr><td><code>filter</code></td><td>Test pass பண்ணும் items-ஐ வைத்துக்கொள்</td><td>புது, பொதுவா சின்ன array</td></tr>
+        <tr><td><code>reduce</code></td><td>எல்லா items-ஐயும் ஒரே value-ஆ combine பண்ணு</td><td>ஒரே value</td></tr>
       </tbody>
     </table>
   </div>
@@ -135,12 +135,12 @@ console.log(doubled);   // [20, 50, 8, 36]
 console.log(expensive); // [25, 18]
 console.log(sum);       // 57</script>
   </div>
-  <p><code>map</code>-க்கு நீங்கள் அளிக்கும் callback ஒவ்வொரு item-க்கும் ஒருமுறை இயங்கி, அதற்குப் பதிலாக வைக்க வேண்டிய மதிப்பைத் திருப்பித் தரும். <code>filter</code>-ன் callback ஒரு item-ஐ வைத்திருக்க true, நீக்க false திருப்பித் தரும். <code>reduce</code>-ன் callback தற்போதைய மொத்த முடிவையும் தற்போதைய item-ஐயும் பெறும்; <code>reduce</code>-க்கு அளிக்கும் இரண்டாவது argument தொடக்க மதிப்பு.</p>
+  <p><code>map</code>-க்கு pass பண்ற callback ஒவ்வொரு item-க்கும் ஒரு முறை run ஆகி replacement-ஐ return பண்ணும். <code>filter</code>-க்கான callback ஒரு item-ஐ வைத்துக்கொள்ள true, drop பண்ண false return பண்ணும். <code>reduce</code>-க்கான callback ஓடிக்கொண்டிருக்கும் result-ஐயும் current item-ஐயும் receive பண்ணும்; <code>reduce</code>-க்கு இரண்டாவது argument starting value.</p>
   <div class="callout callout--tip">
-    <span class="callout__label">அசலை வைத்திருங்கள்</span>
-    <p><code>map</code>, <code>filter</code> மற்றும் <code>reduce</code> அசல் array-ஐ மாற்றுவதில்லை. அவை புதிய மதிப்பைத் திருப்பித் தருகின்றன. அதனால் அவற்றைப் பாதுகாப்பாக chain செய்யலாம், சோதிக்கவும் எளிது.</p>
+    <span class="callout__label">Keep the original</span>
+    <p><code>map</code>, <code>filter</code>, <code>reduce</code> original array-ஐ change பண்ணாது. புது value-ஐ return பண்ணும். அதனால chain பண்ண safe, test பண்ண எளிது.</p>
   </div>
-  <p>அவற்றை chain செய்யலாம். இந்த எடுத்துக்காட்டு 10-க்கு மேற்பட்ட விலைகளை வைத்து, அவற்றை இரட்டிப்பாக்கி, முடிவைக் கூட்டுகிறது:</p>
+  <p>இவற்றை chain பண்ணலாம். இந்த example 10-க்கு மேல prices-ஐ வைத்து, double பண்ணி, result-ஐ add பண்ணும்:</p>
   <div class="code-block" data-code>
 <script type="text/plain">const prices = [10, 25, 4, 18];
 const result = prices
@@ -157,15 +157,15 @@ console.log(result); // 86</script>
   </div>
   <section class="practice" data-practice data-min="30">
     <div class="practice__head">
-      <span class="kicker">பயிற்சி · 20 நிமிடங்கள்</span>
-      <h2>இரட்டை எண்களைக் கூட்டி, பிறகு மாற்றுங்கள்</h2>
+      <span class="kicker">Exercise · 20 minutes</span>
+      <h2>Sum the evens, then transform</h2>
     </div>
-    <p>எண்களின் array-யுடன் தொடங்குங்கள். இரட்டை எண்களை மட்டும் கூட்டி மொத்தத்தை log செய்ய <code>for...of</code> loop பயன்படுத்துங்கள். பிறகு ஒவ்வொரு எண்ணையும் இரட்டிப்பாக்க <code>map</code>-ஐயும், 10-ஐவிடப் பெரிய எண்களை வைத்திருக்க <code>filter</code>-ஐயும் பயன்படுத்துங்கள். இரண்டு புதிய arrays-ஐயும் log செய்யுங்கள்.</p>
-    <label class="visually-hidden" for="practice-4-3">உங்கள் பயிற்சிக் குறியீடு</label>
-    <textarea class="practice__code" id="practice-4-3" data-attempt spellcheck="false" placeholder="உங்கள் JavaScript-ஐ இங்கே தட்டச்சு செய்யுங்கள்..."></textarea>
+    <p>Numbers array-ஓட start பண்ணுங்க. Even numbers-ஐ மட்டும் add பண்ண <code>for...of</code> loop use பண்ணி total-ஐ log பண்ணுங்க. பிறகு ஒவ்வொரு number-ஐயும் double பண்ண <code>map</code>-ஐயும், 10-க்கு மேல் numbers-ஐ வைத்துக்கொள்ள <code>filter</code>-ஐயும் use பண்ணுங்க. இரண்டு புது arrays-ஐயும் log பண்ணுங்க.</p>
+    <label class="visually-hidden" for="practice-4-3">Your exercise code</label>
+    <textarea class="practice__code" id="practice-4-3" data-attempt spellcheck="false" placeholder="Type your JavaScript here..."></textarea>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>முதல்ல ஒரு attempt பண்ணுங்க. பிறகு model answer unlock ஆகும்.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
 <script type="text/plain" data-answer>const numbers = [3, 8, 12, 5, 20, 7, 14];
@@ -191,23 +191,23 @@ const large = numbers.filter(function (number) {
 console.log(doubled);
 console.log(large);</script>
   </section>
-  <h2>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h2>
+  <h2>Check yourself</h2>
   <div class="qa-list">
     <details class="qa">
-      <summary><code>array[array.length]</code> ஏன் <code>undefined</code> திருப்பித் தருகிறது?</summary>
-      <p>Indexes <code>0</code> முதல் <code>length - 1</code> வரை இருக்கும். Length-க்குச் சமமான index கேட்டால், கடைசி item-க்கு அப்பால் ஒரு நிலையைக் குறிக்கும். கடைசி item-க்கு <code>array[array.length - 1]</code> பயன்படுத்துங்கள்.</p>
+      <summary>Why does <code>array[array.length]</code> return <code>undefined</code>?</summary>
+      <p>Indexes <code>0</code>-லிருந்து <code>length - 1</code> வரை. Length-க்கு சமமான index கேட்டா கடைசி item-க்கு ஒரு position அப்பால் point ஆகும். கடைசி item-க்கு <code>array[array.length - 1]</code> use பண்ணுங்க.</p>
     </details>
     <details class="qa">
-      <summary>எப்போது loop-க்குப் பதிலாக <code>reduce</code> பயன்படுத்த வேண்டும்?</summary>
-      <p>ஒவ்வொரு item-லிருந்தும் கட்டப்படும் ஒரே மதிப்பு முடிவாக இருக்கும்போது <code>reduce</code> பயன்படுத்துங்கள்; எடுத்துக்காட்டாக ஒரு sum, ஒரு count அல்லது ஒரு lookup object. Side effects அல்லது இடையிலேயே வெளியேற வேண்டுமானால் சாதாரண loop பொதுவாகத் தெளிவாக இருக்கும்.</p>
+      <summary>When should I use <code>reduce</code> instead of a loop?</summary>
+      <p>Result ஒவ்வொரு item-லிருந்தும் build ஆகிற ஒரே value-ஆ இருந்தா <code>reduce</code> use பண்ணுங்க; sum, count அல்லது lookup object போல. Side effects அல்லது early exit-க்கு plain loop பொதுவா clear.</p>
     </details>
   </div>
   <div class="recap">
-    <h2>நினைவில் கொள்ள வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <h2>Key things to remember</h2>
     <ul>
-      <li><strong>Arrays பூஜ்ஜியத்தில் தொடங்கும்.</strong> <code>length</code> கடைசி index-ஐவிட ஒன்று அதிகம்.</li>
-      <li><strong>வேலைக்கு ஏற்ற loop-ஐத் தேர்ந்தெடுங்கள்.</strong> நிலைகளுக்கு index loop, மதிப்புகளுக்கு <code>for...of</code>, தெரியாத எண்ணிக்கைக்கு <code>while</code>.</li>
-      <li><strong>map, filter மற்றும் reduce மீண்டும் மீண்டும் வரும் loop முறைகளுக்குப் பதிலாகின்றன.</strong> அவை புதிய மதிப்புகளைத் திருப்பித் தருகின்றன; அசல் array-ஐத் தொடுவதில்லை.</li>
+      <li><strong>Arrays zero-ல start ஆகும்.</strong> <code>length</code> கடைசி index-ஐ விட ஒண்ணு அதிகம்.</li>
+      <li><strong>வேலைக்கு loop-ஐ choose பண்ணுங்க.</strong> Positions-க்கு index loop, values-க்கு <code>for...of</code>, தெரியாத count-க்கு <code>while</code>.</li>
+      <li><strong>map, filter, reduce repeated loop patterns-ஐ replace பண்ணும்.</strong> அவை புது values return பண்ணி original array-ஐ அப்படியே விட்டுவிடும்.</li>
     </ul>
   </div>
 </article>

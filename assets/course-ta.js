@@ -1,60 +1,60 @@
 window.COURSE_TA = {
   title: "The Web Builder's Field Guide",
-  tagline: "HTML, CSS, JavaScript ஆகியவற்றை ஒவ்வொரு பாடமாகக் கற்றுக்கொள்ளும் நேரடி பயிற்சி பாடத்திட்டம்.",
+  tagline: "HTML, CSS, JavaScript-ஐ ஒவ்வொரு lesson-ஆ கத்துக்கும் hands-on course.",
   modules: [
     {
       id: "01",
-      title: "HTML: எலும்புக்கூடு",
-      weeks: "வாரங்கள் 1–2",
-      hours: "~14 மணி",
+      title: "HTML: the skeleton",
+      weeks: "Weeks 1–2",
+      hours: "~14 h",
       goals: [
-        "காலியான கோப்பிலிருந்து சரியான HTML5 எழுதுவது.",
-        "தலைப்புகள், இணைப்புகள், படங்கள், பட்டியல்களைக் கொண்டு உரையைக் கட்டமைப்பது.",
-        "அனைவரும் பயன்படுத்தக்கூடிய படிவங்களை உருவாக்கி, DevTools-ல் DOM-ஐப் படிப்பது."
+        "Blank file-லிருந்து valid HTML5 எழுதுவது.",
+        "Headings, links, images, lists-ஐ use பண்ணி text-க்கு structure கொடுப்பது.",
+        "Accessible forms build பண்ணி, DevTools-ல DOM-ஐ படிப்பது."
       ],
-      prereq: "எதுவுமில்லை. ஒரு உலாவி மற்றும் ஒரு உரைத் தொகுப்பான்.",
-      project: "என்னைப் பற்றி பக்கம் → இணைக்கப்பட்ட சமையல் குறிப்பு பக்கம்",
-      exit: "புதிதாகச் சரியான இரண்டு பக்க தளத்தை உருவாக்கி, head மற்றும் body வேறுபாட்டை விளக்குவது.",
+      prereq: "எதுவும் இல்ல. ஒரு browser-உம் ஒரு text editor-உம்.",
+      project: "About Me page → link பண்ணின recipe page",
+      exit: "Scratch-லிருந்து valid two-page site build பண்ணி, head-உம் body-உம் difference-ஐ explain பண்ணுவது.",
       lessons: [
-        { id: "1-1", num: "1.1", title: "உங்கள் முதல் பக்கம்" },
-        { id: "1-2", num: "1.2", title: "இணைப்புகள், படங்கள், பட்டியல்கள்" },
-        { id: "1-3", num: "1.3", title: "அட்டவணைகள், படிவங்கள், அர்த்தமுள்ள கட்டமைப்பு" },
-        { id: "1-4", num: "1.4", title: "திட்டப்பணி: என்னைப் பற்றி → சமையல் குறிப்பு பக்கம்", project: true }
+        { id: "1-1", num: "1.1", title: "Your first page" },
+        { id: "1-2", num: "1.2", title: "Links, images, and lists" },
+        { id: "1-3", num: "1.3", title: "Tables, forms, and semantic structure" },
+        { id: "1-4", num: "1.4", title: "Project: About Me → recipe page", project: true }
       ]
     },
     {
       id: "02",
-      title: "CSS: தோல்",
-      weeks: "வாரங்கள் 3–4",
-      hours: "~16 மணி",
+      title: "CSS: the skin",
+      weeks: "Weeks 3–4",
+      hours: "~16 h",
       goals: [
-        "selectors, cascade, specificity ஆகியவற்றை நோக்கத்துடன் பயன்படுத்துவது.",
-        "box model, இடைவெளி, நிறம், எழுத்துரு ஆகியவற்றில் தேர்ச்சி பெறுவது.",
-        "Flexbox மூலம் layout உருவாக்கி, நேரடியாக styles-ஐ debug செய்வது."
+        "Selectors, cascade, specificity-ஐ intention-ஓட use பண்ணுவது.",
+        "Box model, spacing, color, type-ல strong ஆவது.",
+        "Flexbox-ல layouts build பண்ணி, styles-ஐ live-ஆ debug பண்ணுவது."
       ],
-      prereq: "தொகுதி 1: சரியான HTML மற்றும் சரியான nesting.",
-      project: "தனிப்பட்ட portfolio, பதிப்பு 1",
-      exit: "பக்கவாட்டில் scroll இல்லாமல், ஒரு மாதிரியைப் போல பக்கத்தை style செய்வது.",
+      prereq: "Module 1: valid HTML-உம் correct nesting-உம்.",
+      project: "Personal portfolio, version 1",
+      exit: "Sideways scroll இல்லாம reference-ஐ match பண்ணி page-ஐ style பண்ணுவது.",
       lessons: [
-        { id: "2-1", num: "2.1", title: "Selectors, cascade, specificity" },
-        { id: "2-2", num: "2.2", title: "Box model மற்றும் இடைவெளி" },
-        { id: "2-3", num: "2.3", title: "எழுத்துரு, நிறம், காட்சி தாளம்" },
+        { id: "2-1", num: "2.1", title: "Selectors, cascade, and specificity" },
+        { id: "2-2", num: "2.2", title: "The box model and spacing" },
+        { id: "2-3", num: "2.3", title: "Type, color, and visual rhythm" },
         { id: "2-4", num: "2.4", title: "Flexbox + portfolio v1", project: true }
       ]
     },
     {
       id: "03",
-      title: "Layout மற்றும் responsive design",
-      weeks: "வாரங்கள் 5–6",
-      hours: "~16 மணி",
+      title: "Layout & responsive design",
+      weeks: "Weeks 5–6",
+      hours: "~16 h",
       goals: [
-        "CSS Grid மற்றும் mobile-first media queries பயன்படுத்துவது.",
-        "சிறிய திரைகளில் வேலை செய்யும் navigation உருவாக்குவது.",
-        "accessibility அடிப்படைகளைப் பயன்படுத்துவது: focus, contrast, labels."
+        "CSS Grid-உம் mobile-first media queries-உம் use பண்ணுவது.",
+        "Small screens-ல work ஆகும் navigation build பண்ணுவது.",
+        "Accessibility basics-ஐ apply பண்ணுவது: focus, contrast, labels."
       ],
-      prereq: "தொகுதி 2: box model மற்றும் Flexbox.",
+      prereq: "Module 2: box model-உம் Flexbox-உம்.",
       project: "Responsive landing page",
-      exit: "320, 768, 1440 pixel அளவுகளில் பக்கம் வேலை செய்ய வேண்டும்; பக்க அளவில் கிடைமட்ட scroll இருக்கக்கூடாது.",
+      exit: "320, 768, 1440 pixels-ல page work ஆகணும்; page-level horizontal scroll இருக்கக்கூடாது.",
       lessons: [
         { id: "3-1", num: "3.1", title: "CSS Grid" },
         { id: "3-2", num: "3.2", title: "Mobile-first responsive design" },
@@ -63,82 +63,82 @@ window.COURSE_TA = {
     },
     {
       id: "04",
-      title: "JavaScript அடிப்படைகள்",
-      weeks: "வாரங்கள் 7–8",
-      hours: "~16 மணி",
+      title: "JavaScript foundations",
+      weeks: "Weeks 7–8",
+      hours: "~16 h",
       goals: [
-        "values, variables, types, operators உடன் பணியாற்றுவது.",
-        "conditionals, loops, functions, arrays, objects எழுதுவது.",
-        "ஊகிக்காமல் console மூலம் debug செய்வது."
+        "Values, variables, types, operators-ஓட work பண்ணுவது.",
+        "Conditionals, loops, functions, arrays, objects எழுதுவது.",
+        "Guess பண்ணாம console-ல debug பண்ணுவது."
       ],
-      prereq: "தொகுதி 1 HTML; தொகுதி 2 CSS அடிப்படைகள்.",
-      project: "ஊடாடும் calculator",
-      exit: "input பெற்று சரியான output திருப்பும் function ஒன்றை எழுதி debug செய்வது.",
+      prereq: "Module 1 HTML; Module 2 CSS basics.",
+      project: "Interactive calculator",
+      exit: "Input வாங்கி correct output return பண்ணும் function-ஐ எழுதி debug பண்ணுவது.",
       lessons: [
-        { id: "4-1", num: "4.1", title: "Values, variables, types" },
-        { id: "4-2", num: "4.2", title: "Conditionals மற்றும் logic" },
-        { id: "4-3", num: "4.3", title: "Loops மற்றும் collections" },
-        { id: "4-4", num: "4.4", title: "Functions மற்றும் scope" },
-        { id: "4-5", num: "4.5", title: "Arrays, objects, மற்றும் calculator", project: true }
+        { id: "4-1", num: "4.1", title: "Values, variables, and types" },
+        { id: "4-2", num: "4.2", title: "Conditionals and logic" },
+        { id: "4-3", num: "4.3", title: "Loops and collections" },
+        { id: "4-4", num: "4.4", title: "Functions and scope" },
+        { id: "4-5", num: "4.5", title: "Arrays, objects, and the calculator", project: true }
       ]
     },
     {
       id: "05",
-      title: "DOM மற்றும் events",
-      weeks: "வாரங்கள் 9–10",
-      hours: "~16 மணி",
+      title: "DOM & events",
+      weeks: "Weeks 9–10",
+      hours: "~16 h",
       goals: [
-        "elements-ஐ பாதுகாப்பாகத் தேர்ந்தெடுத்து மாற்றுவது.",
-        "clicks, input, form submission ஆகியவற்றைக் கையாள்வது.",
-        "data-விலிருந்து பட்டியல்களை render செய்து எளிய state-ஐ நிர்வகிப்பது."
+        "Elements-ஐ safely select பண்ணி change பண்ணுவது.",
+        "Clicks, input, form submission-ஐ handle பண்ணுவது.",
+        "Data-லிருந்து lists render பண்ணி simple state-ஐ manage பண்ணுவது."
       ],
-      prereq: "தொகுதி 4: functions, arrays, objects.",
+      prereq: "Module 4: functions, arrays, objects.",
       project: "To-do list + quiz app",
-      exit: "தெரியும் ஒவ்வொரு control-ம் state அல்லது data-வை மாற்ற வேண்டும்; UI அதற்கேற்ப புதுப்பிக்கப்பட வேண்டும்.",
+      exit: "தெரியுற ஒவ்வொரு control-உம் state அல்லது data-ஐ change பண்ணணும்; UI அதுக்கு ஏத்த மாதிரி update ஆகணும்.",
       lessons: [
-        { id: "5-1", num: "5.1", title: "DOM-ஐ தேர்ந்தெடுத்து மாற்றுவது" },
-        { id: "5-2", num: "5.2", title: "Events, input, forms" },
-        { id: "5-3", num: "5.3", title: "State மற்றும் பட்டியல்களை render செய்வது" },
+        { id: "5-1", num: "5.1", title: "Selecting and changing the DOM" },
+        { id: "5-2", num: "5.2", title: "Events, input, and forms" },
+        { id: "5-3", num: "5.3", title: "State and rendering lists" },
         { id: "5-4", num: "5.4", title: "To-do list + quiz app", project: true }
       ]
     },
     {
       id: "06",
-      title: "Async மற்றும் APIs",
-      weeks: "வாரங்கள் 11–12",
-      hours: "~16 மணி",
+      title: "Async & APIs",
+      weeks: "Weeks 11–12",
+      hours: "~16 h",
       goals: [
-        "fetch மற்றும் async/await மூலம் data பெறுவது.",
-        "JSON படித்து loading, empty, error, success ஆகிய நிலைகளைக் கையாள்வது.",
-        "localStorage மூலம் சிறிய அளவு data சேமிப்பது."
+        "fetch-உம் async/await-உம் use பண்ணி data fetch பண்ணுவது.",
+        "JSON படிச்சு loading, empty, error, success states-ஐ handle பண்ணுவது.",
+        "localStorage-ல small amount data store பண்ணுவது."
       ],
-      prereq: "தொகுதி 5: events மற்றும் DOM புதுப்பிப்புகள்.",
-      project: "வானிலை செயலி",
-      exit: "நான்கு UI நிலைகளையும் கையாண்டு, console-ல் கையாளப்படாத error எதையும் விடக்கூடாது.",
+      prereq: "Module 5: events-உம் DOM updates-உம்.",
+      project: "Weather app",
+      exit: "நாலு UI states-ஐயும் handle பண்ணி, console-ல unhandled error எதுவும் விடக்கூடாது.",
       lessons: [
-        { id: "6-1", num: "6.1", title: "Promises மற்றும் async/await" },
-        { id: "6-2", num: "6.2", title: "fetch, JSON, மற்றும் API keys" },
-        { id: "6-3", num: "6.3", title: "Loading, empty, error நிலைகள்" },
-        { id: "6-4", num: "6.4", title: "Storage + வானிலை செயலி", project: true }
+        { id: "6-1", num: "6.1", title: "Promises and async/await" },
+        { id: "6-2", num: "6.2", title: "fetch, JSON, and API keys" },
+        { id: "6-3", num: "6.3", title: "Loading, empty, and error states" },
+        { id: "6-4", num: "6.4", title: "Storage + weather app", project: true }
       ]
     },
     {
       id: "07",
-      title: "வெளியிடுங்கள்",
-      weeks: "வாரங்கள் 13–14",
-      hours: "~18 மணி",
+      title: "Ship it",
+      weeks: "Weeks 13–14",
+      hours: "~18 h",
       goals: [
-        "பல பக்க தளத்தைக் கட்டமைத்து பொதுவான patterns-ஐ மீண்டும் பயன்படுத்துவது.",
-        "accessibility மற்றும் performance-ஐ audit செய்வது.",
-        "Git பயன்படுத்தி, GitHub-ல் வெளியிட்டு, நேரடி தளத்தை deploy செய்வது."
+        "Multi-page site-ஐ structure பண்ணி shared patterns-ஐ reuse பண்ணுவது.",
+        "Accessibility-ஐயும் performance-ஐயும் audit பண்ணுவது.",
+        "Git use பண்ணி, GitHub-ல publish பண்ணி, live site-ஐ deploy பண்ணுவது."
       ],
-      prereq: "தொகுதிகள் 1–6 மற்றும் முடிக்கப்பட்ட ஒரு திட்டப்பணி.",
-      project: "Portfolio v2 + மூன்று பக்க தளம், deploy செய்யப்பட்டது",
-      exit: "mobile-ல் வேலை செய்யும், audit-ஐத் தேர்ச்சி பெறும், GitHub-ல் ஆவணப்படுத்தப்பட்ட நேரடி URL.",
+      prereq: "Modules 1–6-உம் முடிச்ச ஒரு project-உம்.",
+      project: "Portfolio v2 + three-page site, deployed",
+      exit: "Mobile-ல work ஆகுற, audit pass ஆகுற, GitHub-ல documented live URL.",
       lessons: [
-        { id: "7-1", num: "7.1", title: "பல பக்க கட்டமைப்பு" },
-        { id: "7-2", num: "7.2", title: "Accessibility மற்றும் performance audit" },
-        { id: "7-3", num: "7.3", title: "Git, deploy, மற்றும் portfolio v2", project: true }
+        { id: "7-1", num: "7.1", title: "Multi-page architecture" },
+        { id: "7-2", num: "7.2", title: "Accessibility and performance audit" },
+        { id: "7-3", num: "7.3", title: "Git, deploy, and portfolio v2", project: true }
       ]
     }
   ]

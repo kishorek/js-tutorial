@@ -2,34 +2,34 @@
   <header class="lesson-head">
     <p class="eyebrow">Module 03 · Layout &amp; responsive design</p>
     <h1>CSS Grid</h1>
-    <p class="lesson-lede">Flexbox ஒரு வரிசையில் items-ஐ பரப்புகிறது. Grid ஒரே நேரத்தில் rows மற்றும் columns-ஐ கட்டுப்படுத்துகிறது; அதனால் galleries, dashboards, முழு page layouts தற்செயலாக அல்லாமல் முன்கூட்டியே திட்டமிட்டபடி அமையும்.</p>
+    <p class="lesson-lede">Flexbox items-ஐ ஒரு line-ல distribute பண்ணும். Grid-ல rows-ஐயும் columns-ஐயும் ஒரே நேரத்தில் control பண்ணலாம். அதனால galleries, dashboards, முழு page layouts-ஐ தற்செயலா அல்லாமல் நினைத்தபடி predictable-ஆ build பண்ண முடியும்.</p>
     <div class="chips">
-      <span class="chip chip--accent">பாடம் 3.1</span>
-      <span class="chip">60–75 நிமிடங்கள்</span>
-      <span class="chip">தொடக்கநிலை</span>
+      <span class="chip chip--accent">Lesson 3.1</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
     </div>
     <div class="brief">
       <div>
-        <h3>இதன் முடிவில், உங்களால் முடியும்</h3>
+        <h3>By the end, you can</h3>
         <ul>
-          <li><code>fr</code> மற்றும் <code>repeat()</code> கொண்டு columns மற்றும் rows உருவாக்குவது.</li>
-          <li><code>minmax()</code> மற்றும் <code>auto-fit</code> கொண்டு அளவு மாறும் tracks கட்டுவது.</li>
-          <li>Named grid areas கொண்டு ஒரு page-ஐ அமைப்பது.</li>
+          <li><code>fr</code> மற்றும் <code>repeat()</code> வைத்து columns-ஐயும் rows-ஐயும் build பண்ணுங்கள்.</li>
+          <li><code>minmax()</code> மற்றும் <code>auto-fit</code> வைத்து resize ஆகும் tracks build பண்ணுங்கள்.</li>
+          <li>Named grid areas வைத்து ஒரு page-ஐ layout பண்ணுங்கள்.</li>
         </ul>
       </div>
       <div>
-        <h3>உங்களுக்குத் தேவை</h3>
+        <h3>You need</h3>
         <ul>
           <li>Module 2: box model மற்றும் Flexbox.</li>
           <li>சில cards அல்லது sections உள்ள ஒரு page.</li>
-          <li>Grid-ஐ inspect செய்ய DevTools திறந்திருப்பது.</li>
+          <li>Grid-ஐ inspect பண்ண DevTools-ஐ open பண்ணி வையுங்கள்.</li>
         </ul>
       </div>
     </div>
   </header>
 
-  <h2>Grid இரு பரிமாணங்களில் வேலை செய்கிறது</h2>
-  <p><code>display: grid</code> கொண்டு ஒரு element-ஐ grid container ஆக்குங்கள். அதன் நேரடி children grid items ஆகும். <code>gap</code> property margins இல்லாமல் அவற்றுக்கு இடையே இடைவெளி வைக்கிறது.</p>
+  <h2>Grid works in two dimensions</h2>
+  <p><code>display: grid</code> வைத்து ஒரு element-ஐ grid container ஆக்குங்கள். அதன் direct children grid items ஆகும். <code>gap</code> property margins இல்லாமல் அவற்றுக்கு நடுவே space விடும்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">.gallery {
@@ -48,15 +48,15 @@
 
   <ul>
     <li><strong>Container:</strong> <code>display: grid</code> உள்ள element.</li>
-    <li><strong>Item:</strong> அந்த container-இன் ஒவ்வொரு நேரடி child.</li>
+    <li><strong>Item:</strong> அந்த container-இன் ஒவ்வொரு direct child.</li>
     <li><strong>Track:</strong> ஒரு column அல்லது ஒரு row.</li>
     <li><strong>Cell:</strong> ஒரு row-ஐயும் column-ஐயும் சந்திக்கும் இடம்.</li>
   </ul>
 
-  <p>Grid-உம் Flexbox-உம் போட்டியாளர்கள் அல்ல, கூட்டாளிகள். Layout-இன் வடிவம் இரு திசைகளிலும் தெரிந்திருந்தால் Grid-ஐ பயன்படுத்துங்கள். Items ஒரே axis-ல் ஓட வேண்டுமானால் Flexbox-ஐ பயன்படுத்துங்கள்.</p>
+  <p>Grid-உம் Flexbox-உம் போட்டியா இல்ல, சேர்ந்து வேலை பண்றவை. Layout-இன் shape இரு direction-லயும் தெரிஞ்சா Grid use பண்ணுங்கள். Items ஒரே axis-ல flow ஆகணும்னா Flexbox use பண்ணுங்கள்.</p>
 
-  <h2>Fractions, repeat, minmax</h2>
-  <p>நிலையான அளவுகளுக்கும் gaps-க்கும் பிறகு மீதமுள்ள இடத்தை <code>fr</code> unit பங்கிடுகிறது. மூன்று <code>1fr</code> columns சமமானவை. <code>2fr</code> column, <code>1fr</code> column-க்கு கிடைக்கும் free space-ஐ விட இரண்டு மடங்கு பெறும்.</p>
+  <h2>Fractions, repeat, and minmax</h2>
+  <p>Fixed sizes-க்கும் gaps-க்கும் அப்புறம் மீதி இருக்கும் space-ஐ <code>fr</code> unit share பண்ணும். மூன்று <code>1fr</code> columns சமம். <code>2fr</code> column, <code>1fr</code> column-க்கு கிடைக்கும் free space-ஐ விட இரண்டு மடங்கு எடுக்கும்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">.gallery {
@@ -72,13 +72,13 @@
   </div>
 
   <ul>
-    <li><code>repeat(3, 1fr)</code> என்பது <code>1fr 1fr 1fr</code>-க்கான சுருக்கம்.</li>
-    <li><code>minmax(0, 1fr)</code> ஒரு track தன் content width-க்குக் கீழே சுருங்க அனுமதிக்கிறது; இது நீளமான words layout-ஐ உடைப்பதைத் தடுக்கும்.</li>
-    <li><code>grid-column: 1 / -1</code> முதல் line முதல் கடைசி line வரை பரவி, item-ஐ முழு width ஆக்குகிறது.</li>
-    <li><code>grid-auto-rows</code> நீங்கள் declare செய்யாத rows-க்கு அளவு வழங்குகிறது.</li>
+    <li><code>repeat(3, 1fr)</code> என்பது <code>1fr 1fr 1fr</code>-க்கு short form.</li>
+    <li><code>minmax(0, 1fr)</code> ஒரு track-ஐ அதன் content width-க்குக் கீழேயும் shrink ஆக விடும். அதனால நீளமான words layout-ஐ break பண்ணாது.</li>
+    <li><code>grid-column: 1 / -1</code> முதல் line-ல இருந்து கடைசி line வரை span பண்ணி, item-ஐ full width ஆக்கும்.</li>
+    <li><code>grid-auto-rows</code> நீங்கள் declare பண்ணாத rows-க்கு size கொடுக்கும்.</li>
   </ul>
 
-  <p>Media query இல்லாமல் respond செய்யும் gallery-க்கு, நிலையான எண்ணிக்கைக்குப் பதிலாக <code>auto-fit</code> பயன்படுத்துங்கள். Browser முடிந்த அளவுக்கு <code>220px</code> tracks-ஐ பொருத்தி, பிறகு row-ஐ நிரப்ப அவற்றை stretch செய்யும்.</p>
+  <p>Media query இல்லாமல் respond ஆகும் gallery-க்கு, fixed count-க்கு பதிலா <code>auto-fit</code> use பண்ணுங்கள். Browser முடிந்த அளவு <code>220px</code> tracks-ஐ fit பண்ணி, அப்புறம் row-ஐ fill பண்ண stretch பண்ணும்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">.gallery {
@@ -90,11 +90,11 @@
 
   <div class="callout callout--tip">
     <span class="callout__label">auto-fit vs auto-fill</span>
-    <p><code>auto-fit</code> காலியான tracks-ஐ சுருக்கிவிடும்; அதனால் இருக்கும் cards row-ஐ நிரப்ப stretch ஆகும். <code>auto-fill</code> காலியான tracks-ஐ வைத்துக்கொள்ளும்; அதனால் cards தங்கள் குறைந்தபட்ச அளவிலேயே நின்று இடைவெளி விடும். Cards வளர வேண்டுமா என்பதைப் பொறுத்து தேர்ந்தெடுங்கள்.</p>
+    <p><code>auto-fit</code> காலியான tracks-ஐ collapse பண்ணும்; அதனால இருக்குற cards row-ஐ fill பண்ண stretch ஆகும். <code>auto-fill</code> காலியான tracks-ஐ வைத்துக்கொள்ளும்; அதனால cards minimum size-லயே நின்று gap விடும். Cards grow ஆகணுமா என்பதை பார்த்து choose பண்ணுங்கள்.</p>
   </div>
 
-  <h2>Rows மற்றும் alignment</h2>
-  <p>Vertical structure முக்கியமானபோது rows-ஐ declare செய்யுங்கள்; உதாரணமாக, footer கீழே இருக்கும்படி page முழு viewport-ஐ நிரப்ப வேண்டியிருக்கும்போது.</p>
+  <h2>Rows and alignment</h2>
+  <p>Vertical structure முக்கியமான போது rows-ஐ declare பண்ணுங்கள். உதாரணமா, footer கீழே இருக்கணும், page முழு viewport-ஐ fill பண்ணணும்-னு இருக்கும்போது.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">.page {
@@ -114,14 +114,14 @@ main {
   </div>
 
   <ul>
-    <li><code>justify-items</code> items-ஐ அவற்றின் column-க்குள் align செய்கிறது; <code>justify-content</code> முழு grid-ஐயும் container-க்குள் align செய்கிறது.</li>
-    <li><code>align-items</code> மற்றும் <code>align-content</code> vertical axis-ல் அதையே செய்கின்றன.</li>
-    <li><code>place-items: center</code> இரண்டு alignment properties-ஐயும் ஒரே நேரத்தில் அமைக்கிறது.</li>
-    <li>ஒரு <code>auto</code> row தன் content-க்கு ஏற்ப வளரும்; ஒரு <code>1fr</code> row மீதமுள்ள இடத்தை எடுத்துக்கொள்ளும்.</li>
+    <li><code>justify-items</code> items-ஐ அவங்க column-க்குள்ள align பண்ணும்; <code>justify-content</code> முழு grid-ஐயும் container-க்குள்ள align பண்ணும்.</li>
+    <li><code>align-items</code> மற்றும் <code>align-content</code> vertical axis-ல அதே வேலையை பண்ணும்.</li>
+    <li><code>place-items: center</code> இரண்டு alignment properties-ஐயும் ஒரே நேரத்தில் set பண்ணும்.</li>
+    <li><code>auto</code> row content-க்கு ஏத்தபடி grow ஆகும்; <code>1fr</code> row மீதி space-ஐ எடுத்துக்கும்.</li>
   </ul>
 
-  <h2>Named areas page-ஐ விவரிக்கின்றன</h2>
-  <p><code>grid-template-areas</code> layout-ஐ text ஆக வரைகிறது. பெயரிடப்பட்ட ஒவ்வொரு cell-um ஒரு rectangle ஆக இருக்க வேண்டும்; ஒவ்வொரு item-um <code>grid-area</code> மூலம் தன் area-ஐ கோர வேண்டும்.</p>
+  <h2>Named areas describe the page</h2>
+  <p><code>grid-template-areas</code> layout-ஐ text-ஆ draw பண்ணும். பேர் வைத்த ஒவ்வொரு cell-உம் ஒரு rectangle ஆக இருக்கணும்; ஒவ்வொரு item-உம் <code>grid-area</code> வைத்து தன் area-ஐ claim பண்ணணும்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">.page {
@@ -153,24 +153,24 @@ main {
 }</script>
   </div>
 
-  <p>Named areas ஒரு documentation ஆக மாறும். Teammate ஒருவர் ஐந்து வரிகளில் layout-ஐ படிக்கலாம். குறுகிய screen-ல் column எண்ணிக்கையும் area map-ம் மட்டுமே மாறும்; item rules அப்படியே இருக்கும்.</p>
+  <p>Named areas ஒரு documentation ஆகிடும். Teammate ஒருவர் ஐந்து lines-ல layout-ஐ read பண்ணலாம். சிறிய screen-ல column count-உம் area map-உம் மட்டும் மாறும்; item rules அப்படியே இருக்கும்.</p>
 
   <div class="callout callout--warn">
-    <span class="callout__label">பொதுவான தவறு</span>
-    <p>Area-வின் நடுவில் ஒரு hole வைக்க வேண்டாம். ஒரு row <code>"header header"</code> என்றும் அடுத்த row <code>"main sidebar"</code> என்றும் இருந்தால் வடிவம் இன்னும் சரியாகவே இருக்கும். ஆனால் <code>"header ."</code> பெயரிடாத cell-ஐ உருவாக்கி பிறகு உங்களை குழப்பும். உண்மையிலேயே காலி இடம் வேண்டும்போது மட்டும் period பயன்படுத்துங்கள்.</p>
+    <span class="callout__label">Common mistake</span>
+    <p>Area நடுவில hole வைக்காதீங்க. ஒரு row <code>"header header"</code>, அடுத்த row <code>"main sidebar"</code>னா shape இன்னும் சரியா இருக்கும். ஆனா <code>"header ."</code> பேர் இல்லாத cell-ஐ build பண்ணி, அப்புறம் உங்களை குழப்பும். உண்மையா காலி இடம் வேணும்னா மட்டும் period use பண்ணுங்கள்.</p>
   </div>
 
   <section class="practice" data-practice data-min="40">
     <div class="practice__head">
-      <span class="kicker">பயிற்சி · 25 நிமிடங்கள்</span>
+      <span class="kicker">Exercise · 25 minutes</span>
       <h2>Responsive card gallery</h2>
     </div>
-    <p>ஆறு cards உள்ள gallery-க்கு CSS எழுதுங்கள். அகலமான screens-ல் மூன்று சமமான columns காட்ட வேண்டும். <code>760px</code>-க்குக் கீழே ஒரு column ஆக வேண்டும். <code>repeat()</code>, <code>minmax(0, 1fr)</code>, <code>gap</code> பயன்படுத்துங்கள். <code>auto-fit</code> இப்போது பயன்படுத்த வேண்டாம்; இந்தப் பயிற்சி வெளிப்படையான breakpoint பற்றியது.</p>
-    <label class="visually-hidden" for="practice-3-1">உங்கள் gallery CSS</label>
+    <p>ஆறு cards உள்ள gallery-க்கு CSS எழுதுங்கள். அகலமான screen-ல மூன்று சம columns காட்டணும். <code>760px</code>-க்குக் கீழே ஒரு column ஆகணும். <code>repeat()</code>, <code>minmax(0, 1fr)</code>, <code>gap</code> use பண்ணுங்கள். <code>auto-fit</code> இப்போ use பண்ண வேண்டாம்; இந்த exercise explicit breakpoint பற்றியது.</p>
+    <label class="visually-hidden" for="practice-3-1">Your gallery CSS</label>
     <textarea class="practice__code" id="practice-3-1" data-attempt spellcheck="false" placeholder=".gallery { ... }"></textarea>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
     <script type="text/plain" data-answer>.gallery {
@@ -190,24 +190,24 @@ main {
 }</script>
   </section>
 
-  <h2>உங்களைச் சரிபாருங்கள்</h2>
+  <h2>Check yourself</h2>
   <div class="qa-list">
     <details class="qa">
-      <summary>Flexbox-க்குப் பதிலாக எப்போது Grid-ஐப் பயன்படுத்த வேண்டும்?</summary>
-      <p>Layout rows மற்றும் columns இரண்டிலும் align ஆக வேண்டியிருக்கும்போது; உதாரணமாக gallery அல்லது page skeleton. Items ஒரே axis-ல் மட்டும் flow ஆக வேண்டுமானால் Flexbox எளிமையானது.</p>
+      <summary>When should you reach for Grid instead of Flexbox?</summary>
+      <p>Layout rows-லயும் columns-லயும் ஒரே நேரத்தில் align ஆகணும்னா, gallery அல்லது page skeleton மாதிரி. Items ஒரே axis-ல flow அல்லது distribute ஆனா மட்டும் போதும்னா Flexbox simpler.</p>
     </details>
     <details class="qa">
-      <summary>வெறும் <code>1fr</code>-க்குப் பதிலாக ஏன் <code>minmax(0, 1fr)</code> எழுத வேண்டும்?</summary>
-      <p>சாதாரண <code>1fr</code> track-க்கு அதன் content அடிப்படையில் automatic minimum இருக்கும். நீளமான, உடையாத word column-ஐ screen-ஐ விட அகலமாக்கலாம். <code>minmax(0, 1fr)</code> அந்த minimum-ஐ பூஜ்ஜியமாக அமைப்பதால் track சுருங்க முடியும்.</p>
+      <summary>Why write <code>minmax(0, 1fr)</code> instead of just <code>1fr</code>?</summary>
+      <p>சாதாரண <code>1fr</code> track-க்கு அதன் content-ஐ base-ஆ வைத்து automatic minimum இருக்கும். நீளமான, உடையாத word column-ஐ screen-ஐ விட அகலமாக்கும். <code>minmax(0, 1fr)</code> அந்த minimum-ஐ zero ஆக்கும்; அதனால track shrink ஆக முடியும்.</p>
     </details>
   </div>
 
   <div class="recap">
-    <h2>நினைவில் வைக்க வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <h2>Key things to remember</h2>
     <ul>
-      <li><strong>Grid இரு பரிமாணம்.</strong> Container-ல் columns மற்றும் rows வரையறுக்கவும்.</li>
-      <li><strong><code>fr</code> free space-ஐ பங்கிடுகிறது.</strong> பாதுகாப்பான flexible tracks-க்கு <code>minmax(0, 1fr)</code> உடன் இணைக்கவும்.</li>
-      <li><strong>Named areas layout-ஐ படிக்க எளிதாக்குகின்றன.</strong> ஒவ்வொரு item-ஐயும் மீண்டும் எழுதுவதற்குப் பதிலாக breakpoint-ல் map-ஐ மாற்றவும்.</li>
+      <li><strong>Grid is two-dimensional.</strong> Container-ல columns-ஐயும் rows-ஐயும் define பண்ணுங்கள்.</li>
+      <li><strong><code>fr</code> shares free space.</strong> Safe flexible tracks-க்கு <code>minmax(0, 1fr)</code> உடன் சேருங்கள்.</li>
+      <li><strong>Named areas make layout readable.</strong> ஒவ்வொரு item-ஐயும் மறுபடி எழுதாம, breakpoint-ல map-ஐ மாற்றுங்கள்.</li>
     </ul>
   </div>
 </article>

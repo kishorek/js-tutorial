@@ -1,53 +1,53 @@
 <article class="lesson" id="lesson-6-2" data-lesson="6-2">
   <header class="lesson-head">
-    <p class="eyebrow">தொகுதி 06 · Async &amp; APIs</p>
-    <h1>fetch, JSON மற்றும் API keys</h1>
-    <p class="lesson-lede">உங்கள் page மற்றொரு கணினியிடம் data கேட்கலாம். request/response cycle, <code>fetch</code> மற்றும் JSON எப்படி இணைகின்றன, secret keys ஏன் ஒருபோதும் browser code-ல் அனுப்பக்கூடாது என்பதைக் கற்றுக்கொள்ளுங்கள்.</p>
+    <p class="eyebrow">Module 06 · Async &amp; APIs</p>
+    <h1>fetch, JSON, and API keys</h1>
+    <p class="lesson-lede">உங்க page வேற ஒரு computer-கிட்ட data கேட்கலாம். request/response cycle, <code>fetch</code> மற்றும் JSON எப்படி சேர்ந்து work ஆகுது, secret keys ஏன் ஒருநாளும் browser code-ல ship பண்ணக்கூடாது — அதைப் பாருங்க.</p>
     <div class="chips">
-      <span class="chip chip--accent">பாடம் 6.2</span>
-      <span class="chip">60–75 நிமிடம்</span>
-      <span class="chip">தொடக்கநிலை</span>
+      <span class="chip chip--accent">Lesson 6.2</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
     </div>
     <div class="brief">
       <div>
-        <h3>இந்தப் பாடம் முடியும்போது, நீங்கள்:</h3>
+        <h3>By the end, you can</h3>
         <ul>
-          <li>ஒரு HTTP request மற்றும் response-ஐப் படியுங்கள்.</li>
-          <li>JSON-ஐ fetch செய்து <code>response.ok</code>-ஐச் சரிபாருங்கள்.</li>
-          <li>Query parameters கொண்டு request URLs உருவாக்குங்கள்.</li>
-          <li>CORS-ஐயும், secret keys-க்கு ஏன் server தேவை என்பதையும் விளக்குங்கள்.</li>
+          <li>ஒரு HTTP request மற்றும் response-ஐ read பண்ணுங்கள்.</li>
+          <li>JSON-ஐ fetch பண்ணி <code>response.ok</code>-ஐ check பண்ணுங்கள்.</li>
+          <li>Query parameters கொண்டு request URLs build பண்ணுங்கள்.</li>
+          <li>CORS-ஐயும், secret keys-க்கு ஏன் server வேணும்-னு explain பண்ணுங்கள்.</li>
         </ul>
       </div>
       <div>
-        <h3>உங்களுக்குத் தேவை</h3>
+        <h3>You need</h3>
         <ul>
-          <li>பாடம் 6.1 promises மற்றும் <code>async</code>/<code>await</code>.</li>
-          <li>DevTools திறந்த browser.</li>
-          <li>live examples-க்கு internet connection.</li>
+          <li>Lesson 6.1 promises மற்றும் <code>async</code>/<code>await</code>.</li>
+          <li>DevTools open-ஆ இருக்குற browser.</li>
+          <li>Live examples-க்கு internet connection.</li>
         </ul>
       </div>
     </div>
   </header>
-  <h2>Request வெளியே போகும், response திரும்பி வரும்</h2>
-  <p>API என்பது ஒரு ஒப்பந்தம்: நீங்கள் ஒரு URL-க்கு HTTP request அனுப்புகிறீர்கள், server ஒரு response அனுப்புகிறது. Request-க்கு ஒரு method இருக்கும்; எடுத்துக்காட்டாக data படிக்க <code>GET</code>, அனுப்ப <code>POST</code>. Response-க்கு status code, headers, மற்றும் பொதுவாக ஒரு body இருக்கும்.</p>
+  <h2>A request goes out, a response comes back</h2>
+  <p>API-னா ஒரு contract: நீங்க ஒரு URL-க்கு HTTP request அனுப்புவீங்க, server ஒரு response அனுப்பும். Request-க்கு ஒரு method இருக்கும்; உதாரணமா data read பண்ண <code>GET</code>, அனுப்ப <code>POST</code>. Response-க்கு status code, headers, பொதுவா ஒரு body இருக்கும்.</p>
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th scope="col">நிலை</th><th scope="col">பொருள்</th><th scope="col">என்ன செய்ய வேண்டும்</th></tr>
+        <tr><th scope="col">Status</th><th scope="col">Meaning</th><th scope="col">What to do</th></tr>
       </thead>
       <tbody>
-        <tr><td><code>200</code></td><td>வெற்றி</td><td>Body-ஐப் படியுங்கள்.</td></tr>
-        <tr><td><code>400</code></td><td>தவறான request</td><td>URL அல்லது parameters-ஐச் சரிசெய்யுங்கள்.</td></tr>
-        <tr><td><code>401</code></td><td>அனுமதி இல்லை</td><td>Server-ல் சரியான credentials சேர்க்கவும்.</td></tr>
-        <tr><td><code>404</code></td><td>கிடைக்கவில்லை</td><td>Path அல்லது search term-ஐச் சரிபாருங்கள்.</td></tr>
-        <tr><td><code>429</code></td><td>அதிகமான requests</td><td>வேகத்தைக் குறைக்கவும் அல்லது முடிவுகளை cache செய்யவும்.</td></tr>
-        <tr><td><code>500</code></td><td>Server பிழை</td><td>பின்னர் மீண்டும் முயலுங்கள்; இது உங்கள் URL-ன் பிரச்சினை அல்ல.</td></tr>
+        <tr><td><code>200</code></td><td>Success</td><td>Body-ஐ read பண்ணுங்கள்.</td></tr>
+        <tr><td><code>400</code></td><td>Bad request</td><td>URL இல்ல parameters-ஐ fix பண்ணுங்கள்.</td></tr>
+        <tr><td><code>401</code></td><td>Not authorized</td><td>Server-ல valid credentials add பண்ணுங்கள்.</td></tr>
+        <tr><td><code>404</code></td><td>Not found</td><td>Path இல்ல search term-ஐ check பண்ணுங்கள்.</td></tr>
+        <tr><td><code>429</code></td><td>Too many requests</td><td>Slow down பண்ணுங்கள் இல்ல results-ஐ cache பண்ணுங்கள்.</td></tr>
+        <tr><td><code>500</code></td><td>Server error</td><td>அப்புறம் retry பண்ணுங்கள்; இது உங்க URL-ன் problem இல்ல.</td></tr>
       </tbody>
     </table>
   </div>
-  <p>பெரும்பாலான நவீன APIs <strong>JSON</strong>-ஐ அனுப்புகின்றன: JavaScript objects மற்றும் arrays போலத் தெரியும் text. ஒரு weather response-ல் temperature மற்றும் weather code கொண்ட nested <code>current</code> object இருக்கலாம்.</p>
-  <h2>fetch ஒரு promise-ஐத் திருப்பித் தரும்</h2>
-  <p><code>fetch()</code> ஒரு request-ஐத் தொடங்கி promise-ஐத் திருப்பித் தரும். <code>404</code> ஆனாலும், response headers வந்தவுடன் promise resolve ஆகும். அதனால்தான் body-ஐப் படிக்கும் முன் <code>response.ok</code>-ஐச் சரிபார்க்க வேண்டும்.</p>
+  <p>நிறைய modern APIs <strong>JSON</strong>-ஐ அனுப்பும்: JavaScript objects மற்றும் arrays மாதிரி தெரியுற text. ஒரு weather response-ல temperature-ம் weather code-ம் இருக்குற nested <code>current</code> object இருக்கலாம்.</p>
+  <h2>fetch returns a promise</h2>
+  <p><code>fetch()</code> ஒரு request-ஐ start பண்ணி promise-ஐ return பண்ணும். <code>404</code>-க்கும், response headers வந்ததுமே promise resolve ஆகும். அதனாலதான் body-ஐ read பண்றதுக்கு முன்னாடி <code>response.ok</code>-ஐ check பண்ணணும்.</p>
   <div class="code-block" data-code>
     <script type="text/plain">const url = "https://api.open-meteo.com/v1/forecast?latitude=51.5&longitude=-0.12&current=temperature_2m,weather_code&timezone=auto";
 async function showWeather() {
@@ -65,13 +65,13 @@ async function showWeather() {
 }
 showWeather();</script>
   </div>
-  <p><code>response.json()</code>-ம் asynchronous. அது body-ஐப் படித்து JSON text-ஐ JavaScript values ஆக parse செய்கிறது, எனவே அதற்கும் <code>await</code> தேவை. Body சரியான JSON இல்லையென்றால், அது reject ஆகும்.</p>
+  <p><code>response.json()</code>-ம் asynchronous. அது body-ஐ read பண்ணி JSON text-ஐ JavaScript values-ஆ parse பண்ணும், அதனால அதுக்கும் <code>await</code> வேணும். Body valid JSON இல்லைனா, அது reject ஆகும்.</p>
   <div class="callout callout--warn">
-    <span class="callout__label">fetch, 404-ல் reject ஆகாது</span>
-    <p>Network failure promise-ஐ reject செய்யும். <code>404</code> அல்லது <code>500</code> போன்ற HTTP error இருந்தாலும் அது fulfill ஆகும். எப்போதும் <code>response.ok</code>-ஐச் சரிபாருங்கள்; இல்லையென்றால் error page-ஐ data ஆக parse செய்ய முயல்வீர்கள்.</p>
+    <span class="callout__label">fetch does not reject on 404</span>
+    <p>Network failure promise-ஐ reject பண்ணும். <code>404</code> இல்ல <code>500</code> மாதிரி HTTP error-க்கு அது fulfill ஆகும். எப்பவும் <code>response.ok</code>-ஐ check பண்ணுங்கள், இல்லைனா error page-ஐ data-ஆ parse பண்ண try பண்ணுவீங்க.</p>
   </div>
-  <h2>Query parameters கொண்டு URL உருவாக்குங்கள்</h2>
-  <p>Query parameters என்பவை <code>?</code>-க்குப் பிறகு வரும் <code>key=value</code> இணைகள். அவை search-ஐ filter செய்யும், fields-ஐத் தேர்ந்தெடுக்கும், அல்லது options அமைக்கும். அவற்றை <code>&amp;</code> கொண்டு பிரித்து, user input-ஐ <code>encodeURIComponent()</code> கொண்டு encode செய்யுங்கள்.</p>
+  <h2>Build the URL with query parameters</h2>
+  <p>Query parameters-னா <code>?</code>-க்குப் பிறகு வர <code>key=value</code> pairs. அவை search-ஐ filter பண்ணும், fields-ஐ choose பண்ணும், இல்ல options set பண்ணும். அவற்றை <code>&amp;</code>-ஓட separate பண்ணி, user input-ஐ <code>encodeURIComponent()</code>-ஓட encode பண்ணுங்கள்.</p>
   <div class="code-block" data-code>
     <script type="text/plain">const params = new URLSearchParams({
   name: "London",
@@ -81,7 +81,7 @@ const url = "https://geocoding-api.open-meteo.com/v1/search?" + params;
 console.log(url);
 // ...search?name=London&count=1</script>
   </div>
-  <p>Open-Meteo-க்கு இரண்டு steps தேவை. முதலில் geocoding ஒரு city name-ஐ coordinates ஆக மாற்றும். பிறகு forecast endpoint அந்த coordinates-ஐப் பயன்படுத்தும். இரண்டும் இலவசம்; key தேவையில்லை.</p>
+  <p>Open-Meteo-க்கு ரெண்டு steps வேணும். முதல்ல geocoding ஒரு city name-ஐ coordinates-ஆ மாத்தும். பிறகு forecast endpoint அந்த coordinates-ஐ use பண்ணும். ரெண்டும் free, key தேவையில்ல.</p>
   <div class="code-block" data-code>
     <script type="text/plain">async function getPlace(name) {
   const geoUrl = "https://geocoding-api.open-meteo.com/v1/search?name="
@@ -108,15 +108,15 @@ async function getWeather(place) {
   return (await response.json()).current;
 }</script>
   </div>
-  <p><strong>CORS</strong> என்பது cross-origin requests-க்கான browser-ன் விதி. API சரியான <code>Access-Control-Allow-Origin</code> header-ஐ அனுப்பாவிட்டால், response-ஐப் படிக்கும் உங்கள் code-ஐ browser தடுக்கும். Client JavaScript-ல் இதைச் சரிசெய்ய முடியாது; API உங்கள் origin-ஐ அனுமதிக்க வேண்டும், இல்லையென்றால் server proxy தேவை.</p>
+  <p><strong>CORS</strong>-னா cross-origin requests-க்கான browser-ன் rule. API சரியான <code>Access-Control-Allow-Origin</code> header-ஐ அனுப்பலனா, response-ஐ read பண்ணுற உங்க code-ஐ browser block பண்ணும். Client JavaScript-ல இதை fix பண்ண முடியாது; API உங்க origin-ஐ allow பண்ணணும், இல்லைனா server proxy வேணும்.</p>
   <div class="callout callout--tip">
-    <span class="callout__label">CORS error-ஐப் படிப்பது</span>
-    <p>Network panel-ல் request response உடன் தெரியலாம்; ஆனால் console CORS failure-ஐக் காட்டும். Browser data-ஐப் பெற்றுக்கொண்டது, ஆனால் உங்கள் page-க்கு அதை வெளிப்படுத்த மறுத்துவிட்டது.</p>
+    <span class="callout__label">Reading a CORS error</span>
+    <p>Network panel-ல request response-ஓட தெரியலாம், ஆனா console CORS failure-ஐ காட்டும். Browser data-ஐ வாங்கிட்டது, ஆனா உங்க page-க்கு அதை expose பண்ண முடியாதுன்னு மறுத்துட்டது.</p>
   </div>
-  <h2>API keys server-ல் இருக்க வேண்டும்</h2>
-  <p>சில APIs caller-ஐ அடையாளம் காணவும் bill செய்யவும் ஒரு key பயன்படுத்துகின்றன. <strong>Public</strong> key தெரிவதற்காகவே வடிவமைக்கப்பட்டு domain மூலம் கட்டுப்படுத்தப்படும். <strong>Secret</strong> key அப்படி அல்ல. HTML, CSS, அல்லது client JavaScript-ல் உள்ள எதையும் ஒவ்வொரு visitor-ம் படிக்கலாம்.</p>
-  <p>Key-ஐ ஒரு variable, comment, அல்லது obfuscate செய்யப்பட்ட file-ல் மறைப்பது security அல்ல. Browser key-ஐ request உடன் அனுப்ப வேண்டும், எனவே அது DevTools-ல் தெரியும். Client code-ல் உள்ள secret key-ஐ நகலெடுத்து உங்கள் account-க்கு எதிராகப் பயன்படுத்தலாம்.</p>
-  <p>Key தேவைப்பட்டால், அதைச் சிறிய server அல்லது serverless function-ல் வையுங்கள். Key server-ல் environment variable ஆக வாழும். உங்கள் browser உங்கள் endpoint-ஐ அழைக்கும்; உங்கள் endpoint API-ஐ அழைத்து page-க்குத் தேவையான data-வை மட்டும் திருப்பித் தரும்.</p>
+  <h2>API keys stay on the server</h2>
+  <p>சில APIs caller-ஐ identify பண்ணவும் bill பண்ணவும் ஒரு key use பண்ணும். <strong>Public</strong> key தெரியுற மாதிரியே design பண்ணப்பட்டு domain-ஆ restrict பண்ணப்படும். <strong>Secret</strong> key அப்படி இல்ல. HTML, CSS, இல்ல client JavaScript-ல இருக்குற எதையும் ஒவ்வொரு visitor-ம் read பண்ணலாம்.</p>
+  <p>Key-ஐ ஒரு variable-ல, comment-ல, இல்ல obfuscated file-ல hide பண்றது security இல்ல. Browser key-ஐ request-ஓட அனுப்பணும், அதனால அது DevTools-ல தெரியும். Client code-ல இருக்குற secret key-ஐ copy பண்ணி உங்க account-க்கு எதிரா use பண்ணலாம்.</p>
+  <p>Key வேணும்னா, அதை ஒரு சின்ன server இல்ல serverless function-ல வையுங்கள். Key server-ல environment variable-ஆ இருக்கும். உங்க browser உங்க endpoint-ஐ call பண்ணும்; உங்க endpoint API-ஐ call பண்ணி page-க்கு வேணுமான data-ஐ மட்டும் return பண்ணும்.</p>
   <div class="code-block" data-code>
     <script type="text/plain">// Browser: call your own endpoint, never the keyed API directly.
 async function loadWeather() {
@@ -130,20 +130,20 @@ const upstream = await fetch(
 );</script>
   </div>
   <div class="callout callout--warn">
-    <span class="callout__label">Key-ஐ ஒருபோதும் commit செய்யாதீர்கள்</span>
-    <p>Secrets-ஐ public repository, screenshot, அல்லது shared chat-ல் வைக்காதீர்கள். Secret key leak ஆனால், அதை revoke செய்து புதியதை உருவாக்குங்கள். Open-Meteo-க்கு key தேவையில்லை; அதனால் பயிற்சி செய்ய இது பாதுகாப்பான இடம்.</p>
+    <span class="callout__label">Never commit a key</span>
+    <p>Secrets-ஐ public repository-ல, screenshot-ல, இல்ல shared chat-ல வைக்காதீங்க. Secret key leak ஆனா, அதை revoke பண்ணி புதுசா ஒண்ணு create பண்ணுங்கள். Open-Meteo-க்கு key தேவையில்ல, அதனால practice பண்ண இது safe place.</p>
   </div>
   <section class="practice" data-practice data-min="30">
     <div class="practice__head">
-      <span class="kicker">பயிற்சி · 25 நிமிடம்</span>
-      <h2>ஒரு city-ஐத் தேடி முடிவை log செய்யுங்கள்</h2>
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Search a city and log the result</h2>
     </div>
-    <p><code>findPlace(name)</code> என்ற <code>async</code> function எழுதுங்கள். <code>count=1</code> உடன் Open-Meteo geocoding endpoint-ஐப் பயன்படுத்துங்கள். <code>response.ok</code>-ஐச் சரிபார்த்து, JSON-ஐ parse செய்து, இடத்தின் name, country, latitude, longitude-ஐ log செய்யுங்கள். பொருந்தவில்லை என்றால், error throw செய்யாமல் நட்பான message-ஐ log செய்யுங்கள்.</p>
-    <label class="visually-hidden" for="practice-6-2">உங்கள் பயிற்சி code</label>
-    <textarea class="practice__code" id="practice-6-2" data-attempt spellcheck="false" placeholder="உங்கள் fetch function-ஐ இங்கே எழுதுங்கள்..."></textarea>
+    <p><code>findPlace(name)</code>-னு ஒரு <code>async</code> function write பண்ணுங்கள். <code>count=1</code>-ஓட Open-Meteo geocoding endpoint-ஐ use பண்ணுங்கள். <code>response.ok</code>-ஐ check பண்ணி, JSON-ஐ parse பண்ணி, place-ன் name, country, latitude, longitude-ஐ log பண்ணுங்கள். Match இல்லைனா, error throw பண்ணாம friendly message-ஐ log பண்ணுங்கள்.</p>
+    <label class="visually-hidden" for="practice-6-2">Your exercise code</label>
+    <textarea class="practice__code" id="practice-6-2" data-attempt spellcheck="false" placeholder="Write your fetch function here..."></textarea>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
     <script type="text/plain" data-answer>async function findPlace(name) {
@@ -169,23 +169,23 @@ const upstream = await fetch(
 }
 findPlace("Tokyo");</script>
   </section>
-  <h2>உங்களைச் சரிபாருங்கள்</h2>
+  <h2>Check yourself</h2>
   <div class="qa-list">
     <details class="qa">
-      <summary><code>404</code> response தானாக ஏன் error throw செய்யாது?</summary>
-      <p>Request முழுமையாக முடியாதபோது மட்டுமே—உதாரணமாக network failure—fetch promise reject ஆகும். HTTP <code>404</code> என்பது முடிந்த response, எனவே promise fulfill ஆகும். <code>response.ok</code>-ஐச் சரிபார்த்து, அது false ஆகும்போது உங்கள் சொந்த error-ஐ throw செய்யுங்கள்.</p>
+      <summary>Why does a <code>404</code> response not throw by itself?</summary>
+      <p>Request முழுசா முடியாதப்போ மட்டும்தான் — உதாரணமா network failure — fetch promise reject ஆகும். HTTP <code>404</code>-ம் ஒரு completed response, அதனால promise fulfill ஆகும். <code>response.ok</code>-ஐ check பண்ணி, அது false-ஆ இருக்கும்போது உங்க சொந்த error-ஐ throw பண்ணுங்கள்.</p>
     </details>
     <details class="qa">
-      <summary>JavaScript variable-ல் key மறைக்கப்பட்டால் அது பாதுகாப்பானதா?</summary>
-      <p>இல்லை. Browser key-ஐ API-க்கு அனுப்ப வேண்டும், எனவே அது DevTools, source files, அல்லது Network panel-ல் தெரியும். Secret keys server-ல், environment variables-ல் இருந்து படிக்கப்பட்டு, உங்கள் page அழைக்கக்கூடிய endpoint-க்குப் பின்னால் இருக்க வேண்டும்.</p>
+      <summary>If a key is hidden in a JavaScript variable, is it safe?</summary>
+      <p>இல்ல. Browser key-ஐ API-க்கு அனுப்பணும், அதனால அது DevTools-ல, source files-ல, இல்ல Network panel-ல தெரியும். Secret keys server-ல, environment variables-லேர்ந்து read பண்ணி, உங்க page call பண்ணக்கூடிய endpoint-க்குப் பின்னாடி இருக்கணும்.</p>
     </details>
   </div>
   <div class="recap">
-    <h2>நினைவில் கொள்ள வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <h2>Key things to remember</h2>
     <ul>
-      <li><strong>fetch asynchronous.</strong> Response-க்காக await செய்து, <code>response.ok</code>-ஐச் சரிபார்த்து, பிறகு <code>response.json()</code>-க்காக await செய்யுங்கள்.</li>
-      <li><strong>URLs தான் request-ஐ எடுத்துச் செல்கின்றன.</strong> User input-ஐ encode செய்து, search terms மற்றும் options-க்கு query parameters பயன்படுத்துங்கள்.</li>
-      <li><strong>CORS மற்றும் keys server-ன் பொறுப்பு.</strong> தடுக்கப்பட்ட response-க்கு உங்கள் origin-ஐ அனுமதிக்கும் API அல்லது proxy தேவை; secrets ஒருபோதும் browser-ல் இருக்கக்கூடாது.</li>
+      <li><strong>fetch asynchronous.</strong> Response-க்காக await பண்ணி, <code>response.ok</code>-ஐ check பண்ணி, அப்புறம் <code>response.json()</code>-க்காக await பண்ணுங்கள்.</li>
+      <li><strong>URLs-தான் request-ஐ எடுத்துச் செல்லும்.</strong> User input-ஐ encode பண்ணி, search terms-க்கும் options-க்கும் query parameters use பண்ணுங்கள்.</li>
+      <li><strong>CORS-ம் keys-ம் server-ன் விஷயம்.</strong> Block ஆன response-க்கு உங்க origin-ஐ allow பண்ணுற API இல்ல proxy வேணும்; secrets ஒருநாளும் browser-ல இருக்கக்கூடாது.</li>
     </ul>
   </div>
 </article>

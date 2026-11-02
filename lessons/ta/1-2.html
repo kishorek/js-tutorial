@@ -1,35 +1,35 @@
 <article class="lesson" id="lesson-1-2" data-lesson="1-2">
   <header class="lesson-head">
-    <p class="eyebrow">தொகுதி 01 · HTML: பக்கத்தின் எலும்புக்கூடு</p>
-    <h1>இணைப்புகள், படங்கள், பட்டியல்கள்</h1>
-    <p class="lesson-lede">ஒரு பக்கம் எங்காவது சுட்டிக்காட்ட முடிந்தால் அது வலைத்தளமாகிறது. பக்கங்களை இணைக்கவும், யாரையும் விலக்காமல் படங்களைக் காட்டவும், அர்த்தமுள்ள பட்டியல்களை உருவாக்கவும் கற்றுக்கொள்ளுங்கள்.</p>
+    <p class="eyebrow">Module 01 · HTML: the skeleton</p>
+    <h1>Links, images, and lists</h1>
+    <p class="lesson-lede">ஒரு page எங்காவது point பண்ண முடிஞ்சா அது website ஆகும். Pages-ஐ connect பண்ணவும், யாரையும் exclude பண்ணாம images காட்டவும், அர்த்தமுள்ள lists-ஐ structure பண்ணவும் கத்துக்கோங்க.</p>
     <div class="chips">
-      <span class="chip chip--accent">பாடம் 1.2</span>
-      <span class="chip">60–75 நிமிடம்</span>
-      <span class="chip">தொடக்கநிலை</span>
+      <span class="chip chip--accent">Lesson 1.2</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
     </div>
     <div class="brief">
       <div>
-        <h3>இறுதியில் நீங்கள் செய்யக்கூடியவை</h3>
+        <h3>By the end, you can</h3>
         <ul>
-          <li>சரியாக வேலை செய்யும் relative மற்றும் absolute இணைப்புகளை எழுதுங்கள்.</li>
-          <li>பயனுள்ள மாற்று உரையுடன் ஒரு படத்தைச் சேர்க்கவும்.</li>
-          <li>வரிசையில்லாத மற்றும் வரிசையுள்ள பட்டியல்களில் தேர்ந்தெடுக்கவும்.</li>
+          <li>Work ஆகுற relative-உம் absolute links-உம் write பண்ணுங்கள்.</li>
+          <li>Useful alternative text-ஓட ஒரு image add பண்ணுங்கள்.</li>
+          <li>Unordered-உம் ordered lists-க்கு நடுவில choose பண்ணுங்கள்.</li>
         </ul>
       </div>
       <div>
-        <h3>உங்களுக்குத் தேவை</h3>
+        <h3>You need</h3>
         <ul>
-          <li>பாடம் 1.1-இல் உருவாக்கிய உங்கள் “என்னைப் பற்றி” பக்கம்.</li>
-          <li>உங்கள் கணினியில் உள்ள ஏதேனும் ஒரு படக் கோப்பு.</li>
-          <li>இணைக்க ஒரு இரண்டாவது HTML கோப்பு.</li>
+          <li>Lesson 1.1-ல build பண்ணின உங்கள் About Me page.</li>
+          <li>Computer-ல இருக்கிற ஏதாவது ஒரு image file.</li>
+          <li>Link பண்ண ஒரு இரண்டாவது HTML file.</li>
         </ul>
       </div>
     </div>
   </header>
 
-  <h2>இணைப்புகள் பக்கங்களை இணைக்கின்றன</h2>
-  <p>anchor எலிமெண்ட் உரையையோ படத்தையோ இணைப்பாக மாற்றுகிறது. <code>href</code> அட்டிரிபியூட் இணைப்பு எங்கே செல்கிறது என்பதைச் சொல்கிறது.</p>
+  <h2>Links connect pages</h2>
+  <p>Anchor element text-ஐயோ image-ஐயோ link ஆக்கும். <code>href</code> attribute link எங்கே போகணும் என்பதை சொல்லும்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain"><a href="about-me.html">About me</a>
@@ -38,21 +38,21 @@
   </div>
 
   <ul>
-    <li><strong>Relative இணைப்பு:</strong> <code>about-me.html</code> அதே கோப்புறையில் உள்ள கோப்பைத் தேடும்.</li>
-    <li><strong>மேல் கோப்புறை:</strong> <code>../index.html</code> ஒரு கோப்புறை மேலே செல்கிறது.</li>
-    <li><strong>Absolute இணைப்பு:</strong> <code>https://</code> உட்பட முழு URL.</li>
-    <li><strong>பக்க ஆங்கர்:</strong> <code>#recipe</code> <code>id="recipe"</code> உள்ள எலிமெண்ட்டுக்குத் தாவும்.</li>
+    <li><strong>Relative link:</strong> <code>about-me.html</code> same folder-ல இருக்கிற file-ஐ target பண்ணும்.</li>
+    <li><strong>Parent folder:</strong> <code>../index.html</code> ஒரு folder மேலே போகும்.</li>
+    <li><strong>Absolute link:</strong> <code>https://</code> உட்பட முழு URL.</li>
+    <li><strong>Page anchor:</strong> <code>#recipe</code> <code>id="recipe"</code> இருக்கிற element-க்கு jump பண்ணும்.</li>
   </ul>
 
-  <p>விளக்கமான இணைப்பு உரையைப் பயன்படுத்துங்கள். “Read the recipe” பயனுள்ளது. “Click here” படிப்பவருக்கு எதுவும் சொல்லாது—குறிப்பாக இணைப்புப் பட்டியலைத் திரை வாசிப்பான் மூலம் படிப்பவர்களுக்கு.</p>
+  <p>விளக்கமான link text use பண்ணுங்கள். “Read the recipe” useful. “Click here” reader-க்கு எதுவும் சொல்லாது—குறிப்பா screen reader-ல links list-ஐ scan பண்ணுறவங்களுக்கு.</p>
 
   <div class="callout">
-    <span class="callout__label">வெளி இணைப்புகள்</span>
-    <p><code>target="_blank"</code> மூலம் இணைப்பு புதிய தாவலில் திறந்தால், <code>rel="noopener"</code>-ஐச் சேர்க்கவும். புதிய தாவல் உங்கள் பக்கத்தை அணுகுவதிலிருந்து இது பாதுகாக்கிறது.</p>
+    <span class="callout__label">External links</span>
+    <p><code>target="_blank"</code> மூலம் link புது tab-ல open ஆனா, <code>rel="noopener"</code>-ஐ add பண்ணுங்கள். புது tab உங்கள் page-ஐ access பண்ணாம இது protect பண்ணும்.</p>
   </div>
 
-  <h2>படங்களுக்கு மாற்று உரை தேவை</h2>
-  <p>image எலிமெண்ட் ஒரு வாயிட் எலிமெண்ட். அதற்கு முடிவு டேக் இல்லை. <code>src</code> அட்டிரிபியூட் கோப்பைச் சுட்டுகிறது; <code>alt</code> படம் என்ன தெரிவிக்கிறது என்பதை விவரிக்கிறது.</p>
+  <h2>Images need alternative text</h2>
+  <p>Image element ஒரு void element. அதுக்கு closing tag இல்லை. <code>src</code> attribute file-ஐ point பண்ணும்; <code>alt</code> image என்ன சொல்லுது என்பதை describe பண்ணும்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain"><img src="images/pasta.jpg"
@@ -66,19 +66,19 @@
   </div>
 
   <ul>
-    <li>படம் தகவலைத் தெரிவித்தால், அந்தத் தகவலை விவரிக்கவும்.</li>
-    <li>படம் வெறும் அலங்காரம் என்றால், திரை வாசிப்பான்கள் தவிர்க்க <code>alt=""</code> பயன்படுத்துங்கள்.</li>
-    <li>“image of” அல்லது “picture of” என்று தொடங்க வேண்டாம்; திரை வாசிப்பான்கள் ஏற்கனவே அதை அறிவிக்கின்றன.</li>
-    <li>முடிந்தால் <code>width</code> மற்றும் <code>height</code> அமையுங்கள். அவை இடத்தை ஒதுக்கி, படம் ஏற்றப்படும்போது ஏற்படும் லேஅவுட் நகர்வைக் குறைக்கின்றன.</li>
+    <li>Image information சொல்லுதுனா, அந்த information-ஐ describe பண்ணுங்கள்.</li>
+    <li>Image வெறும் decoration-னா, screen readers skip பண்ண <code>alt=""</code> use பண்ணுங்கள்.</li>
+    <li>“image of” அல்லது “picture of” என்று start பண்ணாதீங்க; screen readers ஏற்கனவே அதை announce பண்ணும்.</li>
+    <li>முடிஞ்சா <code>width</code>-உம் <code>height</code>-உம் set பண்ணுங்கள். அவை space-ஐ reserve பண்ணி, image load ஆகும்போது layout shift-ஐ குறைக்கும்.</li>
   </ul>
 
   <div class="callout callout--warn">
-    <span class="callout__label">பொதுவான தவறு</span>
-    <p><code>alt</code> அட்டிரிபியூட் இல்லாததும் காலியாக இருப்பதும் ஒன்றல்ல. மதிப்பு இல்லாவிட்டால் உலாவி ஊகிக்கும்; <code>alt=""</code> என்பது படம் எந்தத் தகவலையும் சேர்க்கவில்லை என்று உதவி தொழில்நுட்பத்திற்கு வெளிப்படையாகச் சொல்கிறது.</p>
+    <span class="callout__label">Common mistake</span>
+    <p><code>alt</code> attribute இல்லாததும் காலியா இருப்பதும் ஒன்று இல்லை. Value இல்லைனா browser guess பண்ணும்; <code>alt=""</code> image எந்த information-உம் add பண்ணல என்று assistive technology-க்கு நேரடியா சொல்லும்.</p>
   </div>
 
-  <h2>பட்டியல்கள் தகவலை ஒழுங்குபடுத்துகின்றன</h2>
-  <p>வரிசை முக்கியமில்லாதபோது <code>&lt;ul&gt;</code>, வரிசை முக்கியமானபோது <code>&lt;ol&gt;</code> பயன்படுத்துங்கள். ஒவ்வொரு உருப்படியும் <code>&lt;li&gt;</code>-க்குள் இருக்க வேண்டும்.</p>
+  <h2>Lists organize information</h2>
+  <p>Order முக்கியமில்லைனா <code>&lt;ul&gt;</code>, order முக்கியம்னா <code>&lt;ol&gt;</code> use பண்ணுங்கள். ஒவ்வொரு item-உம் <code>&lt;li&gt;</code>-க்கு உள்ளே போகணும்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain"><h2>Ingredients</h2>
@@ -96,7 +96,7 @@
 </ol></script>
   </div>
 
-  <p>பட்டியல்களை உள்ளே அடுக்கலாம். உள்ளே அடுக்கப்படும் பட்டியலை அது சேர்ந்த <code>&lt;li&gt;</code>-க்குள் வைக்கவும், உருப்படிகளுக்கு நடுவே அல்ல.</p>
+  <p>Lists-ஐ உள்ளே nest பண்ணலாம். Nested list-ஐ அது சேர்ந்த <code>&lt;li&gt;</code>-க்கு உள்ளே வையுங்கள், items-க்கு நடுவில இல்லை.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain"><ul>
@@ -112,15 +112,15 @@
 
   <section class="practice" data-practice data-min="80">
     <div class="practice__head">
-      <span class="kicker">பயிற்சி · 20 நிமிடம்</span>
-      <h2>ஒரு செய்முறை அட்டவணையை உருவாக்குங்கள்</h2>
+      <span class="kicker">Exercise · 20 minutes</span>
+      <h2>Build a recipe index</h2>
     </div>
-    <p><code>header</code>, உங்கள் “என்னைப் பற்றி” பக்கத்திற்குத் திரும்பும் navigation இணைப்பு, <code>h1</code>, படமும் caption-உம் கொண்ட figure, வரிசையில்லாத ingredients பட்டியல், வரிசையுள்ள method பட்டியல்—இவற்றுடன் ஒரு பக்கம் உருவாக்குங்கள். method-க்கு <code>id="method"</code> உள்ள தலைப்பு கொடுத்து, மேலே “Jump to method” இணைப்பைச் சேர்க்கவும்.</p>
-    <label class="visually-hidden" for="practice-1-2">உங்கள் பயிற்சிக் கோட்</label>
-    <textarea class="practice__code" id="practice-1-2" data-attempt spellcheck="false" placeholder="உங்கள் செய்முறைப் பக்கத்தை இங்கே தட்டச்சு செய்யுங்கள்..."></textarea>
+    <p><code>header</code>, உங்கள் About Me page-க்கு திரும்பி போகிற navigation link, <code>h1</code>, image-உம் caption-உம் இருக்கிற figure, unordered ingredients list, ordered method list—இவற்றோட ஒரு page build பண்ணுங்கள். Method-க்கு <code>id="method"</code> இருக்கிற heading கொடுத்து, மேலே “Jump to method” link add பண்ணுங்கள்.</p>
+    <label class="visually-hidden" for="practice-1-2">Your exercise code</label>
+    <textarea class="practice__code" id="practice-1-2" data-attempt spellcheck="false" placeholder="Type your recipe page here..."></textarea>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>முதல்ல ஒரு attempt பண்ணுங்கள். அப்புறம் model answer unlock ஆகும்.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
     <script type="text/plain" data-answer><!DOCTYPE html>
@@ -175,24 +175,24 @@
 </html></script>
   </section>
 
-  <h2>உங்களைச் சரிபாருங்கள்</h2>
+  <h2>Check yourself</h2>
   <div class="qa-list">
     <details class="qa">
-      <summary><code>alt="image of pasta"</code> ஏன் பலவீனமான விவரணை?</summary>
-      <p>இந்த எலிமெண்ட் ஒரு படம் என்று திரை வாசிப்பான்கள் ஏற்கனவே அறிவிக்கின்றன. விவரணை வடிவத்தைத் திரும்பச் சொல்லாமல் உள்ளடக்கத்தைத் தெரிவிக்க வேண்டும். “Lemon pasta in a white bowl” மிகவும் பயனுள்ளது.</p>
+      <summary>Why is <code>alt="image of pasta"</code> a weak description?</summary>
+      <p>இந்த element ஒரு image என்று screen readers ஏற்கனவே announce பண்ணும். Description format-ஐ repeat பண்ணாம content-ஐ சொல்லணும். “Lemon pasta in a white bowl” தான் useful.</p>
     </details>
     <details class="qa">
-      <summary><code>about.html</code> மற்றும் <code>https://example.com/about.html</code> இடையே என்ன வித்தியாசம்?</summary>
-      <p>முதலாவது தற்போதைய பக்கத்திலிருந்து தீர்க்கப்படும் relative பாதை. இரண்டாவது protocol-உம் domain-உம் கொண்ட absolute URL.</p>
+      <summary>What is the difference between <code>about.html</code> and <code>https://example.com/about.html</code>?</summary>
+      <p>முதல் ஒன்று current page-ல இருந்து resolve ஆகிற relative path. இரண்டாவது protocol-உம் domain-உம் இருக்கிற absolute URL.</p>
     </details>
   </div>
 
   <div class="recap">
-    <h2>நினைவில் வைக்க வேண்டியவை</h2>
+    <h2>Key things to remember</h2>
     <ul>
-      <li><strong>இணைப்புகள் ஆங்கர்கள்.</strong> <code>href</code> இலக்கை முடிவு செய்கிறது; உரை அதை விவரிக்க வேண்டும்.</li>
-      <li><strong>படங்களுக்கு alt உரை தேவை.</strong> தகவலை விவரிக்கவும்; அலங்காரத்திற்கு <code>alt=""</code> பயன்படுத்தவும்.</li>
-      <li><strong>பட்டியல்கள் பொருளைத் தாங்குகின்றன.</strong> குழுக்களுக்கு வரிசையில்லாதது, தொடர்ச்சிக்கு வரிசையுள்ளது.</li>
+      <li><strong>Links anchors.</strong> <code>href</code> destination-ஐ decide பண்ணும்; text அதை describe பண்ணணும்.</li>
+      <li><strong>Images-க்கு alt text தேவை.</strong> Information-ஐ describe பண்ணுங்கள்; decoration-க்கு <code>alt=""</code> use பண்ணுங்கள்.</li>
+      <li><strong>Lists meaning-ஐ தாங்கும்.</strong> Groups-க்கு unordered, sequence-க்கு ordered.</li>
     </ul>
   </div>
 </article>

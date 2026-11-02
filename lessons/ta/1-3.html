@@ -1,35 +1,35 @@
 <article class="lesson" id="lesson-1-3" data-lesson="1-3">
   <header class="lesson-head">
-    <p class="eyebrow">தொகுதி 01 · HTML: பக்கத்தின் எலும்புக்கூடு</p>
-    <h1>அட்டவணைகள், படிவங்கள், பொருள் சார்ந்த கட்டமைப்பு</h1>
-    <p class="lesson-lede">அட்டவணைகள் தரவுக்கு, படிவங்கள் உள்ளீட்டுக்கு; லேண்ட்மார்க்குகள் உதவி தொழில்நுட்பம் வழிநடத்தக்கூடிய வடிவத்தைப் பக்கத்திற்குக் கொடுக்கின்றன. இங்குதான் HTML, டேக்குகளின் பட்டியலாக இல்லாமல் ஒரு மொழிபோலத் தோன்றத் தொடங்குகிறது.</p>
+    <p class="eyebrow">Module 01 · HTML: the skeleton</p>
+    <h1>Tables, forms, and semantic structure</h1>
+    <p class="lesson-lede">Tables data-க்கு, forms input-க்கு, landmarks page-க்கு assistive technology navigate பண்ணக்கூடிய shape-ஐ கொடுக்கும். இங்கே தான் HTML, tags list-ஆ இல்லாம language-ஆ feel ஆக ஆரம்பிக்கும்.</p>
     <div class="chips">
-      <span class="chip chip--accent">பாடம் 1.3</span>
-      <span class="chip">60–75 நிமிடம்</span>
-      <span class="chip">தொடக்கநிலை</span>
+      <span class="chip chip--accent">Lesson 1.3</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
     </div>
     <div class="brief">
       <div>
-        <h3>இறுதியில் நீங்கள் செய்யக்கூடியவை</h3>
+        <h3>By the end, you can</h3>
         <ul>
-          <li>caption-உம் header செல்களும் கொண்ட அட்டவணையை உருவாக்குங்கள்.</li>
-          <li>label-கள், குழுவாக்கப்பட்ட புலங்கள், submit பொத்தான் கொண்ட படிவத்தை உருவாக்குங்கள்.</li>
-          <li>பக்க லேஅவுட்டுக்கு பொருள் சார்ந்த லேண்ட்மார்க்குகளைத் தேர்ந்தெடுக்கவும்.</li>
+          <li>Caption-உம் header cells-உம் இருக்கிற table build பண்ணுங்கள்.</li>
+          <li>Labels, grouped fields, submit button-ஓட ஒரு form build பண்ணுங்கள்.</li>
+          <li>Page layout-க்கு semantic landmarks choose பண்ணுங்கள்.</li>
         </ul>
       </div>
       <div>
-        <h3>உங்களுக்குத் தேவை</h3>
+        <h3>You need</h3>
         <ul>
-          <li>பாடம் 1.2 முடிக்கப்பட்டிருக்க வேண்டும்.</li>
-          <li>DevTools உள்ள உலாவி.</li>
-          <li>ஏற்கனவே தலைப்பு அவுட்லைன் உள்ள பக்கம்.</li>
+          <li>Lesson 1.2 முடிச்சிருக்கணும்.</li>
+          <li>DevTools இருக்கிற browser.</li>
+          <li>ஏற்கனவே heading outline இருக்கிற page.</li>
         </ul>
       </div>
     </div>
   </header>
 
-  <h2>அட்டவணைகள் அட்டவணைத் தரவுக்கானவை</h2>
-  <p>தகவலில் ஒன்றோடொன்று தொடர்புடைய வரிசைகளும் நெடுவரிசைகளும் இருக்கும்போது அட்டவணையைப் பயன்படுத்துங்கள். பக்க லேஅவுட்டை அமைக்க அதைப் பயன்படுத்த வேண்டாம்; அந்த வேலையை CSS Grid சிறப்பாகச் செய்கிறது.</p>
+  <h2>Tables are for tabular data</h2>
+  <p>Information-க்கு ஒன்றுக்கொன்று தொடர்புடைய rows-உம் columns-உம் இருந்தா table use பண்ணுங்கள். Page layout position பண்ண table use பண்ணாதீங்க; CSS Grid அந்த வேலையை நல்லா செய்யும்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain"><table>
@@ -57,14 +57,14 @@
   </div>
 
   <ul>
-    <li><code>&lt;caption&gt;</code> அட்டவணைக்குப் பெயர் கொடுக்கிறது. தொடக்க டேக்குக்கு உடனே பிறகு வைக்கவும்.</li>
-    <li><code>&lt;thead&gt;</code> மற்றும் <code>&lt;tbody&gt;</code> தலைப்பு வரிசைகளையும் உடல் வரிசைகளையும் குழுவாக்குகின்றன.</li>
-    <li><code>&lt;th scope="col"&gt;</code> ஒரு நெடுவரிசைக்குப் பெயரிடுகிறது; <code>scope="row"</code> ஒரு வரிசைக்குப் பெயரிடுகிறது.</li>
-    <li>ஒரு செல்லுக்கு ஒரு கருத்து மட்டும் வைத்து, எண்களை எளிதாகப் பார்வையிடும் வகையில் அமையுங்கள்.</li>
+    <li><code>&lt;caption&gt;</code> table-க்கு பேர் கொடுக்கும். Opening tag-க்கு உடனே அப்புறம் வையுங்கள்.</li>
+    <li><code>&lt;thead&gt;</code>-உம் <code>&lt;tbody&gt;</code>-உம் header rows-ஐயும் body rows-ஐயும் group பண்ணும்.</li>
+    <li><code>&lt;th scope="col"&gt;</code> ஒரு column-ஐ label பண்ணும்; <code>scope="row"</code> ஒரு row-ஐ label பண்ணும்.</li>
+    <li>ஒரு cell-க்கு ஒரு idea வையுங்கள்; numbers-ஐ easy-ஆ scan பண்ண வையுங்கள்.</li>
   </ul>
 
-  <h2>படிவங்கள் உள்ளீட்டைச் சேகரிக்கின்றன</h2>
-  <p>ஒரு படிவத்திற்கு ஒவ்வொரு புலத்துக்கும் label, பொருத்தமான input type, ஒரு பொத்தான் தேவை. label-கள் அலங்காரம் அல்ல: label-ஐக் கிளிக் செய்தால் அதன் புலம் focus ஆக வேண்டும்; திரை வாசிப்பான்கள் அதைப் புலத்தின் பெயராகப் பயன்படுத்துகின்றன.</p>
+  <h2>Forms collect input</h2>
+  <p>ஒவ்வொரு field-க்கும் ஒரு label, பொருத்தமான input type, ஒரு button—இவை form-க்கு தேவை. Labels decoration இல்லை: label-ஐ click பண்ணா அது அதோட field-ஐ focus பண்ணணும்; screen readers அதை field-ஓட name-ஆ use பண்ணும்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain"><form action="/subscribe" method="post">
@@ -86,20 +86,20 @@
   </div>
 
   <ul>
-    <li>ஒவ்வொரு <code>for</code>-ஐயும் ஒரு input-இன் <code>id</code>-உடன் பொருத்துங்கள்.</li>
-    <li>பொருந்தும்போது <code>type="email"</code>, <code>type="number"</code>, <code>type="date"</code> பயன்படுத்துங்கள்; மொபைல் விசைப்பலகைகள் அதற்கேற்ப மாறும்.</li>
-    <li>submit செய்வதற்கு முன் புலம் கட்டாயம் என்பதை <code>required</code> உறுதிசெய்கிறது.</li>
-    <li><code>fieldset</code> மற்றும் <code>legend</code> தொடர்புடைய கட்டுப்பாடுகளைக் குழுவாக்குகின்றன.</li>
-    <li>backend இல்லாத படிவமும் உலாவியில் சரிபார்ப்பைச் செய்யும். பிறகு JavaScript-ஐ அதனுடன் இணைப்போம்.</li>
+    <li>ஒவ்வொரு <code>for</code>-ஐயும் input-ஓட <code>id</code>-க்கு match பண்ணுங்கள்.</li>
+    <li>பொருந்தினா <code>type="email"</code>, <code>type="number"</code>, அல்லது <code>type="date"</code> use பண்ணுங்கள்; mobile keyboards அதுக்கு ஏத்த மாறும்.</li>
+    <li><code>required</code> submit பண்ணுறதுக்கு முன்னாடி field-ஐ கட்டாயம் ஆக்கும்.</li>
+    <li><code>fieldset</code>-உம் <code>legend</code>-உம் related controls-ஐ group பண்ணும்.</li>
+    <li>Backend இல்லாத form-உம் browser-ல validate ஆகும். JavaScript-ஐ அதோட பிறகு connect பண்ணுவோம்.</li>
   </ul>
 
   <div class="callout callout--warn">
-    <span class="callout__label">placeholder-ஐ label ஆகப் பயன்படுத்த வேண்டாம்</span>
-    <p>யாராவது தட்டச்சு செய்தவுடன் placeholder மறைந்துவிடும்; அது நம்பகமான அணுகல் பெயரும் அல்ல. உண்மையான <code>label</code>-ஐ வைத்துக்கொண்டு, placeholder உரையை உதாரணத்திற்கு மட்டும் பயன்படுத்துங்கள்.</p>
+    <span class="callout__label">Do not use a placeholder as a label</span>
+    <p>யாராவது type பண்ண உடனே placeholders மறைஞ்சு போகும்; அவை reliable accessible name இல்லை. ஒரு real <code>label</code>-ஐ வையுங்கள்; placeholder text-ஐ example-க்கு மட்டும் use பண்ணுங்கள்.</p>
   </div>
 
-  <h2>பக்கத்திற்கு லேண்ட்மார்க்குகளைக் கொடுங்கள்</h2>
-  <p>பொருள் சார்ந்த எலிமெண்ட்கள் ஒவ்வொரு பகுதியும் என்ன செய்கிறது என்பதை உலாவிக்குச் சொல்கின்றன. பார்வையாளர் header-ஐப் பார்க்கலாம்; திரை வாசிப்பான் நேரடியாக <code>main</code> அல்லது <code>nav</code>-க்குத் தாவலாம்.</p>
+  <h2>Give the page landmarks</h2>
+  <p>Semantic elements ஒவ்வொரு region-உம் என்ன செய்யுது என்று browser-க்கு சொல்லும். Visitor header-ஐ பார்க்கலாம்; screen reader <code>main</code> அல்லது <code>nav</code>-க்கு நேரடியா jump பண்ணலாம்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain"><body>
@@ -119,19 +119,19 @@
 </body></script>
   </div>
 
-  <p>ஒரு பக்கத்திற்கு ஒரு <code>main</code> மட்டும். ஒரு கருப்பொருள் கொண்ட உள்ளடக்கக் குழுவுக்கு <code>section</code>; தனியாக நிற்கக்கூடிய ஒன்றுக்கு—வலைப்பதிவு இடுகை அல்லது திட்ட அட்டை போல—<code>article</code> பயன்படுத்துங்கள்.</p>
+  <p>ஒரு page-க்கு ஒரே ஒரு <code>main</code> தான். Themed content group-க்கு <code>section</code>, தனியா stand பண்ணக்கூடிய ஒன்றுக்கு—blog post அல்லது project card போல—<code>article</code> use பண்ணுங்கள்.</p>
 
   <section class="practice" data-practice data-min="120">
     <div class="practice__head">
-      <span class="kicker">பயிற்சி · 25 நிமிடம்</span>
-      <h2>அணுகல்தன்மையுள்ள பதிவு பக்கத்தை உருவாக்குங்கள்</h2>
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Build an accessible signup page</h2>
     </div>
-    <p><code>header</code>, <code>main</code>, <code>footer</code> கொண்ட ஒரு பக்கம் உருவாக்குங்கள். <code>main</code>-க்குள் மூன்று படிப்பு அமர்வுகளின் அட்டவணையும், name புலம், email புலம், goals textarea, submit பொத்தான் கொண்ட படிவமும் சேர்க்கவும். ஒவ்வொரு input-க்கும் label தேவை. அட்டவணைக்கு caption-உம் column header-களும் தேவை.</p>
-    <label class="visually-hidden" for="practice-1-3">உங்கள் பயிற்சிக் கோட்</label>
-    <textarea class="practice__code" id="practice-1-3" data-attempt spellcheck="false" placeholder="உங்கள் பக்கத்தை இங்கே தட்டச்சு செய்யுங்கள்..."></textarea>
+    <p><code>header</code>, <code>main</code>, <code>footer</code>-ஓட ஒரு page build பண்ணுங்கள். <code>main</code>-க்கு உள்ளே மூன்று study sessions இருக்கிற table-உம், name field, email field, goals textarea, submit button இருக்கிற form-உம் add பண்ணுங்கள். ஒவ்வொரு input-க்கும் label தேவை. Table-க்கு caption-உம் column headers-உம் தேவை.</p>
+    <label class="visually-hidden" for="practice-1-3">Your exercise code</label>
+    <textarea class="practice__code" id="practice-1-3" data-attempt spellcheck="false" placeholder="Type your page here..."></textarea>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>முதல்ல ஒரு attempt பண்ணுங்கள். அப்புறம் model answer unlock ஆகும்.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
     <script type="text/plain" data-answer><!DOCTYPE html>
@@ -194,24 +194,24 @@
 </html></script>
   </section>
 
-  <h2>உங்களைச் சரிபாருங்கள்</h2>
+  <h2>Check yourself</h2>
   <div class="qa-list">
     <details class="qa">
-      <summary>அட்டவணைக்கு ஏன் caption இருக்க வேண்டும்?</summary>
-      <p>திரை வாசிப்பான் வரிசைகளையும் நெடுவரிசைகளையும் படிக்கத் தொடங்குவதற்கு முன், caption அட்டவணைக்குப் பெயரையும் சூழலையும் கொடுக்கிறது. பார்வையுள்ள பயனர்களும் தாங்கள் என்ன பார்க்கிறார்கள் என்பதைப் புரிந்துகொள்ள இது உதவுகிறது.</p>
+      <summary>Why should a table have a caption?</summary>
+      <p>Screen reader rows-ஐயும் columns-ஐயும் படிக்க ஆரம்பிக்குறதுக்கு முன்னாடி caption table-க்கு பேருன்னு context-ஐயும் கொடுக்கும். பார்க்கக்கூடியவங்களும் என்ன பார்க்கிறாங்க என்று புரிஞ்சுக்க இது help பண்ணும்.</p>
     </details>
     <details class="qa">
-      <summary><code>section</code> மற்றும் <code>article</code> இடையே என்ன வித்தியாசம்?</summary>
-      <p>ஒரு section தொடர்புடைய உள்ளடக்கத்தை ஒரு தலைப்பின் கீழ் குழுவாக்குகிறது. ஒரு article தன்னிறைவான உள்ளடக்கம்; வேறு இடத்தில் மீண்டும் பயன்படுத்தக்கூடியது—இடுகை அல்லது திட்ட அட்டை போல.</p>
+      <summary>What is the difference between <code>section</code> and <code>article</code>?</summary>
+      <p>Section related content-ஐ ஒரு heading-க்கு கீழ group பண்ணும். Article தனியா இருக்கக்கூடிய, வேற எங்கயும் reuse பண்ணக்கூடிய content—post அல்லது project card போல.</p>
     </details>
   </div>
 
   <div class="recap">
-    <h2>நினைவில் வைக்க வேண்டியவை</h2>
+    <h2>Key things to remember</h2>
     <ul>
-      <li><strong>அட்டவணைகள் தரவுக்கே, லேஅவுட்டுக்கு அல்ல.</strong> caption கொடுத்து, header-களை லேபிள் செய்யுங்கள்.</li>
-      <li><strong>ஒவ்வொரு படிவப் புலத்திற்கும் label தேவை.</strong> <code>for</code>-ஐயும் <code>id</code>-ஐயும் பொருத்துங்கள்.</li>
-      <li><strong>லேண்ட்மார்க்குகள் பக்கத்தை வழிநடத்தக்கூடியதாக்குகின்றன.</strong> Header, nav, main, aside, footer.</li>
+      <li><strong>Tables data-க்கு, layout-க்கு இல்லை.</strong> Caption-உம் header labels-உம் கொடுங்கள்.</li>
+      <li><strong>ஒவ்வொரு form field-க்கும் label தேவை.</strong> <code>for</code>-ஐயும் <code>id</code>-ஐயும் match பண்ணுங்கள்.</li>
+      <li><strong>Landmarks page-ஐ navigate பண்ண வைக்கும்.</strong> Header, nav, main, aside, footer.</li>
     </ul>
   </div>
 </article>

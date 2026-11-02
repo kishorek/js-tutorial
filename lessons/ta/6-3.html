@@ -1,51 +1,51 @@
 <article class="lesson" id="lesson-6-3" data-lesson="6-3">
   <header class="lesson-head">
-    <p class="eyebrow">தொகுதி 06 · Async &amp; APIs</p>
-    <h1>Loading, empty, மற்றும் error நிலைகள்</h1>
-    <p class="lesson-lede">Network request மெதுவாக இருக்கலாம், எதையும் திருப்பித் தராமல் இருக்கலாம், அல்லது தோல்வியடையலாம். நல்ல interface ஒவ்வொரு நேரத்திலும் உண்மையைச் சொல்லும். நான்கு நிலைகளை model செய்து, ஊகிக்காமல் render செய்யக் கற்றுக்கொள்ளுங்கள்.</p>
+    <p class="eyebrow">Module 06 · Async &amp; APIs</p>
+    <h1>Loading, empty, and error states</h1>
+    <p class="lesson-lede">Network request slow-ஆ இருக்கலாம், எதுவும் return பண்ணாம இருக்கலாம், இல்ல fail ஆகலாம். நல்ல interface எல்லா நேரத்துலயும் உண்மையைச் சொல்லணும். நாலு states-ஐ model பண்ணி, யூகிக்காம render பண்ண கத்துக்கொள்ளுங்கள்.</p>
     <div class="chips">
-      <span class="chip chip--accent">பாடம் 6.3</span>
-      <span class="chip">60–75 நிமிடம்</span>
-      <span class="chip">தொடக்கநிலை</span>
+      <span class="chip chip--accent">Lesson 6.3</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
     </div>
     <div class="brief">
       <div>
-        <h3>இந்தப் பாடம் முடியும்போது, நீங்கள்:</h3>
+        <h3>By the end, you can</h3>
         <ul>
-          <li>நான்கு UI நிலைகளைப் பெயரிட்டு model செய்யுங்கள்.</li>
-          <li>ஒரே state object-ல் இருந்து render செய்யுங்கள்.</li>
-          <li>பயனுள்ள errors காட்டி retry வழங்குங்கள்.</li>
-          <li><code>aria-live</code> மூலம் updates-ஐ அறிவியுங்கள்.</li>
+          <li>நாலு UI states-ஐ name பண்ணி model பண்ணுங்கள்.</li>
+          <li>ஒரே state object-லேர்ந்து render பண்ணுங்கள்.</li>
+          <li>Useful errors-ஐ காட்டி retry offer பண்ணுங்கள்.</li>
+          <li><code>aria-live</code>-ஓட updates-ஐ announce பண்ணுங்கள்.</li>
         </ul>
       </div>
       <div>
-        <h3>உங்களுக்குத் தேவை</h3>
+        <h3>You need</h3>
         <ul>
-          <li>பாடம் 6.2 <code>fetch</code> மற்றும் JSON.</li>
-          <li>update செய்ய ஒரு element உள்ள page.</li>
-          <li>failures-ஐ test செய்யும்போது DevTools திறந்திருக்க வேண்டும்.</li>
+          <li>Lesson 6.2 <code>fetch</code> மற்றும் JSON.</li>
+          <li>Update பண்ண ஒரு element இருக்குற page.</li>
+          <li>Failures-ஐ test பண்ணும்போது DevTools open-ஆ வைங்கள்.</li>
         </ul>
       </div>
     </div>
   </header>
-  <h2>நான்கு நிலைகளுக்குப் பெயரிடுங்கள்</h2>
-  <p>பெரும்பாலான data-driven interfaces-க்கு நான்கு நிலைகள் உண்டு. Success நிலையை மட்டும் உருவாக்கினால், ஒவ்வொரு மெதுவான request-ம் broken போலவும், ஒவ்வொரு failure-ம் frozen போலவும் தெரியும்.</p>
+  <h2>Name the four states</h2>
+  <p>நிறைய data-driven interfaces-க்கு நாலு states இருக்கும். Success state-ஐ மட்டும் build பண்ணா, ஒவ்வொரு slow request-ம் broken மாதிரியும், ஒவ்வொரு failure-ம் frozen மாதிரியும் தெரியும்.</p>
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th scope="col">நிலை</th><th scope="col">பொருள்</th><th scope="col">User என்ன பார்ப்பார்</th></tr>
+        <tr><th scope="col">State</th><th scope="col">Meaning</th><th scope="col">What the user sees</th></tr>
       </thead>
       <tbody>
-        <tr><td><strong>Loading</strong></td><td>Request இன்னும் நடந்துகொண்டிருக்கிறது.</td><td>சிறிய status message அல்லது skeleton; controls disabled.</td></tr>
-        <tr><td><strong>Empty</strong></td><td>Request வெற்றியடைந்தது, ஆனால் எதுவும் கிடைக்கவில்லை.</td><td>அடுத்த step உடன் "முடிவுகள் இல்லை" என்ற தெளிவான message.</td></tr>
-        <tr><td><strong>Error</strong></td><td>Request தோல்வியடைந்தது அல்லது timeout ஆனது.</td><td>எளிய மொழியில் message மற்றும் retry action.</td></tr>
-        <tr><td><strong>Success</strong></td><td>Data வந்துவிட்டது, தயாராக உள்ளது.</td><td>Data-வில் இருந்து render செய்யப்பட்ட உண்மையான content.</td></tr>
+        <tr><td><strong>Loading</strong></td><td>Request இன்னும் run ஆகிக்கொண்டிருக்கு.</td><td>சின்ன status message இல்ல skeleton; controls disabled.</td></tr>
+        <tr><td><strong>Empty</strong></td><td>Request success ஆனது, ஆனா எதுவும் கிடைக்கல.</td><td>அடுத்த step-ஓட தெளிவான "no results" message.</td></tr>
+        <tr><td><strong>Error</strong></td><td>Request fail ஆனது இல்ல timeout ஆனது.</td><td>Simple language message-ம் retry action-ம்.</td></tr>
+        <tr><td><strong>Success</strong></td><td>Data வந்துட்டு, ready-ஆ இருக்கு.</td><td>Actual content, data-லேர்ந்து render பண்ணப்பட்டது.</td></tr>
       </tbody>
     </table>
   </div>
-  <p>முதல் request-க்கு முன், <strong>idle</strong> என்ற ஐந்தாவது, அமைதியான நிலையும் உண்டு. அதை "இன்னும் எதுவும் நடக்கவில்லை" என்று கருதி, சிறிய instruction காட்டுங்கள். Empty message-ஐ மீண்டும் பயன்படுத்த வேண்டாம்; search-க்கு முன் "முடிவுகள் இல்லை" என்பது குழப்பமாக இருக்கும்.</p>
-  <h2>ஒரே state object-ல் இருந்து render செய்யுங்கள்</h2>
-  <p>State-ஐ ஒரே object-ல் வைத்து, screen என்ன காட்ட வேண்டும் என்பதை ஒரே <code>render()</code> function முடிவு செய்யட்டும். UI, தொடர்பில்லாத DOM மாற்றங்களின் குவியலாக அல்லாமல் state-ன் function ஆக மாறும்.</p>
+  <p>முதல் request-க்கு முன்னாடி <strong>idle</strong>னு ஐந்தாவது, அமைதியான state-ம் இருக்கு. அதை "இன்னும் எதுவும் நடக்கல"-னு treat பண்ணி சின்ன instruction காட்டுங்கள். Empty message-ஐ மறுபடி use பண்ணாதீங்க; search-க்கு முன்னாடி "no results" confuse பண்ணும்.</p>
+  <h2>Render from one state object</h2>
+  <p>State-ஐ ஒரே object-ல வையுங்கள், screen என்ன காட்டணும்-னு ஒரே <code>render()</code> function decide பண்ணட்டும். UI அப்போ state-ன் function ஆகும், தொடர்பில்லாத DOM changes-ன் குவியலா இருக்காது.</p>
   <div class="code-block" data-code>
     <script type="text/plain">const state = {
   status: "idle",
@@ -77,13 +77,13 @@ function setState(next) {
   render();
 }</script>
   </div>
-  <p>ஒவ்வொரு transition-ம் <code>setState()</code> வழியாகவே செல்லும்: loading அமைத்து, பிறகு success, empty, அல்லது error. இது screen-ஐ update செய்ய ஒரே இடத்தையும், debug செய்ய ஒரே இடத்தையும் தரும்.</p>
+  <p>ஒவ்வொரு transition-ம் <code>setState()</code> வழியா போகணும்: loading set பண்ணி, பிறகு success, empty, இல்ல error. அதனால screen update பண்ண ஒரே இடமும், debug பண்ண ஒரே இடமும் கிடைக்கும்.</p>
   <div class="callout callout--tip">
-    <span class="callout__label">பழைய data-ஐ அழிக்கவும்</span>
-    <p>புதிய request தொடங்கும்போது, பழைய முடிவைத் தெரியும்படி வைத்திருக்கலாமா என்று முடிவு செய்யுங்கள். சிறிய weather card-க்கு, loading message-க்கு அருகில் நேற்றைய temperature தெரியாமல் இருக்க அதை அழிப்பது நல்லது.</p>
+    <span class="callout__label">Clear stale data</span>
+    <p>புது request start ஆகும்போது, பழைய result-ஐ screen-ல வைக்கணுமா-னு decide பண்ணுங்கள். சின்ன weather card-க்கு, loading message-க்கு பக்கத்துல நேத்து temperature காட்டாம இருக்க அதை clear பண்ணது நல்லது.</p>
   </div>
-  <h2>Errors-ஐப் பிடித்து பயனுள்ள ஒன்றைக் காட்டுங்கள்</h2>
-  <p>Request-ஐ <code>try</code>/<code>catch</code>-ல் வையுங்கள். <code>response.ok</code> false ஆகும்போது உங்கள் சொந்த error-ஐ throw செய்யுங்கள். தொழில்நுட்ப விவரங்களை உங்களுக்காக log செய்யுங்கள், ஆனால் user-க்கு அவர் செயல்படக்கூடிய message-ஐக் காட்டுங்கள்.</p>
+  <h2>Catch errors and show something useful</h2>
+  <p>Request-ஐ <code>try</code>/<code>catch</code>-ல wrap பண்ணுங்கள். <code>response.ok</code> false-ஆ இருக்கும்போது உங்க சொந்த error-ஐ throw பண்ணுங்கள். Technical detail-ஐ உங்களுக்காக log பண்ணுங்கள், ஆனா user-க்கு அவங்க action எடுக்கக்கூடிய message-ஐ காட்டுங்கள்.</p>
   <div class="code-block" data-code>
     <script type="text/plain">async function load(city) {
   setState({ status: "loading", message: "" });
@@ -118,31 +118,31 @@ function setState(next) {
   }
 }</script>
   </div>
-  <p>Timeout <code>AbortController</code>-ஐப் பயன்படுத்துகிறது. Timer fire ஆனதும், <code>controller.abort()</code> request-ஐ ரத்து செய்யும்; <code>AbortError</code> என்ற error-ஐ catch block பார்க்கும். Request வெற்றியடைந்தாலும் தோல்வியடைந்தாலும் <code>finally</code> block timer-ஐ clear செய்யும்.</p>
-  <p>Retry button அதே <code>load()</code> function-ஐ கடைசி city உடன் அழைக்க வேண்டும். Loading-ல் இருக்கும்போது அதை disable செய்யுங்கள்; இல்லையென்றால் double click இரண்டு requests தொடங்கும். தோல்வி <code>404</code> என்றால் retry உதவாது; அதற்குப் பதிலாக search-ஐ மாற்றச் சொல்லுங்கள்.</p>
+  <p>Timeout ஒரு <code>AbortController</code>-ஐ use பண்ணும். Timer fire ஆனதும், <code>controller.abort()</code> request-ஐ cancel பண்ணும், catch block <code>AbortError</code>-னு பேர் இருக்குற error-ஐ பார்க்கும். <code>finally</code> block request success ஆனாலும் fail ஆனாலும் timer-ஐ clear பண்ணும்.</p>
+  <p>Retry button கடைசி city-ஓட அதே <code>load()</code> function-ஐ call பண்ணணும். Loading-ல இருக்கும்போது அதை disable பண்ணுங்கள், double click ரெண்டு requests start பண்ணாம இருக்க. Failure <code>404</code>-ஆ இருந்தா retry உதவாது; search-ஐ மாத்த சொல்லுங்கள்.</p>
   <div class="callout callout--warn">
-    <span class="callout__label">Error-ஐ மௌனமாக விழுங்க வேண்டாம்</span>
-    <p>காலியான <code>catch</code> block bug-ஐ மறைத்து, user-ஐ வெறும் blank screen-ஐப் பார்க்க வைக்கும். எப்போதும் UI-ஐ error நிலைக்கு மாற்றி, debug செய்ய அசல் error-ஐ log செய்யுங்கள்.</p>
+    <span class="callout__label">Do not swallow the error</span>
+    <p>காலியான <code>catch</code> block bug-ஐ hide பண்ணி, user-ஐ blank screen-ஐ பார்த்துக்கிட்டு விட்டுடும். எப்பவும் UI-ஐ error state-க்கு மாத்தி, debugging-க்கு original error-ஐ log பண்ணுங்கள்.</p>
   </div>
-  <h2>aria-live மூலம் மாற்றங்களை அறிவியுங்கள்</h2>
-  <p>Screen reader users-க்கு spinner தோன்றுவது தெரியாது. Focus-ஐ நகர்த்தாமல் மாற்றங்கள் அறிவிக்கப்பட, status area-ஐ live region ஆகக் குறியுங்கள்.</p>
+  <h2>Announce changes with aria-live</h2>
+  <p>Screen reader users-க்கு spinner வரது தெரியாது. Status area-ஐ live region-ஆ mark பண்ணுங்கள், focus-ஐ நகர்த்தாம changes announce ஆகும்.</p>
   <div class="code-block" data-code>
     <script type="text/plain"><p id="weather-output" role="status" aria-live="polite"></p>
 <button type="button" data-retry disabled>Try again</button></script>
   </div>
-  <p><code>role="status"</code> ஏற்கனவே polite live region-ஐக் குறிக்கிறது. Region-ஐச் சிறியதாக வையுங்கள்: மாறும் message-ஐ அதற்குள் வையுங்கள், முழு page-ஐ அல்ல. வழக்கமான loading updates-க்கு <code>aria-live="assertive"</code>-ஐத் தவிர்க்கவும்; அது user படிப்பதை இடையூறு செய்யும்.</p>
-  <p>Error தோன்றும்போது, message தெரியும்படியும் live region-ல் இருக்கும்படியும் பாருங்கள். Retry button தோன்றினால், "மீண்டும் முயலுங்கள்" போன்ற உண்மையான label கொடுங்கள்; accessible name இல்லாத icon கொடுக்காதீர்கள்.</p>
+  <p><code>role="status"</code> ஏற்கனவே polite live region-ஐ imply பண்ணும். Region-ஐ சின்னதா வையுங்கள்: மாறுற message-ஐ அதுக்குள்ள வையுங்கள், முழு page-ஐயும் அல்ல. வழக்கமான loading updates-க்கு <code>aria-live="assertive"</code>-ஐ தவிர்க்கவும், ஏன்னா அது user படிக்குறதை interrupt பண்ணும்.</p>
+  <p>Error வரும்போது, message visible-ஆவும் live region-லயும் இருக்கணும். Retry button வந்தா, "Try again" மாதிரி ஒரு real label கொடுங்கள், accessible name இல்லாத icon-ஐ அல்ல.</p>
   <section class="practice" data-practice data-min="30">
     <div class="practice__head">
-      <span class="kicker">பயிற்சி · 25 நிமிடம்</span>
-      <h2>Fake fetch-க்கு மூன்று நிலைகளை render செய்யுங்கள்</h2>
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Render three states for a fake fetch</h2>
     </div>
-    <p><code>state</code> object மற்றும் <code>id="output"</code> உள்ள element-ஐ update செய்யும் <code>render()</code> function உருவாக்குங்கள். சுமார் 700 ms கழித்து temperature உடன் resolve ஆகவோ, reject ஆகவோ <code>fakeFetch()</code> எழுதுங்கள். loading அமைத்து, <code>render()</code> அழைத்து, fetch-க்காக await செய்து, பிறகு success அல்லது error அமைத்து மீண்டும் render செய்ய <code>load()</code> எழுதுங்கள். <code>try</code>/<code>catch</code> பயன்படுத்துங்கள்.</p>
-    <label class="visually-hidden" for="practice-6-3">உங்கள் பயிற்சி code</label>
-    <textarea class="practice__code" id="practice-6-3" data-attempt spellcheck="false" placeholder="உங்கள் state மற்றும் render functions-ஐ இங்கே எழுதுங்கள்..."></textarea>
+    <p><code>id="output"</code> இருக்குற element-ஐ update பண்ண ஒரு <code>state</code> object-ஐயும் <code>render()</code> function-ஐயும் create பண்ணுங்கள். சுமார் 700 ms-க்குப் பிறகு temperature-ஓட resolve ஆகுற இல்ல reject ஆகுற <code>fakeFetch()</code>-ஐ write பண்ணுங்கள். <code>load()</code>-ஐ write பண்ணி loading set பண்ணி, <code>render()</code> call பண்ணி, fetch-ஐ await பண்ணி, பிறகு success இல்ல error set பண்ணி மறுபடி render பண்ணுங்கள். <code>try</code>/<code>catch</code> use பண்ணுங்கள்.</p>
+    <label class="visually-hidden" for="practice-6-3">Your exercise code</label>
+    <textarea class="practice__code" id="practice-6-3" data-attempt spellcheck="false" placeholder="Write your state and render functions here..."></textarea>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
     <script type="text/plain" data-answer>const state = {
@@ -189,23 +189,23 @@ async function load() {
 }
 load();</script>
   </section>
-  <h2>உங்களைச் சரிபாருங்கள்</h2>
+  <h2>Check yourself</h2>
   <div class="qa-list">
     <details class="qa">
-      <summary>Empty மற்றும் error நிலைகளுக்கு இடையிலான வேறுபாடு என்ன?</summary>
-      <p>Empty என்றால் request வேலை செய்தது, ஆனால் பொருந்தும் data எதுவும் திரும்பி வரவில்லை; உதாரணமாகத் தெரியாத city. Error என்றால் request சரியாக முடியவில்லை. Empty பொதுவாக வேறு search கேட்கும்; error பொதுவாக retry வழங்கும்.</p>
+      <summary>What is the difference between the empty and error states?</summary>
+      <p>Empty-னா request work ஆனது, ஆனா match ஆன data எதுவும் return ஆகல — தெரியாத city மாதிரி. Error-னா request சரியா complete ஆகல. Empty பொதுவா வேற search கேட்கும்; error பொதுவா retry offer பண்ணும்.</p>
     </details>
     <details class="qa">
-      <summary><code>finally</code> block-ல் timeout-ஐ ஏன் clear செய்ய வேண்டும்?</summary>
-      <p>விரைவான response-க்குப் பிறகு timer fire ஆகக்கூடாது. <code>finally</code> வெற்றி, தோல்வி இரண்டிலும் இயங்கும், எனவே நிலுவையில் உள்ள timeout-ஐ ரத்து செய்து பின்னர் தேவையற்ற abort-ஐத் தவிர்க்க இதுவே நம்பகமான இடம்.</p>
+      <summary>Why clear the timeout in a <code>finally</code> block?</summary>
+      <p>Fast response வந்த பிறகு timer fire ஆகக்கூடாது. <code>finally</code> success-லயும் failure-லயும் run ஆகும், அதனால pending timeout-ஐ cancel பண்ணி அப்புறம் stray abort வராம தடுக்க இது நம்பகமான இடம்.</p>
     </details>
   </div>
   <div class="recap">
-    <h2>நினைவில் கொள்ள வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <h2>Key things to remember</h2>
     <ul>
-      <li><strong>State-ஐ model செய்து, பிறகு render செய்யுங்கள்.</strong> Loading, empty, error, success ஒவ்வொன்றுக்கும் வடிவமைக்கப்பட்ட screen இருக்க வேண்டும்.</li>
-      <li><strong>தோல்விகளுக்கு அடுத்த step தேவை.</strong> எளிய மொழியில் message காட்டி, தொழில்நுட்ப error-ஐ log செய்து, உதவும்போது retry வழங்குங்கள்.</li>
-      <li><strong>மாற்றங்களை அறிவியுங்கள்.</strong> சிறிய polite live region, focus-ஐ எடுத்துக்கொள்ளாமல் screen reader users-க்குத் தகவல் தரும்.</li>
+      <li><strong>State-ஐ model பண்ணி, அப்புறம் render பண்ணுங்கள்.</strong> Loading, empty, error, success — ஒவ்வொண்ணுக்கும் ஒரு design பண்ணின screen இருக்கணும்.</li>
+      <li><strong>Failures-க்கு அடுத்த step வேணும்.</strong> Simple language message காட்டி, technical error-ஐ log பண்ணி, உதவும்போது retry offer பண்ணுங்கள்.</li>
+      <li><strong>Changes-ஐ announce பண்ணுங்கள்.</strong> சின்ன polite live region screen reader users-ஐ focus-ஐ பிடுங்காம inform-ஆ வைக்கும்.</li>
     </ul>
   </div>
 </article>

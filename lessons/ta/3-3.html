@@ -2,61 +2,61 @@
   <header class="lesson-head">
     <p class="eyebrow">Module 03 · Layout &amp; responsive design</p>
     <h1>Accessibility + landing page</h1>
-    <p class="lesson-lede">Accessibility என்பது இறுதியில் செய்யும் ஒரு pass அல்ல. Keyboard, screen reader, அல்லது பிரகாசமான வெயிலில் சிறிய screen பயன்படுத்துபவரின் பார்வையில் அதே structure மற்றும் layout முடிவுகளைச் சரிபார்ப்பதுதான்.</p>
-    <div class="chips"><span class="chip chip--accent">பாடம் 3.3 · திட்டப்பணி</span><span class="chip">2–3 மணி நேரம்</span><span class="chip">Module மைல்கல்</span></div>
+    <p class="lesson-lede">Accessibility ஒரு கடைசி pass இல்ல. Keyboard, screen reader, அல்லது வெயில்ல சிறிய screen use பண்ற ஒருத்தரோட perspective-ல இருந்து, அதே structure மற்றும் layout decisions-ஐ check பண்றதுதான்.</p>
+    <div class="chips"><span class="chip chip--accent">Lesson 3.3 · Project</span><span class="chip">2–3 hours</span><span class="chip">Module milestone</span></div>
     <div class="brief">
       <div>
-        <h3>வழங்க வேண்டியவை</h3>
+        <h3>Deliverables</h3>
         <ul>
-          <li>Live editor-ல் ஒரு responsive landing page.</li>
+          <li>Live editor-ல ஒரு responsive landing page.</li>
           <li>Semantic landmarks, labeled controls, பயனுள்ள alt text.</li>
         </ul>
       </div>
       <div>
-        <h3>வெளியேறும் சரிபார்ப்பு</h3>
+        <h3>Exit check</h3>
         <ul>
           <li>Keyboard access மற்றும் தெரியும் focus.</li>
-          <li><code>320px</code>-ல் பக்கவாட்டு scroll இல்லை.</li>
+          <li><code>320px</code>-ல பக்கவாட்டு scroll இல்ல.</li>
         </ul>
       </div>
     </div>
   </header>
-  <h2>Landmarks page-க்கு ஒரு map கொடுக்கின்றன</h2>
-  <p>Semantic elements, assistive technology பட்டியலிட்டு jump செய்யக்கூடிய regions உருவாக்குகின்றன. Keyboard பயனர் மீண்டும் மீண்டும் வரும் navigation-ஐ தவிர்க்க skip link முதலில் வருகிறது.</p>
+  <h2>Landmarks give the page a map</h2>
+  <p>Semantic elements, assistive technology list பண்ணி jump பண்ணக்கூடிய regions-ஐ build பண்ணும். Keyboard user repeat ஆகுற navigation-ஐ skip பண்ண skip link முதல்ல வரணும்.</p>
   <div class="code-block" data-code>
-    <script type="text/plain"><a class="skip-link" href="#main">உள்ளடக்கத்திற்குச் செல்</a>
+    <script type="text/plain"><a class="skip-link" href="#main">Skip to content</a>
 <header>
-  <nav aria-label="முதன்மை"><a href="#work">வேலை</a></nav>
+  <nav aria-label="Main"><a href="#work">Work</a></nav>
 </header>
-<main id="main" tabindex="-1"><h1>சிறிய தளங்கள், கவனமாக உருவாக்கப்பட்டவை.</h1></main>
-<footer><p>கையால் உருவாக்கப்பட்டது.</p></footer></script>
+<main id="main" tabindex="-1"><h1>Small sites, carefully built.</h1></main>
+<footer><p>Built by hand.</p></footer></script>
   </div>
   <ul>
-    <li>ஒரு <code>h1</code>, பிறகு sections-க்கு <code>h2</code> மற்றும் அவற்றுக்குள் <code>h3</code>; visual அளவுக்காக levels-ஐ தவிர்க்க வேண்டாம்.</li>
-    <li>ஒரு <code>main</code> முதன்மை content-ஐ வைத்திருக்கிறது; <code>header</code>, <code>nav</code>, <code>footer</code> அதைச் சுற்றி அமைகின்றன.</li>
-    <li>Skip link focus-ல் தோன்ற வேண்டும்; <code>display: none</code> அதை keyboard-ல் இருந்து நீக்கிவிடும்.</li>
+    <li>ஒரு <code>h1</code>; அப்புறம் sections-க்கு <code>h2</code>, அவற்றுக்குள்ள <code>h3</code>; visual size-க்காக levels-ஐ skip பண்ணாதீங்க.</li>
+    <li>ஒரு <code>main</code> primary content-ஐ வைத்திருக்கும்; <code>header</code>, <code>nav</code>, <code>footer</code> அதை சுற்றி இருக்கும்.</li>
+    <li>Skip link focus-ல தோன்றணும்; <code>display: none</code> அதை keyboard-ல இருந்து நீக்கிடும்.</li>
   </ul>
-  <h2>Names, alternatives மற்றும் focus</h2>
-  <p>பெயர் இல்லாத control ஒரு புதிர். ஒவ்வொரு input-க்கும் <code>for</code> அதன் <code>id</code>-உடன் பொருந்தும் <code>label</code> தேவை. அர்த்தமுள்ள ஒவ்வொரு image-க்கும் alt text தேவை; decoration-க்கு <code>alt=""</code> பயன்படுத்துங்கள்.</p>
+  <h2>Names, alternatives, and focus</h2>
+  <p>பேர் இல்லாத control ஒரு புதிர். ஒவ்வொரு input-க்கும், அதன் <code>id</code>-உடன் <code>for</code> பொருந்தும் <code>label</code> வேணும். அர்த்தமுள்ள ஒவ்வொரு image-க்கும் alt text வேணும்; decoration-க்கு <code>alt=""</code> use பண்ணுங்கள்.</p>
   <div class="code-block" data-code>
-    <script type="text/plain"><label for="email">மின்னஞ்சல் முகவரி</label>
+    <script type="text/plain"><label for="email">Email address</label>
 <input id="email" name="email" type="email" autocomplete="email" required>
 
 <img src="studio.jpg" width="640" height="420"
-     alt="மர மேசையில் sketches-ஐ பரிசீலிக்கும் இரண்டு பேர்">
+     alt="Two people reviewing sketches at a wooden table">
 
 a:focus-visible, button:focus-visible, input:focus-visible {
   outline: 3px solid #1f2421;
   outline-offset: 3px;
 }</script>
   </div>
-  <p><code>outline: none</code>-ஐ மாற்றீடு இல்லாமல் ஒருபோதும் எழுத வேண்டாம். Body text-க்கு <code>4.5:1</code>, பெரிய text, icons, focus rings-க்கு <code>3:1</code> contrast-ஐ இலக்காக வையுங்கள்.</p>
+  <p><code>outline: none</code>-ஐ replace பண்ணாம எப்பவும் எழுதாதீங்க. Body text-க்கு <code>4.5:1</code>, பெரிய text, icons, focus rings-க்கு <code>3:1</code> contrast-ஐ target பண்ணுங்கள்.</p>
   <div class="callout callout--warn">
-    <span class="callout__label">Contrast ஒரு style விருப்பம் அல்ல</span>
-    <p>வெள்ளைப் பின்னணியில் வெளிர் சாம்பல் text mockup-ல் நேர்த்தியாகத் தெரியும், வெயிலில் மறைந்துவிடும். Screenshot-ஐ அல்ல, color values-ஐ சரிபாருங்கள்.</p>
+    <span class="callout__label">Contrast is not a style preference</span>
+    <p>வெள்ளை background-ல light gray text mockup-ல நல்லா தெரியும், வெயில்ல மறைஞ்சிடும். Screenshot-ஐ அல்ல, color values-ஐ check பண்ணுங்கள்.</p>
   </div>
-  <h2>Keyboard access மற்றும் motion</h2>
-  <p>Page வழியாக Tab செய்யுங்கள். Focus order reading order-க்கு பொருந்த வேண்டும். Clickable <code>div</code>-கள் அல்ல, உண்மையான <code>a</code> மற்றும் <code>button</code> elements பயன்படுத்துங்கள்.</p>
+  <h2>Keyboard access and motion</h2>
+  <p>Page-ல Tab பண்ணுங்கள். Focus order reading order-க்கு பொருந்தணும். Clickable <code>div</code>-கள் அல்ல, உண்மையான <code>a</code> மற்றும் <code>button</code> elements use பண்ணுங்கள்.</p>
   <div class="code-block" data-code>
     <script type="text/plain">@media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -67,70 +67,70 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   }
 }</script>
   </div>
-  <p>இந்த query content-ஐ நீக்காமல் operating-system விருப்பத்தை மதிக்கிறது. Motion-க்குப் பின்னால் முக்கியமான தகவலை மறைக்க வேண்டாம்.</p>
-  <h2>ஒரு அடிப்படை audit செய்யுங்கள்</h2>
+  <p>இந்த query content-ஐ நீக்காம operating-system preference-ஐ respect பண்ணும். Motion-க்கு பின்னாடி முக்கியமான தகவலை மறைக்காதீங்க.</p>
+  <h2>Run a basic audit</h2>
   <div class="table-wrap">
     <table>
-      <thead><tr><th scope="col">பகுதி</th><th scope="col">தேர்ச்சி நிபந்தனை</th></tr></thead>
+      <thead><tr><th scope="col">Area</th><th scope="col">Pass condition</th></tr></thead>
       <tbody>
-        <tr><td>Landmarks</td><td><code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code> ஒவ்வொன்றும் ஒரு முறை, சரியான வரிசையில் தோன்ற வேண்டும்.</td></tr>
-        <tr><td>Headings</td><td>ஒரு <code>h1</code>; levels தவிர்க்கப்படக்கூடாது; ஒவ்வொரு heading-um கீழே உள்ள content-ஐ விவரிக்க வேண்டும்.</td></tr>
-        <tr><td>Keyboard</td><td>Tab reading order-ல் ஒவ்வொரு control-ஐயும் அடைய வேண்டும்; keyboard trap இருக்கக்கூடாது.</td></tr>
-        <tr><td>Focus</td><td>ஒவ்வொரு interactive element-லும் வலுவான தெரியும் ring தோன்ற வேண்டும்.</td></tr>
+        <tr><td>Landmarks</td><td><code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code> ஒவ்வொன்றும் ஒரு முறை, order-ல வரணும்.</td></tr>
+        <tr><td>Headings</td><td>ஒரு <code>h1</code>; levels skip ஆகக்கூடாது; ஒவ்வொரு heading-உம் கீழே உள்ள content-ஐ describe பண்ணணும்.</td></tr>
+        <tr><td>Keyboard</td><td>Tab reading order-ல ஒவ்வொரு control-ஐயும் அடையணும்; keyboard trap இருக்கக்கூடாது.</td></tr>
+        <tr><td>Focus</td><td>ஒவ்வொரு interactive element-லயும் strong-ஆ தெரியும் ring வரணும்.</td></tr>
         <tr><td>Names</td><td>ஒவ்வொரு field-க்கும் label; அர்த்தமுள்ள ஒவ்வொரு image-க்கும் alt text.</td></tr>
         <tr><td>Contrast</td><td>Body text குறைந்தது <code>4.5:1</code>; பெரிய text மற்றும் UI marks குறைந்தது <code>3:1</code>.</td></tr>
-        <tr><td>Reflow</td><td><code>320px</code> மற்றும் <code>200%</code> zoom-ல் page-level பக்கவாட்டு scroll இருக்கக்கூடாது.</td></tr>
+        <tr><td>Reflow</td><td><code>320px</code> மற்றும் <code>200%</code> zoom-ல page-level பக்கவாட்டு scroll இருக்கக்கூடாது.</td></tr>
       </tbody>
     </table>
   </div>
   <section class="practice" data-practice data-min="40">
     <div class="practice__head">
-      <span class="kicker">திட்டப்பணி workspace</span>
-      <h2>Landing page-ஐ உருவாக்குங்கள்</h2>
+      <span class="kicker">Project workspace</span>
+      <h2>Build the landing page</h2>
     </div>
-    <p><strong>தேவைகள்.</strong> ஒரு skip link, labeled <code>nav</code> உள்ள <code>header</code>, ஒரு <code>h1</code> மற்றும் call-to-action link உள்ள hero, மூன்று feature cards, இறுதி call to action, ஒரு <code>footer</code> ஆகியவற்றை உருவாக்குங்கள். Grid அல்லது Flexbox மற்றும் ஒரு <code>min-width</code> media query பயன்படுத்துங்கள். <code>320px</code>, <code>768px</code>, <code>1440px</code>-ல் test செய்து, ஒவ்வொரு control வழியாகவும் tab செய்யுங்கள்.</p>
+    <p><strong>Requirements.</strong> ஒரு skip link, labeled <code>nav</code> உள்ள <code>header</code>, ஒரு <code>h1</code> மற்றும் call-to-action link உள்ள hero, மூன்று feature cards, கடைசி call to action, ஒரு <code>footer</code> build பண்ணுங்கள். Grid அல்லது Flexbox-ஐயும் ஒரு <code>min-width</code> media query-ஐயும் use பண்ணுங்கள். <code>320px</code>, <code>768px</code>, <code>1440px</code>-ல test பண்ணி, ஒவ்வொரு control வழியாகவும் tab பண்ணுங்கள்.</p>
     <div class="editor" data-editor>
       <div class="editor__bar">
         <span class="editor__label">index.html</span>
         <div class="editor__actions">
-          <button type="button" class="btn btn--small" data-action="run">இயக்கு</button>
-          <button type="button" class="btn btn--ghost btn--small" data-action="reset">மீட்டமை</button>
-          <button type="button" class="btn btn--ghost btn--small" data-action="copy">நகலெடு</button>
+          <button type="button" class="btn btn--small" data-action="run">Run</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="reset">Reset</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="copy">Copy</button>
         </div>
       </div>
       <div class="editor__grid">
-        <label class="visually-hidden" for="project-3-3">Landing page எடிட்டர்</label>
+        <label class="visually-hidden" for="project-3-3">Landing page editor</label>
         <textarea id="project-3-3" class="editor__code" data-attempt spellcheck="false"></textarea>
         <div class="editor__preview">
-          <div class="editor__preview-bar">நேரடி preview</div>
-          <iframe title="உங்கள் landing page-இன் preview" sandbox="allow-scripts"></iframe>
+          <div class="editor__preview-bar">Live preview</div>
+          <iframe title="Preview of your landing page" sandbox="allow-scripts"></iframe>
         </div>
       </div>
-      <p class="editor__status" aria-live="polite" data-status>Preview load ஆனது. உங்கள் page-ஐ உருவாக்கி, பிறகு இயக்கு பொத்தானை அழுத்துங்கள்.</p>
+      <p class="editor__status" aria-live="polite" data-status>Preview loaded. Build your page, then press Run.</p>
       <script type="text/plain" data-starter><!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>உங்கள் ஸ்டுடியோ</title>
+  <title>Your studio</title>
   <style>/* Start small, then add columns. */</style>
 </head>
 <body>
   <main>
-    <h1>உங்கள் ஸ்டுடியோ</h1>
-    <p>Landing page-ஐ இங்கே உருவாக்குங்கள்: header, hero, features, call to action, footer.</p>
+    <h1>Your studio</h1>
+    <p>Build the landing page here: header, hero, features, call to action, footer.</p>
   </main>
 </body>
 </html></script>
     </div>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>குறிப்பு விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு குறிப்பு விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal reference solution</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the reference solution unlocks.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
     <script type="text/plain" data-answer><!DOCTYPE html>
-<html lang="ta">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Field Notes — ஒரு சிறிய ஸ்டுடியோ</title>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Field Notes — a small studio</title>
 <style>
 :root { --ink:#1f2421; --paper:#fbf8f1; --accent:#1f5f5b; --rule:#d8d2c4; }
 * { box-sizing:border-box; }
@@ -154,70 +154,70 @@ footer { border-top:1px solid var(--rule); padding:1.5rem 1.25rem; text-align:ce
 @media (min-width:700px) { .hero { grid-template-columns:1.4fr 1fr; align-items:center; } .features { grid-template-columns:repeat(3,minmax(0,1fr)); } }
 </style></head>
 <body>
-<a class="skip-link" href="#main">உள்ளடக்கத்திற்குச் செல்</a>
-<header><nav class="nav" aria-label="முதன்மை"><a href="#">Field Notes</a><ul><li><a href="#work">வேலை</a></li><li><a href="#contact">தொடர்பு</a></li></ul></nav></header>
+<a class="skip-link" href="#main">Skip to content</a>
+<header><nav class="nav" aria-label="Main"><a href="#">Field Notes</a><ul><li><a href="#work">Work</a></li><li><a href="#contact">Contact</a></li></ul></nav></header>
 <main id="main" tabindex="-1">
-<section class="hero" aria-labelledby="hero-title"><div><h1 id="hero-title">சிறிய தளங்கள், கவனமாக உருவாக்கப்பட்டவை.</h1><p>விவரங்களைப் பொருட்படுத்துபவர்களுக்காக தெளிவான, வேகமான websites-ஐ நாங்கள் design செய்து உருவாக்குகிறோம்.</p><a class="btn" href="#contact">ஒரு project தொடங்குங்கள்</a></div></section>
-<section id="work" aria-labelledby="work-title"><h2 id="work-title">நாங்கள் செய்வது</h2><div class="features">
-<article><h3>வடிவமைப்பு</h3><p>சிறிய screen-லிருந்து தொடங்கி படிக்கக்கூடியதாக இருக்கும் layouts.</p></article><article><h3>உருவாக்கம்</h3><p>Framework இல்லாமல் வேலை செய்யும் semantic HTML மற்றும் CSS.</p></article><article><h3>மதிப்பாய்வு</h3><p>Launch-க்கு முன் keyboard, contrast மற்றும் motion சரிபார்ப்புகள்.</p></article>
+<section class="hero" aria-labelledby="hero-title"><div><h1 id="hero-title">Small sites, carefully built.</h1><p>We design and build clear, fast websites for people who care about the details.</p><a class="btn" href="#contact">Start a project</a></div></section>
+<section id="work" aria-labelledby="work-title"><h2 id="work-title">What we do</h2><div class="features">
+<article><h3>Design</h3><p>Layouts that stay readable on the smallest screen first.</p></article><article><h3>Build</h3><p>Semantic HTML and CSS that works without a framework.</p></article><article><h3>Review</h3><p>Keyboard, contrast, and motion checks before launch.</p></article>
 </div></section>
-<section id="contact" class="cta" aria-labelledby="contact-title"><h2 id="contact-title">உங்கள் மனதில் ஏதாவது இருக்கிறதா?</h2><p>உங்களுக்குத் தேவையான site பற்றி எங்களிடம் சொல்லுங்கள்.</p><a class="btn" href="mailto:hello@example.com">வணக்கம் சொல்லுங்கள்</a></section>
+<section id="contact" class="cta" aria-labelledby="contact-title"><h2 id="contact-title">Have something in mind?</h2><p>Tell us about the site you need.</p><a class="btn" href="mailto:hello@example.com">Say hello</a></section>
 </main>
-<footer><p>© 2026 Field Notes. கையால் உருவாக்கப்பட்டது.</p></footer>
+<footer><p>© 2026 Field Notes. Built by hand.</p></footer>
 </body></html></script>
   </section>
-  <h2>உங்களைச் சரிபாருங்கள்</h2>
+  <h2>Check yourself</h2>
   <div class="qa-list">
     <details class="qa">
-      <summary>Skip link focus-ல் ஏன் தெரிய வேண்டும்?</summary>
-      <p>Enter அழுத்தும் முன் focus எங்கே இருக்கிறது என்பதை keyboard பயனர் பார்க்க வேண்டும். நிரந்தரமாக மறைத்தால் அது பயன்படுத்த முடியாததாகும்.</p>
+      <summary>Why must a skip link become visible on focus?</summary>
+      <p>Enter அழுத்துறதுக்கு முன்னாடி focus எங்க இருக்கு-னு keyboard user பார்க்கணும். நிரந்தரமா மறைச்சா அது use பண்ண முடியாததாகிடும்.</p>
     </details>
     <details class="qa">
-      <summary><code>alt=""</code> எப்போது சரி?</summary>
-      <p>Image decorative ஆக இருந்து, சுற்றியுள்ள text-க்கு மேல் கூடுதல் தகவலைச் சேர்க்காதபோது.</p>
+      <summary>When is <code>alt=""</code> correct?</summary>
+      <p>Image decorative-ஆ இருந்து, சுற்றி இருக்குற text-க்கு மேல கூடுதல் தகவல் சேர்க்காதப்போ.</p>
     </details>
   </div>
-  <h2>Module 3 வினாடி வினா</h2>
+  <h2>Module 3 quiz</h2>
   <div class="quiz" data-quiz>
     <form>
-      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="main முதன்மை content-ஐ வைத்திருக்கிறது; ஒரு page-க்கு ஒரு முறை மட்டும் வர வேண்டும்.">
-        <legend><span class="quiz__num">01</span> எந்த element முதன்மை content-ஐ சரியாக ஒரு முறை சுற்றி வைக்கிறது?</legend>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="Main primary content-ஐ வைத்திருக்கும்; ஒரு page-க்கு ஒரு முறை மட்டும் வரணும்.">
+        <legend><span class="quiz__num">01</span> Which element wraps the primary content exactly once?</legend>
         <label class="option"><input type="radio" name="q1" value="a"><span><code>&lt;section&gt;</code></span></label><label class="option"><input type="radio" name="q1" value="b"><span><code>&lt;main&gt;</code></span></label>
         <label class="option"><input type="radio" name="q1" value="c"><span><code>&lt;article&gt;</code></span></label><label class="option"><input type="radio" name="q1" value="d"><span><code>&lt;aside&gt;</code></span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
       </fieldset>
-      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="for attribute input-இன் id-உடன் பொருந்த வேண்டும்; அப்போதுதான் field-க்கு accessible name கிடைக்கும்.">
-        <legend><span class="quiz__num">02</span> ஒரு input-க்கு accessible name எப்படி கொடுப்பீர்கள்?</legend>
-        <label class="option"><input type="radio" name="q2" value="a"><span><code>label for="email"</code> உடன் <code>input id="email"</code></span></label><label class="option"><input type="radio" name="q2" value="b"><span>Placeholder மட்டும்</span></label>
-        <label class="option"><input type="radio" name="q2" value="c"><span>அருகிலுள்ள <code>div</code></span></label><label class="option"><input type="radio" name="q2" value="d"><span><code>input class="email"</code></span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="for attribute input-ஓட id-உடன் பொருந்தணும்; அப்போதான் field-க்கு accessible name கிடைக்கும்.">
+        <legend><span class="quiz__num">02</span> How do you give an input an accessible name?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span><code>label for="email"</code> plus <code>input id="email"</code></span></label><label class="option"><input type="radio" name="q2" value="b"><span>A placeholder only</span></label>
+        <label class="option"><input type="radio" name="q2" value="c"><span>A nearby <code>div</code></span></label><label class="option"><input type="radio" name="q2" value="d"><span><code>input class="email"</code></span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
       </fieldset>
-      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Decorative images-ல் தகவல் இல்லை; எனவே காலியான alt இருந்தால் assistive technology அவற்றைத் தவிர்க்கும்.">
-        <legend><span class="quiz__num">03</span> முழுவதும் decorative image-க்கு எந்த alt text பொருந்தும்?</legend>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Decorative images-ல தகவல் இல்ல; அதனால காலியான alt கொடுத்தா assistive technology அவற்றை skip பண்ணும்.">
+        <legend><span class="quiz__num">03</span> Which alt text suits a purely decorative image?</legend>
         <label class="option"><input type="radio" name="q3" value="a"><span><code>alt="divider"</code></span></label><label class="option"><input type="radio" name="q3" value="b"><span><code>alt="decorative image"</code></span></label>
-        <label class="option"><input type="radio" name="q3" value="c"><span><code>alt=""</code></span></label><label class="option"><input type="radio" name="q3" value="d"><span>alt attribute இல்லை</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+        <label class="option"><input type="radio" name="q3" value="c"><span><code>alt=""</code></span></label><label class="option"><input type="radio" name="q3" value="d"><span>No alt attribute</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
       </fieldset>
-      <fieldset class="quiz__q" data-question data-answer="d" data-explanation="தெரியும் focus indicator கட்டாயம்; :focus-visible வலுவான outline-உடன் சரியான result-ஐ தரும்.">
-        <legend><span class="quiz__num">04</span> Keyboard focus-ஐ accessible முறையில் style செய்வது எப்படி?</legend>
-        <label class="option"><input type="radio" name="q4" value="a"><span><code>outline: none</code></span></label><label class="option"><input type="radio" name="q4" value="b"><span>எல்லா hover styles-ஐயும் நீக்குவது</span></label>
-        <label class="option"><input type="radio" name="q4" value="c"><span>அதை எந்த style-உம் கொடுக்காதது</span></label><label class="option"><input type="radio" name="q4" value="d"><span>வலுவான outline-உடன் <code>:focus-visible</code> பயன்படுத்துவது</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      <fieldset class="quiz__q" data-question data-answer="d" data-explanation="தெரியும் focus indicator கட்டாயம்; :focus-visible strong outline-உடன் சரியான result தரும்.">
+        <legend><span class="quiz__num">04</span> What is the accessible way to style keyboard focus?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span><code>outline: none</code></span></label><label class="option"><input type="radio" name="q4" value="b"><span>Remove all hover styles</span></label>
+        <label class="option"><input type="radio" name="q4" value="c"><span>Never style it at all</span></label><label class="option"><input type="radio" name="q4" value="d"><span>Use <code>:focus-visible</code> with a strong outline</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
       </fieldset>
-      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="இந்த query operating system-ல் குறைவான animation-க்கான விருப்பத்தைக் கண்டறிகிறது.">
-        <legend><span class="quiz__num">05</span> <code>prefers-reduced-motion</code> எதைக் கண்டறிகிறது?</legend>
-        <label class="option"><input type="radio" name="q5" value="a"><span>மெதுவான network connection</span></label><label class="option"><input type="radio" name="q5" value="b"><span>குறைவான animation-க்கான பயனர் விருப்பம்</span></label>
-        <label class="option"><input type="radio" name="q5" value="c"><span>பழைய browser version</span></label><label class="option"><input type="radio" name="q5" value="d"><span>சிறிய screen அகலம்</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="இந்த query operating system-ல குறைவான animation-க்கான preference-ஐ கண்டுபிடிக்கும்.">
+        <legend><span class="quiz__num">05</span> What does <code>prefers-reduced-motion</code> detect?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span>A slow network connection</span></label><label class="option"><input type="radio" name="q5" value="b"><span>A user preference for less animation</span></label>
+        <label class="option"><input type="radio" name="q5" value="c"><span>An older browser version</span></label><label class="option"><input type="radio" name="q5" value="d"><span>A small screen width</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
       </fieldset>
       <div class="quiz__actions">
-        <button type="submit" class="btn">விடைகளைச் சரிபார்</button>
-        <button type="button" class="btn btn--ghost" data-quiz-reset>வினாவை மீட்டமை</button>
+        <button type="submit" class="btn">Check answers</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>Reset quiz</button>
         <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
       </div>
     </form>
   </div>
   <div class="recap">
-    <h2>Module 3 முடிந்தது</h2>
+    <h2>Module 3 complete</h2>
     <ul>
-      <li><strong>Grid structure-ஐ உருவாக்குகிறது.</strong> Named areas மற்றும் <code>minmax(0, 1fr)</code> layouts-ஐ முன்கூட்டியே தெரியும் வகையில் ஆக்குகின்றன.</li>
-      <li><strong>சிறியதாகத் தொடங்கி இடத்தைச் சேருங்கள்.</strong> Viewport meta மற்றும் <code>min-width</code> queries ஒரே layout எல்லா இடத்திலும் வேலை செய்ய உதவுகின்றன.</li>
-      <li><strong>Accessibility-ஐ test செய்யலாம்.</strong> Keyboard, focus, names, contrast, reflow ஆகிய ஒவ்வொன்றையும் சரிபார்க்கலாம்.</li>
+      <li><strong>Grid builds the structure.</strong> Named areas மற்றும் <code>minmax(0, 1fr)</code> layouts-ஐ predictable ஆக்கும்.</li>
+      <li><strong>Start small, add space.</strong> Viewport meta மற்றும் <code>min-width</code> queries ஒரே layout எல்லா இடத்திலயும் work ஆக வைத்திருக்கும்.</li>
+      <li><strong>Accessibility is testable.</strong> Keyboard, focus, names, contrast, reflow எல்லாத்தையும் தனித்தனியா check பண்ணலாம்.</li>
     </ul>
   </div>
 </article>

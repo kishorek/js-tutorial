@@ -1,35 +1,35 @@
 <article class="lesson" id="lesson-5-3" data-lesson="5-3">
   <header class="lesson-head">
-    <p class="eyebrow">தொகுதி 05 · DOM &amp; நிகழ்வுகள்</p>
-    <h1>State மற்றும் list-களை render செய்வது</h1>
-    <p class="lesson-lede">ஒவ்வொரு click-um பக்கத்தை நேரடியாகத் திருத்தினால் list-கள் குழப்பமாகும். உண்மையான தரவை ஒரு சிறிய state array-ல் வைத்திருங்கள், ஒரே render function எழுதுங்கள், ஒவ்வொரு செயலும் அதே வழியாகச் செல்லட்டும்.</p>
+    <p class="eyebrow">Module 05 · DOM &amp; events</p>
+    <h1>State and rendering lists</h1>
+    <p class="lesson-lede">ஒவ்வொரு click-ம் page-ஐ நேரடியா edit பண்ணும்போது lists குழப்பமாகும். Truth-ஐ ஒரு சின்ன state array-ல வையுங்கள், ஒரு render function write பண்ணுங்கள், எல்லா actions-ஐயும் அதே path-ல போக விடுங்கள்.</p>
     <div class="chips">
-      <span class="chip chip--accent">பாடம் 5.3</span>
-      <span class="chip">60–75 நிமிடம்</span>
-      <span class="chip">தொடக்கநிலை</span>
+      <span class="chip chip--accent">Lesson 5.3</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
     </div>
     <div class="brief">
       <div>
-        <h3>பாடத்தின் முடிவில், உங்களால் முடியும்</h3>
+        <h3>By the end, you can</h3>
         <ul>
-          <li>List data-ஐ objects கொண்ட state array-ல் சேமிக்கலாம்.</li>
-          <li>அந்த array-ஐ ஒரே function மூலம் render செய்யலாம்.</li>
-          <li>Items-ஐப் பாதுகாப்பாகச் சேர்க்க, toggle செய்ய, நீக்க மற்றும் filter செய்யலாம்.</li>
+          <li>List data-ஐ objects-ஓட state array-ல store பண்ணுவது.</li>
+          <li>அந்த array-ஐ ஒரே function மூலமா render பண்ணுவது.</li>
+          <li>Items-ஐ safely add, toggle, remove, filter பண்ணுவது.</li>
         </ul>
       </div>
       <div>
-        <h3>உங்களுக்குத் தேவை</h3>
+        <h3>You need</h3>
         <ul>
-          <li>பாடங்கள் 5.1 மற்றும் 5.2 முடிக்கப்பட்டிருக்க வேண்டும்.</li>
-          <li><code>map</code> மற்றும் <code>filter</code>-ல் பழக்கம்.</li>
-          <li>ஒரு list, ஒரு form மற்றும் காலியான container கொண்ட பக்கம்.</li>
+          <li>Lesson 5.1, 5.2 முடிச்சிருக்கணும்.</li>
+          <li><code>map</code>, <code>filter</code>-ல comfort.</li>
+          <li>List, form, காலியான container இருக்கும் page.</li>
         </ul>
       </div>
     </div>
   </header>
 
-  <h2>முதலில் state, பிறகு render</h2>
-  <p><strong>State</strong> என்பது திரை சார்ந்திருக்கும் data. ஒரு list-க்கு அது objects கொண்ட array. தெரியும் list items-ஐ உண்மையின் மூலமாகக் கருத வேண்டாம்; அவை array-இன் ஒரு rendering மட்டுமே.</p>
+  <h2>State first, then render</h2>
+  <p><strong>State</strong> என்ன data-ஐ screen depend பண்ணுதோ அது. ஒரு list-க்கு அது objects-ஓட array. கண்ணுக்குத் தெரியும் list items-ஐ source of truth-ஆ நினைக்காதீங்க; அவை array-ஓட ஒரு rendering மட்டும் தான்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">let items = [
@@ -53,15 +53,15 @@ function render() {
 render();</script>
   </div>
 
-  <p>ஒவ்வொரு மாற்றமும் அதே மூன்று படிகளைப் பின்பற்றுகிறது: state-ஐப் புதுப்பிக்கவும், <code>render</code>-ஐ அழைக்கவும், திரை அதற்கு ஈடுகொடுக்கட்டும். Render function எதை உண்மை என்பதை முடிவு செய்யாது; தற்போதைய array-ஐ மட்டும் விவரிக்கும்.</p>
+  <p>ஒவ்வொரு change-ம் அதே மூணு steps-ஐ follow பண்ணும்: state-ஐ update பண்ணுங்கள், <code>render</code>-ஐ call பண்ணுங்கள், screen தானா match ஆகட்டும். Render function எது true-ன்னு முடிவு பண்ணாது; current array-ஐ மட்டும் describe பண்ணும்.</p>
 
   <div class="callout callout--tip">
-    <span class="callout__label">ஏன் மீண்டும் தொடங்குகிறோம்</span>
-    <p>சிறிய list-ஐ அழித்து மீண்டும் கட்டுவது வேகமானது, முன்னறிவிக்கக்கூடியது. ஒரு row புதுப்பிக்கப்பட்டு மற்றொன்று பழையதாக இருப்பது போன்ற பிழைகளின் ஒரு முழு வகையையே இது நீக்குகிறது. மிகப் பெரிய list-களுக்கு, பிறகு தனிப்பட்ட nodes-ஐப் புதுப்பியுங்கள்.</p>
+    <span class="callout__label">Why start over</span>
+    <p>சின்ன list-ஐ clear பண்ணி மறுபடி build பண்றது fast-ம் predictable-ம். ஒரு row update ஆகி இன்னொன்னு stale ஆகிற bugs முழுசா போயிடும். ரொம்ப பெரிய lists-க்கு பிறகு தனி nodes-ஐ update பண்ணுங்கள்.</p>
   </div>
 
-  <h2>சேர்த்தல், toggle செய்தல் மற்றும் நீக்குதல்</h2>
-  <p>ஒரு id, DOM-ல் உள்ள button-ஐ state-ல் உள்ள ஒரு object-உடன் இணைக்கிறது. அதை <code>data-id</code> attribute-ல் வைத்து <code>dataset.id</code> மூலம் படியுங்கள். Attribute values strings ஆகவே வரும் என்பதை நினைவில் வையுங்கள். Render ஆகும் ஒவ்வொரு row-க்கும், <code>data-action</code> <code>toggle</code> அல்லது <code>remove</code> என அமைக்கப்பட்ட button தேவை; பயிற்சியில் அந்த முழு row-ஐ உருவாக்குவீர்கள்.</p>
+  <h2>Add, toggle, and remove</h2>
+  <p>ஒரு id, DOM-ல இருக்கும் button-ஐ state-ல இருக்கும் ஒரு object-ஓட connect பண்ணும். அதை <code>data-id</code> attribute-ல வச்சு <code>dataset.id</code> மூலம் read பண்ணுங்கள். Attribute values strings-ஆ தான் வரும். Render ஆகும் ஒவ்வொரு row-க்கும் <code>data-action</code> <code>toggle</code> அல்லது <code>remove</code> ஆக இருக்கும் button வேணும்; exercise-ல முழு row-ஐயும் build பண்ணுவோம்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">const form = document.querySelector("#item-form");
@@ -89,12 +89,12 @@ list.addEventListener("click", event => {
 });</script>
   </div>
 
-  <p><code>list</code>-ல் உள்ள ஒரே listener, ஒவ்வொரு render-க்குப் பிறகும் வேலை செய்கிறது; ஏனெனில் அது buttons-ல் அல்ல, parent-ல் கேட்கிறது. <code>filter</code> நீக்கப்பட்ட item இல்லாத புதிய array-ஐ உருவாக்குகிறது; <code>map</code> ஒரு object மாற்றப்பட்ட புதிய array-ஐ உருவாக்குகிறது. இரண்டும் அடுத்த render-க்குத் தரவை அளிக்கின்றன.</p>
+  <p><code>list</code>-ல இருக்கும் ஒரு listener ஒவ்வொரு render-க்கு அப்புறமும் வேலை செய்யும், ஏன்னா அது buttons-ல இல்லாம parent-ல listen பண்ணுது. <code>filter</code> removed item இல்லாத புது array-ஐ create பண்ணும்; <code>map</code> ஒரு object change ஆன புது array-ஐ create பண்ணும். ரெண்டும் அடுத்த render-க்கு feed ஆகும்.</p>
 
-  <p>பயனரின் உரை <code>textContent</code> மூலமே DOM-க்குச் செல்ல வேண்டும்; ஒருபோதும் HTML string மூலம் அல்ல. ஒரு item-இன் உரையில் <code>&lt;b&gt;</code> இருந்தால், பார்வையாளர் bold உரையாக அல்ல, அந்த எழுத்துகளையே பார்க்க வேண்டும்.</p>
+  <p>User text DOM-க்கு <code>textContent</code> மூலமா தான் போகணும், HTML string மூலமா கூடாது. ஒரு item-ஓட text-ல <code>&lt;b&gt;</code> இருந்தா, visitor-க்கு characters தான் தெரியணும், bold text இல்ல.</p>
 
-  <h2>காலி நிலைகள் மற்றும் filters</h2>
-  <p>Filter-um ஒரு state தான். தற்போதைய தேர்வை ஒரு variable-ல் சேமித்து, தெரிய வேண்டிய subset-ஐ உருவாக்கி, அந்த subset-ஐ render செய்யுங்கள். காலியான முடிவுக்கு வெற்றுப் பெட்டிக்குப் பதிலாக ஒரு செய்தி இருக்க வேண்டும்.</p>
+  <h2>Empty states and filters</h2>
+  <p>Filter-ம் state தான். Current choice-ஐ ஒரு variable-ல store பண்ணி, visible subset-ஐ build பண்ணி, அதை render பண்ணுங்கள். Empty result-க்கு காலி box-க்கு பதிலா ஒரு message இருக்கணும்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">let filter = "all"; // "all", "active", or "done"
@@ -124,19 +124,19 @@ function renderList() {
 }</script>
   </div>
 
-  <p>Filter button மாறும்போது, variable-ஐ அமைத்து render function-ஐ மீண்டும் அழையுங்கள். Layout தனி element-க்குத் தாவாமல் இருக்க, காலி செய்தியை அதே list-ல் வைத்திருங்கள்.</p>
+  <p>Filter button change ஆகும்போது variable-ஐ set பண்ணி render function-ஐ மறுபடி call பண்ணுங்கள். Empty message-ஐ அதே list-ல வையுங்கள், அப்போ தான் layout தனி element-க்கு jump ஆகாது.</p>
 
   <section class="practice" data-practice data-min="30">
     <div class="practice__head">
-      <span class="kicker">பயிற்சி · 30 நிமிடம்</span>
-      <h2>ஒரு list-ஐ render செய்து, சேர்த்து, toggle செய்யுங்கள்</h2>
+      <span class="kicker">Exercise · 30 minutes</span>
+      <h2>Render, add, and toggle a list</h2>
     </div>
-    <p>பக்கத்தில் <code>&lt;ul id="list"&gt;</code>, <code>&lt;form id="add-form"&gt;</code> மற்றும் <code>&lt;input id="new-item"&gt;</code> உள்ளது என வைத்துக்கொள்ளுங்கள். இரண்டு objects கொண்ட array-ல் தொடங்குங்கள். ஒவ்வொரு item-ஐயும் ஒரு text span மற்றும் toggle button-உடன் render செய்யுங்கள்; array காலியாக இருக்கும்போது காலி செய்தியைக் காட்டுங்கள்; submit-ல் trim செய்த item-ஐச் சேர்க்கவும்; ஒரே delegated click listener மூலம் <code>done</code>-ஐ toggle செய்யவும்.</p>
-    <label class="visually-hidden" for="practice-5-3">உங்கள் பயிற்சிக் குறியீடு</label>
+    <p>Page-ல <code>&lt;ul id="list"&gt;</code>, <code>&lt;form id="add-form"&gt;</code>, <code>&lt;input id="new-item"&gt;</code> இருக்குன்னு வச்சுக்கோங்க. ரெண்டு objects-ஓட array-ல தொடங்குங்கள். ஒவ்வொரு item-ஐயும் text span-ம் toggle button-ம் மூலமா render பண்ணுங்கள், array காலியா இருந்தா empty message show பண்ணுங்கள், submit-ல trimmed item-ஐ add பண்ணுங்கள், ஒரு delegated click listener மூலமா <code>done</code>-ஐ toggle பண்ணுங்கள்.</p>
+    <label class="visually-hidden" for="practice-5-3">Your exercise code</label>
     <textarea class="practice__code" id="practice-5-3" data-attempt spellcheck="false" placeholder="let items = ..."></textarea>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
     <script type="text/plain" data-answer>let items = [
@@ -198,23 +198,23 @@ list.addEventListener("click", event => {
 render();</script>
   </section>
 
-  <h2>உங்களைச் சரிபார்க்கவும்</h2>
+  <h2>Check yourself</h2>
   <div class="qa-list">
     <details class="qa">
-      <summary>ஒரு row-ஐ மாற்றுவதற்குப் பதிலாக முழு list-ஐயும் ஏன் மீண்டும் கட்ட வேண்டும்?</summary>
-      <p>முழு render எப்போதும் state array-க்கு ஒத்ததாகவே இருக்கும்; அதனால் filters, எண்ணிக்கைகள் மற்றும் காலி செய்திகள் ஒத்திசைவு இழக்காது. சிறிய list-களுக்கு பராமரிக்க வேண்டிய code-ம் குறைவு.</p>
+      <summary>Why rebuild the whole list instead of changing one row?</summary>
+      <p>Full render எப்பவுமே state array-க்கு match ஆகும்; அதனால filters, counts, empty messages sync-ஐ விட்டு விலக முடியாது. சின்ன lists-க்கு maintain பண்றதும் குறைவான code.</p>
     </details>
     <details class="qa">
-      <summary>Item-இன் இடத்திற்குப் பதிலாக id-ஐ ஏன் பயன்படுத்த வேண்டும்?</summary>
-      <p>ஒரு item நீக்கப்படும்போது அல்லது filter செய்யப்படும்போது இடங்கள் மாறும். நிலையான id, array மீண்டும் கட்டப்பட்ட பிறகும் சரியான object-ஐச் சுட்டும்.</p>
+      <summary>Why use an id instead of the item's position?</summary>
+      <p>Item remove ஆனப்போ அல்லது filter ஆனப்போ positions change ஆகும். Array மறுபடி build ஆனப்புறமும் ஒரு stable id சரியான object-ஐ சுட்டும்.</p>
     </details>
   </div>
   <div class="recap">
-    <h2>நினைவில் வைக்க வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <h2>Key things to remember</h2>
     <ul>
-      <li><strong>State தான் உண்மையின் மூலம்.</strong> DOM என்பது array-இன் projection; array அல்ல.</li>
-      <li><strong>State-ஐ மாற்றி, பிறகு render செய்யுங்கள்.</strong> Add, toggle, remove மற்றும் filter-க்கு ஒரே வழி இருந்தால் நடத்தை முன்னறிவிக்கக்கூடியதாக இருக்கும்.</li>
-      <li><strong>ids மற்றும் textContent-ஐப் பயன்படுத்துங்கள்.</strong> Data attributes controls-ஐ items-உடன் இணைக்கின்றன; plain text பயனர் உள்ளீட்டைப் பாதுகாப்பாக வைக்கிறது.</li>
+      <li><strong>State தான் source of truth.</strong> DOM array-ஐப் பார்க்கிற projection தான்; array அது இல்ல.</li>
+      <li><strong>State-ஐ change பண்ணி, பிறகு render பண்ணுங்கள்.</strong> Add, toggle, remove, filter எல்லாத்துக்கும் ஒரே path இருந்தா behavior predictable-ஆ இருக்கும்.</li>
+      <li><strong>Ids-ஐயும் textContent-ஐயும் use பண்ணுங்கள்.</strong> Data attributes controls-ஐ items-ஓட connect பண்ணும்; plain text user input-ஐ safe-ஆ வைக்கும்.</li>
     </ul>
   </div>
 </article>

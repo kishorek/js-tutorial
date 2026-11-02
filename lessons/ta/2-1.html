@@ -1,35 +1,35 @@
 <article class="lesson" id="lesson-2-1" data-lesson="2-1">
   <header class="lesson-head">
-    <p class="eyebrow">தொகுதி 02 · CSS: வெளித்தோற்றம்</p>
-    <h1>Selector-கள், cascade, specificity</h1>
-    <p class="lesson-lede">CSS என்பது rule-களின் பட்டியல். Selector ஒரு element-ஐ தேர்ந்தெடுக்கும், declaration மாற்றத்தை விவரிக்கும், இரண்டு rule-கள் முரண்படும்போது எது வெல்லும் என்பதை cascade முடிவு செய்யும். இந்த வரிசையை ஒருமுறை புரிந்துகொண்டால், CSS தற்செயலானது போலத் தோன்றுவது நின்றுவிடும்.</p>
+    <p class="eyebrow">Module 02 · CSS: the skin</p>
+    <h1>Selectors, cascade, and specificity</h1>
+    <p class="lesson-lede">CSS என்பது rule-களின் list. Selector elements-ஐ select பண்ணும், declaration என்ன மாறுதல் என்று சொல்லும், இரண்டு rule-கள் முரண்படும்போது எது win பண்ணும் என்று cascade decide பண்ணும். இந்த order-ஐ ஒருமுறை understand பண்ணிட்டா, CSS random-ஆ தெரியுறது நிற்கும்.</p>
     <div class="chips">
-      <span class="chip chip--accent">பாடம் 2.1</span>
-      <span class="chip">60–75 நிமிடம்</span>
-      <span class="chip">தொடக்கநிலை</span>
+      <span class="chip chip--accent">Lesson 2.1</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
     </div>
     <div class="brief">
       <div>
-        <h3>இதன் முடிவில், நீங்கள்</h3>
+        <h3>By the end, you can</h3>
         <ul>
-          <li>Stylesheet-ஐ இணைத்து ஒரு rule எழுத முடியும்.</li>
-          <li>Element, class, id, descendant, pseudo-class selector-களைப் பயன்படுத்த முடியும்.</li>
-          <li>எந்த declaration வெல்லும் என்பதை முன்கூட்டியே சொல்லி, ஏன் என்று விளக்க முடியும்.</li>
+          <li>Stylesheet-ஐ link பண்ணி ஒரு rule எழுத முடியும்.</li>
+          <li>Element, class, id, descendant, pseudo-class selectors-ஐ use பண்ண முடியும்.</li>
+          <li>எந்த declaration win பண்ணும் என்று முன்கூட்டியே சொல்லி, ஏன் என்று explain பண்ண முடியும்.</li>
         </ul>
       </div>
       <div>
-        <h3>உங்களுக்குத் தேவை</h3>
+        <h3>You need</h3>
         <ul>
-          <li>உங்கள் தொகுதி 1 பக்கங்கள், குறிப்பாக <code>about-me.html</code>.</li>
+          <li>உங்கள் Module 1 pages, குறிப்பா <code>about-me.html</code>.</li>
           <li>DevTools உள்ள browser.</li>
-          <li>உங்கள் HTML-க்கு அருகில் ஒரு CSS file.</li>
+          <li>உங்கள் HTML-க்கு பக்கத்துல ஒரு CSS file.</li>
         </ul>
       </div>
     </div>
   </header>
 
-  <h2>Stylesheet-ஐ இணைப்பது</h2>
-  <p>CSS தனி file-இல் இருக்கும், அதை <code>&lt;head&gt;</code>-இல் இருந்து இணைப்போம். <code>href</code> என்பது நீங்கள் ஏற்கனவே எழுதிய link-களைப் போலவே ஒரு relative path. ஒரு rule-இல் braces-க்கு முன் selector, உள்ளே declaration-கள் இருக்கும். ஒவ்வொரு declaration-ம் property, ஒரு colon, ஒரு value, ஒரு semicolon.</p>
+  <h2>Connect a stylesheet</h2>
+  <p>CSS தனி file-ல இருக்கும், அதை <code>&lt;head&gt;</code>-ல இருந்து link பண்ணுவோம். <code>href</code> என்பது நீங்கள் ஏற்கனவே எழுதுன links-ஐப் போலவே ஒரு relative path. ஒரு rule-ல braces-க்கு முன்னாடி selector, உள்ளே declarations இருக்கும். ஒவ்வொரு declaration-ம் property, ஒரு colon, ஒரு value, ஒரு semicolon.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain"><link rel="stylesheet" href="styles.css">
@@ -42,10 +42,10 @@ body {
 }</script>
   </div>
 
-  <p>ஒரு யோசனைக்கு ஒரு rule என்று எழுதுங்கள்; file-ஐ நல்ல வரிசையில் வையுங்கள்: reset, base element-கள், layout, component-கள், utility-கள். Browser rule-களை மேலிருந்து கீழாகப் படிக்கும்.</p>
+  <p>ஒரு idea-க்கு ஒரு rule எழுதுங்கள்; file-ஐ நல்ல order-ல வையுங்கள்: reset, base elements, layout, components, utilities. Browser rules-ஐ top-ல இருந்து bottom வரை read பண்ணும்.</p>
 
-  <h2>Selector-கள் element-களைத் தேர்ந்தெடுக்கின்றன</h2>
-  <p>வேலையைச் செய்யும் மிகக் குறைந்த வலிமை கொண்ட selector-ஐ முதலில் பயன்படுத்துங்கள். Class-கள் மீண்டும் பயன்படுத்தக்கூடியவை, அதனால் component-களுக்கு அவையே சரியான default. Id ஒரு பக்கத்தில் ஒரே element-க்கு மட்டும்; anchor-களுக்கும் JavaScript hook-களுக்கும் அவற்றை வைத்திருங்கள்.</p>
+  <h2>Selectors choose elements</h2>
+  <p>வேலை செய்யுற least powerful selector-ல இருந்து start பண்ணுங்கள். Classes reusable, அதனால components-க்கு அவைதான் சரியான default. Ids page-ல ஒரே ஒரு element-க்கு மட்டும்; anchors, JavaScript hooks-க்கு வைச்சுக்கோங்க.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">p { color: #333; }                 /* element */
@@ -57,17 +57,17 @@ a:hover { color: #a33; }         /* pseudo-class */
   </div>
 
   <ul>
-    <li><strong>Element:</strong> பொருந்தும் ஒவ்வொரு tag-ம், எல்லா இடத்திலும். Base style-களுக்குப் பயனுள்ளது.</li>
-    <li><strong>Class:</strong> <code>.card</code> என்று எழுதி <code>class="card"</code>-உடன் match ஆகும். மீண்டும் பயன்படுத்தலாம்; பெரும்பாலான வேலைக்குப் போதுமான specificity உள்ளது.</li>
-    <li><strong>Id:</strong> <code>#intro</code> என்று எழுதி <code>id="intro"</code>-உடன் match ஆகும். ஒரு பக்கத்திற்கு ஒன்று; பிறகு override செய்வது கடினம்.</li>
-    <li><strong>Descendant:</strong> <code>.card p</code> என்றால் card-க்குள் எந்த ஆழத்திலும் உள்ள எந்த paragraph-ஐயும் குறிக்கும்.</li>
-    <li><strong>Pseudo-class:</strong> <code>:hover</code>, <code>:focus-visible</code>, அல்லது <code>:first-child</code> போன்ற ஒரு நிலை.</li>
+    <li><strong>Element:</strong> match ஆகுற ஒவ்வொரு tag-க்கும், எல்லா இடத்திலும் apply ஆகும். Base styles-க்கு use ஆகும்.</li>
+    <li><strong>Class:</strong> <code>.card</code> என்று எழுதி <code>class="card"</code>-உடன் match ஆகும். Reusable, பெரும்பாலான வேலைக்கு போதுமான specificity உள்ளது.</li>
+    <li><strong>Id:</strong> <code>#intro</code> என்று எழுதி <code>id="intro"</code>-உடன் match ஆகும். Page-க்கு ஒண்ணு; அப்புறம் override பண்ண கஷ்டம்.</li>
+    <li><strong>Descendant:</strong> <code>.card p</code> என்றால் card-க்கு உள்ளே எந்த depth-ல இருந்தாலும் எந்த paragraph-ஐயும் குறிக்கும்.</li>
+    <li><strong>Pseudo-class:</strong> <code>:hover</code>, <code>:focus-visible</code>, <code>:first-child</code> போன்ற ஒரு state.</li>
   </ul>
 
-  <p>Selector-களை ஆழமற்றதாக வையுங்கள். <code>main .card div h3</code>-ஐ விட <code>.card__title</code> படிக்கவும் override செய்யவும் எளிது; markup மாறினாலும் அது வேலை செய்யும்.</p>
+  <p>Selectors-ஐ shallow-ஆ வையுங்கள். <code>main .card div h3</code>-ஐ விட <code>.card__title</code> read பண்ணவும் override பண்ணவும் easy; markup மாறினாலும் அது survive ஆகும்.</p>
 
-  <h2>Cascade, சமநிலையை வரிசையால் முறிக்கிறது</h2>
-  <p>ஒரே element-இல் ஒரே property-ஐ இரண்டு rule-கள் அமைத்தால், selector-களின் எடை சமமாக இருந்தால் பிறகு வரும் rule வெல்லும். கீழே உள்ள நிறத்தை scroll செய்வதற்கு முன் யூகியுங்கள்.</p>
+  <h2>The cascade breaks ties by order</h2>
+  <p>ஒரே element-ல ஒரே property-ஐ இரண்டு rules set பண்ணினா, selectors-க்கு equal weight இருந்தா later rule win பண்ணும். கீழே scroll பண்ணுவதுக்கு முன்னாடி color-ஐ predict பண்ணுங்கள்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain"><p class="note">Predict my color.</p>
@@ -76,27 +76,27 @@ p { color: #333; }
 p { color: #0b6e4f; }</script>
   </div>
 
-  <p>Paragraph பச்சை நிறம். இரண்டு selector-களுக்கும் ஒரே specificity, அதனால் source order முடிவு செய்கிறது: இரண்டாவது declaration முதலாவதை மாற்றுகிறது. அதனால்தான் உங்கள் stylesheet-இன் வரிசை முக்கியம்.</p>
+  <p>Paragraph green-ஆ இருக்கும். இரண்டு selectors-க்கும் same specificity, அதனால source order decide பண்ணும்: second declaration first-ஐ replace பண்ணும். அதனாலதான் stylesheet-ஓட order important.</p>
 
-  <h2>Specificity-க்கு எடைகள் உண்டு</h2>
-  <p>Specificity என்பது நான்கு பகுதிகள் கொண்ட மதிப்பெண். இடமிருந்து வலமாக ஒப்பிடுங்கள்; ஒரு id எத்தனை class-களையும் வெல்லும். Inline style தனி, வலிமையான வகை; <code>!important</code> சாதாரண declaration-களுக்கு மேலே உள்ளது.</p>
+  <h2>Specificity has weights</h2>
+  <p>Specificity என்பது four-part score. Left-ல இருந்து right-க்கு compare பண்ணுங்கள்; ஒரு id எத்தனை classes-ஐயும் beat பண்ணும். Inline styles தனி, stronger category; <code>!important</code> normal declarations-க்கு மேலே இருக்கும்.</p>
 
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th scope="col">Selector</th><th scope="col">மதிப்பெண்</th><th scope="col">எடுத்துக்காட்டு</th></tr>
+        <tr><th scope="col">Selector</th><th scope="col">Score</th><th scope="col">Example</th></tr>
       </thead>
       <tbody>
         <tr><td>Inline style</td><td>1-0-0-0</td><td><code>style="color: red"</code></td></tr>
         <tr><td>Id</td><td>0-1-0-0</td><td><code>#intro</code></td></tr>
         <tr><td>Class, attribute, pseudo-class</td><td>0-0-1-0</td><td><code>.note</code>, <code>a:hover</code></td></tr>
         <tr><td>Element, pseudo-element</td><td>0-0-0-1</td><td><code>p</code>, <code>p::first-line</code></td></tr>
-        <tr><td>Universal (எல்லா element-களும்)</td><td>0-0-0-0</td><td><code>*</code></td></tr>
+        <tr><td>Universal</td><td>0-0-0-0</td><td><code>*</code></td></tr>
       </tbody>
     </table>
   </div>
 
-  <p>இப்போது இரண்டு paragraph-களையும் யூகியுங்கள். முதலாவதில் id உள்ளது; இரண்டாவதில் ஒரே selector-இல் class-ம் element-ம் உள்ளன.</p>
+  <p>இப்போ இரண்டு paragraphs-ஐயும் predict பண்ணுங்கள். முதல் paragraph-க்கு id இருக்கு; இரண்டாவது selector-ல class-ம் element-ம் இருக்கு.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain"><p class="note" id="intro">First</p>
@@ -108,11 +108,11 @@ p.note { color: #555; }
 #intro { color: #a33; }</script>
   </div>
 
-  <p>முதல் paragraph சிவப்பு: <code>#intro</code> 0-1-0-0 எடுத்து எல்லா class rule-ஐயும் வெல்கிறது. இரண்டாவது சாம்பல்: <code>p.note</code> 0-0-1-1 எடுத்து, 0-0-1-0 உள்ள <code>.note</code>-ஐ வெல்கிறது. முதலில் class-களை எண்ணுங்கள், பிறகு element-களை; column-களைக் கூட்ட வேண்டாம்.</p>
+  <p>முதல் paragraph red: <code>#intro</code> score 0-1-0-0, எல்லா class rules-ஐயும் outrank பண்ணும். இரண்டாவது gray: <code>p.note</code> score 0-0-1-1, அது 0-0-1-0 உள்ள <code>.note</code>-ஐ beat பண்ணும். Classes-ஐ count பண்ணுங்கள், அப்புறம் elements-ஐ; columns-ஐ add பண்ணாதீங்க.</p>
 
   <div class="callout callout--tip">
-    <span class="callout__label">ஒரு card, style செய்யப்பட்டது</span>
-    <p>சிறிய, யூகிக்கக்கூடிய component-இல் பெட்டிக்கு ஒரு class, ஒவ்வொரு பகுதிக்கும் ஒரு class: <code>.card</code>, <code>.card__title</code>, <code>.card__text</code>. ஒவ்வொரு selector-ம் 0-0-1-0 எடுக்கும், அதனால் கடைசியாக match ஆகும் rule வெல்லும்; எந்த id-உடனும் போட்டி இல்லை.</p>
+    <span class="callout__label">A card, styled</span>
+    <p>சிறிய, predictable component-ல box-க்கு ஒரு class, ஒவ்வொரு part-க்கும் ஒரு class: <code>.card</code>, <code>.card__title</code>, <code>.card__text</code>. ஒவ்வொரு selector-ம் 0-0-1-0 score, அதனால last matching rule win பண்ணும்; id-உடன் எந்த fight-ம் இல்லை.</p>
   </div>
 
   <div class="code-block" data-code>
@@ -134,20 +134,20 @@ p.note { color: #555; }
 }</script>
   </div>
 
-  <h2>Inheritance மற்றும் கடைசி வழி</h2>
-  <p><code>color</code>, <code>font-family</code>, <code>line-height</code> போன்ற சில property-கள் parent element-இலிருந்து inherit ஆகும். <code>margin</code>, <code>padding</code>, <code>border</code> போன்றவை ஆகாது. Inherit ஆகும் property-களை <code>body</code>-இல் ஒருமுறை அமைத்தால் முழு பக்கமும் பின்பற்றும்.</p>
+  <h2>Inheritance and the last resort</h2>
+  <p><code>color</code>, <code>font-family</code>, <code>line-height</code> போன்ற சில properties parent element-ல இருந்து inherit ஆகும். <code>margin</code>, <code>padding</code>, <code>border</code> போன்றவை ஆகாது. Inherited properties-ஐ <code>body</code>-ல ஒருமுறை set பண்ணுங்கள், page முழுவதும் follow ஆகும்.</p>
 
   <div class="callout callout--warn">
-    <span class="callout__label">!important-ஐ தவிர்க்கவும்</span>
-    <p><code>!important</code> சாதாரண cascade-ஐ override செய்கிறது. உங்களுடையதை வெல்ல அடுத்தவர் இன்னொரு <code>!important</code> சேர்க்க வேண்டியிருக்கும்; file ஒரு சண்டையாகிவிடும். third-party CSS-ஐ வேண்டுமென்றே, பதிவு செய்து override செய்யும்போது மட்டும் பயன்படுத்துங்கள். உங்கள் style-களுக்கு, selector-ஐ அல்லது வரிசையைச் சரிசெய்யுங்கள்.</p>
+    <span class="callout__label">Avoid !important</span>
+    <p><code>!important</code> normal cascade-ஐ override பண்ணும். உங்களோடதை beat பண்ண அடுத்தவர் இன்னொரு <code>!important</code> add பண்ணணும்; file ஒரு fight ஆயிடும். Third-party CSS-ஐ வேண்டும்னே, document பண்ணி override பண்ணும்போது மட்டும் use பண்ணுங்கள். உங்கள் styles-க்கு selector-ஐ அல்லது order-ஐ fix பண்ணுங்கள்.</p>
   </div>
 
   <section class="practice" data-practice data-min="40">
     <div class="practice__head">
-      <span class="kicker">பயிற்சி · 20 நிமிடம்</span>
-      <h2>Class-களைக் கொண்டு card-ஐ style செய்யுங்கள்</h2>
+      <span class="kicker">Exercise · 20 minutes</span>
+      <h2>Style the card with classes</h2>
     </div>
-    <p>இந்த HTML-ஐப் பயன்படுத்துங்கள். பக்க text <code>#1c1a16</code> ஆகவும், card-க்கு வெள்ளை background, <code>1px</code> solid <code>#d8d0c0</code> border, <code>6px</code> radius ஆகவும் இருக்கும்படி CSS எழுதுங்கள். Title <code>1.25rem</code> அளவில் <code>#14532d</code> ஆகவும்; paragraph <code>#555</code> ஆகவும் இருக்க வேண்டும். ஒவ்வொரு card rule-க்கும் class selector பயன்படுத்துங்கள்; <code>!important</code> வேண்டாம்.</p>
+    <p>இந்த HTML-ஐ use பண்ணுங்கள். Page text <code>#1c1a16</code> ஆகவும், card-க்கு white background, <code>1px</code> solid <code>#d8d0c0</code> border, <code>6px</code> radius ஆகவும் இருக்கும்படி CSS எழுதுங்கள். Title <code>1.25rem</code>-ல <code>#14532d</code> ஆகவும்; paragraph <code>#555</code> ஆகவும் இருக்கணும். ஒவ்வொரு card rule-க்கும் class selectors use பண்ணுங்கள்; <code>!important</code> use பண்ணாதீங்க.</p>
 
     <div class="code-block" data-code>
       <script type="text/plain"><article class="card">
@@ -156,11 +156,11 @@ p.note { color: #555; }
 </article></script>
     </div>
 
-    <label class="visually-hidden" for="practice-2-1">உங்கள் CSS</label>
-    <textarea class="practice__code" id="practice-2-1" data-attempt spellcheck="false" placeholder="உங்கள் CSS-ஐ இங்கே எழுதுங்கள்..."></textarea>
+    <label class="visually-hidden" for="practice-2-1">Your CSS</label>
+    <textarea class="practice__code" id="practice-2-1" data-attempt spellcheck="false" placeholder="Write your CSS here..."></textarea>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
     <script type="text/plain" data-answer>body {
@@ -188,24 +188,24 @@ p.note { color: #555; }
 }</script>
   </section>
 
-  <h2>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h2>
+  <h2>Check yourself</h2>
   <div class="qa-list">
     <details class="qa">
-      <summary>ஒரு id எப்படி பல class-களை வெல்கிறது?</summary>
-      <p>Specificity வகைகளை மொத்த எண்ணிக்கையால் அல்ல, இடமிருந்து வலமாக ஒப்பிடுகிறது. Id இரண்டாவது column-க்கு எடை சேர்க்கிறது; class-கள் மூன்றாவது column-க்கு. எத்தனை class பெயர்கள் சேர்ந்தாலும் 0-1-0-0 என்பது 0-0-9-0-ஐ வெல்லும்.</p>
+      <summary>Why does one id beat several classes?</summary>
+      <p>Specificity categories-ஐ total count-ல அல்ல, left-ல இருந்து right-க்கு compare பண்ணும். Id second column-க்கு contribute பண்ணும்; classes third column-க்கு. எத்தனை class names stack பண்ணினாலும் 0-1-0-0 score 0-0-9-0-ஐ beat பண்ணும்.</p>
     </details>
     <details class="qa">
-      <summary><code>!important</code> எப்போதாவது சரியான தேர்வா?</summary>
-      <p>அரிதாகவே. உங்கள் கட்டுப்பாட்டில் இல்லாத, selector-ஐ மாற்ற முடியாத CSS-ஐ override செய்ய வேண்டியிருக்கும்போது (உதாரணமாக vendor widget) அது நியாயப்படுத்தக்கூடியது. உங்கள் சொந்த code-க்கு, வேண்டுமென்றே specificity-ஐ உயர்த்துங்கள் அல்லது rule-ஐ பிறகு நகர்த்துங்கள். எந்த விதிவிலக்கையும் பதிவு செய்யுங்கள்.</p>
+      <summary>Is <code>!important</code> ever the right choice?</summary>
+      <p>அரிதா. உங்கள் control-ல இல்லாத, selector-ஐ மாற்ற முடியாத CSS-ஐ override பண்ண வேண்டியிருக்கும்போது (vendor widget போல) இது justify பண்ணலாம். உங்கள் code-க்கு specificity-ஐ வேண்டும்னே increase பண்ணுங்கள் அல்லது rule-ஐ later-க்கு move பண்ணுங்கள். எந்த exception-ஐயும் document பண்ணுங்கள்.</p>
     </details>
   </div>
 
   <div class="recap">
-    <h2>நினைவில் வைக்க வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <h2>Key things to remember</h2>
     <ul>
-      <li><strong>Class-களே default கருவி.</strong> மீண்டும் பயன்படுத்தலாம், படிக்க எளிது, override செய்வதும் எளிது.</li>
-      <li><strong>Specificity column வாரியாக ஒப்பிடப்படுகிறது.</strong> Inline id-ஐ வெல்லும், id class-ஐ வெல்லும், class element-ஐ வெல்லும்.</li>
-      <li><strong>சமநிலையை வரிசை தீர்மானிக்கிறது.</strong> எடை சமமாக இருந்தால், பிறகு வரும் declaration வெல்லும்; உங்கள் stylesheet-ஐ ஒழுங்காக வையுங்கள்.</li>
+      <li><strong>Classes-தான் default tool.</strong> Reusable, readable, override பண்ண easy.</li>
+      <li><strong>Specificity-ஐ column column-ஆ compare பண்ணணும்.</strong> Inline id-ஐ beat பண்ணும், id class-ஐ beat பண்ணும், class element-ஐ beat பண்ணும்.</li>
+      <li><strong>Tie-ஐ order decide பண்ணும்.</strong> Weight equal-ஆ இருந்தா later declaration win பண்ணும்; stylesheet-ஐ organised-ஆ வையுங்கள்.</li>
     </ul>
   </div>
 </article>

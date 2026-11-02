@@ -6,9 +6,9 @@ window.LESSON_NOTES = {
       analogy: "A house frame and room labels decide what exists and where it goes; paint and wiring come afterward."
     },
     ta: {
-      why: "HTML ஒரு பக்கத்தின் structure-ஐயும் meaning-ஐயும் வரையறுக்கிறது; அதனால் CSS-க்கும் JavaScript-க்கும் நல்ல அடிப்படை கிடைக்கிறது. இது இல்லாமல் content வெறும் ஒழுங்கற்ற text குவியலாக இருக்கும்.",
-      where: "நீங்கள் பார்க்கும் ஒவ்வொரு website-உம் இந்த skeleton-இலிருந்துதான் தொடங்குகிறது; DevTools-இல் எந்த site-ஐ பார்த்தாலும் இதைப் பார்க்கலாம்.",
-      analogy: "வீட்டின் frame-உம் அறைகளின் label-உம் எது எங்கே இருக்க வேண்டும் என்பதை முடிவு செய்கின்றன; paint-உம் wiring-உம் அதன் பிறகுதான் வருகின்றன."
+      why: "HTML page-க்கு structure-ஐயும் meaning-ஐயும் கொடுக்கும். அதனால CSS-க்கு style பண்ண ஒன்னு இருக்கும், JavaScript-க்கு change பண்ண ஒரு solid base இருக்கும். HTML இல்லாம content வெறும் ஒழுங்கில்லாத text குவியலா இருக்கும்.",
+      where: "எல்லா webpage-உம் இந்த skeleton-லிருந்து தான் start ஆகும். நீங்க பாக்குற எந்த site-ஐயும் DevTools-ல அல்லது view-source-ல பாக்கலாம்.",
+      analogy: "House frame-உம் room labels-உம் எது எங்க இருக்கணும் என்பதை decide பண்ணும்; paint-உம் wiring-உம் அதுக்கு அப்புறம் தான் வரும்."
     }
   },
   "1-2": {
@@ -18,9 +18,9 @@ window.LESSON_NOTES = {
       analogy: "A relative path is like a street name that works inside the same neighbourhood, while an absolute URL is a full postal address that works from anywhere."
     },
     ta: {
-      why: "Links தனித்தனி file-களை ஒரு website-ஆக இணைக்கின்றன; path, alt text, சரியான list type ஆகியவை சரியாக இருந்தால் மட்டுமே images-உம் lists-உம் எல்லோருக்கும் வேலை செய்யும்.",
+      why: "Links தனித்தனி files-ஐ ஒரு website-ஆ இணைக்கும். Correct paths, alt text, correct list type இருந்தா தான் images-உம் content-உம் எல்லாருக்கும் use ஆகும்.",
       where: "Navigation menus, recipe அல்லது blog pages, image galleries.",
-      analogy: "Relative path என்பது தெருவின் பெயர் போல - அதே பகுதிக்குள் வேலை செய்யும்; absolute path முழு postal address போல - எங்கிருந்தும் சேரும்."
+      analogy: "Relative path என்பது street name மாதிரி - அதே area-ல work ஆகும்; absolute URL முழு postal address மாதிரி - எங்க இருந்தும் work ஆகும்."
     }
   },
   "1-3": {
@@ -30,9 +30,9 @@ window.LESSON_NOTES = {
       analogy: "A form is like a paper application where every blank has a printed label, and landmarks are the floor signs of a building."
     },
     ta: {
-      why: "Tables, forms, landmarks ஆகியவை data-வுக்கும் input-க்கும் browser-உம் screen reader-உம் புரிந்துகொள்ளும் meaning-ஐ தருகின்றன.",
-      where: "Signup forms, schedule அல்லது pricing tables, header/nav/main/footer layout.",
-      analogy: "Form என்பது ஒரு paper application போல - ஒவ்வொரு காலியிடத்திற்கும் அச்சிடப்பட்ட label இருக்க வேண்டும்; landmarks கட்டிடத்தின் floor signs போல வழிகாட்டுகின்றன."
+      why: "Tables, forms, landmarks data-க்கும் input-க்கும் browser-உம் screen reader-உம் புரிஞ்சுக்கும் meaning-ஐ கொடுக்கும்.",
+      where: "Signup forms, schedule அல்லது pricing tables, header/nav/main/footer-ல build பண்ணின page layouts.",
+      analogy: "Form என்பது paper application மாதிரி - ஒவ்வொரு blank-க்கும் printed label இருக்கணும்; landmarks building-ல floor signs மாதிரி வழி காட்டும்."
     }
   },
   "1-4": {
@@ -42,9 +42,9 @@ window.LESSON_NOTES = {
       analogy: "It is like cooking a full meal after practising knife skills, because every technique shows up at once."
     },
     ta: {
-      why: "இந்த project structure, links, images, lists, forms எல்லாவற்றையும் சேர்த்து ஒரு உண்மையான site-ஆக உருவாக்க முடியுமா என்பதை நிரூபிக்கிறது.",
-      where: "சிறிய personal அல்லது business sites இதே மாதிரியான linked pages-ஆல் தான் கட்டப்படுகின்றன.",
-      analogy: "வெட்டப் பயிற்சி செய்த பிறகு முழு உணவு சமைப்பது போல - கற்ற ஒவ்வொரு திறமையும் ஒரே நேரத்தில் பயன்படுகிறது."
+      why: "Structure, links, images, lists, forms எல்லாத்தையும் சேர்த்து ஒரு real site-ஆ build பண்ண முடியுமா என்பதை இந்த project prove பண்ணும். Tags-ஐ தனியா practice பண்றது மட்டும் இல்ல.",
+      where: "Small personal-உம் business sites-உம் இதே மாதிரி linked pages-ல தான் build ஆகும்.",
+      analogy: "Knife skills practice பண்ணிட்டு முழு meal cook பண்றது மாதிரி - கத்துக்கிட்ட எல்லா technique-உம் ஒரே நேரத்தில use ஆகும்."
     }
   },
   "2-1": {
@@ -54,9 +54,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a queue of instructions where the more specific, later order wins, just as a named person's request beats a general announcement."
     },
     ta: {
-      why: "CSS rules ஒன்றோடொன்று மோதும்போது cascade-உம் specificity-உம் எந்த declaration வெல்லும் என்பதை முடிவு செய்கின்றன; score தெரிந்தால் யூகம் தேவையில்லை.",
-      where: "Components style செய்யும்போது, framework styles override செய்யும்போது, DevTools-இல் color ஏன் மாறவில்லை என debug செய்யும்போது.",
-      analogy: "வரிசையாக வரும் அறிவுரைகள் போல - குறிப்பிட்ட நபருக்கான உத்தரவு பொதுவான அறிவிப்பை விட வெல்லும்; சமமானால் பிறகு வந்தது வெல்லும்."
+      why: "CSS rules ஒன்னோட ஒன்னு clash ஆனா, cascade-உம் specificity-உம் எந்த declaration apply ஆகும் என்பதை decide பண்ணும். Score தெரிஞ்சா guess தேவை இல்ல.",
+      where: "Components style பண்ணும்போது, framework styles override பண்ணும்போது, DevTools-ல color ஏன் மாறல என debug பண்ணும்போது.",
+      analogy: "Instructions வரிசை மாதிரி - specific-ஆன, அப்புறம் வந்த order win ஆகும்; ஒரு person-க்கு சொன்ன request பொதுவான announcement-ஐ விட win ஆகும்."
     }
   },
   "2-2": {
@@ -66,9 +66,9 @@ window.LESSON_NOTES = {
       analogy: "It is like framing a picture: the photo is content, the mat is padding, the frame is border, and the wall gap is margin."
     },
     ta: {
-      why: "ஒவ்வொரு element-உம் ஒரு box; width, padding, border, margin ஆகியவை overflow-உம் இறுக்கமான layout-உம் ஏன் ஏற்படுகிறது என்பதை விளக்குகின்றன.",
-      where: "இது 20px அதிகமாக இருக்கிறது என்பதை சரிசெய்யும்போது, card layouts கட்டும்போது, spacing-ஐ சீராக வைக்கும்போது.",
-      analogy: "frame போட்ட படத்தை pack செய்வது போல - photo content, mat padding, frame border, சுவருக்கும் frame-க்கும் இடையிலான இடைவெளி margin."
+      why: "ஒவ்வொரு element-உம் ஒரு box. Width, padding, border, margin தான் overflow-உம் tight layout-உம் ஏன் வருது என்பதை explain பண்ணும்.",
+      where: "20px extra ஆ இருக்குற element-ஐ fix பண்ணும்போது, card layouts build பண்ணும்போது, spacing-ஐ consistent-ஆ வைக்கும்போது.",
+      analogy: "Picture frame மாதிரி - photo content, mat padding, frame border, wall-க்கும் frame-க்கும் இடையில gap margin."
     }
   },
   "2-3": {
@@ -78,9 +78,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a playlist built from a few repeated notes: a consistent rhythm feels intentional, while random notes feel noisy."
     },
     ta: {
-      why: "சிறிய type scale, படிக்கக்கூடிய contrast, பகிரப்பட்ட tokens ஆகியவை page-ஐ அமைதியாகவும் accessible-ஆகவும் மாற்றுகின்றன.",
-      where: "Design systems, marketing pages, brand consistency-உம் WCAG contrast-உம் தேவைப்படும் எல்லா project-களிலும்.",
-      analogy: "சில note-களை திரும்பத் திரும்ப வரும் playlist போல - சீரான rhythm வேண்டுமென்றே செய்ததாக தெரியும்; random notes சத்தமாக தெரியும்."
+      why: "Small type scale, readable contrast, shared tokens இருந்தா page calm-ஆவும் accessible-ஆவும் இருக்கும். Random sizes-உம் colours-உம் சேராது.",
+      where: "Design systems, marketing pages, consistent branding-உம் WCAG contrast-உம் தேவைப்படுற எல்லா project-லயும்.",
+      analogy: "சில notes-ஐ திரும்ப திரும்ப use பண்ணி build பண்ணின playlist மாதிரி - consistent rhythm intentional-ஆ தெரியும்; random notes noisy-ஆ தெரியும்."
     }
   },
   "2-4": {
@@ -90,9 +90,9 @@ window.LESSON_NOTES = {
       analogy: "It is like arranging books on a shelf: push them left, centre them, spread them out, or let them wrap to a second shelf."
     },
     ta: {
-      why: "Flexbox header, hero, card row போன்றவற்றை ஒரு axis-இல் அடுக்கி மீதமுள்ள இடத்தை பங்கிடுகிறது; அன்றாட layouts-க்கு இது போதும்.",
+      why: "Flexbox header, hero, card row மாதிரி things-ஐ ஒரு axis-ல arrange பண்ணி மீதி space-ஐ share பண்ணும். Everyday layouts-க்கு இது போதும்.",
       where: "Navigation bars, button groups, card rows, responsive headers.",
-      analogy: "Shelf-இல் புத்தகங்களை அடுப்பது போல - இடது, நடு, இடைவெளி என்று வைக்கலாம், இல்லை அடுத்த shelf-க்கு wrap செய்யலாம்."
+      analogy: "Shelf-ல books arrange பண்றது மாதிரி - left, centre, space out, இல்ல wrap to next shelf."
     }
   },
   "3-1": {
@@ -102,9 +102,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a spreadsheet or a chessboard: you set the rows and columns first, then place pieces in the cells."
     },
     ta: {
-      why: "Grid rows-ஐயும் columns-ஐயும் ஒரே நேரத்தில் கட்டுப்படுத்துகிறது; அதனால் galleries-உம் page skeletons-உம் தற்செயலாக அல்ல, கணிக்கக்கூடியதாக அமைகின்றன.",
-      where: "Dashboards, photo galleries, header/sidebar/main/footer கொண்ட முழு page layouts.",
-      analogy: "Spreadsheet அல்லது chessboard போல - முதலில் rows-ஐயும் columns-ஐயும் முடிவு செய்து, பிறகு cells-இல் பொருட்களை வைக்கிறீர்கள்."
+      why: "Grid rows-ஐயும் columns-ஐயும் ஒரே நேரத்தில control பண்ணும். அதனால galleries-உம் page skeletons-உம் accident-ஆ இல்லாம predictable-ஆ line up ஆகும்.",
+      where: "Dashboards, photo galleries, header/sidebar/main/footer-ஓட full page layouts.",
+      analogy: "Spreadsheet அல்லது chessboard மாதிரி - முதல்ல rows-ஐயும் columns-ஐயும் set பண்ணி, பிறகு cells-ல pieces வைக்கணும்."
     }
   },
   "3-2": {
@@ -114,9 +114,9 @@ window.LESSON_NOTES = {
       analogy: "It is like packing a small bag first and adding compartments only when the bag grows."
     },
     ta: {
-      why: "சிறிய திரையில் தொடங்கி இடம் கிடைக்கும்போது columns சேர்ப்பது sideways scrolling-ஐயும் தவறான breakpoints-ஐயும் தடுக்கிறது.",
-      where: "ஒவ்வொரு production site-உம், குறிப்பாக 320, 768, 1440 pixels-இல் test செய்யும்போது.",
-      analogy: "சிறிய bag-இல் முதலில் pack செய்து, bag பெரிதாகும்போது மட்டும் compartments சேர்ப்பது போல."
+      why: "Small-ஆ start பண்ணி space வரும்போது columns add பண்ணினா, sideways scrolling-உம் wrong breakpoints-உம் தடுக்கப்படும்.",
+      where: "எல்லா production site-லயும், குறிப்பா 320, 768, 1440 pixels-ல test பண்ணும்போது.",
+      analogy: "Small bag-ல முதல்ல pack பண்ணி, bag பெருசாகும்போது மட்டும் compartments add பண்றது மாதிரி."
     }
   },
   "3-3": {
@@ -126,9 +126,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a building with a ramp as well as stairs: the same destination should be reachable by more than one route."
     },
     ta: {
-      why: "Accessibility ஒரே page-ஐ keyboard, screen reader, குறைந்த பார்வை உள்ளவர்களுக்கும் பயன்படுத்தக்கூடியதாக மாற்றுகிறது; இது optional அல்ல, test செய்யக்கூடியது.",
+      why: "Accessibility ஒரே page-ஐ keyboard, screen reader, low-vision users-க்கும் use பண்ண வைக்கும். இது optional polish இல்ல, test பண்ணக்கூடியது.",
       where: "Landing pages, forms, navigation, launch-க்கு முன் ஒவ்வொரு client project.",
-      analogy: "படிக்கட்டுகளுடன் ramp-உம் உள்ள கட்டிடம் போல - ஒரே இடத்தை ஒன்றுக்கு மேற்பட்ட வழிகளில் அடைய வேண்டும்."
+      analogy: "Building-ல stairs-ஓட ramp-உம் இருப்பது மாதிரி - ஒரே destination-ஐ ஒரு route-க்கு மேல அடையணும்."
     }
   },
   "4-1": {
@@ -138,9 +138,9 @@ window.LESSON_NOTES = {
       analogy: "It is like labelled jars in a kitchen: the label is the variable, the contents are the value, and the type tells sugar from salt."
     },
     ta: {
-      why: "ஒவ்வொரு program-உம் values-ஐ சேமித்து ஒப்பிடுகிறது; strict equality-உம் typeof-உம் ஆரம்பநிலையில் ஏற்படும் மௌனமான coercion bugs-ஐ தடுக்கின்றன.",
-      where: "Form input படிக்கும்போது, total கணக்கிடும்போது, data-வை render செய்வதற்கு முன் சரிபார்க்கும்போது.",
-      analogy: "சமையலறையில் label ஒட்டிய ஜாடிகள் போல - label variable, உள்ளடக்கம் value, type எது சர்க்கரை எது உப்பு என்று சொல்கிறது."
+      why: "ஒவ்வொரு program-உம் values-ஐ store பண்ணி compare பண்ணும். Strict equality-உம் typeof-உம் beginners முதல்ல பாக்குற silent type-coercion bugs-ஐ தடுக்கும்.",
+      where: "Form input படிக்கும்போது, totals calculate பண்ணும்போது, data render பண்றதுக்கு முன் check பண்ணும்போது.",
+      analogy: "Kitchen-ல label ஒட்டின jars மாதிரி - label variable, உள்ள content value, type எது sugar எது salt என்பதை சொல்லும்."
     }
   },
   "4-2": {
@@ -150,9 +150,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a train switchyard: the first matching track sends the train down one route and the rest are skipped."
     },
     ta: {
-      why: "Programs வழிகளைத் தேர்ந்தெடுக்க வேண்டும்; truthiness-ஐயும் operator order-ஐயும் புரிந்தால் அந்தத் தேர்வுகள் சரியாக இருக்கும்.",
-      where: "Form validation, pricing rules, access checks, UI messages.",
-      analogy: "ரயில் switchyard போல - முதல் பொருந்தும் track ரயிலை ஒரு வழியில் அனுப்பும், மற்றவை தவிர்க்கப்படும்."
+      why: "Programs paths-க்கு இடையில choose பண்ணணும். Truthiness-ஐயும் operator order-ஐயும் புரிஞ்சா அந்த decisions correct-ஆ இருக்கும்.",
+      where: "Form validation, pricing rules, access checks, UI-ல status messages.",
+      analogy: "Train switchyard மாதிரி - முதல் matching track train-ஐ ஒரு route-ல அனுப்பும், மற்றவை skip ஆகும்."
     }
   },
   "4-3": {
@@ -162,9 +162,9 @@ window.LESSON_NOTES = {
       analogy: "It is like processing a stack of forms one at a time, or using a stamp, a sieve, and a calculator on the same stack."
     },
     ta: {
-      why: "உண்மையான data lists-ஆக வருகிறது; loops-உம் array methods-உம் items-ஐ பார்வையிட, வடிகட்ட, இணைக்க உதவுகின்றன.",
-      where: "Lists render செய்யும்போது, விலைகளைக் கூட்டும்போது, API results-ஐ மாற்றும்போது.",
-      analogy: "ஒரு stack form-களை ஒவ்வொன்றாக கையாள்வது போல, அல்லது அதே stack-க்கு stamp, sieve, calculator பயன்படுத்துவது போல."
+      why: "Real data lists-ஆ தான் வரும். Loops-உம் array methods-உம் items-ஐ visit பண்ணி, filter பண்ணி, combine பண்ண code repeat பண்ணாம help பண்ணும்.",
+      where: "Lists render பண்ணும்போது, prices total பண்ணும்போது, API results-ஐ transform பண்ணும்போது.",
+      analogy: "Forms stack-ஐ ஒவ்வொன்னா process பண்றது மாதிரி, இல்ல அதே stack-ல stamp, sieve, calculator use பண்றது மாதிரி."
     }
   },
   "4-4": {
@@ -174,9 +174,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a recipe card: give it ingredients as arguments, it returns a dish, and its counter space is only for that recipe."
     },
     ta: {
-      why: "Functions திரும்பத் திரும்ப வரும் steps-ஐ reusable, testable tools ஆக மாற்றுகின்றன; scope அவற்றின் variables வேறு code-இல் கசியாமல் பாதுகாக்கிறது.",
-      where: "Calculation helpers, event handlers, array callbacks.",
-      analogy: "Recipe card போல - ingredients (arguments) கொடுத்தால் உணவு (return value) தரும்; அதன் counter space (scope) அந்த recipe-க்கு மட்டும்."
+      why: "Functions repeat ஆகுற steps-ஐ reusable, testable tools-ஆ மாத்தும். Scope அவங்க variables வேற code-ல leak ஆகாம protect பண்ணும்.",
+      where: "Calculation helpers, event handlers, array methods-க்கு pass பண்ற callbacks.",
+      analogy: "Recipe card மாதிரி - ingredients (arguments) கொடுத்தா dish (return value) தரும்; அதன் counter space (scope) அந்த recipe-க்கு மட்டும்."
     }
   },
   "4-5": {
@@ -186,9 +186,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a calculator's brain versus its keypad: the brain still does the maths even if the buttons are redesigned."
     },
     ta: {
-      why: "Objects ஒரு record-ஐயும், objects array உண்மையான data-ஐயும் model செய்கின்றன; pure calculate function buttons-இலிருந்து logic-ஐ தனியாக வைத்து test செய்ய உதவுகிறது.",
-      where: "Shopping carts, dashboards, business logic-ஐ interface-இலிருந்து பிரிக்கும் எல்லா app-களிலும்.",
-      analogy: "Calculator-இன் மூளையும் keypad-உம் போல - buttons மாறினாலும் மூளை கணக்கைச் செய்யும்."
+      why: "Objects ஒரு record-ஐ model பண்ணும், objects array real data-ஐ model பண்ணும். Pure calculate function maths-ஐ buttons-லிருந்து தனியா வைத்து test பண்ண உதவும்.",
+      where: "Shopping carts, dashboards, business logic-ஐ interface-லிருந்து separate பண்ற எல்லா app-லயும்.",
+      analogy: "Calculator brain-உம் keypad-உம் மாதிரி - buttons redesign ஆனாலும் brain maths பண்ணும்."
     }
   },
   "5-1": {
@@ -198,9 +198,9 @@ window.LESSON_NOTES = {
       analogy: "It is like editing a document through its outline: find a paragraph, change its text, then insert or delete a section."
     },
     ta: {
-      why: "DOM என்பது live page-ஐ objects-ஆக பார்ப்பது; அதை பாதுகாப்பாக select செய்து மாற்றுவதே JavaScript screen-இல் ஏதாவது நடக்க வைக்கும் வழி.",
-      where: "Status message update, panel open, list row சேர்ப்பது, எல்லா interactive component-களிலும்.",
-      analogy: "Document-ஐ அதன் outline வழியாக edit செய்வது போல - paragraph-ஐ கண்டுபிடித்து text மாற்றி, section சேர்த்து அல்லது நீக்குவது."
+      why: "DOM என்பது live page-ஐ objects tree-ஆ பாக்குறது. அதை safely select பண்ணி change பண்றது தான் JavaScript-ல screen-ல எதையும் நடக்க வைக்கும் வழி.",
+      where: "Status message update பண்ணும்போது, panel open பண்ணும்போது, list row add பண்ணும்போது, எல்லா interactive component-லயும்.",
+      analogy: "Document-ஐ அதன் outline வழியா edit பண்றது மாதிரி - paragraph find பண்ணி, text change பண்ணி, section insert அல்லது delete பண்றது."
     }
   },
   "5-2": {
@@ -210,9 +210,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a receptionist listening for arrivals: one desk can handle every visitor instead of putting a bell on every door."
     },
     ta: {
-      why: "Events தான் click-உம் typing-உம் பக்கத்தை எதிர்வினை செய்ய வைக்கின்றன; preventDefault-உம் delegation-உம் forms-ஐயும் lists-ஐயும் சரியாக நடத்துகின்றன.",
-      where: "Search boxes, signup forms, keyboard shortcuts, நிறைய buttons உள்ள lists.",
-      analogy: "Receptionist வருகையைக் கவனிப்பது போல - ஒவ்வொரு கதவிலும் bell வைக்காமல் ஒரே இடத்திலிருந்து எல்லா வருகையையும் கவனிக்கலாம்."
+      why: "Events தான் page clicks-க்கும் typing-க்கும் react பண்ண வைக்கும். preventDefault-உம் delegation-உம் forms-ஐயும் long lists-ஐயும் correct-ஆ நடத்தும்.",
+      where: "Search boxes, signup forms, keyboard shortcuts, நிறைய repeat buttons இருக்குற lists.",
+      analogy: "Receptionist visitors-ஐ கவனிக்கிறது மாதிரி - ஒவ்வொரு door-லயும் bell வைக்காம ஒரே desk-ல எல்லாரையும் handle பண்ணலாம்."
     }
   },
   "5-3": {
@@ -222,9 +222,9 @@ window.LESSON_NOTES = {
       analogy: "It is like wiping and rewriting a whiteboard from a master notebook, so the board can never disagree with the source."
     },
     ta: {
-      why: "State-ஐ DOM-இலிருந்து தனியாக வைத்து ஒரே array-இலிருந்து render செய்தால், items சேர்க்கும்போது, toggle செய்யும்போது, filter செய்யும்போது rows பழையதாகிவிடாது.",
-      where: "To-do lists, dashboards, carts, மாறும் collection-ஐ காட்டும் எல்லா UI.",
-      analogy: "Master notebook-இலிருந்து whiteboard-ஐ அழித்து மீண்டும் எழுதுவது போல - board எப்போதும் மூலத்துடன் ஒத்துப்போகும்."
+      why: "State-ஐ DOM-லிருந்து separate-ஆ வைத்து ஒரே array-லிருந்து render பண்ணினா, items add, toggle, filter பண்ணும்போது rows stale ஆகாது.",
+      where: "To-do lists, dashboards, carts, மாறுற collection-ஐ காட்டுற எல்லா UI.",
+      analogy: "Master notebook-லிருந்து whiteboard-ஐ wipe பண்ணி மீண்டும் எழுதுவது மாதிரி - board source-ஓட எப்பவும் match ஆகும்."
     }
   },
   "5-4": {
@@ -234,9 +234,9 @@ window.LESSON_NOTES = {
       analogy: "It is like using one cooking process for two dishes: prepare, cook, and plate, with only the ingredients changing."
     },
     ta: {
-      why: "ஒரே state-and-render pattern to-do list-இலிருந்து quiz வரை இரண்டு வேறு apps-க்கு வேலை செய்கிறது என்பதை இந்த project நிரூபிக்கிறது.",
-      where: "Task managers, survey screens, எளிய game அல்லது learning interfaces.",
-      analogy: "ஒரே சமையல் முறையில் இரண்டு உணவுகள் செய்வது போல - ingredients தயார், cook, plate; மாறுவது ingredients மட்டும்."
+      why: "ஒரே state-and-render pattern to-do list-லிருந்து quiz வரை இரண்டு வேற apps-க்கு work ஆகும் என்பதை இந்த project prove பண்ணும்.",
+      where: "Task managers, survey screens, simple game அல்லது learning interfaces.",
+      analogy: "ஒரே cooking process-ல இரண்டு dishes செய்வது மாதிரி - prepare, cook, plate; மாறுவது ingredients மட்டும்."
     }
   },
   "6-1": {
@@ -246,9 +246,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a restaurant order slip: you get a receipt immediately, the kitchen works, and you collect the meal when it is ready."
     },
     ta: {
-      why: "Network calls போன்ற slow வேலை page-ஐ freeze செய்யக்கூடாது; promises-உம் async/await-உம் அந்தக் காத்திருப்பை படிக்கக்கூடிய வரிசையில் எழுத உதவுகின்றன.",
-      where: "User data load செய்யும்போது, orders fetch செய்யும்போது, பல API calls-ஐ parallel-ஆக இயக்கும்போது.",
-      analogy: "Restaurant order slip போல - உடனே receipt கிடைக்கும், kitchen வேலை செய்யும், உணவு தயாராகும்போது வாங்கிக்கொள்ளலாம்."
+      why: "Network call மாதிரி slow work page-ஐ freeze பண்ணக்கூடாது. Promises-உம் async/await-உம் அந்த waiting-ஐ readable order-ல எழுத உதவும்.",
+      where: "User profiles load பண்ணும்போது, orders fetch பண்ணும்போது, பல API calls parallel-ஆ run பண்ணும்போது.",
+      analogy: "Restaurant order slip மாதிரி - உடனே receipt கிடைக்கும், kitchen work பண்ணும், meal ready ஆனதும் collect பண்ணலாம்."
     }
   },
   "6-2": {
@@ -258,9 +258,9 @@ window.LESSON_NOTES = {
       analogy: "It is like ordering by post: your letter goes out, a parcel returns with a status label, and you read the label before opening it."
     },
     ta: {
-      why: "fetch தான் browser வேறு computer-இடம் data கேட்கும் வழி; response.ok-ஐ check செய்வதும் keys-ஐ server-இல் வைப்பதும் broken pages-ஐயும் leaked accounts-ஐயும் தடுக்கின்றன.",
-      where: "Weather, search, maps, third-party API படிக்கும் எல்லா app-களிலும்.",
-      analogy: "தபால் மூலம் ஆர்டர் செய்வது போல - கடிதம் போகும், status label உள்ள parcel வரும்; திறப்பதற்கு முன் label-ஐ படிக்க வேண்டும்."
+      why: "fetch தான் browser வேற computer-இடம் data கேட்குற வழி. response.ok-ஐ check பண்றதும் keys-ஐ server-ல வைப்பதும் broken pages-ஐயும் stolen accounts-ஐயும் தடுக்கும்.",
+      where: "Weather, search, maps, third-party API படிக்குற எல்லா app-லயும்.",
+      analogy: "Post-ல order பண்றது மாதிரி - letter போகும், status label-ஓட parcel வரும், open பண்றதுக்கு முன் label-ஐ படிக்கணும்."
     }
   },
   "6-3": {
@@ -270,9 +270,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a train departure board that shows delayed, cancelled, no trains, or the time instead of a blank space."
     },
     ta: {
-      why: "Request slow-ஆக இருக்கலாம், எதுவும் திருப்பித் தராமல் இருக்கலாம், அல்லது fail ஆகலாம்; நான்கு states-ஐயும் design செய்தால் interface broken அல்லது frozen ஆகத் தெரியாது.",
+      why: "Request slow-ஆ இருக்கலாம், ஒன்னும் return பண்ணாம இருக்கலாம், இல்ல fail ஆகலாம். நாலு states-ஐயும் design பண்ணா interface broken அல்லது frozen-ஆ தெரியாது.",
       where: "Search results, dashboards, weather apps, data-driven எல்லா screen.",
-      analogy: "Train departure board போல - delayed, cancelled, no trains, அல்லது நேரம் என்று காட்டும்; காலியான இடத்தை காட்டாது."
+      analogy: "Train departure board மாதிரி - delayed, cancelled, no trains, இல்ல time-ஐ காட்டும்; blank space காட்டாது."
     }
   },
   "6-4": {
@@ -282,9 +282,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a sticky note on the fridge: quick to read and survives a restart, but not a safe place for passwords."
     },
     ta: {
-      why: "localStorage சிறிய app ஒரு choice-ஐ refresh-க்குப் பிறகும் நினைவில் வைக்க உதவுகிறது; நிலையான preference-ஐ மட்டும் சேமித்தால் data பழையதாகாது.",
-      where: "Weather app-இல் கடைசி city, theme, unit preference நினைவில் வைப்பது.",
-      analogy: "Fridge-இல் ஒட்டிய sticky note போல - வேகமாக படிக்கலாம், restart-ஐ தாண்டி இருக்கும், ஆனால் passwords-க்கு பாதுகாப்பான இடம் அல்ல."
+      why: "localStorage small app-ஐ refresh-க்கு அப்புறமும் ஒரு choice-ஐ நினைவில் வைக்க உதவும். Stable preferences-ஐ மட்டும் save பண்ணா stored data useful-ஆ இருக்கும், stale ஆகாது.",
+      where: "Weather app-ல last city, theme, unit preference நினைவில் வைப்பது.",
+      analogy: "Fridge-ல ஒட்டின sticky note மாதிரி - வேகமா படிக்கலாம், restart-ஐ தாண்டி இருக்கும், ஆனா passwords-க்கு safe place இல்ல."
     }
   },
   "7-1": {
@@ -294,9 +294,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a filing cabinet with labelled drawers: if every page follows the same map, anyone can find any document."
     },
     ta: {
-      why: "Multi-page site ஒரு system; சீரான folders, relative paths, ஒரே shared shell இருந்தால் host-இல் links உடையாது.",
-      where: "Portfolio sites, சிறிய business sites, GitHub Pages deployments.",
-      analogy: "Label ஒட்டிய drawers உள்ள filing cabinet போல - எல்லா page-உம் ஒரே map-ஐ பயன்படுத்தினால் எந்த document-ஐயும் யாரும் கண்டுபிடிக்கலாம்."
+      why: "Multi-page site ஒரு system. Consistent folders, relative paths, ஒரே shared shell இருந்தா host-ல links break ஆகாது.",
+      where: "Portfolio sites, small business sites, GitHub Pages deployments.",
+      analogy: "Label ஒட்டின drawers உள்ள filing cabinet மாதிரி - எல்லா page-உம் ஒரே map follow பண்ணினா எந்த document-ஐயும் யாரும் find பண்ணலாம்."
     }
   },
   "7-2": {
@@ -306,9 +306,9 @@ window.LESSON_NOTES = {
       analogy: "It is like a pre-flight checklist: the same short list catches problems that would otherwise appear only after takeoff."
     },
     ta: {
-      why: "Mouse-உம் வேகமான internet-உம் மட்டும் இருந்தால் வேலை செய்யும் site மக்களை இழக்கும்; ஒரே audit accessibility-ஐயும் performance-ஐயும் சேர்த்து பிடிக்கிறது.",
-      where: "ஒவ்வொரு client project-இன் launch-க்கு முன், mobile-இல் Lighthouse உடன்.",
-      analogy: "விமானம் புறப்படும் முன் pre-flight checklist போல - அதே சிறிய list பிறகு வரும் பிரச்சினைகளை முன்கூட்டியே பிடிக்கும்."
+      why: "Mouse-உம் fast internet-உம் மட்டும் இருந்தா work ஆகுற site people-ஐ lose பண்ணும். ஒரே audit accessibility-ஐயும் performance-ஐயும் சேர்த்து பிடிக்கும்.",
+      where: "ஒவ்வொரு client project-ன் launch-க்கு முன் check, mobile setting-ல Lighthouse உடன்.",
+      analogy: "Pre-flight checklist மாதிரி - அதே short list பிறகு வர பிரச்சினைகளை முன்கூட்டியே பிடிக்கும்."
     }
   },
   "7-3": {
@@ -318,9 +318,9 @@ window.LESSON_NOTES = {
       analogy: "It is like saving a document with version history and then printing it for the world: the laptop file is not shipped until it is published."
     },
     ta: {
-      why: "Version control-உம் deployment-உம் local files-ஐ பகிரக்கூடிய, update செய்யக்கூடிய, திரும்பப் பெறக்கூடிய public site ஆக மாற்றுகின்றன.",
-      where: "Portfolio-ஐ GitHub Pages-இல் publish செய்து README-இல் document செய்வது.",
-      analogy: "Version history உள்ள document-ஐ save செய்து பிறகு உலகுக்கு print செய்வது போல - laptop-இல் உள்ள file publish ஆகும் வரை ship ஆகவில்லை."
+      why: "Version control-உம் deployment-உம் local files-ஐ share பண்ண, update பண்ண, roll back பண்ண public site-ஆ மாத்தும்.",
+      where: "Portfolio-ஐ GitHub Pages-ல publish பண்ணி README-ல document பண்றது.",
+      analogy: "Version history-ஓட document-ஐ save பண்ணி, பிறகு world-க்கு print பண்றது மாதிரி - laptop-ல இருக்குற file publish ஆகுற வரை ship ஆகாது."
     }
   }
 };

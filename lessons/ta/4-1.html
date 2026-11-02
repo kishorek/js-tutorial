@@ -1,35 +1,35 @@
 <article class="lesson" id="lesson-4-1" data-lesson="4-1">
   <header class="lesson-head">
-    <p class="eyebrow">தொகுதி 04 · JavaScript அடிப்படைகள்</p>
-    <h1>மதிப்புகள், மாறிகள் மற்றும் வகைகள்</h1>
-    <p class="lesson-lede">JavaScript சிறிய தரவுத் துண்டுகளிலிருந்தும், அவற்றுக்கு நாம் கொடுக்கும் பெயர்களிலிருந்தும் தொடங்குகிறது. மதிப்புகள் எப்படிச் சேமிக்கப்படுகின்றன, அவற்றின் வகை என்ன, ஆச்சரியங்கள் இல்லாமல் அவற்றை எப்படி ஒப்பிடுவது என்பதைக் கற்றுக்கொள்ளுங்கள்.</p>
+    <p class="eyebrow">Module 04 · JavaScript foundations</p>
+    <h1>Values, variables, and types</h1>
+    <p class="lesson-lede">JavaScript சிறிய data pieces-லிருந்தும், அவற்றுக்கு நாம் கொடுக்கும் names-லிருந்தும் தொடங்குகிறது. Values எப்படி store ஆகின்றன, அவற்றுக்கு என்ன type, ஆச்சரியம் இல்லாமல் அவற்றை எப்படி compare பண்றது என்பதைக் கற்றுக்கொள்ளுங்கள்.</p>
     <div class="chips">
-      <span class="chip chip--accent">பாடம் 4.1</span>
-      <span class="chip">60–75 நிமிடங்கள்</span>
-      <span class="chip">தொடக்கநிலை</span>
+      <span class="chip chip--accent">Lesson 4.1</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
     </div>
     <div class="brief">
       <div>
-        <h3>இறுதியில் நீங்கள் செய்யக்கூடியவை</h3>
+        <h3>By the end, you can</h3>
         <ul>
-          <li>ஒரு பக்கத்தில் JavaScript-ஐச் சேர்த்து console-ஐப் படிக்க முடியும்.</li>
-          <li><code>let</code> மற்றும் <code>const</code> கொண்டு மதிப்புகளை அறிவிக்க முடியும்.</li>
-          <li>தொடக்கநிலைக்கான ஐந்து வகைகளுக்குப் பெயர் சொல்லி, <code>typeof</code> கொண்டு அவற்றைச் சரிபார்க்க முடியும்.</li>
-          <li>Template literals மற்றும் strict equality-ஐ நம்பிக்கையுடன் பயன்படுத்த முடியும்.</li>
+          <li>ஒரு page-க்கு JavaScript add பண்ணி console-ஐ read பண்ணலாம்.</li>
+          <li><code>let</code> மற்றும் <code>const</code> கொண்டு values-ஐ declare பண்ணலாம்.</li>
+          <li>ஐந்து beginner types-க்குப் பெயர் சொல்லி, <code>typeof</code> கொண்டு check பண்ணலாம்.</li>
+          <li>Template literals மற்றும் strict equality-ஐ நம்பிக்கையுடன் use பண்ணலாம்.</li>
         </ul>
       </div>
       <div>
-        <h3>உங்களுக்குத் தேவையானவை</h3>
+        <h3>You need</h3>
         <ul>
-          <li>DevTools உள்ள browser.</li>
-          <li>தொகுதி 1-இல் பயன்படுத்திய உங்கள் எடிட்டர்.</li>
-          <li>சிறிய typo பிழைகளுக்குப் பொறுமை.</li>
+          <li>DevTools உள்ள ஒரு browser.</li>
+          <li>Module 1-ல பயன்படுத்தின உங்கள் editor.</li>
+          <li>சிறிய typo errors-க்குப் பொறுமை.</li>
         </ul>
       </div>
     </div>
   </header>
-  <h2>JavaScript எங்கே இடம்பெறுகிறது</h2>
-  <p>HTML பக்கத்திற்குக் கட்டமைப்பைத் தருகிறது. CSS அதற்கு வடிவம் தருகிறது. JavaScript செயல்பாட்டைச் சேர்க்கிறது. நீங்கள் அதை <code>&lt;script&gt;</code> element மூலம் சேர்க்கிறீர்கள்; பொதுவாக <code>&lt;body&gt;</code> முடிவில் சேர்க்கிறீர்கள், அப்போது script இயங்குவதற்கு முன் பக்கத்தின் உள்ளடக்கம் தயாராக இருக்கும்.</p>
+  <h2>Where JavaScript goes</h2>
+  <p>HTML page-க்கு structure தருகிறது. CSS அதை style பண்ணுகிறது. JavaScript behaviour add பண்ணுகிறது. நீங்கள் அதை <code>&lt;script&gt;</code> element-ஓட add பண்றீங்க; பொதுவா <code>&lt;body&gt;</code> முடிவுல add பண்ணுங்க, அப்போ script run ஆவதுக்கு முன்னாடி page content ready-ஆ இருக்கும்.</p>
   <div class="code-block" data-code>
 <script type="text/plain"><!DOCTYPE html>
 <html lang="en">
@@ -46,13 +46,13 @@
 </body>
 </html></script>
   </div>
-  <p><code>console.log()</code> ஒரு மதிப்பை console-ல் அச்சிடுகிறது. பெரும்பாலான browsers-ல் <strong>F12</strong> அழுத்துங்கள் அல்லது பக்கத்தில் right-click செய்து <strong>Inspect</strong>-ஐத் தேர்ந்தெடுங்கள்; பிறகு <strong>Console</strong> tab-ஐத் திறவுங்கள். பக்கத்தில் எதுவும் தெரியாது; அந்தச் செய்தி உங்களுக்கானது.</p>
+  <p><code>console.log()</code> ஒரு value-ஐ console-ல print பண்ணும். பெரும்பாலான browsers-ல <strong>F12</strong> அழுத்துங்க அல்லது page-ல right-click பண்ணி <strong>Inspect</strong> தேர்ந்தெடுங்க; பிறகு <strong>Console</strong> tab-ஐ திறங்க. Page-ல எதுவும் தெரியாது; அந்த message உங்களுக்குத்தான்.</p>
   <div class="callout callout--tip">
-    <span class="callout__label">பிழைத்திருத்தப் பழக்கம்</span>
-    <p>உங்கள் code ஏன் வேலை செய்யவில்லை என்று ஊகிப்பதற்கு முன், உறுதியில்லாத மதிப்பை log செய்யுங்கள். Console செய்தி ஆதாரம். ஊகம் ஆதாரம் அல்ல.</p>
+    <span class="callout__label">Debug habit</span>
+    <p>Code ஏன் fail ஆகுது என்று guess பண்ணுவதுக்கு முன்னாடி, உங்களுக்கு doubt-ஆ இருக்கிற value-ஐ log பண்ணுங்க. Console message ஒரு evidence. Guess evidence இல்ல.</p>
   </div>
-  <h2>மாறிகள் மதிப்புகளுக்குப் பெயரிடுகின்றன</h2>
-  <p>மாறி (variable) என்பது memory-ல் சேமிக்கப்பட்ட ஒரு மதிப்புக்கான பெயர். அது மாறப்போகிறது என்றால் <code>let</code> கொண்டும், மாறப்போவதில்லை என்றால் <code>const</code> கொண்டும் அறிவிக்கவும். மீண்டும் மதிப்பு வைக்க வேண்டிய காரணம் வரும் வரை <code>const</code>-ஐ விரும்புங்கள்.</p>
+  <h2>Variables name values</h2>
+  <p>Variable என்பது memory-ல store ஆன ஒரு value-க்கு கொடுக்குற label. அது மாறப் போகுது என்றால் <code>let</code>-ஓட declare பண்ணுங்க, மாறப் போவதில்லை என்றால் <code>const</code>-ஓட. Reassign பண்ண வேண்டிய காரணம் வரும் வரை <code>const</code>-ஐ prefer பண்ணுங்க.</p>
   <div class="code-block" data-code>
 <script type="text/plain">const firstName = "Maya";
 let cupsOfCoffee = 2;
@@ -68,28 +68,28 @@ console.log(cupsOfCoffee);    // 3
 // firstName = "Sam";         // TypeError</script>
   </div>
   <ul>
-    <li>பெயர்கள் case-sensitive: <code>firstName</code> மற்றும் <code>firstname</code> வேறுபட்டவை.</li>
-    <li>சாதாரண மாறிகளுக்கு <code>camelCase</code> பயன்படுத்துங்கள்.</li>
-    <li>ஒரு பெயர் எண்ணில் தொடங்கக்கூடாது; இடைவெளிகளும் இருக்கக்கூடாது.</li>
-    <li><code>let</code>, <code>const</code> அல்லது <code>return</code> போன்ற reserved words-ஐ பெயர்களாகப் பயன்படுத்த வேண்டாம்.</li>
+    <li>Names case-sensitive: <code>firstName</code> மற்றும் <code>firstname</code> வேற வேற.</li>
+    <li>சாதாரண variables-க்கு <code>camelCase</code> use பண்ணுங்க.</li>
+    <li>ஒரு name number-ல start பண்ண முடியாது, spaces-ம் இருக்கக் கூடாது.</li>
+    <li><code>let</code>, <code>const</code>, <code>return</code> போன்ற reserved words-ஐ names-ஆ use பண்ணாதீங்க.</li>
   </ul>
-  <h3>அடிப்படை வகைகள்</h3>
-  <p>ஒவ்வொரு மதிப்புக்கும் ஒரு வகை உண்டு. தொடக்கநிலையில் ஐந்து வகைகளை அடிக்கடி சந்திப்பீர்கள்.</p>
+  <h3>The basic types</h3>
+  <p>ஒவ்வொரு value-க்கும் ஒரு type உண்டு. Beginners அடிக்கடி ஐந்து types-ஐ சந்திப்பாங்க.</p>
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th scope="col">வகை</th><th scope="col">எடுத்துக்காட்டு</th><th scope="col">எதற்குப் பயன்படும்</th></tr>
+        <tr><th scope="col">Type</th><th scope="col">Example</th><th scope="col">Use it for</th></tr>
       </thead>
       <tbody>
-        <tr><td>String</td><td><code>"hello"</code></td><td>உரை; நீங்கள் கணக்கிடப் பயன்படுத்தாத இலக்கங்கள் உட்பட.</td></tr>
-        <tr><td>Number</td><td><code>42</code>, <code>3.14</code></td><td>எந்த எண் மதிப்பும், முழு எண்ணோ தசமமோ.</td></tr>
-        <tr><td>Boolean</td><td><code>true</code>, <code>false</code></td><td>ஆம்/இல்லை முடிவுகள்.</td></tr>
-        <tr><td>Null</td><td><code>null</code></td><td>வேண்டுமென்றே வைக்கப்படும் காலி மதிப்பு.</td></tr>
-        <tr><td>Undefined</td><td><code>undefined</code></td><td>இன்னும் அமைக்கப்படாத மதிப்பு.</td></tr>
+        <tr><td>String</td><td><code>"hello"</code></td><td>Text; நீங்கள் calculate பண்ணாத digits உட்பட.</td></tr>
+        <tr><td>Number</td><td><code>42</code>, <code>3.14</code></td><td>எந்த numeric value-ம், முழு எண்ணோ decimal-ஓ.</td></tr>
+        <tr><td>Boolean</td><td><code>true</code>, <code>false</code></td><td>Yes/no decisions.</td></tr>
+        <tr><td>Null</td><td><code>null</code></td><td>வேண்டுமென்றே வைக்கிற empty value.</td></tr>
+        <tr><td>Undefined</td><td><code>undefined</code></td><td>இன்னும் set பண்ணாத value.</td></tr>
       </tbody>
     </table>
   </div>
-  <p><code>typeof</code> ஒரு மதிப்பின் வகையைச் சொல்கிறது. நீங்கள் நினைத்ததை அல்ல, உண்மையில் இருப்பதை விரைவாகச் சரிபார்க்க இது ஒரு வழி.</p>
+  <p><code>typeof</code> ஒரு value-ஓட type-ஐ சொல்லும். நீங்கள் நினைத்ததை அல்ல, உண்மையா என்ன இருக்கு என்று quick-ஆ check பண்ண இது ஒரு வழி.</p>
   <div class="code-block" data-code>
 <script type="text/plain">console.log(typeof "hello");   // "string"
 console.log(typeof 42);        // "number"
@@ -97,8 +97,8 @@ console.log(typeof true);      // "boolean"
 console.log(typeof undefined); // "undefined"
 console.log(typeof null);      // "object" (a famous JavaScript quirk)</script>
   </div>
-  <h3>Strings மற்றும் template literals</h3>
-  <p>Strings-ல் single quotes, double quotes அல்லது backticks பயன்படுத்தலாம். Backticks ஒரு <strong>template literal</strong>-ஐ உருவாக்குகின்றன: <code>${...}</code> கொண்டு மதிப்புகளைச் செருகலாம், பல வரிகளில் எழுதலாம்.</p>
+  <h3>Strings and template literals</h3>
+  <p>Strings-ல single quotes, double quotes அல்லது backticks use பண்ணலாம். Backticks ஒரு <strong>template literal</strong>-ஐ உருவாக்கும்: <code>${...}</code> கொண்டு values-ஐ insert பண்ணலாம், பல lines-ல எழுதலாம்.</p>
   <div class="code-block" data-code>
 <script type="text/plain">const name = "Maya";
 const coffees = 3;
@@ -113,8 +113,8 @@ const multiLine = `Line one
 Line two`;
 console.log(multiLine);</script>
   </div>
-  <p>உரையையும் மதிப்புகளையும் கலக்கும்போது template literals-ஐ விரும்புங்கள். Plus குறியீடுகளின் சங்கிலிகளைவிட அவை படிக்க எளிது, உடையவும் கடினம்.</p>
-  <p>Strings-க்கு பயனுள்ள properties மற்றும் methods உண்டு. <code>.length</code> எழுத்துகளை எண்ணும், <code>.toUpperCase()</code> புதிய uppercase string-ஐத் திருப்பித் தரும், <code>.includes()</code> ஒரு substring இருக்கிறதா என்று பார்க்கும்.</p>
+  <p>Text-ஐயும் values-ஐயும் mix பண்றப்போ template literals-ஐ prefer பண்ணுங்க. Plus signs chains-ஐ விட read பண்ண எளிது, break ஆவதும் கஷ்டம்.</p>
+  <p>Strings-க்கு useful properties மற்றும் methods உண்டு. <code>.length</code> characters-ஐ count பண்ணும், <code>.toUpperCase()</code> புது uppercase string-ஐ return பண்ணும், <code>.includes()</code> ஒரு substring இருக்கா என்று check பண்ணும்.</p>
   <div class="code-block" data-code>
 <script type="text/plain">const word = "JavaScript";
 
@@ -123,8 +123,8 @@ console.log(word.toUpperCase());      // JAVASCRIPT
 console.log(word.includes("Script")); // true
 console.log(word[0]);                 // J</script>
   </div>
-  <h2>Type coercion மற்றும் strict equality</h2>
-  <p>JavaScript சில நேரங்களில் ஒரு மதிப்பை மற்றொரு வகையாகத் தானாக மாற்றுகிறது. இதை <strong>type coercion</strong> என்கிறார்கள். குழப்பம் வரும் வரை இது வசதியாக இருக்கும்.</p>
+  <h2>Coercion and strict equality</h2>
+  <p>JavaScript சில நேரம் ஒரு value-ஐ இன்னொரு type-ஆ தானா convert பண்ணும். இதை <strong>type coercion</strong> என்கிறாங்க. Confusing ஆகும் வரை இது convenient.</p>
   <div class="code-block" data-code>
 <script type="text/plain">console.log("5" + 2);  // "52" — the number becomes text
 console.log("5" - 2);  // 3    — the text becomes a number
@@ -132,8 +132,8 @@ console.log(true + 1); // 2    — true becomes 1
 console.log("" == 0);  // true — coercion strikes</script>
   </div>
   <div class="callout callout--warn">
-    <span class="callout__label">மூன்று சமக்குறிகளைப் பயன்படுத்துங்கள்</span>
-    <p><code>==</code> coercion நடந்த பிறகு ஒப்பிடுகிறது. <code>===</code> மதிப்பையும் <em>மற்றும்</em> வகையையும் ஒப்பிடுகிறது. குறிப்பிட்ட காரணம் இல்லாத வரை எல்லா இடங்களிலும் <code>===</code> மற்றும் <code>!==</code> பயன்படுத்துங்கள்.</p>
+    <span class="callout__label">Use three equals</span>
+    <p><code>==</code> coercion நடந்த பிறகு compare பண்ணும். <code>===</code> value-ஐயும் <em>மற்றும்</em> type-ஐயும் compare பண்ணும். Specific காரணம் இல்லாத வரை எல்லா இடத்திலும் <code>===</code> மற்றும் <code>!==</code> use பண்ணுங்க.</p>
   </div>
   <div class="code-block" data-code>
 <script type="text/plain">console.log(5 == "5");   // true
@@ -144,26 +144,26 @@ console.log(0 === false); // false
 
 console.log(5 !== "5");   // true</script>
   </div>
-  <p>வேண்டுமென்றே மாற்ற <code>Number("5")</code>, <code>String(5)</code> அல்லது <code>Boolean(value)</code> பயன்படுத்துங்கள். தெளிவாக எழுதுவது அடுத்து படிப்பவரை — பெரும்பாலும் எதிர்கால உங்களை — சிக்கலில் இருந்து காப்பாற்றும்.</p>
-  <h3>மதிப்புகளை நகர்த்திப் பாருங்கள்</h3>
-  <p>இந்த நான்கு நடவடிக்கைகள் தொடக்கநிலை பிழைத்திருத்தத்தின் பெரும்பகுதியைக் கவர்கின்றன. ஒவ்வொன்றையும் console-ல் இயக்கி, மதிப்புகளை மாற்றிப் பாருங்கள்.</p>
+  <p>வேண்டுமென்றே convert பண்ண <code>Number("5")</code>, <code>String(5)</code> அல்லது <code>Boolean(value)</code> use பண்ணுங்க. Explicit-ஆ எழுதுவது அடுத்து read பண்றவரை — பெரும்பாலும் future உங்களை — trouble-லிருந்து காப்பாற்றும்.</p>
+  <h3>Move values around</h3>
+  <p>இந்த நாலு moves beginner debugging-ல பெரும்பகுதியை cover பண்ணும். ஒவ்வொன்றையும் console-ல run பண்ணி, values-ஐ மாற்றிப் பாருங்க.</p>
   <ol>
-    <li><strong>Log செய்யுங்கள்.</strong> <code>console.log(value)</code> தற்போதைய மதிப்பைக் காட்டும்.</li>
-    <li><strong>அதன் வகையைச் சரிபார்க்கவும்.</strong> எண்ணை எதிர்பார்த்த இடத்தில் உரை இருந்தால் <code>console.log(typeof value)</code> அதைக் கண்டுபிடிக்கும்.</li>
-    <li><strong>கண்டிப்பாக ஒப்பிடுங்கள்.</strong> <code>==</code>-ஐ <code>===</code> ஆக மாற்றி, branch இன்னும் இயங்குகிறதா என்று பாருங்கள்.</li>
-    <li><strong>அதைப் புதிய பெயரில் நகலெடுங்கள்.</strong> ஒரு மதிப்பு எதிர்பாராத விதமாக மாறினால், அதை இரண்டாவது மாறிக்கு ஒப்படைத்து இரண்டையும் log செய்யுங்கள்.</li>
+    <li><strong>Log it.</strong> <code>console.log(value)</code> current value-ஐ காட்டும்.</li>
+    <li><strong>Check its type.</strong> Number எதிர்பார்த்த இடத்துல text இருந்தா <code>console.log(typeof value)</code> அதை catch பண்ணும்.</li>
+    <li><strong>Compare strictly.</strong> <code>==</code>-ஐ <code>===</code> ஆக மாத்தி, branch இன்னும் run ஆகுதா என்று பாருங்க.</li>
+    <li><strong>Copy it into a new name.</strong> ஒரு value எதிர்பாராத விதமா மாறினா, அதை second variable-க்கு assign பண்ணி இரண்டையும் log பண்ணுங்க.</li>
   </ol>
   <section class="practice" data-practice data-min="30">
     <div class="practice__head">
-      <span class="kicker">பயிற்சி · 20 நிமிடங்கள்</span>
-      <h2>Console-ல் உங்களை அறிமுகப்படுத்துங்கள்</h2>
+      <span class="kicker">Exercise · 20 minutes</span>
+      <h2>Introduce yourself in the console</h2>
     </div>
-    <p>உங்கள் பெயருக்கு ஒரு <code>const</code>, வயதுக்கு ஒரு <code>let</code>, JavaScript பிடிக்குமா என்பதற்கு ஒரு <code>const</code> boolean அறிவிக்கவும். Template literal கொண்டு ஒரு வாக்கியத்தை log செய்யுங்கள். பிறகு வயதை ஒன்று அதிகரித்து இரண்டாவது வாக்கியத்தை log செய்யுங்கள். மூன்று மதிப்புகளின் வகையையும் log செய்து முடிக்கவும்.</p>
-    <label class="visually-hidden" for="practice-4-1">உங்கள் பயிற்சிக் குறியீடு</label>
-    <textarea class="practice__code" id="practice-4-1" data-attempt spellcheck="false" placeholder="உங்கள் JavaScript-ஐ இங்கே தட்டச்சு செய்யுங்கள்..."></textarea>
+    <p>உங்கள் name-க்கு ஒரு <code>const</code>, age-க்கு ஒரு <code>let</code>, JavaScript பிடிக்குமா என்பதுக்கு ஒரு <code>const</code> boolean declare பண்ணுங்க. Template literal கொண்டு ஒரு sentence log பண்ணுங்க. பிறகு age-ஐ ஒண்ணு increase பண்ணி இரண்டாவது sentence log பண்ணுங்க. மூன்று values-ஓட type-ஐயும் log பண்ணி முடிக்கவும்.</p>
+    <label class="visually-hidden" for="practice-4-1">Your exercise code</label>
+    <textarea class="practice__code" id="practice-4-1" data-attempt spellcheck="false" placeholder="Type your JavaScript here..."></textarea>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>முதல்ல ஒரு attempt பண்ணுங்க. பிறகு model answer unlock ஆகும்.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
 <script type="text/plain" data-answer>const name = "Maya";
@@ -181,23 +181,23 @@ console.log(typeof likesJavaScript); // "boolean"
 age = age + 1;
 console.log(`${name} is now ${age}.`);</script>
   </section>
-  <h2>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h2>
+  <h2>Check yourself</h2>
   <div class="qa-list">
     <details class="qa">
-      <summary>எப்போது <code>const</code>-க்குப் பதிலாக <code>let</code> பயன்படுத்த வேண்டும்?</summary>
-      <p>மாறிக்கு மீண்டும் மதிப்பு வைக்கப்படும் போது மட்டும் <code>let</code> பயன்படுத்துங்கள்; எடுத்துக்காட்டாக ஒரு counter அல்லது தொடர்ந்து கூட்டப்படும் total. பெயர் எப்போதும் ஒரே மதிப்பையே குறிக்கும் என்றால் <code>const</code> பயன்படுத்துங்கள். <code>const</code> object-ன் properties-ஐ இன்னும் மாற்றலாம்; பெயர் மட்டும் வேறு object-ஐ குறிக்க முடியாது.</p>
+      <summary>When should I use <code>let</code> instead of <code>const</code>?</summary>
+      <p>Variable-க்கு மீண்டும் value assign பண்ணும்போது மட்டும் <code>let</code> use பண்ணுங்க; counter அல்லது ஓடிக்கொண்டிருக்கும் total போல. Name எப்பவும் ஒரே value-ஐ point பண்ணும் என்றால் <code>const</code> use பண்ணுங்க. <code>const</code> object-ஓட properties-ஐ இன்னும் change பண்ணலாம்; name மட்டும் வேற object-ஐ point பண்ண முடியாது.</p>
     </details>
     <details class="qa">
-      <summary><code>5 == "5"</code> ஏன் true, ஆனால் <code>5 === "5"</code> ஏன் false?</summary>
-      <p>Double equals ஒப்பிடுவதற்கு முன் string-ஐ number ஆக மாற்றுகிறது; அதனால் இரு பக்கமும் <code>5</code> ஆகிறது. Triple equals வகையையும் சரிபார்க்கிறது. Number-க்கும் string-க்கும் வகை வேறு; எனவே முடிவு <code>false</code>.</p>
+      <summary>Why is <code>5 == "5"</code> true but <code>5 === "5"</code> false?</summary>
+      <p>Double equals compare பண்ணுவதுக்கு முன்னாடி string-ஐ number-ஆ convert பண்ணும், அதனால இரண்டு பக்கமும் <code>5</code> ஆகும். Triple equals type-ஐயும் check பண்ணும். Number-க்கும் string-க்கும் type வேற, அதனால result <code>false</code>.</p>
     </details>
   </div>
   <div class="recap">
-    <h2>நினைவில் கொள்ள வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <h2>Key things to remember</h2>
     <ul>
-      <li><strong>மதிப்புகளுக்கு வகைகள் உண்டு.</strong> Strings, numbers, booleans, <code>null</code> மற்றும் <code>undefined</code> ஆகியவை தொடக்கநிலை வேலைகளின் பெரும்பகுதியைக் கவர்கின்றன.</li>
-      <li><strong>பெயர்கள் விளக்கமாக இருக்க வேண்டும்.</strong> <code>const</code>-ஐ விரும்புங்கள்; உண்மையில் மீண்டும் மதிப்பு வைப்பது தேவைப்பட்டால் <code>let</code> பயன்படுத்துங்கள்.</li>
-      <li><strong>Strict equality ஆச்சரியங்களைத் தவிர்க்கிறது.</strong> <code>===</code> மற்றும் <code>!==</code> பயன்படுத்துங்கள்; சந்தேகம் இருந்தால் மதிப்புகளை log செய்யுங்கள்.</li>
+      <li><strong>Values-க்கு types உண்டு.</strong> Strings, numbers, booleans, <code>null</code>, <code>undefined</code> ஆகியவை beginner வேலையின் பெரும்பகுதியை cover பண்ணும்.</li>
+      <li><strong>Names explain பண்ணணும்.</strong> <code>const</code>-ஐ prefer பண்ணுங்க; உண்மையா reassign தேவைப்பட்டா <code>let</code> use பண்ணுங்க.</li>
+      <li><strong>Strict equality surprises-ஐ தவிர்க்கும்.</strong> <code>===</code> மற்றும் <code>!==</code> use பண்ணுங்க, doubt இருந்தா values-ஐ log பண்ணுங்க.</li>
     </ul>
   </div>
 </article>

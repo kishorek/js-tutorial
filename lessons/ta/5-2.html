@@ -1,35 +1,35 @@
 <article class="lesson" id="lesson-5-2" data-lesson="5-2">
   <header class="lesson-head">
-    <p class="eyebrow">தொகுதி 05 · DOM &amp; நிகழ்வுகள்</p>
-    <h1>நிகழ்வுகள், input மற்றும் forms</h1>
-    <p class="lesson-lede">ஒரு பக்கம் கேட்கத் தொடங்கும்போது அது interactive ஆகிறது. நிகழ்வுகள் எப்படிப் பயணிக்கின்றன, பார்வையாளர் தட்டச்சு செய்ததை எப்படிப் படிப்பது, page reload-ல் அவர்களின் வேலையை இழக்காமல் ஒரு form-ஐ எப்படிக் கையாள்வது என்பதைக் கற்றுக்கொள்ளுங்கள்.</p>
+    <p class="eyebrow">Module 05 · DOM &amp; events</p>
+    <h1>Events, input, and forms</h1>
+    <p class="lesson-lede">Page ஒரு விஷயத்தை listen பண்ண ஆரம்பிச்சா அது interactive ஆகும். Events எப்படி travel ஆகுது, visitor type பண்ணினதை எப்படி read பண்ணுறது, form-ஐ page reload-க்கு போக விடாம எப்படி handle பண்ணுறதுன்னு கத்துக்கலாம்.</p>
     <div class="chips">
-      <span class="chip chip--accent">பாடம் 5.2</span>
-      <span class="chip">60–75 நிமிடம்</span>
-      <span class="chip">தொடக்கநிலை</span>
+      <span class="chip chip--accent">Lesson 5.2</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
     </div>
     <div class="brief">
       <div>
-        <h3>பாடத்தின் முடிவில், உங்களால் முடியும்</h3>
+        <h3>By the end, you can</h3>
         <ul>
-          <li>Clicks, input, submit மற்றும் keys-க்கு listeners இணைக்கலாம்.</li>
-          <li>Inputs, checkboxes மற்றும் selects-ல் இருந்து values-ஐப் படிக்கலாம்.</li>
-          <li>Form reload-ஐத் தடுத்து, பல children-இடமிருந்து வரும் events-ஐக் கையாளலாம்.</li>
+          <li>Clicks, input, submit, keys-க்கு listeners attach பண்ணுவது.</li>
+          <li>Inputs, checkboxes, selects-ல இருந்து values-ஐ read பண்ணுவது.</li>
+          <li>Form reload-ஐ stop பண்ணி, நிறைய children-ல இருந்து வரும் events-ஐ handle பண்ணுவது.</li>
         </ul>
       </div>
       <div>
-        <h3>உங்களுக்குத் தேவை</h3>
+        <h3>You need</h3>
         <ul>
-          <li>பாடம் 5.1: nodes-ஐத் தேர்ந்தெடுப்பதும் மாற்றுவதும்.</li>
-          <li>தொகுதி 1-ல் உருவாக்கிய labels கொண்ட form.</li>
-          <li>ஒரு button மற்றும் ஒரு text input கொண்ட பக்கம்.</li>
+          <li>Lesson 5.1: nodes-ஐ select பண்ணி change பண்ணுவது.</li>
+          <li>Module 1-ல நீங்கள் build பண்ணின labels-ஓட form.</li>
+          <li>ஒரு button-ம் ஒரு text input-ம் இருக்கும் page.</li>
         </ul>
       </div>
     </div>
   </header>
 
-  <h2>Event என்பது ஒரு செய்தி</h2>
-  <p>ஏதாவது நடக்கும்போது browser ஒரு event object-ஐ உருவாக்கி அதை element-க்கு அனுப்புகிறது. <code>addEventListener(type, handler)</code> மூலம் நீங்கள் அதைக் கேட்கிறீர்கள்.</p>
+  <h2>An event is a message</h2>
+  <p>ஏதாவது நடக்கும்போது browser ஒரு event object-ஐ create பண்ணி அதை element-க்கு அனுப்பும். <code>addEventListener(type, handler)</code> மூலமா நீங்கள் listen பண்ணுவீங்க.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">const save = document.querySelector("#save");
@@ -43,12 +43,12 @@ save.addEventListener("click", () => {
 });</script>
   </div>
 
-  <p>Handler அந்த event-ஐப் பெறும். <code>event.target</code> என்பது event-ஐ உருவாக்கிய element; <code>event.currentTarget</code> என்பது listener இணைக்கப்பட்ட element. எளிய button-ல் இரண்டும் ஒன்றே; ஆனால் ஒரு parent தன் children-க்காகக் கேட்கும்போது வேறுபடும்.</p>
+  <p>Handler-க்கு event கிடைக்கும். <code>event.target</code> என்ன element fire பண்ணிச்சோ அது; <code>event.currentTarget</code> என்ன element-ல listener attach ஆகியிருக்கோ அது. Simple button-ல ரெண்டும் ஒன்னு தான்; ஆனா parent தன் children-க்காக listen பண்ணும்போது வித்தியாசம் இருக்கும்.</p>
 
-  <p><code>addEventListener</code> தான் <code>onclick</code> attribute-க்குப் பதிலான வழி; அதைப் பயன்படுத்துங்கள். இது behaviour-ஐ JavaScript-ல் வைத்திருக்கும், ஒன்றுக்கு மேற்பட்ட listener-களை அனுமதிக்கும், பிறகு <code>removeEventListener</code> மூலம் நீக்குவது எளிது.</p>
+  <p><code>onclick</code> attribute-க்கு பதிலா <code>addEventListener</code>-ஐ use பண்ணுங்கள். Behavior JavaScript-லயே இருக்கும், ஒன்னுக்கு மேல listener add பண்ணலாம், பிறகு <code>removeEventListener</code> மூலம் remove பண்ணவும் easy.</p>
 
-  <h2>மாறும்போதே value-ஐப் படியுங்கள்</h2>
-  <p>Value மாறும் ஒவ்வொரு முறையும் <code>input</code> event இயங்கும். உரைக்கு <code>input.value</code>, checkbox-க்கு <code>input.checked</code>, drop-down-க்கு <code>select.value</code> ஆகியவற்றைப் படியுங்கள்.</p>
+  <h2>Read the value as it changes</h2>
+  <p>Value change ஆகும் ஒவ்வொரு தடவையும் <code>input</code> event fire ஆகும். Text-க்கு <code>input.value</code>, checkbox-க்கு <code>input.checked</code>, drop-down-க்கு <code>select.value</code> read பண்ணுங்கள்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">const nameInput = document.querySelector("#name");
@@ -60,15 +60,15 @@ nameInput.addEventListener("input", () => {
 });</script>
   </div>
 
-  <p><code>input</code> ஒவ்வொரு keystroke அல்லது paste-லும் இயங்கும். Field focus-ஐ இழக்கும் வரை அல்லது தேர்வு உறுதியாகும் வரை <code>change</code> காத்திருக்கும். நேரடி counter அல்லது preview-க்கு <code>input</code>-ஐத் தேர்ந்தெடுங்கள்.</p>
+  <p><code>input</code> ஒவ்வொரு keystroke-லயும், paste-லயும் fire ஆகும். <code>change</code> field focus-ஐ விட்டு போனப்புறமோ choice commit ஆனப்புறமோ தான் fire ஆகும். Live counter அல்லது preview-க்கு <code>input</code>-ஐ select பண்ணுங்கள்.</p>
 
   <div class="callout callout--tip">
-    <span class="callout__label">Values strings தான்</span>
-    <p><code>input.value</code> எப்போதும் string தான்; number field ஆனாலும். கணக்கு செய்வதற்கு முன் <code>Number(input.value)</code> மூலம் மாற்றுங்கள்; முதலில் காலி string-ஐச் சரிபார்க்கவும்.</p>
+    <span class="callout__label">Values are strings</span>
+    <p><code>input.value</code> எப்பவுமே string; number field-க்கும் அப்படித்தான். Maths பண்ணும் முன்னாடி <code>Number(input.value)</code> use பண்ணி convert பண்ணுங்கள்; முதல்ல empty string-ஆ இருக்கான்னு check பண்ணுங்கள்.</p>
   </div>
 
-  <h2>Reload ஆகாமல் form-ஐ submit செய்வது</h2>
-  <p>Form இயல்பாகவே submit ஆகும்: browser data-ஐ அனுப்பி புதிய பக்கத்தை ஏற்றும். JavaScript-ல் அதைக் கையாள <code>submit</code>-க்கு listener வைத்து <code>event.preventDefault()</code> அழைக்கவும்.</p>
+  <h2>Submit a form without reloading</h2>
+  <p>Form default-ஆ submit ஆகும்: browser data-ஐ அனுப்பி புது page-ஐ load பண்ணும். JavaScript-ல handle பண்ண, <code>submit</code>-க்கு listen பண்ணி <code>event.preventDefault()</code>-ஐ call பண்ணுங்கள்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">const form = document.querySelector("#signup");
@@ -84,10 +84,10 @@ form.addEventListener("submit", event => {
 });</script>
   </div>
 
-  <p><code>FormData</code>, fields-ஐ அவற்றின் <code>name</code> attributes மூலம் படிக்கிறது; ids மூலம் அல்ல. Assistive technology பயன்படுத்துபவர்களுக்காக ஒவ்வொரு field-க்கும் ஒரு <code>label</code>, <code>id</code>-உடன் இணைக்கப்பட்டதாகத் தேவை. <code>required</code> மற்றும் <code>type="email"</code> போன்ற உள்ளமைந்த விதிகள் <code>submit</code>-க்கு முன் இயங்கும்; server-side validation இன்னும் தேவை.</p>
+  <p><code>FormData</code> fields-ஐ அவங்க ids-ல இல்லாம, <code>name</code> attributes மூலமா read பண்ணும். Assistive technology use பண்றவங்களுக்கு ஒவ்வொரு field-க்கும் <code>id</code>-ஓட connect ஆன <code>label</code> தேவை. <code>required</code>, <code>type="email"</code> போன்ற built-in rules <code>submit</code>-க்கு முன்னாடியே run ஆகும்; ஆனா server-side validation இன்னும் தேவை.</p>
 
-  <h2>Keyboard events மற்றும் delegation</h2>
-  <p>Keyboard பயன்படுத்துபவர்களுக்கும் mouse பயன்படுத்துபவர்களுக்கான அதே செயல்கள் தேவை. <code>keydown</code>-க்குக் கேட்டு, <code>event.key</code>-ஐ <code>"Enter"</code> அல்லது <code>"Escape"</code> போன்ற பெயருடன் ஒப்பிடுங்கள். எண்ணிக்கையான <code>keyCode</code> values-ஐ ஒப்பிட வேண்டாம்.</p>
+  <h2>Keyboard events and delegation</h2>
+  <p>Keyboard use பண்றவங்களுக்கும் mouse use பண்றவங்களுக்கும் ஒரே actions தேவை. <code>keydown</code>-க்கு listen பண்ணி <code>event.key</code>-ஐ <code>"Enter"</code>, <code>"Escape"</code> போன்ற பேரோட compare பண்ணுங்கள். Numeric <code>keyCode</code> values-ஐ compare பண்ணாதீங்க.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">const search = document.querySelector("#search");
@@ -107,19 +107,19 @@ results.addEventListener("click", event => {
 });</script>
   </div>
 
-  <p>இரண்டாவது listener தான் <strong>event delegation</strong>. Parent-ல் உள்ள ஒரே listener, பொருந்தும் ஒவ்வொரு child-ஐயும் கையாளும்; பிறகு சேர்க்கப்படும் children-ஐயும் சேர்த்து. Clicked element-இலிருந்து மேல்நோக்கி <code>closest</code> சென்று button-ஐக் கண்டுபிடிக்கிறது; அதனால் button-இன் உரையைக் கிளிக் செய்தாலும் வேலை செய்யும்.</p>
+  <p>ரெண்டாவது listener தான் <strong>event delegation</strong>. Parent-ல இருக்கும் ஒரு listener match ஆகும் ஒவ்வொரு child-ஐயும் handle பண்ணும்; அப்புறம் add ஆகிற children-ஐயும் handle பண்ணும். <code>closest</code> click ஆன element-ல இருந்து மேல நடந்து button-ஐ find பண்ணும்; அதனால button-ஓட text-ஐ click பண்ணினாலும் வேலை செய்யும்.</p>
 
   <section class="practice" data-practice data-min="30">
     <div class="practice__head">
-      <span class="kicker">பயிற்சி · 25 நிமிடம்</span>
-      <h2>எழுத்து எண்ணிக்கை மற்றும் சுருக்கத்தை உருவாக்குங்கள்</h2>
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Build a character counter and summary</h2>
     </div>
-    <p>பக்கத்தில் <code>&lt;textarea id="bio"&gt;</code>, <code>&lt;p id="count"&gt;</code>, <code>id="profile"</code> மற்றும் <code>name</code>, <code>email</code> என்ற பெயரிடப்பட்ட fields கொண்ட form, மேலும் <code>&lt;p id="summary"&gt;</code> உள்ளது என வைத்துக்கொள்ளுங்கள். தட்டச்சு செய்யும்போதே எழுத்து எண்ணிக்கையைப் புதுப்பித்து, 120 எழுத்துகளுக்கு மேல் ஆனால் <code>is-over</code> என்ற class-ஐச் சேர்க்கவும்; பிறகு submission-ஐத் தடுத்து, summary-ல் "பெயர் · மின்னஞ்சல்" வடிவில் காட்டுங்கள்.</p>
-    <label class="visually-hidden" for="practice-5-2">உங்கள் பயிற்சிக் குறியீடு</label>
+    <p>Page-ல <code>&lt;textarea id="bio"&gt;</code>, <code>&lt;p id="count"&gt;</code>, <code>id="profile"</code> கொண்ட form-ம் <code>name</code>, <code>email</code> fields-ம், <code>&lt;p id="summary"&gt;</code>-ம் இருக்குன்னு வச்சுக்கோங்க. Type பண்ணும்போதே character count-ஐ update பண்ணுங்கள்; 120 characters-க்கு மேல போனா <code>is-over</code> class-ஐ add பண்ணுங்கள்; பிறகு submission-ஐ prevent பண்ணி summary-ல "Name · email" show பண்ணுங்கள்.</p>
+    <label class="visually-hidden" for="practice-5-2">Your exercise code</label>
     <textarea class="practice__code" id="practice-5-2" data-attempt spellcheck="false" placeholder="const bio = ..."></textarea>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
     <script type="text/plain" data-answer>const bio = document.querySelector("#bio");
@@ -141,24 +141,24 @@ form.addEventListener("submit", event => {
 });</script>
   </section>
 
-  <h2>உங்களைச் சரிபார்க்கவும்</h2>
+  <h2>Check yourself</h2>
   <div class="qa-list">
     <details class="qa">
-      <summary><code>input</code> மற்றும் <code>change</code>-க்கு இடையே உள்ள வேறுபாடு என்ன?</summary>
-      <p><code>input</code> ஒவ்வொரு திருத்தத்திலும், ஒவ்வொரு keystroke-லும் இயங்கும். திருத்தம் உறுதியாகும்போது, பொதுவாக blur ஆகும்போது அல்லது select value தேர்ந்தெடுக்கப்படும்போது <code>change</code> இயங்கும்.</p>
+      <summary>What is the difference between <code>input</code> and <code>change</code>?</summary>
+      <p><code>input</code> ஒவ்வொரு edit-லயும் fire ஆகும்; ஒவ்வொரு keystroke-ம் அடங்கும். <code>change</code> edit commit ஆனப்புறம் தான் fire ஆகும்; பொதுவா blur ஆனப்போ அல்லது select value choose பண்ணினப்போ.</p>
     </details>
     <details class="qa">
-      <summary>Form-ஐ submit செய்யும்போது பக்கம் ஏன் reload ஆகிறது?</summary>
-      <p>அது browser-இன் இயல்பான நடத்தை. உங்கள் <code>submit</code> handler முதலில் இயங்கும்; <code>event.preventDefault()</code> navigation-ஐ நிறுத்துவதால், அதற்குப் பதிலாக உங்கள் code பக்கத்தைப் புதுப்பிக்க முடியும்.</p>
+      <summary>Why does the page reload when I submit a form?</summary>
+      <p>அது browser-ஓட default behavior. உங்கள் <code>submit</code> handler முதல்ல run ஆகும்; <code>event.preventDefault()</code> navigation-ஐ stop பண்ணும், அதனால உங்கள் code page-ஐ update பண்ண முடியும்.</p>
     </details>
   </div>
 
   <div class="recap">
-    <h2>நினைவில் வைக்க வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <h2>Key things to remember</h2>
     <ul>
-      <li><strong>கேளுங்கள், பிறகு படியுங்கள்.</strong> Listener-ஐ இணைத்து, என்ன நடந்தது எனத் தெரிந்துகொள்ள event object-ஐப் பயன்படுத்துங்கள்.</li>
-      <li><strong>நீங்கள் கையாளும்போது மட்டுமே default-ஐத் தடுங்கள்.</strong> <code>preventDefault</code>-ஐ மறக்கும் submit handler பக்கத்தை இழக்கும்.</li>
-      <li><strong>ஒரு parent பல children-ஐக் கையாள முடியும்.</strong> <code>closest</code> கொண்ட delegation புதிய rows வந்தாலும் வேலை செய்யும்.</li>
+      <li><strong>Listen பண்ணி, பிறகு read பண்ணுங்கள்.</strong> ஒரு listener attach பண்ணி, என்ன நடந்ததுன்னு தெரிய event object-ஐ use பண்ணுங்கள்.</li>
+      <li><strong>நீங்க handle பண்ற விஷயத்துக்கு மட்டும் default-ஐ prevent பண்ணுங்கள்.</strong> <code>preventDefault</code>-ஐ மறந்த submit handler page-ஐ இழக்கும்.</li>
+      <li><strong>ஒரு parent நிறைய children-ஐ handle பண்ணலாம்.</strong> <code>closest</code>-ஓட delegation புது rows வந்தாலும் வேலை செய்யும்.</li>
     </ul>
   </div>
 </article>

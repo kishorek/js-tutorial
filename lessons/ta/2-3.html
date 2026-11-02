@@ -1,35 +1,35 @@
 <article class="lesson" id="lesson-2-3" data-lesson="2-3">
   <header class="lesson-head">
-    <p class="eyebrow">தொகுதி 02 · CSS: வெளித்தோற்றம்</p>
-    <h1>Type, color, visual rhythm</h1>
-    <p class="lesson-lede">நல்ல styling என்பது பெரும்பாலும் சில முடிவுகளைத் தொடர்ந்து ஒரே மாதிரியாகச் செய்வதுதான்: படிக்கக்கூடிய type scale, போதுமான contrast உள்ள சிறிய palette, ஒரே முறையிலிருந்து வரும் spacing. இந்தப் பாடம் அந்த முடிவுகளை மீண்டும் பயன்படுத்தக்கூடிய token-களாக மாற்றுகிறது.</p>
+    <p class="eyebrow">Module 02 · CSS: the skin</p>
+    <h1>Type, color, and visual rhythm</h1>
+    <p class="lesson-lede">நல்ல styling என்பது பெரும்பாலும் சில decisions-ஐ consistently repeat பண்றதுதான்: readable type scale, போதுமான contrast உள்ள சின்ன palette, ஒரே system-ல இருந்து வரும் spacing. இந்த lesson அந்த decisions-ஐ மீண்டும் use பண்ணக்கூடிய tokens-ஆ மாத்துது.</p>
     <div class="chips">
-      <span class="chip chip--accent">பாடம் 2.3</span>
-      <span class="chip">60–75 நிமிடம்</span>
-      <span class="chip">தொடக்கநிலை</span>
+      <span class="chip chip--accent">Lesson 2.3</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
     </div>
     <div class="brief">
       <div>
-        <h3>இதன் முடிவில், நீங்கள்</h3>
+        <h3>By the end, you can</h3>
         <ul>
-          <li><code>rem</code>-இல் font stack-ம் type scale-ம் உருவாக்க முடியும்.</li>
-          <li>Color contrast-ஐச் சரிபார்த்து, நிறம் மட்டுமே பொருள் தருவதைத் தவிர்க்க முடியும்.</li>
-          <li>Color, type, spacing-க்கு custom property-களை வரையறுக்க முடியும்.</li>
+          <li><code>rem</code>-ல font stack-ம் type scale-ம் build பண்ண முடியும்.</li>
+          <li>Color contrast-ஐ check பண்ணி, color மட்டுமே meaning தர்றதை avoid பண்ண முடியும்.</li>
+          <li>Color, type, spacing-க்கு custom properties define பண்ண முடியும்.</li>
         </ul>
       </div>
       <div>
-        <h3>உங்களுக்குத் தேவை</h3>
+        <h3>You need</h3>
         <ul>
-          <li>பாடங்கள் 2.1, 2.2 முடிக்கப்பட்டிருக்க வேண்டும்.</li>
-          <li>உண்மையான heading-களும் paragraph-களும் உள்ள ஒரு பக்கம்.</li>
+          <li>Lessons 2.1, 2.2 முடிஞ்சிருக்கணும்.</li>
+          <li>Real headings-ம் paragraphs-ம் உள்ள ஒரு page.</li>
           <li>ஒரு browser-ம் contrast checker-ம்.</li>
         </ul>
       </div>
     </div>
   </header>
 
-  <h2>Type ஒரு முறையிலிருந்து தொடங்குகிறது</h2>
-  <p>Font stack என்பது உங்களுக்கு வேண்டிய font-களைச் சிறந்ததிலிருந்து வரிசைப்படுத்தி, கடைசியில் ஒரு generic family-யுடன் முடிப்பது. வேகமான, native-ஆகத் தெரியும் text-க்கு system stack பயன்படுத்துங்கள். Body அளவை <code>rem</code>-இல் அமையுங்கள், line-height-ஐ unitless-ஆக வையுங்கள், புதிய size-க்குப் போவதற்கு முன் hierarchy உருவாக்க weight-ஐப் பயன்படுத்துங்கள்.</p>
+  <h2>Type starts with a system</h2>
+  <p>Font stack என்பது உங்களுக்கு வேண்டிய fonts-ஐ best-ல இருந்து list பண்ணி, கடைசில ஒரு generic family-ஓட முடிக்கும். Fast-ஆ, native-ஆ தெரியுற text-க்கு system stack use பண்ணுங்கள். Body size-ஐ <code>rem</code>-ல set பண்ணுங்கள், line-height-ஐ unitless-ஆ வையுங்கள், புது size-க்கு போகுறதுக்கு முன்னாடி hierarchy create பண்ண weight-ஐ use பண்ணுங்கள்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">body {
@@ -47,41 +47,41 @@ h1 {
   </div>
 
   <ul>
-    <li><strong><code>rem</code></strong> root font size-ஐச் சார்ந்தது. பயனரின் browser விருப்பம் மதிக்கப்படும்படி page-level அளவுகளுக்குப் பயன்படுத்துங்கள்.</li>
-    <li><strong><code>em</code></strong> தற்போதைய element-இன் font size-ஐச் சார்ந்தது. ஒரு component முழுவதுமாக scale ஆக வேண்டியிருக்கும்போது பயன்படுத்துங்கள்.</li>
-    <li><strong>Unitless line-height</strong> <code>1.6</code> போன்றது pixel-இல் பூட்டப்படாமல் font-உடன் scale ஆகும். Body text பொதுவாக <code>1.4</code>-க்கும் <code>1.7</code>-க்கும் இடையில்; heading-கள் <code>1.05</code>-க்கும் <code>1.3</code>-க்கும் இடையில்.</li>
-    <li><strong>Weight</strong> விரைவான hierarchy கருவி: body-க்கு <code>400</code>, heading-களுக்கு <code>600</code> அல்லது <code>700</code>. சிறிய text-க்கு light weight பயன்படுத்த வேண்டாம்.</li>
+    <li><strong><code>rem</code></strong> root font size-ஐ relative. User-ஓட browser preference respect ஆகுறதுக்கு page-level sizes-க்கு இதை use பண்ணுங்கள்.</li>
+    <li><strong><code>em</code></strong> current element-ஓட font size-ஐ relative. ஒரு component முழுவதும் scale ஆகணும்னா இதை use பண்ணுங்கள்.</li>
+    <li><strong>Unitless line-height</strong> (<code>1.6</code> போல) pixels-ல lock ஆகாம font-உடன் scale ஆகும். Body text பொதுவா <code>1.4</code>-க்கும் <code>1.7</code>-க்கும் நடுவுல; headings <code>1.05</code>-க்கும் <code>1.3</code>-க்கும் நடுவுல.</li>
+    <li><strong>Weight</strong> quick hierarchy tool: body-க்கு <code>400</code>, headings-க்கு <code>600</code> அல்லது <code>700</code>. சின்ன text-க்கு light weight use பண்ணாதீங்க.</li>
   </ul>
 
-  <p>Type scale என்பது ஒரே விகிதத்தில் அமைந்த சிறிய அளவுப் பட்டியல். நான்கு அல்லது ஐந்து படிகளைத் தேர்ந்தெடுத்து நிறுத்துங்கள். குறைவான அளவுகள் பக்கத்தை அமைதியாகவும் code-ஐ மாற்ற எளிதாகவும் ஆக்கும்.</p>
+  <p>Type scale என்பது consistent ratio-ல உள்ள சின்ன sizes list. நாலு அல்லது அஞ்சு steps pick பண்ணி நிறுத்துங்கள். Sizes குறைவா இருந்தா page calm-ஆ, code change பண்ண easy-ஆ இருக்கும்.</p>
 
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th scope="col">படி</th><th scope="col">அளவு</th><th scope="col">பயன்பாடு</th></tr>
+        <tr><th scope="col">Step</th><th scope="col">Size</th><th scope="col">Use</th></tr>
       </thead>
       <tbody>
-        <tr><td>சிறியது</td><td>0.875rem</td><td>Meta, caption, label-கள்</td></tr>
-        <tr><td>அடிப்படை</td><td>1rem</td><td>Body text</td></tr>
-        <tr><td>பெரியது</td><td>1.25rem</td><td>Card title-கள், lede-கள்</td></tr>
-        <tr><td>XL</td><td>1.563rem</td><td>Section heading-கள்</td></tr>
-        <tr><td>2XL</td><td>1.953rem</td><td>Page heading-கள்</td></tr>
+        <tr><td>Small</td><td>0.875rem</td><td>Meta, captions, labels</td></tr>
+        <tr><td>Base</td><td>1rem</td><td>Body copy</td></tr>
+        <tr><td>Large</td><td>1.25rem</td><td>Card titles, ledes</td></tr>
+        <tr><td>XL</td><td>1.563rem</td><td>Section headings</td></tr>
+        <tr><td>2XL</td><td>1.953rem</td><td>Page headings</td></tr>
       </tbody>
     </table>
   </div>
 
-  <h2>Color-க்கு contrast தேவை, ரசனை மட்டும் போதாது</h2>
-  <p>பார்வைக் குறைபாடு உள்ளவர்களுக்கும், பகல் வெளிச்சத்தில் phone-இல் பார்ப்பவர்களுக்கும், மலிவான monitor-இல் பார்ப்பவர்களுக்கும் text படிக்கக்கூடியதாக இருக்க வேண்டும். சாதாரண text-க்குக் குறைந்தது <code>4.5:1</code>, பெரிய text-க்கு (சுமார் <code>24px</code>, அல்லது bold-ஆன <code>18.66px</code>) <code>3:1</code> contrast ratio என்று WCAG கேட்கிறது. Muted text-ம் தேர்ச்சி பெற வேண்டும்; "soft gray" ஒரு சாக்கு அல்ல.</p>
+  <h2>Color needs contrast, not just taste</h2>
+  <p>Low vision உள்ளவங்க, பகல்ல phone-ல பாக்குறவங்க, cheap monitor-ல பாக்குறவங்க — எல்லாருக்கும் text readable-ஆ இருக்கணும். Normal text-க்கு குறைந்தது <code>4.5:1</code>, large text-க்கு (சுமார் <code>24px</code>, அல்லது bold <code>18.66px</code>) <code>3:1</code> contrast ratio என்று WCAG சொல்லுது. Muted text-ம் pass ஆகணும்; "soft gray" ஒரு excuse இல்ல.</p>
 
   <div class="callout callout--warn">
-    <span class="callout__label">நிறத்தை மட்டும் நம்ப வேண்டாம்</span>
-    <p>Error சிவப்பு என்றால், ஒரு message அல்லது icon-ஐயும் சேர்க்கவும். Link பச்சை என்றால், hover-இலும் focus-இலும் அதற்கு underline கொடுங்கள். நிறம் ஒரு வலுப்படுத்தல், ஒரே signal அல்ல. வெளியிடுவதற்கு முன் ஒவ்வொரு இணையையும் contrast tool கொண்டு சரிபாருங்கள்.</p>
+    <span class="callout__label">Do not rely on color alone</span>
+    <p>Error red-ஆ இருந்தா, ஒரு message அல்லது icon-ஐயும் add பண்ணுங்கள். Link green-ஆ இருந்தா, hover-லயும் focus-லயும் அதுக்கு underline கொடுங்கள். Color ஒரு reinforcement, ஒரே signal இல்ல. Ship பண்ணுறதுக்கு முன்னாடி ஒவ்வொரு pair-ஐயும் contrast tool கொண்டு check பண்ணுங்கள்.</p>
   </div>
 
-  <p>Palette-ஐ சிறியதாக வையுங்கள்: text-க்கு ஒரு ink, இரண்டாம் நிலை text-க்கு muted ink, ஒரு page background, ஒரு card background, ஒரு accent, ஒரு rule color. அடக்கமான palette ஒரே accent-ஐ வேண்டுமென்று தேர்ந்தெடுத்தது போலத் தோன்றச் செய்யும்.</p>
+  <p>Palette-ஐ சின்னதா வையுங்கள்: text-க்கு ஒரு ink, secondary text-க்கு muted ink, ஒரு page background, ஒரு card background, ஒரு accent, ஒரு rule color. Restrained palette ஒரே accent-ஐ வேண்டும்னே choose பண்ணது போல feel வைக்கும்.</p>
 
-  <h2>Token-கள் visual rhythm-ஐ உருவாக்குகின்றன</h2>
-  <p>CSS custom property-கள் (variable-கள்) ஒரு முடிவை ஒருமுறை சேமித்து மீண்டும் பயன்படுத்துகின்றன. முழு பக்கமும் inherit ஆகும்படி அவற்றை <code>:root</code>-இல் வரையறுத்து, <code>var()</code> கொண்டு பயன்படுத்துங்கள். Token-ஐ மாற்றினால் ஒவ்வொரு component-ம் பின்பற்றும்.</p>
+  <h2>Tokens create visual rhythm</h2>
+  <p>CSS custom properties (variables) ஒரு decision-ஐ ஒருமுறை store பண்ணி மீண்டும் use பண்ணும். முழு page-ம் inherit ஆகுறதுக்கு அவற்றை <code>:root</code>-ல define பண்ணி, <code>var()</code> கொண்டு reference பண்ணுங்கள். Token-ஐ மாத்துங்கள், ஒவ்வொரு component-ம் follow ஆகும்.</p>
 
   <div class="code-block" data-code>
     <script type="text/plain">:root {
@@ -118,14 +118,14 @@ body {
 }</script>
   </div>
 
-  <p>Custom property பெயர்கள் case-sensitive; மற்ற property-களைப் போலவே inherit ஆகும். Token இல்லாதபோதும் component வேலை செய்ய <code>var(--accent, #14532d)</code> போன்ற fallback உதவும். ஆழத்திற்கு ஒரு மெல்லிய border-ம் ஒரு soft shadow-ம் போதும்; பெரிய shadow-ஐ overlay-களுக்கு வைத்திருங்கள். எப்போதும் தெரியும் <code>:focus-visible</code> outline-ஐ வையுங்கள்.</p>
+  <p>Custom property names case-sensitive; மற்ற properties போலவே inherit ஆகும். Token missing-ஆ இருந்தாலும் component use ஆகுறதுக்கு <code>var(--accent, #14532d)</code> போன்ற fallback உதவும். Depth-க்கு ஒரு thin border-ம் ஒரு soft shadow-ம் போதும்; பெரிய shadows-ஐ overlays-க்கு வைச்சுக்கோங்கள். எப்போதும் தெரியுற <code>:focus-visible</code> outline-ஐ வையுங்கள்.</p>
 
   <section class="practice" data-practice data-min="40">
     <div class="practice__head">
-      <span class="kicker">பயிற்சி · 25 நிமிடம்</span>
-      <h2>Token-களைக் கொண்டு article-ஐ style செய்யுங்கள்</h2>
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Style an article with tokens</h2>
     </div>
-    <p>கீழே உள்ள token block-ஐயும் இந்த HTML-ஐயும் பயன்படுத்துங்கள். Color, spacing-க்கு மட்டும் token-களைப் பயன்படுத்தி article-ஐ style செய்யுங்கள்: <code>--paper</code>-இல் <code>--ink</code> body text, <code>--card</code>-இல் <code>--rule</code> border-ம் <code>--radius</code>-ம் கொண்ட <code>60ch</code> card, <code>0.875rem</code> uppercase-இல் <code>--muted</code> meta text, <code>2rem</code>-இல் line-height <code>1.1</code> உடன் <code>--accent</code> title, <code>1.125rem</code>-இல் lede. படிக்கக்கூடிய system font stack-ஐயும் <code>1.6</code> body line-height-ஐயும் சேர்க்கவும்.</p>
+    <p>கீழே இருக்குற token block-ஐயும் இந்த HTML-ஐயும் use பண்ணுங்கள். Color, spacing-க்கு மட்டும் tokens use பண்ணி article-ஐ style பண்ணுங்கள்: <code>--paper</code>-ல <code>--ink</code> body text, <code>--card</code>-ல <code>--rule</code> border-ம் <code>--radius</code>-ம் உள்ள <code>60ch</code> card, <code>0.875rem</code> uppercase-ல <code>--muted</code> meta text, <code>2rem</code>-ல line-height <code>1.1</code> உடன் <code>--accent</code> title, <code>1.125rem</code>-ல lede. Readable system font stack-ஐயும் <code>1.6</code> body line-height-ஐயும் add பண்ணுங்கள்.</p>
 
     <div class="code-block" data-code>
       <script type="text/plain">/* Available tokens */
@@ -143,11 +143,11 @@ body {
 </article></script>
     </div>
 
-    <label class="visually-hidden" for="practice-2-3">உங்கள் CSS</label>
-    <textarea class="practice__code" id="practice-2-3" data-attempt spellcheck="false" placeholder="உங்கள் CSS-ஐ இங்கே எழுதுங்கள்..."></textarea>
+    <label class="visually-hidden" for="practice-2-3">Your CSS</label>
+    <textarea class="practice__code" id="practice-2-3" data-attempt spellcheck="false" placeholder="Write your CSS here..."></textarea>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
     <script type="text/plain" data-answer>*, *::before, *::after {
@@ -195,24 +195,24 @@ body {
 }</script>
   </section>
 
-  <h2>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h2>
+  <h2>Check yourself</h2>
   <div class="qa-list">
     <details class="qa">
-      <summary><code>em</code>-க்குப் பதிலாக <code>rem</code>-ஐ எப்போது பயன்படுத்த வேண்டும்?</summary>
-      <p>பக்கத்தின் type scale-க்கும் global spacing-க்கும் <code>rem</code> பயன்படுத்துங்கள்; அப்போது அது root size-ஐயும் பயனர் விருப்பங்களையும் பின்பற்றும். ஒரு component-க்குள் padding அல்லது nested size அந்த component-இன் சொந்த font size-உடன் scale ஆக வேண்டியிருக்கும்போது <code>em</code> பயன்படுத்துங்கள்.</p>
+      <summary>When should I use <code>rem</code> instead of <code>em</code>?</summary>
+      <p>Page-ஓட type scale-க்கும் global spacing-க்கும் <code>rem</code> use பண்ணுங்கள்; அப்போ அது root size-ஐயும் user preferences-ஐயும் follow பண்ணும். ஒரு component-க்கு உள்ளே padding அல்லது nested size அந்த component-ஓட font size-உடன் scale ஆகணும்னா <code>em</code> use பண்ணுங்கள்.</p>
     </details>
     <details class="qa">
-      <summary>வெள்ளை background-இல் சாம்பல் text எப்போதும் contrast பிரச்சினையா?</summary>
-      <p>எப்போதும் இல்லை, ஆனால் பல நேரங்களில் ஆம். நிறத்தின் பெயர் அல்ல, ratio முக்கியம். சரியான இணையைச் சரிபாருங்கள்: சாதாரண text-க்கு <code>4.5:1</code> தேவை. <code>#f7f2e7</code>-இல் <code>#5d574d</code> போன்ற நடுத்தர சாம்பல் தேர்ச்சி பெறலாம்; வெளிர் சாம்பல் தோல்வியடையும்.</p>
+      <summary>Is gray text on a white background always a contrast problem?</summary>
+      <p>எப்போதும் இல்ல, ஆனா பல நேரம் ஆம். Color name இல்ல, ratio-தான் important. Exact pair-ஐ check பண்ணுங்கள்: normal text-க்கு <code>4.5:1</code> தேவை. <code>#f7f2e7</code>-ல <code>#5d574d</code> போன்ற medium gray pass ஆகலாம்; pale gray fail ஆகும்.</p>
     </details>
   </div>
 
   <div class="recap">
-    <h2>நினைவில் வைக்க வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <h2>Key things to remember</h2>
     <ul>
-      <li><strong>Type ஒரு scale.</strong> சில <code>rem</code> அளவுகளும் unitless line-height-களும் தனித்தனி value-களின் குவியலை விட மேல்.</li>
-      <li><strong>Contrast ஒரு தேவை.</strong> Text இணைகளைச் சரிபாருங்கள்; நிறத்தை மட்டும் signal ஆகப் பயன்படுத்த வேண்டாம்.</li>
-      <li><strong>Token-கள் rhythm-ஐ மீண்டும் மீண்டும் பயன்படுத்தக்கூடியதாக்குகின்றன.</strong> Color, type, spacing முடிவுகளை <code>:root</code>-இல் ஒருமுறை சேமியுங்கள்.</li>
+      <li><strong>Type ஒரு scale.</strong> சில <code>rem</code> sizes-ம் unitless line-heights-ம் one-off values குவியலை விட better.</li>
+      <li><strong>Contrast ஒரு requirement.</strong> Text pairs-ஐ check பண்ணுங்கள்; color-ஐ மட்டும் signal-ஆ use பண்ணாதீங்க.</li>
+      <li><strong>Tokens rhythm-ஐ repeat பண்ண வைக்கும்.</strong> Color, type, spacing decisions-ஐ <code>:root</code>-ல ஒருமுறை store பண்ணுங்கள்.</li>
     </ul>
   </div>
 </article>

@@ -1,31 +1,31 @@
 <article class="lesson" id="lesson-4-5" data-lesson="4-5">
   <header class="lesson-head">
-    <p class="eyebrow">தொகுதி 04 · JavaScript அடிப்படைகள்</p>
-    <h1>திட்டம்: arrays, objects மற்றும் calculator</h1>
-    <p class="lesson-lede">இந்தத் தொகுதி முழுவதையும் பயன்படுத்துங்கள். Objects கொண்டு தரவை வடிவமைத்து, array methods கொண்டு பட்டியல்களைத் தேடி, பிறகு அதன் logic buttons-லிருந்து தனியாக இருக்கும் ஒரு வேலை செய்யும் calculator-ஐ உருவாக்குங்கள்.</p>
-    <div class="chips"><span class="chip chip--accent">பாடம் 4.5 · திட்டம்</span><span class="chip">2–3 மணி நேரம்</span><span class="chip">தொகுதியின் மைல்கல்</span></div>
+    <p class="eyebrow">Module 04 · JavaScript foundations</p>
+    <h1>Project: arrays, objects, and the calculator</h1>
+    <p class="lesson-lede">Module முழுவதையும் வேலைக்கு விடுங்க. Objects கொண்டு data-ஐ model பண்ணுங்க, array methods கொண்டு lists-ஐ query பண்ணுங்க, பிறகு logic buttons-லிருந்து தனியா இருக்கிற ஒரு working calculator-ஐ build பண்ணுங்க.</p>
+    <div class="chips"><span class="chip chip--accent">Lesson 4.5 · Project</span><span class="chip">2–3 hours</span><span class="chip">Module milestone</span></div>
     <div class="brief">
       <div>
-        <h3>வழங்க வேண்டியவை</h3>
+        <h3>Deliverables</h3>
         <ul>
-          <li>நான்கு கணக்குகளுக்கான <code>calculate(a, b, op)</code> function.</li>
-          <li>Display, எண் button-கள், operators, clear மற்றும் equals.</li>
-          <li>பூஜ்ஜியத்தால் வகுத்தால் <code>Error</code> காட்டும் கையாளுதல்.</li>
+          <li>நாலு operations-க்கான <code>calculate(a, b, op)</code> function.</li>
+          <li>Display, digit buttons, operators, clear, equals.</li>
+          <li><code>Error</code> காட்டுற divide-by-zero handling.</li>
         </ul>
       </div>
       <div>
-        <h3>இறுதிச் சோதனை</h3>
+        <h3>Exit check</h3>
         <ul>
-          <li>பக்கம் இல்லாமலும் logic வேலை செய்கிறது.</li>
-          <li>ஒவ்வொரு button-ம் display-ஐச் சரியாக மாற்றுகிறது.</li>
-          <li>Clear முழுக் கணக்கையும் மீட்டமைக்கிறது.</li>
+          <li>Page இல்லாம logic வேலை செய்யும்.</li>
+          <li>ஒவ்வொரு button-ம் display-ஐ சரியா change பண்ணும்.</li>
+          <li>Clear முழு calculation-ஐயும் reset பண்ணும்.</li>
           <li>Inline event handlers இல்லை.</li>
         </ul>
       </div>
     </div>
   </header>
-  <h2>Objects தொடர்புடைய மதிப்புகளைத் தொகுக்கின்றன</h2>
-  <p>Object பெயரிடப்பட்ட properties-ஐச் சேமிக்கிறது. தெரிந்த பெயருக்கு dot notation-ஐயும், பெயர் ஒரு மாறியில் சேமிக்கப்பட்டிருந்தால் bracket notation-ஐயும் பயன்படுத்துங்கள். Objects கொண்ட arrays-ல் ஒவ்வொரு item-ம் ஒரு record-ஐ விவரிக்கும்.</p>
+  <h2>Objects group related values</h2>
+  <p>Object named properties-ஐ store பண்ணும். தெரிந்த name-க்கு dot notation use பண்ணுங்க, name ஒரு variable-ல store ஆகியிருந்தா bracket notation use பண்ணுங்க. Objects-ஓட arrays-ல ஒவ்வொரு item-ம் ஒரு record-ஐ describe பண்ணும்.</p>
   <div class="code-block" data-code>
     <script type="text/plain">const ticket = { event: "Jazz night", price: 18, available: true };
 console.log(ticket.event, ticket.price); // "Jazz night" 18
@@ -43,30 +43,30 @@ const bus = expenses.find(item => item.label === "Bus pass");
 console.log(total, food.length, labels, bus.amount); // 46.5 2 [...] 30</script>
   </div>
   <ul>
-    <li><code>find</code> முதல் பொருத்தத்தை அல்லது <code>undefined</code>-ஐத் திருப்பித் தரும்.</li>
-    <li><code>filter</code> ஒவ்வொரு பொருத்தத்தையும் உள்ள புதிய array-ஐத் திருப்பித் தரும்.</li>
-    <li><code>map</code> ஒவ்வொரு item-க்கும் ஒரு மாற்றப்பட்ட மதிப்பைத் திருப்பித் தரும்.</li>
-    <li><code>reduce</code> பட்டியலை ஒரே மதிப்பாக இணைக்கிறது.</li>
+    <li><code>find</code> முதல் match-ஐ, இல்லனா <code>undefined</code>-ஐ return பண்ணும்.</li>
+    <li><code>filter</code> ஒவ்வொரு match-ஐயும் உள்ள புது array-ஐ return பண்ணும்.</li>
+    <li><code>map</code> ஒவ்வொரு item-க்கும் ஒரு transformed value return பண்ணும்.</li>
+    <li><code>reduce</code> list-ஐ ஒரே value-ஆ combine பண்ணும்.</li>
   </ul>
-  <h2>Calculator-ஐ உருவாக்குங்கள்</h2>
-  <p>எடிட்டரில் உள்ள shell-லிருந்து தொடங்குங்கள். கணக்கீட்டை ஒரு function-க்குள் வைத்திருங்கள்; buttons எண்களைச் சேகரித்து அதை call செய்யட்டும். Display output-ஐக் காட்டுகிறது; logic தனியாகச் சோதிக்கக்கூடியதாக இருக்க வேண்டும்.</p>
+  <h2>Build the calculator</h2>
+  <p>Editor-ல இருக்கிற shell-லிருந்து start பண்ணுங்க. Calculation-ஐ ஒரு function-ல வைத்திருங்க, பிறகு buttons numbers-ஐ collect பண்ணி அதை call பண்ணட்டும். Display output; logic தனியாத் test பண்ணக்கூடியதா இருக்கணும்.</p>
   <div class="callout callout--warn">
-    <span class="callout__label">இது DOM-ஐ முன்னோட்டமாகக் காட்டுகிறது</span>
-    <p>விடையில் <code>document.querySelector</code> மற்றும் <code>addEventListener</code> பயன்படுத்தப்படுகின்றன. அவற்றை இப்போதே முழுமையாகக் கற்றுக்கொள்ள வேண்டியதில்லை. தொகுதி 5 elements-ஐத் தேர்ந்தெடுப்பது, events-ஐ இணைப்பது, பக்கத்தைச் சரியாக update செய்வது ஆகியவற்றை விளக்குகிறது.</p>
+    <span class="callout__label">This previews the DOM</span>
+    <p>Solution <code>document.querySelector</code> மற்றும் <code>addEventListener</code> use பண்ணும். அவற்றை இப்போதே முழுசா master பண்ண வேண்டியதில்ல. Module 5 elements-ஐ select பண்றது, events-ஐ wire பண்றது, page-ஐ சரியா update பண்றது ஆகியவற்றை விளக்கும்.</p>
   </div>
   <section class="practice" data-practice data-min="30">
     <div class="practice__head">
-      <span class="kicker">திட்டப் பணித்தளம் · 2–3 மணி நேரம்</span>
-      <h2>உங்கள் calculator</h2>
+      <span class="kicker">Project workspace · 2–3 hours</span>
+      <h2>Your calculator</h2>
     </div>
     <div class="editor" data-editor>
-      <div class="editor__bar"><span class="editor__label">calculator.html</span><div class="editor__actions"><button type="button" class="btn btn--small" data-action="run">இயக்கு</button><button type="button" class="btn btn--ghost btn--small" data-action="reset">மீட்டமை</button><button type="button" class="btn btn--ghost btn--small" data-action="copy">நகலெடு</button></div></div>
+      <div class="editor__bar"><span class="editor__label">calculator.html</span><div class="editor__actions"><button type="button" class="btn btn--small" data-action="run">Run</button><button type="button" class="btn btn--ghost btn--small" data-action="reset">Reset</button><button type="button" class="btn btn--ghost btn--small" data-action="copy">Copy</button></div></div>
       <div class="editor__grid">
-        <label class="visually-hidden" for="practice-4-5">Calculator திட்ட எடிட்டர்</label>
+        <label class="visually-hidden" for="practice-4-5">Calculator project editor</label>
         <textarea id="practice-4-5" class="editor__code" data-attempt spellcheck="false"></textarea>
-        <div class="editor__preview"><div class="editor__preview-bar">நேரடி முன்னோட்டம்</div><iframe title="உங்கள் calculator-இன் முன்னோட்டம்" sandbox="allow-scripts"></iframe></div>
+        <div class="editor__preview"><div class="editor__preview-bar">Live preview</div><iframe title="Preview of your calculator" sandbox="allow-scripts"></iframe></div>
       </div>
-      <p class="editor__status" aria-live="polite" data-status>முன்னோட்டம் ஏற்றப்பட்டது. Calculator-ஐ உருவாக்கி, பிறகு இயக்கு என்பதை அழுத்துங்கள்.</p>
+      <p class="editor__status" aria-live="polite" data-status>Preview loaded. Build the calculator, then press Run.</p>
       <script type="text/plain" data-starter><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,8 +94,8 @@ body { display: grid; place-items: center; min-height: 100vh; margin: 0; backgro
 </html></script>
     </div>
     <div class="practice__actions">
-      <button type="button" class="btn btn--ghost" data-reveal disabled>குறிப்பு விடையைக் காட்டு</button>
-      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு குறிப்பு விடை திறக்கும்.</p>
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal reference solution</button>
+      <p class="practice__note" data-gate-note>முதல்ல ஒரு attempt பண்ணுங்க. பிறகு reference solution unlock ஆகும்.</p>
     </div>
     <div class="practice__solution" data-solution hidden></div>
     <script type="text/plain" data-answer><!DOCTYPE html>
@@ -161,57 +161,57 @@ document.querySelectorAll("[data-key]").forEach(function (button) {
 </body>
 </html></script>
   </section>
-  <h2>மீள்பார்வைச் சரிபார்ப்புப் பட்டியல்</h2>
+  <h2>Review checklist</h2>
   <ul>
-    <li><code>calculate(7, 8, "+")</code> <code>15</code>-ஐத் திருப்பித் தரும்; <code>calculate(9, 3, "*")</code> <code>27</code>-ஐத் திருப்பித் தரும்.</li>
-    <li><code>5 / 0</code> <code>Infinity</code>-ஐ அல்ல, <code>Error</code>-ஐக் காட்டும்.</li>
-    <li><code>0.5</code> தட்டச்சு செய்வது வேலை செய்கிறது; ஒரு எண்ணில் ஒரே ஒரு decimal point மட்டும் இருக்கும்.</li>
-    <li><code>C</code> display-ஐ, சேமிக்கப்பட்ட எண்ணை, operator-ஐ மீட்டமைக்கிறது.</li>
-    <li><code>7 + 8 + 2</code> போன்ற தொடர் கணக்குகள் <code>17</code> தரும்.</li>
-    <li>ஒவ்வொரு button-ம் <code>addEventListener</code> பயன்படுத்துகிறது; <code>onclick</code> attributes இல்லை.</li>
-    <li>முழு வரிசைக்குப் பிறகு console-ல் errors எதுவும் தெரியாது.</li>
+    <li><code>calculate(7, 8, "+")</code> <code>15</code>-ஐ return பண்ணும்; <code>calculate(9, 3, "*")</code> <code>27</code>-ஐ return பண்ணும்.</li>
+    <li><code>5 / 0</code> <code>Infinity</code>-ஐ அல்ல, <code>Error</code>-ஐ காட்டும்.</li>
+    <li><code>0.5</code> type பண்ணுவது வேலை செய்யும், ஒரு number-ல ஒரே ஒரு decimal point இருக்கும்.</li>
+    <li><code>C</code> display-ஐ, stored number-ஐ, operator-ஐ reset பண்ணும்.</li>
+    <li><code>7 + 8 + 2</code> போன்ற chained operations <code>17</code> தரும்.</li>
+    <li>ஒவ்வொரு button-ம் <code>addEventListener</code> use பண்ணும்; <code>onclick</code> attributes இல்லை.</li>
+    <li>முழு sequence-க்குப் பிறகு console-ல errors தெரியாது.</li>
   </ul>
-  <h3>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h3>
+  <h3>Check yourself</h3>
   <div class="qa-list">
-    <details class="qa"><summary><code>calculate</code>-ஐ button handler-லிருந்து தனியாக வைப்பது ஏன்?</summary><p>அவற்றைப் பிரிப்பதால் கணக்கீட்டை நேரடியாகச் சோதிக்கலாம், மீண்டும் பயன்படுத்தலாம், logic-ஐ மீண்டும் எழுதாமல் interface-ஐ மாற்றலாம். Handler input-ஐ மட்டும் சேகரித்து output-ஐக் காட்டுகிறது.</p></details>
-    <details class="qa"><summary>பூஜ்ஜியத்தால் வகுத்தால் <code>Infinity</code>-க்குப் பதிலாக <code>Error</code> ஏன் காட்டுகிறது?</summary><p><code>calculate</code> function பூஜ்ஜிய வகுப்பியைச் சரிபார்த்து ஒரு செய்தியைத் திருப்பித் தருகிறது. இல்லாவிட்டால் JavaScript <code>Infinity</code>-ஐ உருவாக்கும்; அது கணிதப்படி சரியானதே, ஆனால் calculator-க்குப் பயன்படாது.</p></details>
+    <details class="qa"><summary>Why keep <code>calculate</code> separate from the button handler?</summary><p>அவற்றைப் பிரிப்பதால் arithmetic-ஐ நேரடியா test பண்ணலாம், reuse பண்ணலாம், logic-ஐ மீண்டும் எழுதாம interface-ஐ change பண்ணலாம். Handler input-ஐ மட்டும் collect பண்ணி output-ஐ காட்டும்.</p></details>
+    <details class="qa"><summary>Why does dividing by zero show <code>Error</code> instead of <code>Infinity</code>?</summary><p><code>calculate</code> function zero divisor-ஐ check பண்ணி ஒரு message return பண்ணும். இல்லனா JavaScript <code>Infinity</code>-ஐ produce பண்ணும்; அது கணிதப்படி valid, ஆனா calculator-க்கு useful இல்ல.</p></details>
   </div>
-  <h2>தொகுதி 4 வினாடி வினா</h2>
+  <h2>Module 4 quiz</h2>
   <div class="quiz" data-quiz>
     <form>
-      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="const மீண்டும் மதிப்பு வைப்பதைத் தடுக்கிறது. const object-ன் properties-ஐ இன்னும் மாற்றலாம்.">
-        <legend><span class="quiz__num">01</span> எந்த keyword ஒரு மாறிக்கு மீண்டும் மதிப்பு வைப்பதைத் தடுக்கிறது?</legend>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="const reassignment-ஐ prevent பண்ணும். const object-ஓட properties-ஐ இன்னும் change பண்ணலாம்.">
+        <legend><span class="quiz__num">01</span> Which keyword prevents a variable from being reassigned?</legend>
         <label class="option"><input type="radio" name="q1" value="a"><span><code>let</code></span></label><label class="option"><input type="radio" name="q1" value="b"><span><code>const</code></span></label><label class="option"><input type="radio" name="q1" value="c"><span><code>var</code></span></label><label class="option"><input type="radio" name="q1" value="d"><span><code>function</code></span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
       </fieldset>
-      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Strict equality coercion இல்லாமல் மதிப்பையும் வகையையும் ஒப்பிடுகிறது.">
-        <legend><span class="quiz__num">02</span> <code>===</code> எதை ஒப்பிடுகிறது?</legend>
-        <label class="option"><input type="radio" name="q2" value="a"><span>மதிப்பு மட்டும்</span></label><label class="option"><input type="radio" name="q2" value="b"><span>வகை மட்டும்</span></label><label class="option"><input type="radio" name="q2" value="c"><span>மதிப்பு மற்றும் வகை</span></label><label class="option"><input type="radio" name="q2" value="d"><span>Memory முகவரி</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Strict equality value-ஐயும் type-ஐயும் compare பண்ணும், coercion இல்லாம.">
+        <legend><span class="quiz__num">02</span> What does <code>===</code> compare?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span>Value only</span></label><label class="option"><input type="radio" name="q2" value="b"><span>Type only</span></label><label class="option"><input type="radio" name="q2" value="c"><span>Value and type</span></label><label class="option"><input type="radio" name="q2" value="d"><span>Memory address</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
       </fieldset>
-      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="map ஒவ்வொரு item-ஐயும் மாற்றி, அதே length உள்ள புதிய array-ஐத் திருப்பித் தருகிறது.">
-        <legend><span class="quiz__num">03</span> எந்த method ஒவ்வொரு array item-ஐயும் புதிய array ஆக மாற்றுகிறது?</legend>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="map ஒவ்வொரு item-ஐயும் transform பண்ணி அதே length உள்ள புது array-ஐ return பண்ணும்.">
+        <legend><span class="quiz__num">03</span> Which method transforms every array item into a new array?</legend>
         <label class="option"><input type="radio" name="q3" value="a"><span><code>filter</code></span></label><label class="option"><input type="radio" name="q3" value="b"><span><code>map</code></span></label><label class="option"><input type="radio" name="q3" value="c"><span><code>reduce</code></span></label><label class="option"><input type="radio" name="q3" value="d"><span><code>push</code></span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
       </fieldset>
-      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Return statement இல்லாத function undefined திருப்பித் தரும். Logging போன்ற side effects இன்னும் நடக்கும்.">
-        <legend><span class="quiz__num">04</span> <code>return</code> statement இல்லாத function என்ன திருப்பித் தருகிறது?</legend>
-        <label class="option"><input type="radio" name="q4" value="a"><span><code>null</code></span></label><label class="option"><input type="radio" name="q4" value="b"><span><code>0</code></span></label><label class="option"><input type="radio" name="q4" value="c"><span><code>undefined</code></span></label><label class="option"><input type="radio" name="q4" value="d"><span>கடைசி expression</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Return statement இல்லாத function undefined return பண்ணும். Logging போன்ற side effects இன்னும் நடக்கும்.">
+        <legend><span class="quiz__num">04</span> What does a function return if it has no <code>return</code> statement?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span><code>null</code></span></label><label class="option"><input type="radio" name="q4" value="b"><span><code>0</code></span></label><label class="option"><input type="radio" name="q4" value="c"><span><code>undefined</code></span></label><label class="option"><input type="radio" name="q4" value="d"><span>The last expression</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
       </fieldset>
-      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="Return செய்வது கணக்கீட்டை display-லிருந்து தனியாக வைத்திருக்கிறது; எனவே பக்கம் இல்லாமல் அதை மீண்டும் பயன்படுத்திச் சோதிக்கலாம்.">
-        <legend><span class="quiz__num">05</span> <code>calculate</code> log செய்வதற்குப் பதிலாக ஒரு மதிப்பை ஏன் return செய்ய வேண்டும்?</legend>
-        <label class="option"><input type="radio" name="q5" value="a"><span>Log செய்வது எப்போதும் மெதுவானது.</span></label><label class="option"><input type="radio" name="q5" value="b"><span>Return செய்வதால் logic மீண்டும் பயன்படுத்தக்கூடியதாகவும் சோதிக்கக்கூடியதாகவும் ஆகிறது.</span></label><label class="option"><input type="radio" name="q5" value="c"><span>JavaScript ஒவ்வொரு function-லும் return கட்டாயம் என்கிறது.</span></label><label class="option"><input type="radio" name="q5" value="d"><span>Return செய்வது பக்கத்தைத் தானாக update செய்கிறது.</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="Return பண்ணுவது calculation-ஐ display-லிருந்து தனியா வைத்திருக்கும், அதனால page இல்லாம reuse பண்ணி test பண்ணலாம்.">
+        <legend><span class="quiz__num">05</span> Why should <code>calculate</code> return a value instead of logging it?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span>Logging is always slower.</span></label><label class="option"><input type="radio" name="q5" value="b"><span>Returning makes the logic reusable and testable.</span></label><label class="option"><input type="radio" name="q5" value="c"><span>JavaScript requires a return in every function.</span></label><label class="option"><input type="radio" name="q5" value="d"><span>Returning updates the page automatically.</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
       </fieldset>
       <div class="quiz__actions">
-        <button type="submit" class="btn">விடைகளைச் சரிபார்</button>
-        <button type="button" class="btn btn--ghost" data-quiz-reset>வினாடி வினாவை மீட்டமை</button>
+        <button type="submit" class="btn">Check answers</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>Reset quiz</button>
         <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
       </div>
     </form>
   </div>
   <div class="recap">
-    <h2>தொகுதி 4 நிறைவு</h2>
+    <h2>Module 4 complete</h2>
     <ul>
-      <li><strong>தரவுக்கு வடிவம் உண்டு.</strong> Objects தொடர்புடைய மதிப்புகளுக்குப் பெயரிடுகின்றன; arrays அவற்றை வரிசையாக வைத்திருக்கின்றன.</li>
-      <li><strong>சிறிய functions இணைந்து வேலை செய்கின்றன.</strong> Pure <code>calculate</code> மற்றும் event wiring ஒரு பெரிய script-ஐவிடப் பிழைத்திருத்த எளிது.</li>
-      <li><strong>நீங்கள் ஒரு interactive கருவியை உருவாக்கியுள்ளீர்கள்.</strong> எண்கள் உள்ளே செல்கின்றன, logic இயங்குகிறது, display update ஆகிறது. தொகுதி 5 DOM layer-ஐ விரிவாக விளக்குகிறது.</li>
+      <li><strong>Data-க்கு shape உண்டு.</strong> Objects தொடர்புடைய values-க்குப் பெயரிடும்; arrays அவற்றை order-ல வைத்திருக்கும்.</li>
+      <li><strong>சின்ன functions compose ஆகும்.</strong> Pure <code>calculate</code> மற்றும் event wiring ஒரு பெரிய script-ஐ விட debug பண்ண எளிது.</li>
+      <li><strong>நீங்கள் ஒரு interactive tool build பண்ணீங்க.</strong> Numbers உள்ளே போகும், logic run ஆகும், display update ஆகும். Module 5 DOM layer-ஐ ஆழமா விளக்கும்.</li>
     </ul>
   </div>
 </article>
