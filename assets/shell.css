@@ -908,6 +908,13 @@ html[lang="ta"] .brand__name {
   line-height: 1.25;
 }
 
+html[lang="ta"] .lesson h1,
+html[lang="ta"] .lesson h2,
+html[lang="ta"] .map-hero h1,
+html[lang="ta"] .map-section h2 {
+  overflow-wrap: anywhere;
+}
+
 html[lang="ta"] .lesson h1 { line-height: 1.15; }
 html[lang="ta"] .lesson h2 { line-height: 1.3; }
 
