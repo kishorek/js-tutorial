@@ -1,0 +1,273 @@
+<article class="lesson" id="lesson-1-1" data-lesson="1-1">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 01 · HTML: பக்கத்தின் எலும்புக்கூடு</p>
+    <h1>உங்கள் முதல் பக்கம்</h1>
+    <p class="lesson-lede">பூஜ்யத்திலிருந்து ஒரு முழு இணையப் பக்கத்தை எழுதுங்கள், அதை உலாவியில் திறந்து பாருங்கள், ஆய்வு செய்யுங்கள், ஒவ்வொரு வரியையும் விளக்குங்கள். முந்தைய கோட் அனுபவம் தேவையில்லை, காப்பி-பேஸ்ட் இல்லை.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 1.1</span>
+      <span class="chip">75–90 நிமிடம்</span>
+      <span class="chip">தொடக்கநிலை</span>
+      <span class="chip">முன்தேவை இல்லை</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>இறுதியில் நீங்கள் செய்யக்கூடியவை</h3>
+        <ul>
+          <li>HTML, CSS, JavaScript ஒவ்வொன்றும் என்ன செய்கிறது என்பதை விளக்குங்கள்.</li>
+          <li>நினைவில் இருந்து சரியான HTML5 எலும்புக்கூட்டை எழுதுங்கள்.</li>
+          <li>தலைப்புகள், பத்திகள், strong, மற்றும் emphasis ஆகியவற்றைப் பயன்படுத்தி உரையைக் கட்டமைக்கவும்.</li>
+          <li>ஒரு சிறிய “என்னைப் பற்றி” பக்கத்தை உருவாக்கி ஆய்வு செய்யுங்கள்.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>உங்களுக்குத் தேவை</h3>
+        <ul>
+          <li>ஒரு உலாவி மற்றும் ஒரு உரை எடிட்டர்.</li>
+          <li>உங்கள் கோப்புகளுக்கு ஒரு கோப்புறை.</li>
+          <li>ஊகங்களை எழுத ஒரு பேனா மற்றும் காகிதம்.</li>
+          <li>தட்டச்சு செய்யவும் தவறுகள் செய்யவும் தயாராக இருக்க வேண்டும்.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>மூன்று மொழிகள், ஒரு பக்கம்</h2>
+  <p>ஒரு வீட்டை நினைத்துப் பாருங்கள். சட்டகம், சுவர்கள், அறைகளின் பெயர்கள் என்ன இருக்க வேண்டும், எங்கே இருக்க வேண்டும் என்பதை முடிவு செய்கின்றன. வண்ணப்பூச்சும் தளவாடங்களும் அது எப்படித் தோன்றும் என்பதை முடிவு செய்கின்றன. மின் இணைப்பு, சுவிட்சை இயக்கும்போது என்ன பதிலளிக்கும் என்பதை முடிவு செய்கிறது.</p>
+  <p>ஒரு இணையப் பக்கத்திலும் இதே மூன்று அடுக்குகள் உள்ளன:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">மொழி</th><th scope="col">அதன் வேலை</th><th scope="col">அது இல்லாவிட்டால்</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>HTML</strong></td><td>கட்டமைப்பும் பொருளும்: ஒவ்வொரு உள்ளடக்கமும் <em>என்ன</em> என்பதைத் தெரிவிக்கிறது.</td><td>வரிசைப்படுத்தப்படாத, வடிவமைப்பில்லாத உரைக் குவியல்.</td></tr>
+        <tr><td><strong>CSS</strong></td><td>தோற்றம்: நிறம், எழுத்துரு, இடைவெளி, அமைப்பு, அனிமேஷன்.</td><td>படிக்கக்கூடியதாக இருக்கும், ஆனால் 1995-ஆம் ஆண்டு ஆவணம் போலத் தோன்றும்.</td></tr>
+        <tr><td><strong>JavaScript</strong></td><td>நடத்தை: கிளிக்குகளுக்குப் பதிலளிப்பது, உள்ளீட்டைச் சரிபார்ப்பது, தரவை எடுப்பது, பக்கத்தைப் புதுப்பிப்பது.</td><td>படிக்கவும் பார்க்கவும் நன்றாக இருக்கும், ஆனால் நிலையானது.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>நாங்கள் வேண்டுமென்றே HTML-இல் தொடங்குகிறோம். அழுகிய சட்டகத்தின் மேல் கட்டிய அழகான வீடும் அழுகிய வீடுதான். கட்டமைப்பு சரியாகிவிட்டால், CSS எளிதாக இருக்கும்; JavaScript-க்கு மாற்றுவதற்கு உறுதியான ஒன்று இருக்கும்.</p>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">பொருள் சார்ந்த HTML</span>
+    <p>உறுப்புகளை அவற்றின் இயல்பான தோற்றத்திற்காக அல்ல, பொருளுக்காகத் தேர்ந்தெடுங்கள். ஒரு தலைப்பு பெரியதாக இருப்பதால் அல்ல, ஒரு பகுதியைத் தொடங்குவதால் தலைப்பு ஆகிறது. திரை வாசிப்பான்கள், தேடுபொறிகள், எதிர்காலத்தில் நீங்களே—எல்லாரும் அந்தப் பொருளையே நம்பியிருக்கிறார்கள்.</p>
+  </div>
+
+  <h2>ஒவ்வொரு பக்கத்திற்கும் தேவையான எலும்புக்கூடு</h2>
+  <p>ஒவ்வொரு HTML5 பக்கமும் ஒரே வெளிப்புற ஓட்டுடன் தொடங்குகிறது. இது விரல்களுக்குப் பழக்கமாகும் வரை இதைத் தட்டச்சு செய்யுங்கள்.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My First Page</title>
+</head>
+<body>
+  <h1>Hello, world!</h1>
+  <p>This is my first webpage.</p>
+</body>
+</html></script>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">பகுதி</th><th scope="col">அது என்ன செய்கிறது</th><th scope="col">ஏன் முக்கியம்</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>நவீன தரநிலை முறையைப் பயன்படுத்துமாறு உலாவிக்குச் சொல்கிறது.</td><td>இது இல்லாவிட்டால், உலாவிகள் பக்கத்தை 1999-இல் இருப்பது போலக் காட்டலாம்.</td></tr>
+        <tr><td><code>&lt;html lang="en"&gt;</code></td><td>மூல உறுப்பு மற்றும் பக்கத்தின் மொழி.</td><td>திரை வாசிப்பான்கள் உள்ளடக்கத்தைச் சரியாக உச்சரிக்கும்.</td></tr>
+        <tr><td><code>&lt;head&gt;</code></td><td>பக்கத்தைப் <em>பற்றிய</em> தகவல்.</td><td>head-இல் உள்ள எதுவும் பக்கத்தின் body-இல் தெரியாது.</td></tr>
+        <tr><td><code>&lt;meta charset="UTF-8"&gt;</code></td><td>எழுத்து குறியாக்கம்.</td><td>உச்சரிப்புக் குறிகளும் சின்னங்களும் குப்பையாக மாறுவதைத் தடுக்கிறது.</td></tr>
+        <tr><td><code>&lt;meta name="viewport" …&gt;</code></td><td>மொபைல் பக்க அளவீடு.</td><td>இது இல்லாவிட்டால், போன்களில் பக்கம் மிகச் சிறியதாகத் தெரியும்.</td></tr>
+        <tr><td><code>&lt;title&gt;</code></td><td>உலாவி தாவல் உரை.</td><td>தாவல்கள், புக்மார்க்குகள், தேடல் முடிவுகளில் பயன்படுகிறது.</td></tr>
+        <tr><td><code>&lt;body&gt;</code></td><td>பார்வையாளர் பார்க்கக்கூடிய அனைத்தும்.</td><td>தலைப்புகள், படங்கள், பொத்தான்கள், footer-கள் இங்கே இருக்கும்.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">நினைவு உதவி</span>
+    <p><strong>Head = மேடைக்குப் பின்னால். Body = மேடை.</strong> பார்வையாளர் பார்க்க வேண்டியது body-இல் போடுங்கள். உலாவிக்கான தகவலாக இருந்தால் head-இல் போடுங்கள்.</p>
+  </div>
+
+  <h2>டேக்குகள், எலிமெண்ட்கள், அட்டிரிபியூட்டுகள்</h2>
+  <p>பெரும்பாலான எலிமெண்ட்களுக்கு மூன்று பகுதிகள் உண்டு: தொடக்க டேக், உள்ளடக்கம், முடிவு டேக்.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><p class="intro">Hello, world!</p></script>
+  </div>
+
+  <ul>
+    <li><strong>தொடக்க டேக்:</strong> <code>&lt;p class="intro"&gt;</code> எலிமெண்ட்டைத் தொடங்குகிறது.</li>
+    <li><strong>அட்டிரிபியூட்:</strong> <code>class="intro"</code> தொடக்க டேக்கின் உள்ளிருந்து எலிமெண்ட்டை அமைக்கிறது.</li>
+    <li><strong>உள்ளடக்கம்:</strong> <code>Hello, world!</code> என்பது பத்தியில் உள்ளது.</li>
+    <li><strong>முடிவு டேக்:</strong> <code>&lt;/p&gt;</code> எலிமெண்ட்டை முடிக்கிறது.</li>
+  </ul>
+
+  <p>டேக்குகளை உள்ளிருந்து வெளியே மூடுங்கள். கடைசியாகத் திறந்த டேக்தான் முதலில் மூடப்பட வேண்டும். <code>&lt;p&gt;&lt;strong&gt;Hi&lt;/strong&gt;&lt;/p&gt;</code> சரி. <code>&lt;p&gt;&lt;strong&gt;Hi&lt;/p&gt;&lt;/strong&gt;</code> தவறு.</p>
+  <p>சில எலிமெண்ட்களுக்கு உள்ளடக்கமும் இல்லை, முடிவு டேக்கும் இல்லை: <code>&lt;meta&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>. இவற்றை <strong>வாயிட் எலிமெண்ட்கள்</strong> என்கிறார்கள்.</p>
+
+  <h2>தலைப்புகளும் பத்திகளும்</h2>
+  <p>தலைப்புகள் ஒரு அவுட்லைன்; எழுத்துரு அளவுகளின் பட்டியல் அல்ல. பக்கத்தின் முக்கிய தலைப்புக்கு <code>&lt;h1&gt;</code>-ஐ ஒருமுறை மட்டும் பயன்படுத்துங்கள்; பெரிய பகுதிகளுக்கு <code>&lt;h2&gt;</code>, துணைப்பகுதிகளுக்கு <code>&lt;h3&gt;</code>.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><h1>Maya's Learning Log</h1>
+<p>I am learning <strong>HTML</strong> because I want to build <em>my own</em> websites.</p>
+
+<h2>Today's win</h2>
+<p>I wrote my first page from scratch.</p></script>
+  </div>
+
+  <p><code>&lt;strong&gt;</code> <strong>முக்கியத்துவத்தை</strong> குறிக்கிறது. <code>&lt;em&gt;</code> <strong>வலியுறுத்தலைக்</strong> குறிக்கிறது—பேசும்போது அழுத்திச் சொல்லும் வார்த்தை போல. இரண்டும் இயல்பாகத் தோற்றத்தை மாற்றினாலும், அவற்றின் உண்மையான மதிப்பு பொருள்தான். உரையை தடிமனாகவோ சாய்வாகவோ மாற்ற மட்டும் இவற்றைப் பயன்படுத்த வேண்டாம்; அது CSS-இன் வேலை.</p>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">பொதுவான தவறு</span>
+    <p>உலாவிகள் ஒரு அளவு வரை விட்டுவிடும். முடிவு டேக் தவறினால், பாதி பக்கம் மறைந்துவிடலாம் அல்லது தவறான எலிமெண்ட்டுக்குள் அடங்கிவிடலாம். உலாவி ஊகிக்கும்; அந்த ஊகம் பெரும்பாலும் நீங்கள் நினைத்ததாக இருக்காது.</p>
+  </div>
+
+  <h2>நீங்களே முயற்சி செய்யுங்கள்</h2>
+  <p>கீழே உள்ள பக்கத்தைத் திருத்தி, <strong>இயக்கு</strong> பொத்தானை அழுத்துங்கள். இயக்குவதற்கு முன் ஒவ்வொரு மாற்றமும் என்ன செய்யும் என்று ஊகியுங்கள்.</p>
+
+  <div class="editor" data-editor>
+    <div class="editor__bar">
+      <span class="editor__label">index.html</span>
+      <div class="editor__actions">
+        <button type="button" class="btn btn--small" data-action="run">இயக்கு</button>
+        <button type="button" class="btn btn--ghost btn--small" data-action="reset">மீட்டமை</button>
+        <button type="button" class="btn btn--ghost btn--small" data-action="copy">நகலெடு</button>
+      </div>
+    </div>
+    <div class="editor__grid">
+      <label class="visually-hidden" for="demo-1-1">HTML கோட் எடிட்டர்</label>
+      <textarea id="demo-1-1" class="editor__code" spellcheck="false"></textarea>
+      <div class="editor__preview">
+        <div class="editor__preview-bar">நேரடி முன்னோட்டம்</div>
+        <iframe title="உங்கள் HTML-இன் நேரடி முன்னோட்டம்" sandbox=""></iframe>
+      </div>
+    </div>
+    <p class="editor__status" aria-live="polite" data-status>முன்னோட்டம் ஏற்றப்பட்டது. கோடைத் திருத்தி, பிறகு இயக்கு பொத்தானை அழுத்துங்கள்.</p>
+    <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My First Page</title>
+</head>
+<body>
+  <h1>Hello, world!</h1>
+  <p>This is my first webpage.</p>
+</body>
+</html></script>
+  </div>
+
+  <ol>
+    <li><code>h1</code>-ஐ உங்கள் பெயராக மாற்றுங்கள்.</li>
+    <li>பத்தியை உங்களைப் பற்றிய உண்மையான ஒன்றால் மாற்றுங்கள்.</li>
+    <li>ஒரு <code>h2</code> சேர்த்து, அது <em>நான் இதை ஏன் கற்கிறேன்</em> என்று சொல்லட்டும்; அதன் பிறகு புதிய <code>p</code> ஒன்றைச் சேர்க்கவும்.</li>
+    <li>ஒரு வார்த்தையை <code>&lt;strong&gt;</code>-க்குள்ளும் மற்றொன்றை <code>&lt;em&gt;</code>-க்குள்ளும் வைக்கவும்.</li>
+    <li><code>title</code>-ஐ மாற்றி, முன்னோட்டத்தில் தாவல் லேபிள் எப்படி மாறுகிறது என்று பாருங்கள்.</li>
+  </ol>
+
+  <div class="practice" data-practice data-min="60">
+    <div class="practice__head">
+      <span class="kicker">பயிற்சி · 20 நிமிடம்</span>
+      <h2>உருவாக்குங்கள்: என்னைப் பற்றி</h2>
+    </div>
+    <p>ஒரு <code>h1</code>, <code>strong</code> மற்றும் <code>em</code> உள்ள அறிமுகப் பத்தி, <code>h2</code> ஒன்று <em>நான் என்ன கற்கிறேன்</em> என்று சொல்லட்டும், இரண்டாவது பத்தி, மற்றும் <code>footer</code> ஒன்று <em>வாரம் 1-இல் உருவாக்கப்பட்டது</em> என்று சொல்லட்டும்—இவற்றுடன் சரியான பக்கத்தை உருவாக்குங்கள்.</p>
+    <label class="visually-hidden" for="practice-1-1">உங்கள் பயிற்சிக் கோட்</label>
+    <textarea class="practice__code" id="practice-1-1" data-attempt spellcheck="false" placeholder="உங்கள் HTML-ஐ இங்கே தட்டச்சு செய்யுங்கள்..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Maya Chen</title>
+</head>
+<body>
+  <h1>Maya Chen</h1>
+  <p>I am a designer and a complete beginner at code.
+  I am learning <strong>HTML</strong> so I can build
+  <em>my own</em> ideas instead of waiting for someone
+  else to build them.</p>
+
+  <h2>What I'm learning</h2>
+  <p>Right now I am learning how to structure a page with
+  headings, paragraphs, and semantic elements.</p>
+
+  <footer>
+    <p>Built in Week 1.</p>
+  </footer>
+</body>
+</html></script>
+  </div>
+
+  <h2>உங்களைச் சரிபாருங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>title ஏன் body-இல் அல்லாமல் head-இல் இருக்க வேண்டும்?</summary>
+      <p>title முழுப் பக்கத்தையும் உலாவிக்கும், புக்மார்க்குகளுக்கும், தேடல் முடிவுகளுக்கும் விவரிக்கிறது. அது மெட்டாடேட்டா; பக்கத்தில் தெரியும் உள்ளடக்கம் அல்ல. தெரியும் உள்ளடக்கம் body-இல் இருக்க வேண்டும்.</p>
+    </details>
+    <details class="qa">
+      <summary>எலிமெண்ட் மற்றும் டேக்—இரண்டுக்கும் என்ன வித்தியாசம்?</summary>
+      <p>ஒரு டேக் என்பது கோண அடைப்புக்குறிக்குள் இருக்கும் ஒரு லேபிள். ஒரு எலிமெண்ட் என்பது முழு அலகு: தொடக்க டேக், உள்ளடக்கம், முடிவு டேக். அட்டிரிபியூட்டுகள் தொடக்க டேக்கின் உள்ளே இருக்கும் அமைப்புகள்.</p>
+    </details>
+  </div>
+
+  <div class="quiz" data-quiz>
+    <form>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="body பார்வையாளர் பார்க்கக்கூடிய அனைத்தையும் கொண்டுள்ளது.">
+        <legend><span class="quiz__num">01</span> எந்த எலிமெண்ட் பார்வையாளருக்குத் தெரியும் பக்க உள்ளடக்கத்தைக் கொண்டுள்ளது?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span><code>&lt;head&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="b"><span><code>&lt;title&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="c"><span><code>&lt;body&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="d"><span><code>&lt;!DOCTYPE html&gt;</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="title எலிமெண்ட் உலாவி தாவலில் தெரியும் உரையைக் கட்டுப்படுத்துகிறது.">
+        <legend><span class="quiz__num">02</span> உலாவி தாவல் உரையை அமைப்பது எந்த எலிமெண்ட்?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span><code>&lt;h1&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q2" value="b"><span><code>&lt;title&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q2" value="c"><span><code>&lt;meta charset="UTF-8"&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q2" value="d"><span><code>&lt;body&gt;</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="strong எலிமெண்ட் பத்திக்குள்ளே தொடங்குகிறது, எனவே பத்தி மூடுவதற்கு முன் அது மூடப்பட வேண்டும்.">
+        <legend><span class="quiz__num">03</span> எந்தத் துண்டில் எலிமெண்ட்கள் சரியாக அடுக்கப்பட்டுள்ளன?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span><code>&lt;p&gt;&lt;strong&gt;Hi&lt;/strong&gt;&lt;/p&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="b"><span><code>&lt;p&gt;&lt;strong&gt;Hi&lt;/p&gt;&lt;/strong&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="c"><span><code>&lt;p&gt;&lt;strong&gt;Hi&lt;/p&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="d"><span><code>&lt;strong&gt;&lt;p&gt;Hi&lt;/strong&gt;&lt;/p&gt;</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <div class="quiz__actions">
+        <button type="submit" class="btn">விடைகளைச் சரிபார்</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>வினாடி வினாவை மீட்டமை</button>
+        <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
+      </div>
+    </form>
+  </div>
+
+  <div class="recap">
+    <h2>நினைவில் வைக்க வேண்டியவை</h2>
+    <ul>
+      <li><strong>HTML என்பது கட்டமைப்பும் பொருளும்.</strong> CSS தோற்றம். JavaScript நடத்தை.</li>
+      <li><strong>எலும்புக்கூடு:</strong> doctype → html → head + body.</li>
+      <li><strong>டேக்குகளை உள்ளிருந்து வெளியே மூடுங்கள்.</strong> கடைசியாகத் திறந்தது முதலில் மூடப்படும்.</li>
+      <li><strong>ஒரு பக்கத்திற்கு ஒரு h1.</strong> தலைப்புகள் அவுட்லைன்; CSS தோற்ற அளவுக்கானது.</li>
+      <li><strong>Head மேடைக்குப் பின்னால்; body மேடை.</strong></li>
+    </ul>
+  </div>
+</article>

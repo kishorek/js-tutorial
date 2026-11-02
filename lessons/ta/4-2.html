@@ -1,0 +1,211 @@
+<article class="lesson" id="lesson-4-2" data-lesson="4-2">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 04 · JavaScript அடிப்படைகள்</p>
+    <h1>நிபந்தனைகள் மற்றும் தர்க்கம்</h1>
+    <p class="lesson-lede">நிரல்கள் தேர்வு செய்ய வேண்டும். JavaScript ஒப்பீடுகளை எப்படி முடிவுகளாக மாற்றுகிறது, truthiness ஒவ்வொரு நிபந்தனையையும் எப்படி அமைதியாக வடிவமைக்கிறது, எப்போது ternary அல்லது switch ஒரு if குவியலைவிட code-ஐத் தெளிவாக வைக்கிறது என்பதைக் கற்றுக்கொள்ளுங்கள்.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 4.2</span>
+      <span class="chip">60–75 நிமிடங்கள்</span>
+      <span class="chip">தொடக்கநிலை</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>இறுதியில் நீங்கள் செய்யக்கூடியவை</h3>
+        <ul>
+          <li><code>if</code>, <code>else if</code> மற்றும் <code>else</code> branches எழுத முடியும்.</li>
+          <li>சரியான operator கொண்டு மதிப்புகளை ஒப்பிட முடியும்.</li>
+          <li><code>&amp;&amp;</code>, <code>||</code> மற்றும் <code>!</code> கொண்டு நிபந்தனைகளை இணைக்க முடியும்.</li>
+          <li>Ternary-க்கும் <code>switch</code>-க்கும் இடையே தேர்ந்தெடுக்க முடியும்.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>உங்களுக்குத் தேவையானவை</h3>
+        <ul>
+          <li>பாடம் 4.1-இன் மாறிகள் மற்றும் வகைகள்.</li>
+          <li>நீங்கள் தட்டச்சு செய்யக்கூடிய console.</li>
+          <li>சோதிக்கச் சில மதிப்புகள்.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>if கொண்டு முடிவெடுத்தல்</h2>
+  <p><code>if</code> statement அதன் நிபந்தனை true ஆக இருக்கும்போது மட்டும் ஒரு block-ஐ இயக்கும். JavaScript branches-ஐ மேலிருந்து கீழாகச் சரிபார்த்து, முதலில் பொருந்துவதை இயக்கும்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const temperature = 18;
+if (temperature > 25) {
+  console.log("Wear shorts.");
+} else if (temperature > 15) {
+  console.log("A light jacket is enough.");
+} else {
+  console.log("Bring a coat.");
+}</script>
+  </div>
+  <p>ஒரே ஒரு branch மட்டும் இயங்கும். ஒரு நிபந்தனை true ஆனதும் மீதமுள்ளவை தவிர்க்கப்படும்; அவையும் true ஆக இருந்தாலும். அதனால்தான் வரிசை முக்கியம்: மிகக் குறிப்பிட்ட நிலையை முதலில் வையுங்கள்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const score = 95;
+if (score >= 90) {
+  console.log("A");
+} else if (score >= 80) {
+  console.log("B");
+} else if (score >= 70) {
+  console.log("C");
+} else {
+  console.log("Keep practising.");
+}</script>
+  </div>
+  <h3>ஒப்பீட்டு operators</h3>
+  <p>நிபந்தனைகள் ஒப்பீடுகளால் உருவாகின்றன. ஒவ்வொன்றும் ஒரு boolean-ஐத் தரும்: <code>true</code> அல்லது <code>false</code>.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Operator</th><th scope="col">பொருள்</th><th scope="col">எடுத்துக்காட்டு</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>===</code></td><td>மதிப்பும் வகையும் சமம்</td><td><code>5 === 5</code> என்பது true</td></tr>
+        <tr><td><code>!==</code></td><td>மதிப்பும் வகையும் சமமில்லை</td><td><code>5 !== "5"</code> என்பது true</td></tr>
+        <tr><td><code>&gt;</code></td><td>பெரியது</td><td><code>9 &gt; 4</code> என்பது true</td></tr>
+        <tr><td><code>&lt;</code></td><td>சிறியது</td><td><code>2 &lt; 1</code> என்பது false</td></tr>
+        <tr><td><code>&gt;=</code></td><td>பெரியது அல்லது சமம்</td><td><code>4 &gt;= 4</code> என்பது true</td></tr>
+        <tr><td><code>&lt;=</code></td><td>சிறியது அல்லது சமம்</td><td><code>3 &lt;= 5</code> என்பது true</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>ஒப்பீடுகள் strings-லும் வேலை செய்கின்றன; ஆனால் அவை பொருளை அல்ல, character codes-ஐ ஒப்பிடுகின்றன. <code>"apple" &lt; "banana"</code> அகரவரிசையால் true; ஆனால் <code>"10" &lt; "9"</code> true, ஏனெனில் <code>"1"</code> என்ற எழுத்து <code>"9"</code>-க்கு முன் வருகிறது. எண்களைக் குறிக்கும்போது numbers ஆக மாற்றுங்கள்.</p>
+  <h2>நிபந்தனைகளை இணைத்தல்</h2>
+  <p>மூன்று logical operators நிபந்தனைகளை இணைக்க அல்லது மாற்ற உதவுகின்றன.</p>
+  <ul>
+    <li><code>&amp;&amp;</code> (AND) இரு பக்கமும் true ஆக இருந்தால் மட்டும் true.</li>
+    <li><code>||</code> (OR) குறைந்தது ஒரு பக்கம் true ஆக இருந்தால் true.</li>
+    <li><code>!</code> (NOT) ஒரு boolean-ஐத் தலைகீழாக்கும்.</li>
+  </ul>
+  <div class="code-block" data-code>
+<script type="text/plain">const age = 20;
+const hasTicket = true;
+const isBanned = false;
+if (age >= 18 && hasTicket && !isBanned) {
+  console.log("Enter.");
+} else {
+  console.log("Stay outside.");
+}
+const isWeekend = false;
+const isHoliday = true;
+if (isWeekend || isHoliday) {
+  console.log("The office is closed.");
+}</script>
+  </div>
+  <p>AND-ன் இரு பக்கமும் true ஆக இருக்க வேண்டும்; எனவே false மதிப்பு கிடைத்தவுடன் JavaScript சரிபார்ப்பதை நிறுத்தும். OR-ல் true மதிப்பு கிடைத்தவுடன் நிறுத்தும். இதை <strong>short-circuit evaluation</strong> என்கிறார்கள். இது பயனுள்ளது; ஆனால் side effects-ஐ நிபந்தனைகளுக்குள் மறைக்க வேண்டாம்.</p>
+  <div class="callout callout--warn">
+    <span class="callout__label">Assignment ஒப்பீடு அல்ல</span>
+    <p>ஒரு <code>=</code> ஒரு மதிப்பைச் சேமிக்கிறது. மூன்று <code>===</code> இரு மதிப்புகளை ஒப்பிடுகிறது. <code>if (score = 10)</code> என்று எழுதினால் <code>10</code> ஒப்படைக்கப்படும்; நிபந்தனை எப்போதும் true. பெரும்பாலான எடிட்டர்கள் இதைப் பற்றி எச்சரிக்கும்; அந்த எச்சரிக்கையைக் கவனத்தில் கொள்ளுங்கள்.</p>
+  </div>
+  <h3>Truthiness</h3>
+  <p>நிபந்தனைகளுக்கு boolean கட்டாயம் இல்லை. JavaScript எந்த மதிப்பையும் true அல்லது false ஆக மாற்றும். Falsy மதிப்புகள் சில மட்டுமே; அவற்றை நினைவில் வைத்துக்கொள்வது மதிப்புள்ளது.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">// All of these are falsy:
+console.log(Boolean(false));     // false
+console.log(Boolean(0));         // false
+console.log(Boolean(""));        // false
+console.log(Boolean(null));      // false
+console.log(Boolean(undefined)); // false
+console.log(Boolean(NaN));       // false
+// Almost everything else is truthy:
+console.log(Boolean("0"));       // true
+console.log(Boolean([]));        // true
+console.log(Boolean({}));        // true</script>
+  </div>
+  <p>காலி string falsy; ஆனால் <code>"0"</code> என்ற string truthy. காலி array-யும் truthy; இது பல தொடக்கநிலையாளர்களை ஆச்சரியப்படுத்தும். வித்தியாசம் முக்கியமானபோது வெளிப்படையான ஒப்பீடுகளைப் பயன்படுத்துங்கள்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const name = "";
+if (name) {
+  console.log(`Hello, ${name}.`);
+} else {
+  console.log("Please enter a name.");
+}
+const count = 0;
+// Wrong for zero: this reports no count.
+if (count) {
+  console.log("Count is set.");
+}
+// Right: check for the value you mean.
+if (count !== undefined) {
+  console.log(`Count is ${count}.`);
+}</script>
+  </div>
+  <h2>Ternary மற்றும் switch</h2>
+  <p>இரு மதிப்புகளில் ஒன்றைத் தேர்ந்தெடுக்க வேண்டியபோது ternary expression சுருக்கமாக இருக்கும். இதை "condition ? true ஆகும்போது மதிப்பு : false ஆகும்போது மதிப்பு" என்று படியுங்கள்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const isMember = true;
+const price = isMember ? 8 : 12;
+console.log(`Ticket: $${price}`);
+const age = 16;
+const label = age >= 18 ? "adult" : "minor";
+console.log(label);</script>
+  </div>
+  <p>இரு மதிப்புகளுக்கு இடையே ஒரே தேர்வுக்கு ternary பயன்படுத்துங்கள். பல branches தேவைப்பட்டால் அல்லது expressions நீளமானால், அதற்குப் பதிலாக <code>if</code> அல்லது <code>switch</code> பயன்படுத்துங்கள்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const day = "Sat";
+switch (day) {
+  case "Sat":
+  case "Sun":
+    console.log("Weekend");
+    break;
+  case "Mon":
+    console.log("Start of the week");
+    break;
+  default:
+    console.log("Weekday");
+}</script>
+  </div>
+  <p><code>switch</code> strict equality கொண்டு ஒப்பிடுகிறது. <code>break</code> சேர்க்காத வரை ஒவ்வொரு <code>case</code>-ம் அடுத்ததற்குத் தொடரும். <code>"Sat"</code> மற்றும் <code>"Sun"</code> ஆகியவற்றைச் சேர்ப்பது வேலை செய்கிறது, ஏனெனில் முதல் case-ல் இரண்டாவதற்கு முன் statement எதுவும் இல்லை.</p>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">பயிற்சி · 20 நிமிடங்கள்</span>
+      <h2>சினிமா டிக்கெட்டுக்கு விலை வையுங்கள்</h2>
+    </div>
+    <p>வயதையும் membership boolean-ஐயும் அறிவிக்கவும். <code>if</code>/<code>else if</code>/<code>else</code> கொண்டு டிக்கெட் விலையை அமைக்கவும்: 13-க்குக் கீழ் $5, 18-க்குக் கீழ் $8, மற்ற அனைவரும் $12. Members-க்கு $2 தள்ளுபடி. Customer வகையையும் இறுதி விலையையும் குறிப்பிடும் ஒரு வாக்கியத்தை template literal கொண்டு log செய்யுங்கள்.</p>
+    <label class="visually-hidden" for="practice-4-2">உங்கள் பயிற்சிக் குறியீடு</label>
+    <textarea class="practice__code" id="practice-4-2" data-attempt spellcheck="false" placeholder="உங்கள் JavaScript-ஐ இங்கே தட்டச்சு செய்யுங்கள்..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+<script type="text/plain" data-answer>const age = 15;
+const isMember = true;
+let price;
+
+if (age < 13) {
+  price = 5;
+} else if (age < 18) {
+  price = 8;
+} else {
+  price = 12;
+}
+
+if (isMember) {
+  price = price - 2;
+}
+
+const customer = isMember ? "member" : "guest";
+console.log(`A ${customer} aged ${age} pays $${price}.`);</script>
+  </section>
+  <h2>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>String பூஜ்ஜியம் போலத் தெரிந்தாலும் <code>if ("0")</code> ஏன் இயங்குகிறது?</summary>
+      <p>Truthiness மதிப்பைப் பற்றியது, உரையைப் பற்றியது அல்ல. Falsy ஆக இருக்கும் ஒரே string காலி string <code>""</code> மட்டுமே. பூஜ்ஜிய எழுத்து உள்ள string காலியானது அல்ல; எனவே அது truthy. பூஜ்ஜியத்தைக் காலியாகக் கருத வேண்டியபோது வெளிப்படையாக ஒப்பிடுங்கள்.</p>
+    </details>
+    <details class="qa">
+      <summary>எப்போது <code>if</code>-க்குப் பதிலாக <code>switch</code> பயன்படுத்த வேண்டும்?</summary>
+      <p>ஒரு மதிப்பைப் பல சரியான சாத்தியங்களுடன் ஒப்பிடும்போது, ஒவ்வொரு branch-ம் சுருக்கமாக இருந்தால் <code>switch</code> பயன்படுத்துங்கள். நிபந்தனைகளில் ranges, பல மாறிகள் அல்லது logical operators இருந்தால் <code>if</code> பயன்படுத்துங்கள்.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>நினைவில் கொள்ள வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <ul>
+      <li><strong>Branches வரிசையாக இயங்கும்.</strong> முதல் true நிபந்தனையே வெல்லும்; எனவே குறிப்பிட்ட நிலைகளை முதலில் வையுங்கள்.</li>
+      <li><strong><code>===</code> மற்றும் வெளிப்படையான சரிபார்ப்புகளைப் பயன்படுத்துங்கள்.</strong> Truthiness வசதியானது; ஆனால் பூஜ்ஜியமும் காலி மதிப்புகளும் தவறாக வழிநடத்தலாம்.</li>
+      <li><strong>வேலைக்கு ஏற்ற syntax-ஐத் தேர்ந்தெடுங்கள்.</strong> ஒரு தேர்வுக்கு ternary, தர்க்கத்திற்கு <code>if</code>, சரியான பொருத்தங்களுக்கு <code>switch</code>.</li>
+    </ul>
+  </div>
+</article>

@@ -3,25 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A hands-on 27-lesson course that teaches HTML, CSS, and JavaScript by building real websites.">
+  <meta name="description" content="A hands-on, bilingual (English/Tamil) 27-lesson course that teaches HTML, CSS, and JavaScript by building real websites.">
   <meta name="theme-color" content="#f7f2e7">
   <title>The Web Builder's Field Guide — HTML, CSS &amp; JavaScript</title>
   <link rel="stylesheet" href="assets/course.css">
   <link rel="stylesheet" href="assets/shell.css">
   <script defer src="assets/course-data.js"></script>
+  <script defer src="assets/course-ta.js"></script>
+  <script defer src="assets/lesson-notes.js"></script>
   <script defer src="assets/course.js"></script>
 </head>
 <body id="top">
-  <a class="skip-link" href="#view" data-skip>Skip to lesson</a>
+  <a class="skip-link" href="#view" data-skip data-i18n="skip">Skip to lesson</a>
 
   <header class="app-topbar">
-    <button class="menu-toggle" type="button" aria-label="Open course menu" aria-expanded="false" aria-controls="course-menu">
+    <button class="menu-toggle" type="button" aria-label="Open course menu" aria-expanded="false" data-i18n-aria="openMenu" aria-controls="course-menu">
       <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
         <path d="M2 4h14M2 9h14M2 14h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
       </svg>
     </button>
 
-    <a class="brand" href="#/map" aria-label="The Web Builder's Field Guide, back to course map">
+    <a class="brand" href="#/map" aria-label="The Web Builder's Field Guide, back to course map" data-i18n-aria="brandHome">
       <span class="brand__mark" aria-hidden="true">&lt;/&gt;</span>
       <span>
         <span class="brand__name">The Web Builder's Field Guide</span>
@@ -29,38 +31,43 @@
       </span>
     </a>
 
-    <nav class="app-topbar__nav" aria-label="Course">
-      <a href="#/map" data-route-link="map">Course map</a>
-      <a href="#/lesson/1-1">Start Lesson 1.1</a>
+    <nav class="app-topbar__nav" aria-label="Course" data-i18n-aria="courseNav">
+      <a href="#/map" data-route-link="map" data-i18n="courseMap">Course map</a>
+      <a href="#/lesson/1-1" data-i18n="startLesson">Start Lesson 1.1</a>
       <a href="https://github.com/kishorek/js-tutorial" target="_blank" rel="noopener">GitHub</a>
     </nav>
 
+    <div class="lang-switch" role="group" aria-label="Language" data-i18n-aria="language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="ta" aria-pressed="false">தமிழ்</button>
+    </div>
+
     <div class="app-progress">
       <div class="app-progress__row">
-        <span>Progress</span>
+        <span data-i18n="progress">Progress</span>
         <span data-top-progress-text>0 / 27</span>
       </div>
-      <progress class="bar" max="100" value="0" data-top-progress-bar aria-label="Course progress">0%</progress>
+      <progress class="bar" max="100" value="0" data-top-progress-bar aria-label="Course progress" data-i18n-aria="courseProgress">0%</progress>
     </div>
   </header>
 
-  <button class="drawer-overlay" type="button" tabindex="-1" aria-label="Close course menu"></button>
+  <button class="drawer-overlay" type="button" tabindex="-1" aria-label="Close course menu" data-i18n-aria="closeMenu"></button>
 
   <div class="app-shell">
-    <aside class="course-menu" id="course-menu" aria-label="Course menu">
+    <aside class="course-menu" id="course-menu" aria-label="Course menu" data-i18n-aria="courseMenu">
       <div class="course-menu__head">
-        <button class="menu-close" type="button" aria-label="Close course menu">×</button>
-        <h2 class="course-menu__title">Course menu</h2>
-        <p class="course-menu__meta">27 lessons · 7 projects</p>
-        <a class="menu-map-link" href="#/map" data-route-link="map">Course map →</a>
+        <button class="menu-close" type="button" aria-label="Close course menu" data-i18n-aria="closeMenu">×</button>
+        <h2 class="course-menu__title" data-i18n="courseMenu">Course menu</h2>
+        <p class="course-menu__meta" data-i18n="lessonsProjects">27 lessons · 7 projects</p>
+        <a class="menu-map-link" href="#/map" data-route-link="map" data-i18n="courseMapLink">Course map →</a>
       </div>
 
       <div class="menu-progress">
         <div class="menu-progress__row">
-          <span>Progress</span>
+          <span data-i18n="progress">Progress</span>
           <span data-menu-progress-text>0 of 27 complete</span>
         </div>
-        <progress class="bar" max="100" value="0" data-menu-progress-bar aria-label="Course progress">0%</progress>
+        <progress class="bar" max="100" value="0" data-menu-progress-bar aria-label="Course progress" data-i18n-aria="courseProgress">0%</progress>
       </div>
 
       <div class="menu-filter">
@@ -68,14 +75,14 @@
           <circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.5"/>
           <path d="M10.4 10.4 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        <label class="sr-only" for="lesson-filter">Filter lessons</label>
-        <input type="search" id="lesson-filter" placeholder="Filter lessons…" autocomplete="off">
+        <label class="sr-only" for="lesson-filter" data-i18n="filterAria">Filter lessons</label>
+        <input type="search" id="lesson-filter" placeholder="Filter lessons…" autocomplete="off" data-i18n-placeholder="filterPlaceholder">
       </div>
 
-      <nav class="menu-modules" id="menu-modules" aria-label="Modules"></nav>
+      <nav class="menu-modules" id="menu-modules" aria-label="Modules" data-i18n-aria="modules"></nav>
 
       <div class="course-menu__foot">
-        <button class="menu-reset" type="button" data-reset-progress>Reset progress</button>
+        <button class="menu-reset" type="button" data-reset-progress data-i18n="resetProgress">Reset progress</button>
       </div>
     </aside>
 
@@ -96,8 +103,8 @@
 
   <footer class="app-footer">
     <div class="app-footer__inner">
-      <span><strong>The Web Builder's Field Guide</strong> · 27 lessons · 7 projects</span>
-      <span><a href="#/map">Course map</a> · <a href="#/lesson/1-1">Start here</a> · <a href="https://github.com/kishorek/js-tutorial" target="_blank" rel="noopener">GitHub</a></span>
+      <span><strong>The Web Builder's Field Guide</strong> · <span data-i18n="footerCount">27 lessons · 7 projects</span></span>
+      <span><a href="#/map" data-i18n="courseMap">Course map</a> · <a href="#/lesson/1-1" data-i18n="startHere">Start here</a> · <a href="https://github.com/kishorek/js-tutorial" target="_blank" rel="noopener">GitHub</a></span>
     </div>
   </footer>
 </body>

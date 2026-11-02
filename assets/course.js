@@ -25,6 +25,316 @@
     });
   });
 
+
+  var I18N = {
+    en: {
+      skip: "Skip to lesson",
+      openMenu: "Open course menu",
+      closeMenu: "Close course menu",
+      brandHome: "The Web Builder's Field Guide, back to course map",
+      courseNav: "Course",
+      courseMap: "Course map",
+      startLesson: "Start Lesson 1.1",
+      startHere: "Start here",
+      progress: "Progress",
+      courseProgress: "Course progress",
+      modules: "Modules",
+      courseMenu: "Course menu",
+      lessonsProjects: "27 lessons · 7 projects",
+      courseMapLink: "Course map →",
+      filterPlaceholder: "Filter lessons…",
+      filterAria: "Filter lessons",
+      resetProgress: "Reset progress",
+      language: "Language",
+      inThisLesson: "In this lesson",
+      whyMatters: "Why this matters",
+      whereUse: "Where you'll use it",
+      analogy: "Analogy",
+      modelAnswer: "Model answer",
+      attemptFirst: "Make an attempt first. Then the model answer unlocks.",
+      answerUnlocked: "Answer unlocked. Try running yours first.",
+      addCharacters: "Add {n} more characters to unlock the answer.",
+      answerRevealed: "Model answer revealed. Compare it with your attempt.",
+      correct: "Correct.",
+      notQuite: "Not quite.",
+      answerAll: "Answer all questions first.",
+      correctCount: "{pct}% correct.",
+      cleanSweep: "Clean sweep.",
+      tryAgain: "Read the explanations and try again.",
+      loadingLesson: "Loading the lesson…",
+      couldNotLoad: "Could not load",
+      lessonDidNotArrive: "The lesson did not arrive.",
+      errorFetch: "The lesson file could not be fetched. Check your connection and try again.",
+      mapFetchError: "The course map could not be fetched. Check your connection and try again.",
+      fileNote: " This course loads lessons over HTTP. Run python3 -m http.server in the course folder, then open http://localhost:8000.",
+      tryAgainButton: "Try again",
+      courseMapButton: "Course map",
+      mapTitle: "Course map",
+      mapCaption: "7 modules · 27 lessons · 7 projects. Times assume 7–9 focused hours per week.",
+      moduleTime: "Module & time",
+      objectives: "Objectives",
+      prerequisites: "Prerequisites",
+      projectExit: "Project & exit",
+      lessons: "Lessons",
+      exitLabel: "Exit:",
+      resetConfirm: "Reset all lesson progress?",
+      lesson: "Lesson",
+      doneTitle: "Done with this lesson?",
+      doneText: "Mark it complete to update your course progress. You can undo it at any time.",
+      markComplete: "Mark lesson complete",
+      completed: "Completed ✓",
+      previous: "Previous",
+      next: "Next",
+      course: "Course",
+      finish: "Finish",
+      backToMap: "Back to the course map",
+      returnToMap: "Return to the course map",
+      menuProgress: "{done} of {total} complete",
+      footerCount: "27 lessons · 7 projects",
+      previewUpdated: "Preview updated at {time}.",
+      previewReset: "Reset to the starter code.",
+      copy: "Copy",
+      copied: "Copied",
+      selectCopy: "Select + copy",
+      copyCodeAria: "Copy this code example",
+      selectCode: "Select code"
+    },
+    ta: {
+      skip: "பாடத்திற்குச் செல்",
+      openMenu: "பாடப் பட்டியலைத் திற",
+      closeMenu: "பாடப் பட்டியலை மூடு",
+      brandHome: "The Web Builder's Field Guide, பாட வரைபடத்திற்குத் திரும்பு",
+      courseNav: "பாடம்",
+      courseMap: "பாட வரைபடம்",
+      startLesson: "பாடம் 1.1 தொடங்கு",
+      startHere: "இங்கே தொடங்கு",
+      progress: "முன்னேற்றம்",
+      courseProgress: "பாட முன்னேற்றம்",
+      modules: "தொகுதிகள்",
+      courseMenu: "பாடப் பட்டியல்",
+      lessonsProjects: "27 பாடங்கள் · 7 திட்டங்கள்",
+      courseMapLink: "பாட வரைபடம் →",
+      filterPlaceholder: "பாடங்களை வடிகட்டு…",
+      filterAria: "பாடங்களை வடிகட்டு",
+      resetProgress: "முன்னேற்றத்தை மீட்டமை",
+      language: "மொழி",
+      inThisLesson: "இந்தப் பாடத்தில்",
+      whyMatters: "ஏன் முக்கியம்",
+      whereUse: "எங்கே பயன்படும்",
+      analogy: "ஒப்புமை",
+      modelAnswer: "மாதிரி விடை",
+      attemptFirst: "முதலில் முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.",
+      answerUnlocked: "விடை திறந்துவிட்டது. முதலில் உங்கள் குறியீட்டை இயக்கிப் பாருங்கள்.",
+      addCharacters: "விடையைத் திறக்க மேலும் {n} எழுத்துகள் எழுதுங்கள்.",
+      answerRevealed: "மாதிரி விடை காட்டப்பட்டது. உங்கள் முயற்சியுடன் ஒப்பிடுங்கள்.",
+      correct: "சரி.",
+      notQuite: "சரியில்லை.",
+      answerAll: "முதலில் எல்லா கேள்விகளுக்கும் பதில் அளியுங்கள்.",
+      correctCount: "{pct}% சரி.",
+      cleanSweep: "முழு வெற்றி.",
+      tryAgain: "விளக்கங்களைப் படித்து மீண்டும் முயற்சி செய்யுங்கள்.",
+      loadingLesson: "பாடம் ஏற்றப்படுகிறது…",
+      couldNotLoad: "ஏற்ற முடியவில்லை",
+      lessonDidNotArrive: "பாடம் வரவில்லை.",
+      errorFetch: "பாடக் கோப்பைப் பெற முடியவில்லை. இணையத்தைச் சரிபார்த்து மீண்டும் முயற்சி செய்யுங்கள்.",
+      mapFetchError: "பாட வரைபடத்தைப் பெற முடியவில்லை. இணையத்தைச் சரிபார்த்து மீண்டும் முயற்சி செய்யுங்கள்.",
+      fileNote: " இந்தப் பாடம் HTTP வழியாகப் பாடங்களை ஏற்றுகிறது. பாடக் கோப்புறையில் python3 -m http.server இயக்கி, http://localhost:8000 திறக்கவும்.",
+      tryAgainButton: "மீண்டும் முயற்சி",
+      courseMapButton: "பாட வரைபடம்",
+      mapTitle: "பாட வரைபடம்",
+      mapCaption: "7 தொகுதிகள் · 27 பாடங்கள் · 7 திட்டங்கள். வாரத்திற்கு 7–9 மணி நேரம் கணக்கிடப்பட்டது.",
+      moduleTime: "தொகுதி & நேரம்",
+      objectives: "கற்றுக்கொள்வது",
+      prerequisites: "முன்தேவைகள்",
+      projectExit: "திட்டம் & நிறைவு",
+      lessons: "பாடங்கள்",
+      exitLabel: "நிறைவு:",
+      resetConfirm: "எல்லா பாட முன்னேற்றத்தையும் மீட்டமைக்கவா?",
+      lesson: "பாடம்",
+      doneTitle: "இந்தப் பாடம் முடிந்ததா?",
+      doneText: "முடிந்ததாகக் குறியிட்டால் உங்கள் முன்னேற்றம் புதுப்பிக்கப்படும். எப்போது வேண்டுமானாலும் மீண்டும் மாற்றலாம்.",
+      markComplete: "பாடத்தை முடிந்ததாகக் குறி",
+      completed: "முடிந்தது ✓",
+      previous: "முந்தைய",
+      next: "அடுத்து",
+      course: "பாடம்",
+      finish: "நிறைவு",
+      backToMap: "பாட வரைபடத்திற்குத் திரும்பு",
+      returnToMap: "பாட வரைபடத்திற்குத் திரும்பு",
+      menuProgress: "{done} / {total} முடிந்தது",
+      footerCount: "27 பாடங்கள் · 7 திட்டங்கள்",
+      previewUpdated: "முன்னோட்டம் {time}க்கு புதுப்பிக்கப்பட்டது.",
+      previewReset: "தொடக்கக் குறியீட்டுக்கு மீட்டமைக்கப்பட்டது.",
+      copy: "நகலெடு",
+      copied: "நகலெடுக்கப்பட்டது",
+      selectCopy: "தேர்ந்தெடுத்து நகலெடு",
+      copyCodeAria: "இந்தக் குறியீட்டு எடுத்துக்காட்டை நகலெடு",
+      selectCode: "குறியீட்டைத் தேர்ந்தெடு"
+    }
+  };
+
+  var LANG_KEY = 'field-guide-lang-v1';
+  var lang = loadLanguage();
+  var COURSE_TA = window.COURSE_TA || null;
+  var LESSON_NOTES = window.LESSON_NOTES || {};
+  var taModuleById = {};
+  var taLessonById = {};
+
+  if (COURSE_TA) {
+    COURSE_TA.modules.forEach(function (module) {
+      taModuleById[module.id] = module;
+      module.lessons.forEach(function (lesson) {
+        taLessonById[lesson.id] = lesson;
+      });
+    });
+  }
+
+  function loadLanguage() {
+    try {
+      return localStorage.getItem(LANG_KEY) === 'ta' ? 'ta' : 'en';
+    } catch (error) {
+      return 'en';
+    }
+  }
+
+  function saveLanguage() {
+    try {
+      localStorage.setItem(LANG_KEY, lang);
+    } catch (error) {
+      return;
+    }
+  }
+
+  function t(key, vars) {
+    var table = I18N[lang] || I18N.en;
+    var text = table[key] !== undefined ? table[key] : (I18N.en[key] !== undefined ? I18N.en[key] : key);
+    if (vars) {
+      Object.keys(vars).forEach(function (name) {
+        text = text.replace(new RegExp('\\{' + name + '\\}', 'g'), String(vars[name]));
+      });
+    }
+    return text;
+  }
+
+  function localizedModule(module) {
+    if (lang !== 'ta') {
+      return module;
+    }
+    var ta = taModuleById[module.id];
+    if (!ta) {
+      return module;
+    }
+    return Object.assign({}, module, {
+      title: ta.title || module.title,
+      weeks: ta.weeks || module.weeks,
+      hours: ta.hours || module.hours,
+      goals: ta.goals || module.goals,
+      prereq: ta.prereq || module.prereq,
+      project: ta.project || module.project,
+      exit: ta.exit || module.exit
+    });
+  }
+
+  function localizedLesson(lesson) {
+    if (lang !== 'ta') {
+      return lesson;
+    }
+    var ta = taLessonById[lesson.id];
+    return ta && ta.title ? Object.assign({}, lesson, { title: ta.title }) : lesson;
+  }
+
+  function courseTitle() {
+    return lang === 'ta' && COURSE_TA && COURSE_TA.title ? COURSE_TA.title : COURSE.title;
+  }
+
+  function lessonPath(id) {
+    return (lang === 'ta' ? 'lessons/ta/' : 'lessons/') + id + '.html';
+  }
+
+  function mapPath() {
+    return lang === 'ta' ? 'views/ta/map.html' : 'views/map.html';
+  }
+
+  function applyStaticTranslations() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function (element) {
+      element.textContent = t(element.dataset.i18n);
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (element) {
+      element.setAttribute('placeholder', t(element.dataset.i18nPlaceholder));
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (element) {
+      element.setAttribute('aria-label', t(element.dataset.i18nAria));
+    });
+    document.querySelectorAll('[data-lang]').forEach(function (button) {
+      button.setAttribute('aria-pressed', String(button.dataset.lang === lang));
+    });
+    if (menuToggle) {
+      menuToggle.setAttribute('aria-label', t(body.classList.contains('menu-open') ? 'closeMenu' : 'openMenu'));
+    }
+  }
+
+  function setLanguage(next) {
+    next = next === 'ta' ? 'ta' : 'en';
+    if (next === lang) {
+      return;
+    }
+    lang = next;
+    saveLanguage();
+    applyStaticTranslations();
+    buildMenu();
+    updateProgressUI();
+    var parsed = parseRoute();
+    if (parsed && parsed.type === 'map') {
+      loadMap();
+    } else if (parsed && parsed.type === 'lesson') {
+      loadLesson(parsed.id);
+    } else {
+      route();
+    }
+  }
+
+  function injectLessonNotes(root, lesson) {
+    var data = LESSON_NOTES[lesson.id];
+    if (!data) {
+      return;
+    }
+    var note = data[lang] || data.en;
+    if (!note) {
+      return;
+    }
+    var article = root.querySelector('article.lesson');
+    if (!article) {
+      return;
+    }
+    var wrap = document.createElement('div');
+    wrap.className = 'lesson-notes';
+    wrap.setAttribute('aria-label', t('whyMatters') + ', ' + t('whereUse') + ', ' + t('analogy'));
+    [['why', 'whyMatters'], ['where', 'whereUse'], ['analogy', 'analogy']].forEach(function (item) {
+      var card = document.createElement('div');
+      card.className = 'lesson-note';
+      var label = document.createElement('span');
+      label.className = 'lesson-note__label';
+      label.textContent = t(item[1]);
+      var copy = document.createElement('p');
+      copy.textContent = note[item[0]] || '';
+      card.appendChild(label);
+      card.appendChild(copy);
+      wrap.appendChild(card);
+    });
+    var brief = article.querySelector('.brief');
+    if (brief) {
+      brief.insertAdjacentElement('afterend', wrap);
+    } else {
+      var head = article.querySelector('.lesson-head');
+      if (head) {
+        head.appendChild(wrap);
+      } else {
+        article.insertBefore(wrap, article.firstChild);
+      }
+    }
+  }
+
   var STORAGE_KEY = 'field-guide-completed-v2';
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var completed = loadCompleted();
@@ -45,7 +355,6 @@
   var menuBar = document.querySelector('[data-menu-progress-bar]');
   var menuText = document.querySelector('[data-menu-progress-text]');
   var resetButton = document.querySelector('[data-reset-progress]');
-  var mapLinks = Array.from(document.querySelectorAll('[data-route-link="map"]'));
 
   function loadCompleted() {
     try {
@@ -65,7 +374,11 @@
   }
 
   function buildMenu() {
+    menuModules.textContent = '';
+    menuMeta = [];
+    openModules.clear();
     COURSE.modules.forEach(function (module) {
+      var display = localizedModule(module);
       var section = document.createElement('section');
       section.className = 'menu-module';
 
@@ -80,7 +393,7 @@
 
       var title = document.createElement('span');
       title.className = 'menu-module__title';
-      title.textContent = module.title;
+      title.textContent = display.title;
 
       var done = document.createElement('span');
       done.className = 'menu-module__done';
@@ -105,12 +418,13 @@
       var links = [];
 
       module.lessons.forEach(function (lesson) {
+        var displayLesson = localizedLesson(lesson);
         var item = document.createElement('li');
         var link = document.createElement('a');
         link.className = 'menu-lesson';
         link.href = '#/lesson/' + lesson.id;
         link.dataset.lesson = lesson.id;
-        link.dataset.search = (lesson.num + ' ' + lesson.title + ' ' + module.title).toLowerCase();
+        link.dataset.search = (lesson.num + ' ' + displayLesson.title + ' ' + display.title).toLowerCase();
         if (lesson.project) {
           link.classList.add('is-project');
         }
@@ -121,7 +435,7 @@
 
         var lessonTitle = document.createElement('span');
         lessonTitle.className = 'menu-lesson__title';
-        lessonTitle.textContent = lesson.title;
+        lessonTitle.textContent = displayLesson.title;
 
         var check = document.createElement('span');
         check.className = 'menu-lesson__check';
@@ -211,7 +525,7 @@
       });
     });
     openModuleFor(lessonId);
-    mapLinks.forEach(function (link) {
+    document.querySelectorAll('[data-route-link="map"]').forEach(function (link) {
       link.removeAttribute('aria-current');
     });
   }
@@ -222,7 +536,7 @@
         link.removeAttribute('aria-current');
       });
     });
-    mapLinks.forEach(function (link) {
+    document.querySelectorAll('[data-route-link="map"]').forEach(function (link) {
       link.setAttribute('aria-current', 'page');
     });
   }
@@ -244,7 +558,7 @@
       menuBar.textContent = pct + '%';
     }
     if (menuText) {
-      menuText.textContent = count + ' of ' + total + ' complete';
+      menuText.textContent = t('menuProgress', { done: count, total: total });
     }
 
     menuMeta.forEach(function (entry) {
@@ -263,7 +577,7 @@
     if (finishButton) {
       var isDone = completed.has(finishButton.dataset.complete);
       finishButton.classList.toggle('is-complete', isDone);
-      finishButton.textContent = isDone ? 'Completed ✓' : 'Mark lesson complete';
+      finishButton.textContent = isDone ? t('completed') : t('markComplete');
       finishButton.setAttribute('aria-pressed', String(isDone));
     }
   }
@@ -307,13 +621,14 @@
 
       var initial = code.value;
       var timer;
+      code.setAttribute('lang', 'en');
       frame.setAttribute('sandbox', 'allow-scripts');
 
       function render(message) {
         frame.srcdoc = code.value;
         if (status) {
           var time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-          status.textContent = message || 'Preview updated at ' + time + '.';
+          status.textContent = message || t('previewUpdated', { time: time });
         }
       }
 
@@ -327,12 +642,12 @@
             frame.srcdoc = initial;
             code.dispatchEvent(new Event('input', { bubbles: true }));
             if (status) {
-              status.textContent = 'Reset to the starter code.';
+              status.textContent = t('previewReset');
             }
           } else if (action === 'copy') {
             var ok = await copyText(code.value);
             var original = button.textContent;
-            button.textContent = ok ? 'Copied' : 'Select + copy';
+            button.textContent = ok ? t('copied') : t('selectCopy');
             clearTimeout(timer);
             timer = setTimeout(function () {
               button.textContent = original;
@@ -379,13 +694,13 @@
         var ready = changed && enough;
         reveal.disabled = !ready || revealed;
         if (revealed) {
-          note.textContent = 'Model answer revealed. Compare it with your attempt.';
+          note.textContent = t('answerRevealed');
         } else if (ready) {
-          note.textContent = 'Answer unlocked. Try running yours first.';
+          note.textContent = t('answerUnlocked');
         } else if (!changed) {
-          note.textContent = 'Make an attempt first. Then the model answer unlocks.';
+          note.textContent = t('attemptFirst');
         } else {
-          note.textContent = 'Add ' + Math.max(0, minimum - attempt.value.trim().length) + ' more characters to unlock the answer.';
+          note.textContent = t('addCharacters', { n: Math.max(0, minimum - attempt.value.trim().length) });
         }
       }
 
@@ -395,8 +710,9 @@
         if (answer && !solution.querySelector('pre')) {
           var label = document.createElement('p');
           label.className = 'practice__solution-label';
-          label.textContent = 'Model answer';
+          label.textContent = t('modelAnswer');
           var pre = document.createElement('pre');
+          pre.setAttribute('lang', 'en');
           var code = document.createElement('code');
           code.textContent = normalizeCode(answer.textContent);
           pre.appendChild(code);
@@ -462,14 +778,14 @@
 
           if (feedback) {
             feedback.hidden = false;
-            feedback.textContent = (isCorrect ? 'Correct. ' : 'Not quite. ') + (question.dataset.explanation || '');
+            feedback.textContent = (isCorrect ? t('correct') : t('notQuite')) + ' ' + (question.dataset.explanation || '');
             feedback.classList.toggle('is-bad', !isCorrect);
           }
         });
 
         result.hidden = false;
         if (firstUnanswered) {
-          result.textContent = 'Answer all questions first.';
+          result.textContent = t('answerAll');
           firstUnanswered.scrollIntoView({
             behavior: reduceMotion ? 'auto' : 'smooth',
             block: 'center'
@@ -478,8 +794,9 @@
         }
 
         var pct = Math.round((correct / questions.length) * 100);
-        result.innerHTML = '<strong>' + correct + ' / ' + questions.length + '</strong> correct — ' + pct + '%. ' +
-          (correct === questions.length ? 'Clean sweep.' : 'Read the explanations and try again.');
+        result.innerHTML = '<strong>' + correct + ' / ' + questions.length + '</strong> ' +
+          t('correctCount', { pct: pct }) + ' ' +
+          (correct === questions.length ? t('cleanSweep') : t('tryAgain'));
       });
 
       if (reset) {
@@ -507,6 +824,7 @@
         return;
       }
       var pre = document.createElement('pre');
+      pre.setAttribute('lang', 'en');
       var code = document.createElement('code');
       code.textContent = normalizeCode(script.textContent);
       pre.appendChild(code);
@@ -525,13 +843,13 @@
     var button = document.createElement('button');
     button.type = 'button';
     button.className = 'copy-btn';
-    button.textContent = 'Copy';
-    button.setAttribute('aria-label', 'Copy this code example');
+    button.textContent = t('copy');
+    button.setAttribute('aria-label', t('copyCodeAria'));
     button.addEventListener('click', async function () {
       var ok = await copyText(code.textContent);
-      button.textContent = ok ? 'Copied' : 'Select code';
+      button.textContent = ok ? t('copied') : t('selectCode');
       setTimeout(function () {
-        button.textContent = 'Copy';
+        button.textContent = t('copy');
       }, 1600);
     });
     pre.appendChild(button);
@@ -582,10 +900,10 @@
     }
     var nav = document.createElement('nav');
     nav.className = 'lesson-toc';
-    nav.setAttribute('aria-label', 'In this lesson');
+    nav.setAttribute('aria-label', t('inThisLesson'));
     var label = document.createElement('p');
     label.className = 'lesson-toc__label';
-    label.textContent = 'In this lesson';
+    label.textContent = t('inThisLesson');
     nav.appendChild(label);
     var list = document.createElement('ol');
     headings.forEach(function (heading, index) {
@@ -626,11 +944,11 @@
     var copy = document.createElement('div');
     var kicker = document.createElement('p');
     kicker.className = 'kicker';
-    kicker.textContent = 'Lesson ' + lesson.num;
+    kicker.textContent = t('lesson') + ' ' + lesson.num;
     var title = document.createElement('h2');
-    title.textContent = 'Done with this lesson?';
+    title.textContent = t('doneTitle');
     var text = document.createElement('p');
-    text.textContent = 'Mark it complete to update your course progress. You can undo it at any time.';
+    text.textContent = t('doneText');
     copy.appendChild(kicker);
     copy.appendChild(title);
     copy.appendChild(text);
@@ -640,7 +958,7 @@
     button.className = 'btn complete-btn';
     button.dataset.complete = lesson.id;
     button.setAttribute('aria-pressed', String(completed.has(lesson.id)));
-    button.textContent = completed.has(lesson.id) ? 'Completed ✓' : 'Mark lesson complete';
+    button.textContent = completed.has(lesson.id) ? t('completed') : t('markComplete');
     if (completed.has(lesson.id)) {
       button.classList.add('is-complete');
     }
@@ -673,12 +991,13 @@
     if (previous) {
       var prevLink = document.createElement('a');
       prevLink.href = '#/lesson/' + previous.id;
-      prevLink.innerHTML = '<span>Previous</span><strong>' + previous.num + ' · ' + previous.title + '</strong>';
+      var prevDisplay = localizedLesson(previous);
+      prevLink.innerHTML = '<span>' + t('previous') + '</span><strong>' + prevDisplay.num + ' · ' + prevDisplay.title + '</strong>';
       nav.appendChild(prevLink);
     } else {
       var mapLink = document.createElement('a');
       mapLink.href = '#/map';
-      mapLink.innerHTML = '<span>Course</span><strong>Back to the course map</strong>';
+      mapLink.innerHTML = '<span>' + t('course') + '</span><strong>' + t('backToMap') + '</strong>';
       nav.appendChild(mapLink);
     }
 
@@ -686,13 +1005,14 @@
       var nextLink = document.createElement('a');
       nextLink.className = 'next';
       nextLink.href = '#/lesson/' + next.id;
-      nextLink.innerHTML = '<span>Next</span><strong>' + next.num + ' · ' + next.title + '</strong>';
+      var nextDisplay = localizedLesson(next);
+      nextLink.innerHTML = '<span>' + t('next') + '</span><strong>' + nextDisplay.num + ' · ' + nextDisplay.title + '</strong>';
       nav.appendChild(nextLink);
     } else {
       var finishLink = document.createElement('a');
       finishLink.className = 'next';
       finishLink.href = '#/map';
-      finishLink.innerHTML = '<span>Finish</span><strong>Return to the course map</strong>';
+      finishLink.innerHTML = '<span>' + t('finish') + '</span><strong>' + t('returnToMap') + '</strong>';
       nav.appendChild(finishLink);
     }
 
@@ -705,6 +1025,7 @@
     runPractices(root);
     runQuizzes(root);
     addCopyButtons(root);
+    injectLessonNotes(root, lesson);
     buildToc(root);
     appendCompletion(root, lesson);
     appendLessonNav(root, lesson);
@@ -725,42 +1046,41 @@
     if (!container) {
       return;
     }
-    var rows = COURSE.modules.map(function (module) {
+    var rows = COURSE.modules.map(function (rawModule) {
+      var module = localizedModule(rawModule);
       var goals = module.goals.map(function (goal) {
         return '<li>' + goal + '</li>';
       }).join('');
-      var lessons = module.lessons.map(function (lesson) {
+      var lessons = module.lessons.map(function (rawLesson) {
+        var lesson = localizedLesson(rawLesson);
         return '<a class="map-lesson-link" href="#/lesson/' + lesson.id + '"><span>' + lesson.num + '</span>' + lesson.title + '</a>';
       }).join('');
       return '<tr>' +
-        '<td data-label="Module & time"><span class="map-module-name">' + module.id + ' · ' + module.title + '</span><span class="map-module-time">' + module.weeks + ' · ' + module.hours + '</span></td>' +
-        '<td data-label="Objectives"><ul class="tight">' + goals + '</ul></td>' +
-        '<td data-label="Prerequisites">' + module.prereq + '</td>' +
-        '<td data-label="Project & exit">' + module.project + '<br><span class="mod-time">Exit: ' + module.exit + '</span></td>' +
-        '<td data-label="Lessons">' + lessons + '</td>' +
+        '<td data-label="' + t('moduleTime') + '"><span class="map-module-name">' + module.id + ' · ' + module.title + '</span><span class="map-module-time">' + module.weeks + ' · ' + module.hours + '</span></td>' +
+        '<td data-label="' + t('objectives') + '"><ul class="tight">' + goals + '</ul></td>' +
+        '<td data-label="' + t('prerequisites') + '">' + module.prereq + '</td>' +
+        '<td data-label="' + t('projectExit') + '">' + module.project + '<br><span class="mod-time">' + t('exitLabel') + ' ' + module.exit + '</span></td>' +
+        '<td data-label="' + t('lessons') + '">' + lessons + '</td>' +
         '</tr>';
     }).join('');
 
     container.innerHTML = '<div class="table-wrap"><table class="table--stack map-table">' +
-      '<caption>7 modules · 27 lessons · 7 projects. Times assume 7–9 focused hours per week.</caption>' +
-      '<thead><tr><th scope="col">Module &amp; time</th><th scope="col">Objectives</th><th scope="col">Prerequisites</th><th scope="col">Project &amp; exit</th><th scope="col">Lessons</th></tr></thead>' +
+      '<caption>' + t('mapCaption') + '</caption>' +
+      '<thead><tr><th scope="col">' + t('moduleTime') + '</th><th scope="col">' + t('objectives') + '</th><th scope="col">' + t('prerequisites') + '</th><th scope="col">' + t('projectExit') + '</th><th scope="col">' + t('lessons') + '</th></tr></thead>' +
       '<tbody>' + rows + '</tbody></table></div>';
   }
 
   function showLoading() {
     view.innerHTML = '<div class="view-loading" role="status" aria-live="polite">' +
-      '<p>Loading the lesson…</p><div class="view-loading__bar"><span></span></div></div>';
+      '<p>' + t('loadingLesson') + '</p><div class="view-loading__bar"><span></span></div></div>';
   }
 
   function showError(message) {
-    var fileNote = '';
-    if (location.protocol === 'file:') {
-      fileNote = ' This course loads lessons over HTTP. Run python3 -m http.server in the course folder, then open http://localhost:8000.';
-    }
-    view.innerHTML = '<div class="view-error"><p class="eyebrow">Could not load</p>' +
-      '<h1>The lesson did not arrive.</h1><p data-error-message></p>' +
-      '<p><button class="btn" type="button" data-retry>Try again</button> ' +
-      '<a class="btn btn--ghost" href="#/map">Course map</a></p></div>';
+    var fileNote = location.protocol === 'file:' ? t('fileNote') : '';
+    view.innerHTML = '<div class="view-error"><p class="eyebrow">' + t('couldNotLoad') + '</p>' +
+      '<h1>' + t('lessonDidNotArrive') + '</h1><p data-error-message></p>' +
+      '<p><button class="btn" type="button" data-retry>' + t('tryAgainButton') + '</button> ' +
+      '<a class="btn btn--ghost" href="#/map">' + t('courseMapButton') + '</a></p></div>';
     var messageNode = view.querySelector('[data-error-message]');
     if (messageNode) {
       messageNode.textContent = message + fileNote;
@@ -798,7 +1118,7 @@
     }
     showLoading();
     try {
-      var response = await fetch('lessons/' + lessonId + '.html', { cache: 'no-cache' });
+      var response = await fetch(lessonPath(lessonId), { cache: 'no-cache' });
       if (!response.ok) {
         throw new Error('HTTP ' + response.status);
       }
@@ -807,7 +1127,8 @@
         return;
       }
       view.innerHTML = html;
-      document.title = lesson.num + ' · ' + lesson.title + ' — ' + COURSE.title;
+      var display = localizedLesson(lesson);
+      document.title = display.num + ' · ' + display.title + ' — ' + courseTitle();
       initLesson(view, lesson);
       scrollTop();
       focusHeading(view);
@@ -816,7 +1137,7 @@
       if (token !== renderToken) {
         return;
       }
-      showError('The lesson file could not be fetched. Check your connection and try again.' + (error && error.message ? ' (' + error.message + ')' : ''));
+      showError(t('errorFetch') + (error && error.message ? ' (' + error.message + ')' : ''));
     }
   }
 
@@ -829,7 +1150,7 @@
     }
     showLoading();
     try {
-      var response = await fetch('views/map.html', { cache: 'no-cache' });
+      var response = await fetch(mapPath(), { cache: 'no-cache' });
       if (!response.ok) {
         throw new Error('HTTP ' + response.status);
       }
@@ -838,7 +1159,7 @@
         return;
       }
       view.innerHTML = html;
-      document.title = 'Course map — ' + COURSE.title;
+      document.title = t('mapTitle') + ' — ' + courseTitle();
       initMap(view);
       scrollTop();
       focusHeading(view);
@@ -847,7 +1168,7 @@
       if (token !== renderToken) {
         return;
       }
-      showError('The course map could not be fetched. Check your connection and try again.' + (error && error.message ? ' (' + error.message + ')' : ''));
+      showError(t('mapFetchError') + (error && error.message ? ' (' + error.message + ')' : ''));
     }
   }
 
@@ -879,7 +1200,7 @@
   function openMenu() {
     body.classList.add('menu-open');
     menuToggle.setAttribute('aria-expanded', 'true');
-    menuToggle.setAttribute('aria-label', 'Close course menu');
+    menuToggle.setAttribute('aria-label', t('closeMenu'));
     menu.scrollTop = 0;
     var focusable = menu.querySelector('a, button, input');
     if (focusable) {
@@ -893,7 +1214,7 @@
     }
     body.classList.remove('menu-open');
     menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.setAttribute('aria-label', 'Open course menu');
+    menuToggle.setAttribute('aria-label', t('openMenu'));
     if (returnFocus !== false) {
       menuToggle.focus();
     }
@@ -927,6 +1248,12 @@
         closeMenu(true);
       });
     }
+
+    document.querySelectorAll('[data-lang]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        setLanguage(button.dataset.lang);
+      });
+    });
 
     var skipLink = document.querySelector('[data-skip]');
     if (skipLink) {
@@ -971,7 +1298,7 @@
 
     if (resetButton) {
       resetButton.addEventListener('click', function () {
-        if (!window.confirm('Reset all lesson progress?')) {
+        if (!window.confirm(t('resetConfirm'))) {
           return;
         }
         completed.clear();
@@ -983,6 +1310,8 @@
     window.addEventListener('hashchange', route);
   }
 
+  document.documentElement.lang = lang;
+  applyStaticTranslations();
   buildMenu();
   bindShell();
   updateProgressUI();

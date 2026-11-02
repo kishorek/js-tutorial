@@ -1,0 +1,219 @@
+<article class="lesson" id="lesson-4-4" data-lesson="4-4">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 04 · JavaScript அடிப்படைகள்</p>
+    <h1>Functions மற்றும் scope</h1>
+    <p class="lesson-lede">Functions படிகளின் ஒரு தொகுப்பை, மீண்டும் பயன்படுத்தவும், சோதிக்கவும், பிற இடங்களுக்கு அனுப்பவும் முடிந்த பெயரிடப்பட்ட கருவியாக மாற்றுகின்றன. Parameters, return values, arrow syntax, scope, மேலும் pure function-க்கும் உங்கள் மற்ற code-உடன் மோதும் function-க்கும் உள்ள வித்தியாசத்தைக் கற்றுக்கொள்ளுங்கள்.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 4.4</span>
+      <span class="chip">60–75 நிமிடங்கள்</span>
+      <span class="chip">தொடக்கநிலை</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>இறுதியில் நீங்கள் செய்யக்கூடியவை</h3>
+        <ul>
+          <li>Declarations, expressions மற்றும் arrow functions எழுத முடியும்.</li>
+          <li>Arguments அனுப்பி பயனுள்ள மதிப்பைத் திருப்பித் தர முடியும்.</li>
+          <li>ஒரு function எந்த மாறிகளைப் பார்க்க முடியும் என்று கணிக்க முடியும்.</li>
+          <li>Callbacks பயன்படுத்தி, pure function-ஐ அடையாளம் காண முடியும்.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>உங்களுக்குத் தேவையானவை</h3>
+        <ul>
+          <li>பாடம் 4.3-இன் arrays மற்றும் loop methods.</li>
+          <li>பாடம் 4.2-இன் நிபந்தனைகள்.</li>
+          <li>சிறிய சோதனைகளுக்கான console.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>Functions மீண்டும் பயன்படுத்தக்கூடிய வேலைகளுக்குப் பெயரிடுகின்றன</h2>
+  <p>Function declaration <code>function</code> keyword, ஒரு பெயர், parameter list மற்றும் body-யுடன் தொடங்குகிறது. அதை அறிவிப்பதால் அது இயங்காது. பெயரை parentheses-உடன் call செய்வதன் மூலம் இயக்குவீர்கள்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function greet(name) {
+  return `Hello, ${name}!`;
+}
+const message = greet("Maya");
+console.log(message); // "Hello, Maya!"
+console.log(greet("Sam")); // "Hello, Sam!"</script>
+  </div>
+  <p>Parentheses-க்குள் உள்ள <code>name</code> என்பது <strong>parameter</strong>; ஒரு மதிப்புக்கான இடத்தைக் குறிக்கும். Call செய்யும்போது அனுப்பும் <code>"Maya"</code> போன்ற மதிப்பு <strong>argument</strong>. Function-க்குள் parameter ஒரு சாதாரண மாறி போலவே செயல்படும்.</p>
+  <h2>Parameters மற்றும் return values</h2>
+  <p><code>return</code> ஒரு மதிப்பை call செய்தவருக்குத் திருப்பி அனுப்பி, function-ஐ உடனே நிறுத்தும். Return statement இல்லாவிட்டால் function <code>undefined</code> திருப்பித் தரும்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function add(a, b) {
+  return a + b;
+}
+const result = add(3, 4);
+console.log(result); // 7
+function logSum(a, b) {
+  console.log(a + b);
+}
+const nothing = logSum(1, 2); // prints 3
+console.log(nothing);         // undefined</script>
+  </div>
+  <p>Log செய்வதும் return செய்வதும் வெவ்வேறு வேலைகள். Log செய்யும் function console-ஐப் பார்க்கும் மனிதருக்குப் பயனுள்ளது. Return செய்யும் function நிரலின் மற்ற பகுதிகளுக்குப் பயனுள்ளது; ஏனெனில் மற்றொரு function அந்த முடிவைப் பயன்படுத்தலாம்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function double(number) {
+  return number * 2;
+}
+function addTen(number) {
+  return number + 10;
+}
+console.log(double(addTen(5))); // 30</script>
+  </div>
+  <p><code>return</code>-க்குப் பிறகு உள்ள code ஒருபோதும் இயங்காது. திரும்புவதற்கு முன் ஏதாவது கணக்கிட வேண்டுமானால், அந்த வேலையை முதலில் செய்யுங்கள்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function describeScore(score) {
+  if (score >= 90) {
+    return "Excellent";
+  }
+  if (score >= 70) {
+    return "Passing";
+  }
+  return "Try again";
+}
+console.log(describeScore(95)); // "Excellent"
+console.log(describeScore(75)); // "Passing"
+console.log(describeScore(40)); // "Try again"</script>
+  </div>
+  <h2>Function expressions மற்றும் arrow functions</h2>
+  <p>Function expression ஒரு function-ஐ மாறியில் சேமிக்கிறது. அந்த function பெயரற்றதாக இருக்கலாம்; மற்றொரு method-க்கு அனுப்பும்போது இது பொதுவானது.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const square = function (number) {
+  return number * number;
+};
+console.log(square(4)); // 16</script>
+  </div>
+  <p>Arrow function சுருக்கமான expression syntax. ஒரு parameter இருந்தால் parentheses விருப்பமானது. ஒரே expression இருந்தால் braces-ம் <code>return</code>-ம் விருப்பமானவை.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const cube = (number) => {
+  return number * number * number;
+};
+const double = number => number * 2;
+console.log(cube(2));   // 8
+console.log(double(5)); // 10</script>
+  </div>
+  <p>சிறிய callbacks-க்கு arrow functions சிறந்தவை. <code>this</code>-ஐ அவை கையாளும் விதத்தில் சாதாரண functions-லிருந்து வேறுபடுகின்றன; ஆனால் தொகுதி 5-இல் objects மற்றும் events-உடன் வேலை செய்யும் வரை அந்த வித்தியாசம் தேவைப்படாது.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const prices = [10, 25, 4];
+const withTax = prices.map(price => price * 1.2);
+const cheap = prices.filter(price => price < 20);
+console.log(withTax); // [12, 30, 4.8]
+console.log(cheap);   // [10, 4]</script>
+  </div>
+  <h3>Default values மற்றும் scope</h3>
+  <p>Caller ஒரு argument-ஐ விட்டுவிட்டால், default parameter ஒரு மதிப்பைத் தரும். Defaults function அறிவிக்கப்படும்போது அல்ல, அது இயங்கும்போது மதிப்பிடப்படும்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function makeLabel(text, prefix = "Note") {
+  return `${prefix}: ${text}`;
+}
+console.log(makeLabel("Buy milk"));          // "Note: Buy milk"
+console.log(makeLabel("Buy milk", "Todo"));  // "Todo: Buy milk"
+function total(price, taxRate = 0.2) {
+  return price * (1 + taxRate);
+}
+console.log(total(100));     // 120
+console.log(total(100, 0.1)); // 110</script>
+  </div>
+  <p><strong>Scope</strong> என்பது ஒரு code பகுதி பார்க்கக்கூடிய பெயர்களின் தொகுப்பு. Function-க்குள் அறிவிக்கப்பட்ட மாறி local: அது அந்த call-க்கு மட்டுமே இருக்கும். வெளியே அறிவிக்கப்பட்ட மாறி file-க்கு global; functions-க்குள் தெரியும்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const taxRate = 0.2;
+function withTax(price) {
+  const tax = price * taxRate;
+  return price + tax;
+}
+console.log(withTax(50)); // 60
+// console.log(tax);      // ReferenceError: tax is not defined
+if (true) {
+  const blockOnly = "inside";
+  console.log(blockOnly);
+}
+// console.log(blockOnly); // ReferenceError</script>
+  </div>
+  <p>Loops மற்றும் <code>if</code> blocks-க்குள் உள்ள <code>let</code> மற்றும் <code>const</code>-க்கும் block scope பொருந்தும். Local மாறிகளை விரும்புங்கள்: அவற்றைப் புரிந்துகொள்வது எளிது; தொடர்பில்லாத code அவற்றை மாற்ற முடியாது.</p>
+  <div class="callout callout--warn">
+    <span class="callout__label">தற்செயலான globals-ஐத் தவிர்க்கவும்</span>
+    <p>அறிவிக்கப்படாத பெயருக்கு மதிப்பு வைத்தால், non-strict code-ல் ஒரு global உருவாகும். எப்போதும் <code>const</code> அல்லது <code>let</code> கொண்டு அறிவியுங்கள்; அப்போது typo ஒரு மறைவான மாறியாக இல்லாமல் error ஆகும்.</p>
+  </div>
+  <h3>Pure functions மற்றும் callbacks</h3>
+  <p><strong>Pure function</strong> அதே input-க்கு அதே output-ஐத் திருப்பித் தரும்; தனக்கு வெளியே எதையும் மாற்றாது. Side effects இல்லாமல் மீண்டும் மீண்டும் call செய்ய முடியும் என்பதால் pure functions சோதிக்க எளிது.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function applyTax(price, rate) {
+  return price * (1 + rate);
+}
+console.log(applyTax(100, 0.2)); // 120
+console.log(applyTax(100, 0.2)); // 120
+let total = 0;
+function addToTotal(price) {
+  total = total + price; // impure: changes outside state
+  return total;
+}
+addToTotal(10);
+addToTotal(10);
+console.log(total); // 20</script>
+  </div>
+  <p>Impure functions தடைசெய்யப்படவில்லை. தரவைச் சேமிக்க, பக்கத்தை update செய்ய அல்லது log செய்ய அவை அவசியம். கணக்கீட்டை pure ஆக வைத்து, side effects-ஐ நிரலின் விளிம்புகளுக்குத் தள்ளுவதே வளர்க்க வேண்டிய பழக்கம்.</p>
+  <p><strong>Callback</strong> என்பது மற்றொரு function-க்கு அனுப்பப்படும் function; பிறகு அது call செய்யப்படலாம். பாடம் 4.3-இன் array methods callbacks-ஐப் பயன்படுத்துகின்றன. நீங்களும் சொந்தமாக எழுதலாம்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function repeat(times, action) {
+  for (let i = 0; i < times; i++) {
+    action(i);
+  }
+}
+repeat(3, function (index) {
+  console.log(`Round ${index + 1}`);
+});
+repeat(2, index => console.log(`Short round ${index + 1}`));</script>
+  </div>
+  <p>Function-ஐ ஒரு மதிப்பாக அனுப்புவதே callbacks-ஐ சாத்தியமாக்குகிறது. <code>action</code> parentheses-உடன் call செய்யப்படுகிறது என்பதைக் கவனியுங்கள்; அதற்குப் பதிலாக <code>action()</code> அனுப்பினால் அது உடனே call ஆகி, அதன் முடிவு அனுப்பப்படும்.</p>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">பயிற்சி · 25 நிமிடங்கள்</span>
+      <h2>ஆர்டரின் மொத்தத்தைக் கணக்கிடுங்கள்</h2>
+    </div>
+    <p>விலைகளின் array-ஐயும், <code>0.2</code> என்ற default உள்ள tax rate-ஐயும் ஏற்கும் function எழுதுங்கள். Loop கொண்டு விலைகளைக் கூட்டி, tax-ஐப் பயன்படுத்தி, இறுதி மொத்தத்தைத் திருப்பித் தருங்கள். ஒருமுறை custom rate-உடனும், ஒருமுறை default-உடனும் call செய்து, இரண்டு முடிவுகளையும் இரண்டு தசம இடங்களுடன் log செய்யுங்கள்.</p>
+    <label class="visually-hidden" for="practice-4-4">உங்கள் பயிற்சிக் குறியீடு</label>
+    <textarea class="practice__code" id="practice-4-4" data-attempt spellcheck="false" placeholder="உங்கள் JavaScript-ஐ இங்கே தட்டச்சு செய்யுங்கள்..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+<script type="text/plain" data-answer>function calculateTotal(prices, taxRate = 0.2) {
+  let subtotal = 0;
+
+  for (const price of prices) {
+    subtotal = subtotal + price;
+  }
+
+  const tax = subtotal * taxRate;
+  return subtotal + tax;
+}
+
+const order = [12, 7.5, 25];
+
+console.log(`With 10% tax: $${calculateTotal(order, 0.1).toFixed(2)}`);
+console.log(`With default tax: $${calculateTotal(order).toFixed(2)}`);</script>
+  </section>
+  <h2>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Function-ல் <code>return</code> statement இல்லாவிட்டால் என்ன ஆகும்?</summary>
+      <p>அது <code>undefined</code> திருப்பித் தரும். Function இன்னும் இயங்கும்; உள்ளே log செய்தால் அச்சிடப்படும்; ஆனால் call செய்தவருக்குப் பயனுள்ள மதிப்பு கிடைக்காது. முடிவு வேறு இடத்தில் தேவைப்பட்டால் அதை return செய்யுங்கள்.</p>
+    </details>
+    <details class="qa">
+      <summary>ஒரு function <code>taxRate</code>-ஐப் பார்க்க முடிகிறது, ஆனால் மற்றொரு function-க்குள் அறிவிக்கப்பட்ட மாறியைப் பார்க்க முடியாதது ஏன்?</summary>
+      <p>Scope வெளிநோக்கிப் பார்க்கும், பக்கவாட்டில் அல்ல. ஒரு function சுற்றியுள்ள file-இன் பெயர்களைப் படிக்கலாம்; ஆனால் local மாறி அதை உருவாக்கிய call-க்கு மட்டுமே சொந்தம். ஒவ்வொரு function-ன் உள்ளே இருக்கும் பெயர்கள் தனிப்பட்டவையாகவே இருக்கும்.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>நினைவில் கொள்ள வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <ul>
+      <li><strong>Functions என்பவை inputs-ம் output-ம் கொண்ட பெயரிடப்பட்ட படிகள்.</strong> Parameters arguments-ஐப் பெறுகின்றன; <code>return</code> முடிவைத் திருப்பி அனுப்புகிறது.</li>
+      <li><strong>Scope பெயர்களை local ஆக வைத்திருக்கிறது.</strong> <code>const</code> அல்லது <code>let</code> கொண்டு அறிவியுங்கள்; தேவைப்படும் இடத்தில் மட்டும் வாழும் மாறிகளை விரும்புங்கள்.</li>
+      <li><strong>Pure functions கணிக்கக்கூடியவை.</strong> கணக்கீடுகளை pure ஆக வைத்திருங்கள், மீண்டும் பயன்படுத்தக்கூடிய நடத்தைக்கு callbacks பயன்படுத்துங்கள், side effects-ஐ விளிம்புகளில் நடக்க விடுங்கள்.</li>
+    </ul>
+  </div>
+</article>

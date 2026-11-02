@@ -1,0 +1,179 @@
+<article class="lesson" id="lesson-5-1" data-lesson="5-1">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 05 · DOM &amp; நிகழ்வுகள்</p>
+    <h1>DOM-ஐத் தேர்ந்தெடுத்து மாற்றுவது</h1>
+    <p class="lesson-lede">உங்கள் முன் இருக்கும் பக்கத்தைப் படிக்கவும் மாற்றவும் முடியும்போதுதான் JavaScript பயனுள்ளதாகிறது. DOM என்பது அந்தப் பக்கத்தைப் பொருள்களின் மரமாகக் காண்பது: ஒரு node-ஐத் தேர்ந்தெடுப்பது, அதை மாற்றுவது, புதிதாக ஒன்றை உருவாக்குவது, மீதமுள்ளவற்றைப் பாதிக்காமல் அதை நீக்குவது ஆகியவற்றைக் கற்றுக்கொள்ளுங்கள்.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 5.1</span>
+      <span class="chip">60–75 நிமிடம்</span>
+      <span class="chip">தொடக்கநிலை</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>பாடத்தின் முடிவில், உங்களால் முடியும்</h3>
+        <ul>
+          <li>CSS selectors மூலம் ஒரு element-ஐ அல்லது பல element-களைத் தேர்ந்தெடுக்கலாம்.</li>
+          <li>உரை, classes, styles மற்றும் attributes-ஐப் பாதுகாப்பாக மாற்றலாம்.</li>
+          <li>Elements-ஐ உருவாக்கி, append செய்து, நீக்கலாம்.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>உங்களுக்குத் தேவை</h3>
+        <ul>
+          <li>தொகுதி 1-இல் நீங்கள் உருவாக்கிய About Me பக்கம்.</li>
+          <li>தொகுதி 4: functions மற்றும் arrays.</li>
+          <li>DevTools திறந்திருக்கும் browser.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>document என்பது ஒரு மரம்</h2>
+  <p>உங்கள் HTML-ஐ browser, <strong>DOM</strong> எனப்படும் பொருள்களின் மரமாக மாற்றுகிறது. உலகளாவிய <code>document</code> object தான் நுழைவாயில். நீங்கள் ஏற்கனவே stylesheet-ல் பயன்படுத்தும் அதே CSS selectors மூலம் அதைத் தேடலாம்.</p>
+  <ul>
+    <li><code>document.querySelector("h1")</code> முதல் பொருத்தத்தைத் திருப்பித் தரும்; இல்லையென்றால் <code>null</code>.</li>
+    <li><code>document.querySelectorAll(".card")</code> ஒவ்வொரு பொருத்தத்தையும் <code>NodeList</code> ஆகத் திருப்பித் தரும்.</li>
+    <li>IDs, classes, attributes மற்றும் descendant selectors எல்லாமே வேலை செய்யும்: <code>#app</code>, <code>.card</code>, <code>[data-open]</code>, <code>nav a</code>.</li>
+  </ul>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const heading = document.querySelector("#page-title");
+const buttons = document.querySelectorAll("[data-action]");
+
+if (heading) {
+  console.log(heading.textContent);
+}
+
+buttons.forEach(button => {
+  console.log(button.dataset.action);
+});</script>
+  </div>
+
+  <p>ஒரு <code>NodeList</code>, <code>querySelectorAll</code>-ல் இருந்து கிடைக்கிறது; அது <code>forEach</code>-ஐ ஆதரிக்கிறது. <code>map</code> அல்லது <code>filter</code> தேவைப்பட்டால், முதலில் <code>Array.from(buttons)</code> மூலம் அதை array ஆக மாற்றுங்கள்.</p>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">null-ஐச் சரிபார்க்கவும்</span>
+    <p>எதுவும் பொருந்தாதபோது <code>querySelector</code> <code>null</code>-ஐத் திருப்பித் தரும். <code>textContent</code>-ஐப் படிப்பதற்கு முன் அதைச் சரிபார்க்கவும்; இல்லையென்றால் <code>Cannot read properties of null</code> என்ற error வரும்.</p>
+  </div>
+
+  <h2>பக்கத்தை உடைக்காமல் உரையை மாற்றுவது</h2>
+  <p><code>textContent</code> வெறும் உரையைப் படிக்கிறது அல்லது எழுதுகிறது. இது HTML-ஐ ஒருபோதும் parse செய்யாது; அதனால் கோண அடைப்புக்குறிகள் elements ஆகாமல் எழுத்துகளாகவே தெரியும்.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const note = document.querySelector("#note");
+
+note.textContent = "Saved at 10:42";
+console.log(note.textContent); // Saved at 10:42
+
+note.textContent = "<strong>Not bold</strong>";
+// The visitor sees the tags, not bold text.</script>
+  </div>
+
+  <p><code>innerHTML</code> ஒரு string-ஐ markup ஆக parse செய்கிறது. string உங்களுடையது என்றால் அது பயனுள்ளது. ஒரு பார்வையாளர் தட்டச்சு செய்த ஏதாவது string-ல் இருந்தால் அது ஆபத்தானது.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const status = document.querySelector("#status");
+
+// Trusted, fixed markup written by you:
+status.innerHTML = "<strong>Saved</strong>";
+
+// Never do this with a comment or a name from a form:
+// preview.innerHTML = userInput;</script>
+  </div>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">பாதுகாப்பு விதி</span>
+    <p>உரை ஒரு நபரிடமிருந்து வந்திருந்தால், அதை <code>textContent</code> அல்லது ஒரு text node மூலம் சேர்க்கவும். <code>innerHTML</code>-க்கு அனுப்பப்படும் string-ல் elements மற்றும் event handlers இருக்கலாம்; அதாவது அது code-ஐ இயக்க முடியும்.</p>
+  </div>
+
+  <h2>Classes, styles மற்றும் attributes</h2>
+  <p>பெரும்பாலான காட்சி மாற்றங்கள் CSS-ல் இருக்க வேண்டும். JavaScript ஒரு class-ஐச் சேர்க்க, நீக்க அல்லது toggle செய்ய வேண்டும்; ஏராளமான styles-ஐ hard-code செய்யக்கூடாது.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const panel = document.querySelector("#panel");
+
+panel.classList.add("is-open");
+panel.classList.remove("is-loading");
+panel.classList.toggle("is-busy", true);
+console.log(panel.classList.contains("is-open"));
+
+panel.style.background = "#f7f2e7";
+panel.style.setProperty("--gap", "12px");
+
+panel.setAttribute("aria-expanded", "true");
+console.log(panel.getAttribute("data-id"));
+panel.removeAttribute("hidden");</script>
+  </div>
+
+  <p>String-ல் CSS property பெயர்கள் kebab-case-ல் இருக்கும்; <code>style</code> object-ல் அவை camelCase-ல் இருக்கும். Custom properties-க்கு <code>setProperty("--name", value)</code> தேவை. <code>aria-expanded</code> போன்ற accessibility attributes-ஐ <code>setAttribute</code> மூலம் அமைக்க வேண்டும்.</p>
+
+  <h2>உருவாக்குதல், append செய்தல் மற்றும் நீக்குதல்</h2>
+  <p><code>document.createElement</code> மூலம் புதிய element-ஐ உருவாக்கி, அதை நிரப்பி, பிறகு இணைக்கவும். document-ல் ஏற்கனவே இருக்கும் ஏதாவது ஒன்றில் சேர்க்கப்படும் வரை புதிய node கண்ணுக்குத் தெரியாது.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const list = document.querySelector("#list");
+
+const item = document.createElement("li");
+item.textContent = "Read chapter 5";
+item.dataset.id = "42";
+list.append(item);
+
+const old = document.querySelector('[data-id="41"]');
+if (old) {
+  old.remove();
+}</script>
+  </div>
+
+  <p><code>append</code> இறுதியில் சேர்க்கும், <code>prepend</code> தொடக்கத்தில் சேர்க்கும், <code>replaceChildren(...)</code> அனைத்து children-ஐயும் ஒரே நேரத்தில் மாற்றும். <code>remove()</code> மூலம் node-ஐ நீக்கினால் அது பக்கத்திலிருந்து விலகும்; ஆனால் உங்கள் variable இன்னும் அதையே குறிக்கும்.</p>
+
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">பயிற்சி · 25 நிமிடம்</span>
+      <h2>தலைப்பை highlight செய்து, ஒரு வரிசையைச் சேர்க்கவும்</h2>
+    </div>
+    <p>பக்கத்தில் <code>&lt;h1 id="title"&gt;</code>, <code>&lt;ul id="list"&gt;</code> மற்றும் <code>class="old"</code> கொண்ட ஒரு element உள்ளது என வைத்துக்கொள்ளுங்கள். தலைப்பில் <code>is-highlighted</code> என்ற class-ஐ toggle செய்து, அதன் உரையை மாற்றி, உரையுடன் புதிய <code>li</code> ஒன்றை உருவாக்கி, அதை list-ல் append செய்து, பழைய element-ஐ நீக்கி, எத்தனை items மீதமுள்ளன என்பதை log செய்யும் JavaScript எழுதுங்கள்.</p>
+    <label class="visually-hidden" for="practice-5-1">உங்கள் பயிற்சிக் குறியீடு</label>
+    <textarea class="practice__code" id="practice-5-1" data-attempt spellcheck="false" placeholder="const title = ..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>const title = document.querySelector("#title");
+title.classList.toggle("is-highlighted");
+title.textContent = "My updated page";
+
+const list = document.querySelector("#list");
+const item = document.createElement("li");
+item.textContent = "A new list item";
+list.append(item);
+
+const old = document.querySelector(".old");
+if (old) {
+  old.remove();
+}
+
+console.log("Items now:", list.children.length);</script>
+  </section>
+
+  <h2>உங்களைச் சரிபார்க்கவும்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary><code>querySelector</code> சில நேரங்களில் ஏன் <code>null</code> திருப்பித் தருகிறது?</summary>
+      <p>selector-க்கு எந்த element-ம் பொருந்தவில்லை, அல்லது element உருவாகும் முன்பே script இயங்கிவிட்டது. DevTools-ல் selector-ஐச் சரிபார்த்து, markup-க்குப் பிறகு script-ஐ வைக்கவும் அல்லது <code>defer</code> attribute-ஐச் சேர்க்கவும்.</p>
+    </details>
+    <details class="qa">
+      <summary><code>innerHTML</code> எப்போது ஏற்றுக்கொள்ளத்தக்கது?</summary>
+      <p>நீங்கள் எழுதி கட்டுப்படுத்தும் நிலையான markup string ஆக இருந்தால். பெயர்கள், கருத்துகள், தேடல் சொற்கள் மற்றும் ஒரு நபர் வழங்கிய வேறு எதற்கும் <code>textContent</code>-ஐப் பயன்படுத்துங்கள்.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>நினைவில் வைக்க வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <ul>
+      <li><strong>CSS மூலம் தேர்ந்தெடுங்கள்.</strong> <code>querySelector</code> ஒரு node-ஐத் தரும்; <code>querySelectorAll</code> ஒரு பட்டியலைத் தரும்.</li>
+      <li><strong>உரை markup அல்ல.</strong> பார்வையாளர் தட்டச்சு செய்யக்கூடிய எதற்கும் <code>textContent</code>-ஐப் பயன்படுத்துங்கள்.</li>
+      <li><strong>உருவாக்கி, பிறகு இணையுங்கள்.</strong> Element-ஐ உருவாக்கி, நிரப்பி, append செய்து, தேவை இல்லாதபோது நீக்குங்கள்.</li>
+    </ul>
+  </div>
+</article>

@@ -1,0 +1,220 @@
+<article class="lesson" id="lesson-6-4" data-lesson="6-4">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 06 · Async &amp; APIs</p>
+    <h1>Storage + வானிலை app</h1>
+    <p class="lesson-lede">Module project-ஐ உருவாக்குங்கள்: ஒரு city-ஐத் தேடி, தற்போதைய நிலையைக் காட்டி, refresh ஆனாலும் தகவலைத் தக்கவைத்து, user-ஐ ஒருபோதும் blank screen-ஐப் பார்க்க வைக்காத சிறிய வானிலை app.</p>
+    <div class="chips"><span class="chip chip--accent">பாடம் 6.4 · Project</span><span class="chip">2–3 மணி நேரம்</span><span class="chip">தொகுதி மைல்கல்</span></div>
+    <div class="brief">
+      <div>
+        <h3>வழங்க வேண்டியவை</h3>
+        <ul>
+          <li>Open-Meteo geocoding உடன் city search.</li>
+          <li>தற்போதைய temperature மற்றும் வானிலை விவரம்.</li>
+          <li>Loading, empty, error, மற்றும் success நிலைகள்.</li>
+          <li>கடைசி city <code>localStorage</code>-ல் சேமிக்கப்படும்.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>முடிவுச் சரிபார்ப்பு</h3>
+        <ul>
+          <li>Console-ல் கையாளப்படாத errors இல்லை.</li>
+          <li>ஒவ்வொரு நிலையும் அடையக்கூடியதாகவும் தெரியக்கூடியதாகவும் உள்ளது.</li>
+          <li>Reload செய்தால் கடைசி வெற்றிகரமான city மீட்கப்படும்.</li>
+          <li>Page-ல் எங்கும் secret keys இல்லை.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>சுருக்கமான விவரம்</h2>
+  <p>Search form, status line, மற்றும் result area உள்ள ஒரு page உருவாக்குங்கள். இலவச Open-Meteo APIs-ஐப் பயன்படுத்துங்கள்: geocoding city name-ஐ coordinates ஆக மாற்றும்; பிறகு forecast endpoint தற்போதைய temperature மற்றும் weather code-ஐத் திருப்பித் தரும். Key தேவையில்லை.</p>
+  <h3>தேவைகள்</h3>
+  <ul>
+    <li>Label உள்ள city input மற்றும் keyboard-ல் வேலை செய்யும் submit button.</li>
+    <li><code>count=1</code> உடன் geocode செய்யுங்கள்; காலியான <code>results</code> array-ஐக் கையாளுங்கள்.</li>
+    <li>முதல் match-க்கு <code>temperature_2m</code> மற்றும் <code>weather_code</code>-ஐ fetch செய்யுங்கள்.</li>
+    <li>ஒரே state function-ல் இருந்து loading, empty, error, success-ஐ render செய்யுங்கள்.</li>
+    <li>வெற்றிகரமான city-ஐச் சேமித்து, அடுத்த visit-ல் மீட்டெடுங்கள்.</li>
+    <li>Status-க்கு <code>aria-live="polite"</code>, API text-க்கு <code>textContent</code> பயன்படுத்துங்கள்.</li>
+  </ul>
+  <h3>State சரிபார்ப்பு பட்டியல்</h3>
+  <ul>
+    <li><strong>Idle:</strong> முதல் search-க்கு முன் சிறிய instruction.</li>
+    <li><strong>Loading:</strong> ஏதேனும் request இயங்கும்போது message; பழைய முடிவுகளை மறைக்கவும்.</li>
+    <li><strong>Empty:</strong> geocoding பொருந்தியதைத் திருப்பித் தரவில்லை; வேறு எழுத்துவடிவைப் பரிந்துரைக்கவும்.</li>
+    <li><strong>Error:</strong> network அல்லது HTTP தோல்வி; விளக்கி, form-ஐ retry ஆக வழங்குங்கள்.</li>
+    <li><strong>Success:</strong> இடம், rounded temperature, மற்றும் படிக்கக்கூடிய விவரம்.</li>
+    <li><strong>Storage:</strong> வெற்றிக்குப் பிறகு மட்டும் சேமிக்கவும்; தடுக்கப்பட்ட storage app-ஐ உடைக்கக்கூடாது.</li>
+  </ul>
+  <h2>ஒரு city-ஐயும் unit-ஐயும் சேமிக்கவும்</h2>
+  <p><code>localStorage</code> tab மூடிய பிறகும் data-வை வைத்திருக்கும். <code>sessionStorage</code> தற்போதைய tab-க்கு மட்டுமே வைத்திருக்கும். இரண்டும் <strong>strings</strong>-ஐ மட்டும் சேமிக்கும், எனவே objects-ஐ <code>JSON.stringify()</code> கொண்டு மாற்றி, <code>JSON.parse()</code> கொண்டு திரும்பப் படியுங்கள்.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">function saveSettings(settings) {
+  try { localStorage.setItem("weather-settings", JSON.stringify(settings)); }
+  catch (error) { console.warn("Storage unavailable:", error.message); }
+}
+function readSettings() {
+  try { return JSON.parse(localStorage.getItem("weather-settings")) || {}; }
+  catch (error) { return {}; }
+}
+saveSettings({ city: "Lisbon", unit: "celsius" }); const saved = readSettings();
+console.log(saved.city, saved.unit);</script>
+  </div>
+  <p>Storage calls-ஐ <code>try</code>/<code>catch</code>-ல் வையுங்கள். Private modes அல்லது sandboxed previews-ல் browser storage-ஐத் தடுக்கலாம்; quota நிரம்பியிருக்கும்போது <code>setItem()</code> error throw செய்யும். Editor preview-ல் storage தடுக்கப்படலாம், எனவே warning path-ம் இந்தப் பயிற்சியின் ஒரு பகுதி.</p>
+  <div class="callout callout--warn">
+    <span class="callout__label">Privacy மற்றும் வரம்புகள்</span>
+    <p>Storage உங்கள் origin-க்குச் சொந்தமானது; அந்த page-ல் உள்ள எந்த script-ம் அதைப் படிக்கலாம். Tokens, passwords, அல்லது personal data சேமிக்க வேண்டாம். சில megabytes மட்டுமே எதிர்பாருங்கள்; சேமித்த settings-ஐ clear செய்ய வழி வையுங்கள்.</p>
+  </div>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head"><span class="kicker">Project பணியிடம்</span><h2>உங்கள் வானிலை app</h2></div>
+    <p>Form மற்றும் காலியான script-ல் தொடங்குங்கள். முதலில் state function, பிறகு geocoding request, பிறகு forecast, பிறகு storage-ஐ உருவாக்குங்கள். ஒவ்வொரு step-க்குப் பிறகும் preview-ஐ இயக்குங்கள். Reference solution ஒரு review-க்கு, தொடக்கப்புள்ளி அல்ல.</p>
+    <div class="editor" data-editor>
+      <div class="editor__bar"><span class="editor__label">weather.html</span><div class="editor__actions"><button type="button" class="btn btn--small" data-action="run">இயக்கு</button><button type="button" class="btn btn--ghost btn--small" data-action="reset">மீட்டமை</button><button type="button" class="btn btn--ghost btn--small" data-action="copy">நகலெடு</button></div></div>
+      <div class="editor__grid">
+        <label class="visually-hidden" for="practice-6-4">வானிலை app code editor</label>
+        <textarea id="practice-6-4" class="editor__code" data-attempt spellcheck="false"></textarea>
+        <div class="editor__preview"><div class="editor__preview-bar">நேரடி preview</div><iframe title="உங்கள் வானிலை app-ன் preview" sandbox="allow-scripts"></iframe></div>
+      </div>
+      <p class="editor__status" aria-live="polite" data-status>Preview load ஆனது. ஒரு city-ஐத் தேடி, பிறகு இயக்கு பொத்தானை அழுத்துங்கள்.</p>
+      <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather app</title>
+</head>
+<body>
+  <main>
+    <h1>Weather now</h1>
+    <form id="search">
+      <label for="city">City</label>
+      <input id="city" name="city" placeholder="Try Lisbon" autocomplete="off" required>
+      <button type="submit">Search</button>
+    </form>
+    <p id="status" role="status" aria-live="polite"></p>
+    <section id="result" aria-live="polite" hidden></section>
+  </main>
+  <script>
+    // Select the elements, geocode the city, fetch the forecast,
+    // render four states, then save and restore the city.
+  @ENDSCRIPT
+</body>
+</html></script>
+    </div>
+    <div class="practice__actions"><button type="button" class="btn btn--ghost" data-reveal disabled>Reference solution-ஐக் காட்டு</button><p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு reference solution திறக்கும்.</p></div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather app</title>
+  <style>body{max-width:540px;margin:32px auto;padding:0 16px;font-family:system-ui,sans-serif}form{display:flex;gap:8px}input{flex:1;padding:8px}#status{min-height:1.5em}#result{margin-top:16px;padding:16px;border:1px solid #bbb;white-space:pre-line;font-size:1.25rem}</style>
+</head>
+<body>
+  <main>
+    <h1>Weather now</h1>
+    <form id="search">
+      <label for="city">City</label>
+      <input id="city" name="city" placeholder="Try Lisbon" autocomplete="off" required>
+      <button type="submit">Search</button>
+    </form>
+    <p id="status" role="status" aria-live="polite"></p>
+    <section id="result" aria-live="polite" hidden></section>
+  </main>
+  <script>
+    const form = document.querySelector("#search"); const cityInput = document.querySelector("#city");
+    const statusEl = document.querySelector("#status"); const result = document.querySelector("#result");
+    const WEATHER = { 0: "Clear", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast", 45: "Fog", 48: "Freezing fog", 51: "Light drizzle", 53: "Drizzle", 55: "Heavy drizzle", 61: "Light rain", 63: "Rain", 65: "Heavy rain", 71: "Light snow", 73: "Snow", 75: "Heavy snow", 80: "Rain showers", 81: "Rain showers", 82: "Heavy showers", 95: "Thunderstorm" };
+    const MESSAGES = { idle: "Search for a city to begin.", loading: "Loading weather...", empty: "No city matched. Try another spelling.", error: "Could not load weather. Press Search to retry." };
+    let last = null;
+    function render(statusName) {
+      if (statusName !== "success") {
+        result.hidden = true;
+        statusEl.textContent = MESSAGES[statusName];
+        return;
+      }
+      result.hidden = false; statusEl.textContent = "";
+      result.textContent = `${Math.round(last.celsius)}°C\n${last.place} · ${WEATHER[last.code] || "Unknown conditions"}`;
+    }
+    function readSettings() {
+      try { return JSON.parse(localStorage.getItem("weather-settings")) || {}; } catch (error) { return {}; }
+    }
+    function saveSettings(settings) {
+      try { localStorage.setItem("weather-settings", JSON.stringify(settings)); } catch (error) { console.warn("Storage unavailable:", error.message); }
+    }
+    async function search(city) {
+      render("loading");
+      try {
+        const geoUrl = "https://geocoding-api.open-meteo.com/v1/search?name="
+          + encodeURIComponent(city) + "&count=1";
+        const geoResponse = await fetch(geoUrl); if (!geoResponse.ok) throw new Error(`Search failed: ${geoResponse.status}`);
+        const geo = await geoResponse.json(); const place = geo.results && geo.results[0];
+        if (!place) return render("empty");
+        const forecastUrl = "https://api.open-meteo.com/v1/forecast?latitude="
+          + place.latitude + "&longitude=" + place.longitude
+          + "&current=temperature_2m,weather_code&timezone=auto";
+        const forecastResponse = await fetch(forecastUrl); if (!forecastResponse.ok) throw new Error(`Forecast failed: ${forecastResponse.status}`);
+        const weather = await forecastResponse.json(); last = { place: `${place.name}, ${place.country}`, celsius: weather.current.temperature_2m, code: weather.current.weather_code };
+        saveSettings({ city: place.name, unit: "celsius" }); render("success");
+      } catch (error) {
+        console.error(error); render("error");
+      }
+    }
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); const city = cityInput.value.trim();
+      if (city) search(city);
+    });
+    const saved = readSettings(); cityInput.value = saved.city || "";
+    if (saved.city) search(saved.city); else render("idle");
+  @ENDSCRIPT
+</body>
+</html></script>
+  </section>
+  <h2>தொகுதி 6 quiz</h2>
+  <div class="quiz" data-quiz><form>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="Storage strings-ஐ மட்டுமே சேமிக்கும். சேமிக்கும் முன் objects-ஐ JSON.stringify கொண்டு மாற்றுங்கள்.">
+        <legend><span class="quiz__num">01</span> <code>localStorage.setItem()</code> நேரடியாக எதைச் சேமிக்க முடியும்?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span>எந்த JavaScript value-ஐயும்</span></label><label class="option"><input type="radio" name="q1" value="b"><span>Strings மட்டும்</span></label><label class="option"><input type="radio" name="q1" value="c"><span>Numbers மட்டும்</span></label><label class="option"><input type="radio" name="q1" value="d"><span>JSON objects மட்டும்</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="JSON.parse JSON text-ஐ JavaScript values ஆக மாற்றும். JSON.stringify அதற்கு எதிர்மாறானதைச் செய்யும்.">
+        <legend><span class="quiz__num">02</span> சேமித்த JSON text-ஐ object ஆக மாற்றும் method எது?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span><code>JSON.stringify()</code></span></label><label class="option"><input type="radio" name="q2" value="b"><span><code>JSON.parse()</code></span></label><label class="option"><input type="radio" name="q2" value="c"><span><code>response.json()</code></span></label><label class="option"><input type="radio" name="q2" value="d"><span><code>localStorage.get()</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Client code-ல் உள்ள secret key ஒவ்வொரு visitor-க்கும் தெரியும். அது server environment variable-ல், ஒரு endpoint-க்குப் பின்னால் இருக்க வேண்டும்.">
+        <legend><span class="quiz__num">03</span> Secret API key எங்கே இருக்க வேண்டும்?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span>ஒரு HTML comment-ல்</span></label><label class="option"><input type="radio" name="q3" value="b"><span>Client-side JavaScript variable-ல்</span></label><label class="option"><input type="radio" name="q3" value="c"><span>Server environment variable-ல்</span></label><label class="option"><input type="radio" name="q3" value="d"><span>In <code>localStorage</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="404 ஆனாலும் fetch promise resolve ஆகும். Body-ஐ parse செய்யும் முன் response.ok-ஐச் சரிபாருங்கள்.">
+        <legend><span class="quiz__num">04</span> <code>response.json()</code> அழைக்கும் முன் எதைச் சரிபார்க்க வேண்டும்?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span><code>response.ok</code></span></label><label class="option"><input type="radio" name="q4" value="b"><span>Page title-ஐ</span></label><label class="option"><input type="radio" name="q4" value="c"><span>City uppercase-ல் உள்ளதா</span></label><label class="option"><input type="radio" name="q4" value="d"><span>URL-ன் நீளம்</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="Request வேலை செய்தது, ஆனால் பொருந்தியது எதுவும் இல்லை. அது empty நிலை, error அல்ல.">
+        <legend><span class="quiz__num">05</span> Geocoding வெற்றியடைந்தது, ஆனால் results எதுவும் திரும்பவில்லை. இது எந்த நிலை?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span>Loading</span></label><label class="option"><input type="radio" name="q5" value="b"><span>Empty</span></label><label class="option"><input type="radio" name="q5" value="c"><span>Error</span></label><label class="option"><input type="radio" name="q5" value="d"><span>Success</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <div class="quiz__actions"><button type="submit" class="btn">விடைகளைச் சரிபார்</button><button type="button" class="btn btn--ghost" data-quiz-reset>Quiz-ஐ மீட்டமை</button><p class="quiz__result" data-quiz-result aria-live="polite" hidden></p></div>
+    </form>
+  </div>
+  <h2>உங்களைச் சரிபாருங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Temperature-க்குப் பதிலாக city-ஐ ஏன் சேமிக்க வேண்டும்?</summary><p>வானிலை தொடர்ந்து மாறும். சேமித்த city ஒரு நிலையான விருப்பம்; சேமித்த temperature page reload ஆனவுடன் பழையதாகிவிடும். தேர்வைச் சேமித்து, பிறகு புதிய data-ஐ fetch செய்யுங்கள்.</p>
+    </details>
+    <details class="qa">
+      <summary><code>localStorage</code> calls-ஐ <code>try</code>/<code>catch</code>-ல் ஏன் வைக்க வேண்டும்?</summary><p>Private modes மற்றும் sandboxed previews-ல் storage தடுக்கப்படலாம்; quota நிரம்பியிருக்கும்போது <code>setItem()</code> தோல்வியடையலாம். Error-ஐப் பிடிப்பது, சேமிக்க முடியாதபோதும் வானிலை app-ஐ பயன்படுத்தக்கூடியதாக வைத்திருக்கும்.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>தொகுதி 6 நிறைவு</h2>
+    <ul>
+      <li><strong>Async code என்பது நிலைகளின் வரிசை.</strong> Promises மற்றும் <code>async</code>/<code>await</code> அந்த வரிசையைத் தெளிவாக எழுத உதவுகின்றன.</li>
+      <li><strong>ஒவ்வொரு request-ம் தோல்வியடையலாம் அல்லது எதையும் கண்டுபிடிக்காமல் இருக்கலாம்.</strong> Loading, empty, error, success-ஐ தேவைப்படும் முன்பே வடிவமைத்து வையுங்கள்.</li>
+      <li><strong>இழக்கத் தயாராக இருக்கும் data-வை மட்டும் சேமிக்கவும்.</strong> Storage-ஐ wrap செய்யுங்கள், secrets-ஐ server-ல் வையுங்கள், கடைசி பயனுள்ள தேர்வை மீட்டெடுங்கள்.</li>
+    </ul>
+  </div>
+</article>

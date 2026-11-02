@@ -1,0 +1,208 @@
+<article class="lesson" id="lesson-7-1" data-lesson="7-1">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 07 · வெளியிடு</p>
+    <h1>பல பக்க கட்டமைப்பு</h1>
+    <p class="lesson-lede">மூன்று பக்கங்கள் என்பது ஒரு அமைப்பு; மூன்று அதிர்ஷ்டமான யூகங்கள் அல்ல. Folder-களைத் திட்டமிடுங்கள், பாதைகளுக்குப் பெயரிடுங்கள், பகிரப்பட்ட shell-ஐ ஒரே மாதிரியாக வைத்திருங்கள் — அப்போது புதிய ஒவ்வொரு பக்கமும் ஒரு மதியத்திற்குப் பதிலாக சில நிமிடங்களில் முடியும்.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 7.1</span>
+      <span class="chip">60–75 நிமிடம்</span>
+      <span class="chip">இடைநிலை</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>இதன் முடிவில், நீங்கள்</h3>
+        <ul>
+          <li>ஒரு மாதம் கழித்தும் புரியும் வகையில் சிறிய தளத்தை folder-களில் அமைக்க முடியும்.</li>
+          <li>உங்கள் கணினியிலும் host-இலும் வேலை செய்யும் சார்புப் பாதைகளை எழுத முடியும்.</li>
+          <li>ஒரே பகிரப்பட்ட shell-ஐ வைத்து, navigation-ல் தற்போதைய பக்கத்தைக் காட்ட முடியும்.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>உங்களுக்குத் தேவை</h3>
+        <ul>
+          <li>தொகுதி 2-ல் நீங்கள் உருவாக்கிய portfolio v1.</li>
+          <li>ஒரு code editor மற்றும் ஒரு browser.</li>
+          <li>இணைக்க ஏற்கனவே உள்ள இரண்டு பக்கங்கள்.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>முதலில் வரைபடத்தை வரையுங்கள்</h2>
+  <p>கோப்புகளை உருவாக்கும் முன், தளத்தில் என்ன இருக்க வேண்டும் என்பதை முடிவு செய்யுங்கள். பதிப்பு 2-க்கு மூன்று பக்கங்கள் தேவை: home, about, projects. மற்ற எல்லாமே asset. பக்கங்களை ஒரே நிலையில் வைத்து, asset-களுக்குத் தனி folder-கள் கொடுத்தால் படிக்கவும் எளிது, deploy செய்யவும் எளிது.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">portfolio/
+├── index.html
+├── about.html
+├── projects.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── main.js
+└── images/
+    ├── portrait.jpg
+    └── project-01.jpg</script>
+  </div>
+
+  <ul>
+    <li><code>index.html</code> என்பது folder-இன் இயல்புநிலைக் கோப்பு. Host-கள் அதைத் தானாகவே வழங்கும்.</li>
+    <li>மூன்று பக்கங்கள் மட்டுமே இருக்கும்போது எல்லாப் பக்கங்களையும் ஒரே folder-ல் வையுங்கள். ஆழமான folder-கள் தெளிவைக் கூட்டுவதற்கு முன் பாதைத் தவறுகளைக் கூட்டும்.</li>
+    <li>Styles, scripts, images-க்கு தனித்தனி folder-கள் கொடுங்கள்; அப்போது ஒரு asset-ஐ நகர்த்தும்போது பக்கங்களில் தேட வேண்டியதில்லை.</li>
+  </ul>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">URL-க்கு ஏற்ற பெயர்</span>
+    <p>சிறிய எழுத்துக்களில், hyphen உடன் கோப்புப் பெயர்களை வைக்கவும்: <code>projects.html</code>, <code>project-01.jpg</code>. சில host-கள் case-sensitive; <code>Projects.html</code> என்பது <code>projects.html</code>-இலிருந்து வேறு கோப்பு.</p>
+  </div>
+
+  <h2>ஒவ்வொரு பக்கத்திற்கும் ஒரு வேலை</h2>
+  <p>பகிரப்பட்ட அமைப்பு தளத்தை ஒரே இடமாக உணர வைக்கும். பகிரப்பட்ட அமைப்பு என்பது பகிரப்பட்ட உள்ளடக்கம் அல்ல. ஒவ்வொரு பக்கத்திற்கும் ஒரு <code>h1</code>, தெளிவான நோக்கம், "இன்னொரு பக்கம்" என்பதைத் தாண்டிய இருக்கக் காரணம் தேவை.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">பக்கம்</th><th scope="col">வேலை</th><th scope="col">முடிந்ததற்கான அடையாளம்</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>index.html</code></td><td>நீங்கள் யார், என்ன உருவாக்குகிறீர்கள் என்பதைச் சொல்லும்.</td><td>தெளிவான <code>h1</code>, சிறு அறிமுகம், சிறப்பு வேலைகள்.</td></tr>
+        <tr><td><code>about.html</code></td><td>வேலைக்குப் பின்னால் உள்ள கதையையும் திறன்களையும் சொல்லும்.</td><td>ஒரு bio, திறன் பட்டியல், தொடர்பு இணைப்பு.</td></tr>
+        <tr><td><code>projects.html</code></td><td>புரிந்துகொள்ளத் தேவையான சூழலுடன் வேலையைக் காட்டும்.</td><td>இணைப்புகளுடன் குறைந்தது மூன்று project பதிவுகள்.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>shell — skip link, header, navigation, footer — ஒவ்வொரு பக்கத்திலும் தோன்றும். நடுப்பகுதி மட்டுமே மாறும். Navigation-ஐத் திருத்தும்போது, மூன்று பக்கங்களையும் ஒரே நேரத்தில் திருத்துங்கள். footer-க்கும் இதே விதி.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><header class="site-header">
+  <a href="index.html">Maya Chen</a>
+  <nav aria-label="Main">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+  </nav>
+</header></script>
+  </div>
+
+  <p><code>aria-current="page"</code> என்பது அணுகல்தன்மையுடைய active நிலை. நிறத்தை மட்டும் நம்பாதீர்கள். பார்வையாளர் இருக்கும் பக்கத்தின் இணைப்பிற்கு இந்த attribute-ஐ நகர்த்துங்கள்; CSS அதை style செய்யும்.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const page = location.pathname.split("/").pop() || "index.html";
+
+document.querySelectorAll("nav a").forEach((link) => {
+  if (link.getAttribute("href") === page) {
+    link.setAttribute("aria-current", "page");
+  }
+});</script>
+  </div>
+
+  <p>மேலே உள்ள script ஒரு வசதி, கட்டாயம் அல்ல. கற்றுக்கொள்ளும்போது attribute-ஐ நேரடியாக எழுதுவது மிகவும் உறுதியானது, புரிந்துகொள்ள எளிதானது. Static version வேலை செய்த பிறகே script-ஐப் பயன்படுத்துங்கள்.</p>
+
+  <h2>சார்புப் பாதைகள் ஒரு ஒப்பந்தம்</h2>
+  <p>சார்புப் பாதை அது இருக்கும் கோப்பிலிருந்தே தொடங்குகிறது. <code>index.html</code>-இலிருந்து <code>projects.html</code> அதே folder-ல் உள்ளது; <code>css/styles.css</code>-இலிருந்து ஒரு படத்தின் பாதை <code>../images/portrait.jpg</code>.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">எங்கிருந்து</th><th scope="col">எங்கே</th><th scope="col">எழுதுவது</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>index.html</code></td><td><code>about.html</code></td><td><code>about.html</code></td></tr>
+        <tr><td><code>projects.html</code></td><td>stylesheet</td><td><code>css/styles.css</code></td></tr>
+        <tr><td><code>about.html</code></td><td>முகப்புப் பக்கம்</td><td><code>index.html</code></td></tr>
+        <tr><td><code>css/styles.css</code></td><td><code>images/portrait.jpg</code></td><td><code>../images/portrait.jpg</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">முன்னால் வரும் slash-ஐத் தவிர்க்கவும்</span>
+    <p>தளம் domain root-ல் இருக்கிறது என்று தெரியாவிட்டால், உள் இணைப்புகளை <code>/</code>-ல் தொடங்காதீர்கள். GitHub Pages project தளங்கள் <code>/repository-name/</code>-ல் இருக்கும்; அங்கே <code>/about.html</code> வேலை செய்யாது. பாதைகளைச் சார்பாகவே வைத்திருங்கள்.</p>
+  </div>
+
+  <h2>அடுக்குகளைப் பிரிக்கவும்</h2>
+  <p>Demo-க்கு inline styles, inline scripts பரவாயில்லை; மூன்று பக்கங்களில் அவை சிரமம். ஒரு stylesheet, ஒரு script மட்டும் வைத்திருங்கள். ஒவ்வொரு பக்கத்திலிருந்தும் அந்தப் பக்கத்திற்குச் சார்பான பாதைகளில் அவற்றை இணைக்கவும்.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maya Chen · Home</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Shared shell and page content -->
+  <script src="js/main.js" defer>@ENDSCRIPT
+</body>
+</html></script>
+  </div>
+
+  <ul>
+    <li>ஒரு stylesheet என்றால் ஒரு color palette, ஒரு spacing scale, mobile bug-ஐ சரிசெய்ய ஒரே இடம்.</li>
+    <li><code>defer</code> உடன் ஒரு script, HTML parse ஆன பிறகு இயங்கும். பக்கத்தில் உள்ள element-களை பாதுகாப்பாகக் கண்டறியும்.</li>
+    <li>தளம் சில பக்கங்களைத் தாண்டி வளரும்போது static site generator அல்லது web components-ஐப் பயன்படுத்துங்கள். header-இன் மூன்று copies-ஐத் தவிர்க்க மட்டும் ஒரு framework சேர்க்காதீர்கள்.</li>
+  </ul>
+
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">பயிற்சி · 30 நிமிடம்</span>
+      <h2>மூன்று பக்க தளத்தைத் திட்டமிடுங்கள்</h2>
+    </div>
+    <p><code>index.html</code>, <code>about.html</code>, <code>projects.html</code> ஆகியவற்றுக்கான folder tree-ஐ எழுதுங்கள்; அத்துடன் <code>css/styles.css</code>, <code>js/main.js</code>, மற்றும் <code>images/</code> folder-ஐயும். ஒவ்வொரு பக்கத்திலிருந்தும் மற்ற இரண்டு பக்கங்களுக்கும், இரண்டு asset-களுக்கும் உள்ள சார்பு இணைப்புகளைப் பட்டியலிடுங்கள். பிறகு <code>projects.html</code> active-ஆக இருக்கும் வகையில் navigation markup எழுதுங்கள்.</p>
+    <label class="visually-hidden" for="practice-7-1">உங்கள் தளத் திட்டம்</label>
+    <textarea class="practice__code" id="practice-7-1" data-attempt spellcheck="false" placeholder="இங்கே tree-ஐயும் பாதைகளையும் வரையுங்கள்..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>portfolio/
+├── index.html
+├── about.html
+├── projects.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── main.js
+└── images/
+    └── ...
+
+Links
+index.html    -> about.html, projects.html, css/styles.css, js/main.js
+about.html    -> index.html, projects.html, css/styles.css, js/main.js
+projects.html -> index.html, about.html, css/styles.css, js/main.js
+
+<header class="site-header">
+  <a href="index.html">Maya Chen</a>
+  <nav aria-label="Main">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html" aria-current="page">Projects</a>
+  </nav>
+</header></script>
+  </section>
+
+  <h2>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>GitHub Pages-ல் <code>/about.html</code> போன்ற root-relative இணைப்புகள் ஏன் வேலை செய்யாது?</summary>
+      <p>Project தளம் domain root-இலிருந்து அல்ல, <code>/repository-name/</code>-இலிருந்து வழங்கப்படுகிறது. <code>/about.html</code> project-க்கு மேலே சுட்டுகிறது; <code>about.html</code> தற்போதைய பக்கத்திலிருந்து தொடங்குகிறது.</p>
+    </details>
+    <details class="qa">
+      <summary>ஒவ்வொரு பக்கத்திலும் header-ஐ copy செய்வதை எப்படித் தவிர்ப்பது?</summary>
+      <p>சாதாரண static HTML-ல் ஒரு கோப்பை நேரடியாக include செய்ய முடியாது. Markup-ஐ ஒரே மாதிரி வைத்திருங்கள், active இணைப்பை மட்டும் மாற்றுங்கள், எல்லா styling-ஐயும் ஒரே stylesheet-ல் வைத்திருங்கள். தளம் வளரும்போது, தேவையில்லாத framework-க்குப் பதிலாக static site generator அல்லது component system பயன்படுத்துங்கள்.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>நினைவில் வைக்க வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <ul>
+      <li><strong>முதலில் வரைபடத்தைத் திட்டமிடுங்கள்.</strong> Markup-க்கு முன் பக்கங்கள், assets, பெயர்கள்.</li>
+      <li><strong>பாதைகள் கோப்பிற்குச் சார்பானவை.</strong> ஒவ்வொரு பக்கத்திலிருந்தும் ஒவ்வொரு இணைப்பையும் சோதியுங்கள்.</li>
+      <li><strong>ஒரு shell, ஒரு stylesheet, ஒரு script.</strong> நகலெடுப்பது ஒரு maintenance bug.</li>
+    </ul>
+  </div>
+</article>

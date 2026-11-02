@@ -1,0 +1,221 @@
+<article class="lesson" id="lesson-2-4" data-lesson="2-4">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 02 · CSS: வெளித்தோற்றம்</p>
+    <h1>Flexbox + portfolio v1</h1>
+    <p class="lesson-lede">Flexbox item-களை ஒரு திசையில் அமைத்து, மீதமுள்ள இடத்தைப் பகிர்கிறது. ஒரு header, ஒரு hero, ஒரு வரிசை project card-களுக்கு அது போதும். தொகுதி project-ஐ முடியுங்கள்: முழுமையான responsive ஒரு பக்க portfolio.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 2.4 · Project</span>
+      <span class="chip">2–3 மணி நேரம்</span>
+      <span class="chip">தொகுதி மைல்கல்</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>வழங்க வேண்டியவை</h3>
+        <ul>
+          <li>Header, nav, hero, projects, footer உள்ள ஒரு <code>index.html</code>.</li>
+          <li>ஒரு Flexbox layout, mobile-க்கு ஒரு media query.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>வெளியேறும் சோதனை</h3>
+        <ul>
+          <li>360px-இல் பக்கவாட்டு scroll இல்லை.</li>
+          <li>Main axis, cross axis வேறுபாட்டை விளக்க முடியும்.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>ஒரு நிமிடத்தில் Flexbox</h2>
+  <p><code>display: flex</code> ஒரு container-ஐ flex container-ஆகவும், அதன் நேரடி child-களை flex item-களாகவும் மாற்றும். Item-கள் <strong>main axis</strong>-இல் அமையும், default-ஆக horizontal; <strong>cross axis</strong> எதிர் திசையில் செல்லும். <code>justify-content</code> main axis-இல் இடத்தைப் பகிர்கிறது, <code>align-items</code> cross axis-இல் item-களைச் சீரமைக்கிறது, <code>gap</code> margin collapse இல்லாமல் இடைவெளி தருகிறது.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">.site-header {
+  display: flex;
+  flex-wrap: wrap;                 /* allow a second line */
+  align-items: center;             /* cross axis */
+  justify-content: space-between;  /* main axis */
+  gap: 1rem;
+}
+.projects { display:flex; flex-wrap:wrap; gap:1rem; }
+.project {
+  flex: 1 1 240px;   /* grow | shrink | basis */
+}
+@media (max-width:560px) { .site-header { flex-direction:column; align-items:flex-start; } }</script>
+  </div>
+  <ul>
+    <li><code>justify-content</code> <code>flex-start</code>, <code>center</code>, <code>space-between</code>-ஐ எடுக்கும்; <code>align-items</code> <code>stretch</code>, <code>flex-start</code>, <code>center</code>, <code>baseline</code>-ஐ எடுக்கும்.</li>
+    <li><code>flex-wrap: wrap</code> item-கள் முடிவில்லாமல் சுருங்குவதற்குப் பதிலாகப் புதிய வரிக்கு நகர அனுமதிக்கிறது.</li>
+    <li><code>flex: 1 1 240px</code> என்றால் grow, shrink, <code>240px</code> basis-இலிருந்து தொடங்கு. Text அதிகம் உள்ள item சுருங்க <code>min-width: 0</code> சேர்க்கவும்.</li>
+  </ul>
+  <p><code>560px</code>-க்குக் கீழே header column ஆக மாறும்; brand-ம் link-களும் நெருக்கிப் போடாமல் ஒன்றின் கீழ் ஒன்றாக அமையும்.</p>
+  <h2>Project: portfolio v1</h2>
+  <p>உங்களை அறிமுகப்படுத்தி மூன்று project-களைக் காட்டும் ஒரு பக்கத்தை உருவாக்குங்கள். கீழே உள்ள editor-இலிருந்து தொடங்கி அடிக்கடி Run அழுத்துங்கள்.</p>
+  <ul>
+    <li>உங்கள் பெயருடன் ஒரு <code>header</code>, Work, About, Contact-க்கு link செய்யும் ஒரு <code>nav</code>.</li>
+    <li>ஒரு <code>h1</code>, ஒரு சிறிய paragraph, மூன்று <code>article</code> card-கள் உள்ள projects section கொண்ட hero.</li>
+    <li>CSS token-கள், <code>border-box</code> reset, Flexbox, <code>560px</code>-இல் ஒரு media query.</li>
+    <li><code>360px</code>-இல் page-level horizontal scroll இல்லை; ஒவ்வொரு link-க்கும் தெரியும் focus state.</li>
+  </ul>
+  <section class="practice" data-practice data-min="40">
+    <div class="practice__head">
+      <span class="kicker">Project பணியிடம்</span>
+      <h2>உங்கள் portfolio v1</h2>
+    </div>
+    <div class="editor" data-editor>
+      <div class="editor__bar">
+        <span class="editor__label">index.html</span>
+        <div class="editor__actions">
+          <button type="button" class="btn btn--small" data-action="run">இயக்கு</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="reset">மீட்டமை</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="copy">நகலெடு</button>
+        </div>
+      </div>
+      <div class="editor__grid">
+        <label class="visually-hidden" for="project-2-4">Portfolio code எடிட்டர்</label>
+        <textarea id="project-2-4" class="editor__code" data-attempt spellcheck="false"></textarea>
+        <div class="editor__preview">
+          <div class="editor__preview-bar">நேரடி முன்னோட்டம்</div>
+          <iframe title="உங்கள் portfolio-இன் முன்னோட்டம்" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+      <p class="editor__status" aria-live="polite" data-status>முன்னோட்டம் ஏற்றப்பட்டது. உங்கள் பக்கத்தை உருவாக்கி, பிறகு Run அழுத்துங்கள்.</p>
+      <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name — Portfolio</title>
+  <style>
+    /* Tokens and reset here. */
+    /* Build header, nav, hero, projects, footer. */
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Your Name</h1>
+    <p>Build your portfolio here. Start with the header, then the hero.</p>
+  </main>
+</body>
+</html></script>
+    </div>
+
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி தீர்வைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் முயற்சி செய்யுங்கள். பிறகு மாதிரி தீர்வு திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maya Chen — Portfolio</title>
+  <style>
+    :root { --ink:#1c1a16; --muted:#5d574d; --paper:#f7f2e7; --card:#fffdf7; --accent:#14532d; --rule:#d8d0c0; --space:1rem; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:system-ui, -apple-system, "Segoe UI", sans-serif; line-height:1.6; }
+    .wrap { width:min(100% - 2rem, 960px); margin:0 auto; }
+    .site-header { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:var(--space); padding:1.25rem 0; border-bottom:1px solid var(--rule); }
+    .brand { color:var(--ink); font-weight:800; text-decoration:none; }
+    .site-nav { display:flex; flex-wrap:wrap; gap:1rem; } .site-nav a { color:var(--muted); text-decoration:none; }
+    .site-nav a:hover, .site-nav a:focus-visible { color:var(--accent); text-decoration:underline; }
+    .hero { padding:3rem 0 2.5rem; }
+    .hero h1 { max-width:18ch; margin:0; font-size:clamp(2rem, 6vw, 3.25rem); line-height:1.05; }
+    .hero p, .project p { margin:0; color:var(--muted); }
+    .hero p { max-width:55ch; margin-top:var(--space); }
+    .projects { display:flex; flex-wrap:wrap; gap:var(--space); padding:0 0 3rem; }
+    .project { flex:1 1 240px; padding:1.25rem; background:var(--card); border:1px solid var(--rule); border-radius:8px; }
+    .site-footer { padding:1.5rem 0 2.5rem; border-top:1px solid var(--rule); color:var(--muted); font-size:.9rem; }
+    @media (max-width: 560px) {
+      .site-header { align-items:flex-start; flex-direction:column; }
+      .hero { padding-top:2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header wrap">
+    <a class="brand" href="#top">Maya Chen</a>
+    <nav class="site-nav" aria-label="Main"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  </header>
+  <main id="top" class="wrap">
+    <section class="hero" id="about">
+      <h1>I design small, useful things for the web.</h1>
+      <p>Beginner developer and designer. Learning CSS layout, accessibility, and how to make a page feel calm.</p>
+    </section>
+    <section id="work" aria-labelledby="work-title">
+      <h2 id="work-title">Selected work</h2>
+      <div class="projects">
+        <article class="project"><h3>Recipe index</h3><p>A linked two-page HTML site with images, lists, and a form.</p></article>
+        <article class="project"><h3>Study planner</h3><p>A semantic table and signup form, built without a framework.</p></article>
+        <article class="project"><h3>This portfolio</h3><p>One page, a Flexbox layout, and one responsive breakpoint.</p></article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer wrap" id="contact"><p>Say hello: maya@example.com</p></footer>
+</body>
+</html></script>
+  </section>
+  <h2>மதிப்பாய்வு சோதனைப்பட்டியல்</h2>
+  <ul>
+    <li><strong>கட்டமைப்பு (2):</strong> header, nav, hero, projects, footer; ஒரு <code>h1</code>; மூன்று project <code>article</code> element-கள்.</li>
+    <li><strong>Flexbox (3):</strong> header-ம் project வரிசையும் <code>display: flex</code> பயன்படுத்துகின்றன; <code>gap</code> item-களுக்கு இடைவெளி தருகிறது; alignment வேண்டுமென்று செய்யப்பட்டது.</li>
+    <li><strong>Responsive + நிறைவு (5):</strong> <code>360px</code>-இல் nav ஒன்றின் கீழ் ஒன்றாக அமையும், எதுவும் overflow ஆகாது; <code>1200px</code>-இல் content மையமாக இருக்கும்; contrast தேர்ச்சி பெறும், ஒவ்வொரு link-க்கும் தெரியும் focus state இருக்கும்.</li>
+  </ul>
+  <h2>தொகுதி 2 quiz</h2>
+  <div class="quiz" data-quiz>
+    <form>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Id இரண்டாவது specificity column-க்கு எடை சேர்க்கிறது; அது எத்தனை class-களையும் வெல்லும்.">
+        <legend><span class="quiz__num">01</span> <code>&lt;p class="note" id="intro"&gt;</code>-இல் எந்த rule வெல்லும்?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span><code>p { color: blue }</code></span></label><label class="option"><input type="radio" name="q1" value="b"><span><code>.note { color: green }</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="c"><span><code>#intro { color: red }</code></span></label><label class="option"><input type="radio" name="q1" value="d"><span><code>p.note { color: gray }</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="Padding border-க்கு உள்ளே உள்ளது, background நிறத்தைப் பெறுகிறது, click செய்யக்கூடிய பகுதியை விரிவுபடுத்துகிறது.">
+        <legend><span class="quiz__num">02</span> Border-க்கு உள்ளே உள்ள இடம் எந்த அடுக்கு?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span>Margin</span></label><label class="option"><input type="radio" name="q2" value="b"><span>Padding</span></label>
+        <label class="option"><input type="radio" name="q2" value="c"><span>Outline</span></label><label class="option"><input type="radio" name="q2" value="d"><span>Content</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="border-box-இல், சொல்லும் width padding-ஐயும் border-ஐயும் உள்ளடக்கும், அதனால் வெளி அகலம் 300px ஆகவே இருக்கும்.">
+        <legend><span class="quiz__num">03</span> <code>border-box</code> உடன், வெளி அகலம் என்ன?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span><code>300px</code></span></label><label class="option"><input type="radio" name="q3" value="b"><span><code>344px</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="c"><span><code>340px</code></span></label><label class="option"><input type="radio" name="q3" value="d"><span><code>256px</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="justify-content main axis-இல் மீதமுள்ள இடத்தைப் பகிர்கிறது. align-items cross axis-இல் வேலை செய்கிறது.">
+        <legend><span class="quiz__num">04</span> Main axis-இல் இடத்தைப் பகிரும் property எது?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span><code>align-items</code></span></label><label class="option"><input type="radio" name="q4" value="b"><span><code>justify-content</code></span></label>
+        <label class="option"><input type="radio" name="q4" value="c"><span><code>flex-wrap</code></span></label><label class="option"><input type="radio" name="q4" value="d"><span><code>flex-direction</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Gap வெளி margin இல்லாமல் flex item-களுக்கு இடையே இடைவெளி சேர்க்கிறது; collapse ஆகாது.">
+        <legend><span class="quiz__num">05</span> Flex item-களுக்கு இடைவெளி தரும் மிகச் சுத்தமான வழி எது?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span>ஒவ்வொரு child-க்கும் margin</span></label><label class="option"><input type="radio" name="q5" value="b"><span>Container-க்கு padding</span></label>
+        <label class="option"><input type="radio" name="q5" value="c"><span>Container-க்கு <code>gap</code></span></label><label class="option"><input type="radio" name="q5" value="d"><span>Margin-களுக்கு <code>!important</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <div class="quiz__actions">
+        <button type="submit" class="btn">விடைகளைச் சரிபார்</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>Quiz-ஐ மீட்டமை</button>
+        <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
+      </div>
+    </form>
+  </div>
+  <h2>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Project வரிசைக்கு <code>flex-wrap: wrap</code> ஏன் முக்கியம்?</summary>
+      <p>Wrap இல்லாமல், flex item-கள் ஒரே வரியில் பொருந்தச் சுருங்கும், card-கள் படிக்க முடியாமல் போகும். <code>240px</code> basis பொருந்தாதபோது wrap ஒரு card-ஐ அடுத்த வரிக்கு நகர்த்தும்.</p>
+    </details>
+    <details class="qa">
+      <summary>Project வரிசையில் <code>justify-content: space-between</code> ஏன் பயன்படுத்தக் கூடாது?</summary>
+      <p>Space-between முதல், கடைசி card-ஐ விளிம்புகளில் பொருத்தி, உள்ளே சீரற்ற இடைவெளிகளை விடும். <code>gap</code> ஒவ்வொரு card-க்கும் ஒரே இடைவெளி தரும்; space-between-ஐ இரு முனைகள் உள்ள header-க்கு வைத்திருங்கள்.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>தொகுதி 2 முடிந்தது</h2>
+    <ul>
+      <li><strong>Flexbox ஒரு பரிமாணம்.</strong> ஒரு main axis-ஐத் தேர்ந்தெடுத்து, பிறகு பகிர்ந்து சீரமைக்கவும்.</li>
+      <li><strong>சுருங்குவதற்கு முன் wrap செய்யுங்கள்.</strong> <code>flex: 1 1 240px</code> உள்ள wrap ஆகும் வரிசை பெரும்பாலான card layout-களைக் கையாளும்.</li>
+    </ul>
+  </div>
+</article>

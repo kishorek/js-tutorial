@@ -1,0 +1,200 @@
+<article class="lesson" id="lesson-6-1" data-lesson="6-1">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 06 · Async &amp; APIs</p>
+    <h1>Promises மற்றும் async/await</h1>
+    <p class="lesson-lede">JavaScript மெதுவான வேலைக்காகக் காத்திருக்காது. பின்னர் முடியும் வேலையை promises எப்படிக் குறிக்கின்றன, <code>async</code> மற்றும் <code>await</code> அந்த flow-ஐ சாதாரண code போல எப்படிப் படிக்க வைக்கின்றன என்பதைக் கற்றுக்கொள்ளுங்கள்.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 6.1</span>
+      <span class="chip">60–75 நிமிடம்</span>
+      <span class="chip">தொடக்கநிலை</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>இந்தப் பாடம் முடியும்போது, நீங்கள்:</h3>
+        <ul>
+          <li>Synchronous மற்றும் asynchronous வேலைக்கு இடையிலான வேறுபாட்டை விளக்குங்கள்.</li>
+          <li>சிறிய promise chain-ஐ படித்து எழுதுங்கள்.</li>
+          <li>ஒரு chain-ஐ <code>try</code>/<code>catch</code> உடன் <code>async</code>/<code>await</code> ஆக மாற்றுங்கள்.</li>
+          <li>சுயாதீன promises-ஐ <code>Promise.all</code> மூலம் ஒன்றாக இயக்குங்கள்.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>உங்களுக்குத் தேவை</h3>
+        <ul>
+          <li>பாடம் 5.3-ல் உள்ள state மற்றும் rendering.</li>
+          <li>ஒரு browser console திறந்திருக்க வேண்டும்.</li>
+          <li>பின்னர் முடியும் code-க்காகப் பொறுமை.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>JavaScript காத்திருக்காது</h2>
+  <p>Synchronous code ஒரு நேரத்தில் ஒரு வரியாக, வரிசையாக இயங்கும். அடுத்த வரி தொடங்குவதற்கு முன் ஒவ்வொரு வரியும் முடிந்துவிடும். இதைப் புரிந்துகொள்வது எளிது, ஆனால் மெதுவான operation அதற்குப் பின்னால் உள்ள எல்லாவற்றையும் freeze செய்துவிடும்.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">console.log("first");
+console.log("second");
+console.log("third");</script>
+  </div>
+  <p>Asynchronous code ஒரு வேலையைத் தொடங்கி, அடுத்த வேலைக்குச் சென்று, முடிவைப் பின்னர் கையாளும். Timers, network requests, file reads ஆகியவை asynchronous. Delay பூஜ்ஜிய milliseconds ஆனாலும், தற்போதைய வேலை முடிந்த பிறகே callback இயங்கும்.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">console.log("start");
+setTimeout(() => {
+  console.log("callback");
+}, 0);
+console.log("end");
+// start
+// end
+// callback</script>
+  </div>
+  <p>பல ஆண்டுகளாக இதைக் கையாள முக்கிய வழி callbacks ஆக இருந்தது. அவை வேலை செய்கின்றன, ஆனால் பல callbacks-ஐ உள்ளுக்குள் வைப்பது படிக்கக் கடினமான, debug செய்ய இன்னும் கடினமான pyramid-ஐ உருவாக்குகிறது. அந்த வடிவத்தைத் தட்டையாக்கவே promises அறிமுகப்படுத்தப்பட்டன.</p>
+  <div class="callout callout--tip">
+    <span class="callout__label">ஒரு mental model</span>
+    <p>Promise என்பது இன்னும் தயாராகாத ஒரு value-க்கான ரசீது. இப்போதே handlers இணைக்கலாம்; value வந்தவுடன் அவை இயங்கும்.</p>
+  </div>
+  <h2>Promises-க்கு மூன்று நிலைகள் உண்டு</h2>
+  <p>வேலை நடந்துகொண்டிருக்கும்போது promise <strong>pending</strong> நிலையில் இருக்கும். அது ஒரு value உடன் <strong>fulfilled</strong> ஆகலாம், அல்லது error உடன் <strong>rejected</strong> ஆகலாம். ஒருமுறை settle ஆனதும், அது மீண்டும் மாற முடியாது.</p>
+  <p><code>Promise</code> constructor மூலம் ஒன்றை உருவாக்குங்கள். முடிவுடன் <code>resolve</code>-ஐ அழையுங்கள்; அல்லது <code>Error</code> உடன் <code>reject</code>-ஐ அழையுங்கள்.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">function loadUser(id) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (id > 0) {
+        resolve({ id, name: "Maya" });
+      } else {
+        reject(new Error("Invalid user id"));
+      }
+    }, 800);
+  });
+}
+function loadOrders(userId) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve([{ id: 101 }, { id: 102 }]), 400);
+  });
+}</script>
+  </div>
+  <p>Fulfilled value-ஐ கையாள <code>.then()</code>, rejection-ஐ கையாள <code>.catch()</code>, எப்படியும் இயங்க வேண்டிய cleanup-க்கு <code>.finally()</code> பயன்படுத்துங்கள்.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">loadUser(7)
+  .then((user) => {
+    console.log(user.name);
+    return loadOrders(user.id);
+  })
+  .then((orders) => {
+    console.log(`${orders.length} orders`);
+  })
+  .catch((error) => {
+    console.error(error.message);
+  })
+  .finally(() => {
+    console.log("done");
+  });</script>
+  </div>
+  <p>ஒவ்வொரு <code>.then()</code> புதிய promise-ஐத் திருப்பித் தரும். Handler-ல் இருந்து promise-ஐ return செய்தால், அடுத்த <code>.then()</code> அதற்காகக் காத்திருக்கும். அதுதான் chain-ஐ nested ஆகாமல் தட்டையாக வைத்திருக்கிறது.</p>
+  <div class="callout callout--warn">
+    <span class="callout__label">Return செய்ய மறக்காதீர்கள்</span>
+    <p><code>.then()</code> handler ஒரு promise-ஐத் தொடங்கி அதை return செய்யாவிட்டால், அடுத்த step மிக விரைவாக இயங்கும். Chain சரியாகத் தெரியும், ஆனால் அமைதியாகத் தவறான வரிசையை உருவாக்கும்.</p>
+  </div>
+  <h2>async மற்றும் await</h2>
+  <p><code>async</code> function எப்போதும் ஒரு promise-ஐத் திருப்பித் தரும். அதற்குள், promise settle ஆகும் வரை <code>await</code> அந்த function-ஐ இடைநிறுத்தும்; பக்கத்தின் மற்ற பகுதிகளை block செய்யாது. Code மீண்டும் மேலிருந்து கீழாகப் படிக்கப்படும்.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">async function showUser(id) {
+  try {
+    const user = await loadUser(id);
+    const orders = await loadOrders(user.id);
+    console.log(`${user.name} has ${orders.length} orders.`);
+  } catch (error) {
+    console.error(error.message);
+  } finally {
+    console.log("done");
+  }
+}
+showUser(7);</script>
+  </div>
+  <p>இது மேலே உள்ள chain-ஐப் போன்ற அதே logic. <code>try</code> block வெற்றியைக் கையாளும், <code>catch</code> rejected promise-ஐக் கையாளும், <code>finally</code> அதன் பிறகு இயங்கும். <code>await</code> <code>async</code> function-க்குள் அல்லது module-ன் top level-ல் மட்டுமே வேலை செய்யும்.</p>
+  <p>காரணமில்லாமல் இரு style-களையும் கலக்க வேண்டாம். பெரும்பாலான code-க்கு <code>async</code>/<code>await</code>-ஐத் தேர்ந்தெடுங்கள்; ஏற்கனவே promise chain-ல் வேலை செய்கிறீர்கள் அல்லது சிறிய inline handler தேவைப்பட்டால் <code>.then()</code> பயன்படுத்துங்கள்.</p>
+  <h2>ஒன்றாகக் காத்திருங்கள், ஒவ்வொன்றாக அல்ல</h2>
+  <p>இரண்டு சுயாதீன requests வரிசையாக இயங்கத் தேவையில்லை. <code>Promise.all()</code> அவற்றை ஒன்றாகத் தொடங்கி, எல்லா promises-ம் fulfill ஆனதும் resolve ஆகும். ஏதேனும் ஒன்று reject ஆனால், ஒருங்கிணைந்த promise-ம் reject ஆகும்.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">async function loadDashboard() {
+  try {
+    const [user, orders] = await Promise.all([
+      loadUser(7),
+      loadOrders(7)
+    ]);
+    console.log(`${user.name}: ${orders.length} orders`);
+  } catch (error) {
+    console.error("Dashboard failed:", error.message);
+  }
+}
+loadDashboard();</script>
+  </div>
+  <p>எல்லா முடிவுகளும் தேவைப்படும்போது <code>Promise.all()</code> பயன்படுத்துங்கள். ஒரு தோல்வி மற்றவற்றை ரத்து செய்யக்கூடாது என்றால், <code>Promise.allSettled()</code> பயன்படுத்தி ஒவ்வொரு முடிவையும் சரிபாருங்கள்.</p>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">பயிற்சி · 25 நிமிடம்</span>
+      <h2>Chain-ஐ async/await கொண்டு மீண்டும் எழுதுங்கள்</h2>
+    </div>
+    <p>கீழே உள்ள chain ஒரு profile-ஐயும், பிறகு அதன் posts-ஐயும் load செய்கிறது. இதை <code>showProfile</code> என்ற <code>async</code> function ஆக மீண்டும் எழுதுங்கள். இரண்டு calls-க்கும் <code>await</code> பயன்படுத்துங்கள், வேலையை <code>try</code>/<code>catch</code>-ல் வைத்து, post எண்ணிக்கையை log செய்யுங்கள். <code>"finished"</code> என்று log செய்யும் <code>finally</code>-ஐச் சேர்க்கவும்.</p>
+    <div class="code-block" data-code>
+      <script type="text/plain">loadProfile(3)
+  .then((profile) => {
+    console.log(profile.name);
+    return loadPosts(profile.id);
+  })
+  .then((posts) => {
+    console.log(`${posts.length} posts`);
+  })
+  .catch((error) => {
+    console.error(error.message);
+  });</script>
+    </div>
+    <label class="visually-hidden" for="practice-6-1">உங்கள் பயிற்சி code</label>
+    <textarea class="practice__code" id="practice-6-1" data-attempt spellcheck="false" placeholder="உங்கள் async function-ஐ இங்கே எழுதுங்கள்..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>function loadProfile(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve({ id, name: "Maya" }), 500);
+  });
+}
+function loadPosts(profileId) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve([{ id: 1 }, { id: 2 }, { id: 3 }]), 500);
+  });
+}
+async function showProfile(id) {
+  try {
+    const profile = await loadProfile(id);
+    const posts = await loadPosts(profile.id);
+    console.log(`${profile.name} wrote ${posts.length} posts.`);
+  } catch (error) {
+    console.error("Could not load profile:", error.message);
+  } finally {
+    console.log("finished");
+  }
+}
+showProfile(3);</script>
+  </section>
+  <h2>உங்களைச் சரிபாருங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary><code>pending</code> மற்றும் <code>fulfilled</code> இடையிலான வேறுபாடு என்ன?</summary>
+      <p>Pending என்றால் வேலை இன்னும் நடந்துகொண்டிருக்கிறது, promise-க்கு இன்னும் இறுதி value இல்லை. Fulfilled என்றால் வேலை வெற்றிகரமாக முடிந்து இப்போது ஒரு value வைத்திருக்கிறது. ஒரு promise ஒருமுறை மட்டுமே settle ஆக முடியும்.</p>
+    </details>
+    <details class="qa">
+      <summary><code>await</code> பக்கத்தின் மற்ற பகுதிகளை ஏன் freeze செய்யாது?</summary>
+      <p><code>await</code> அதைக் கொண்டுள்ள <code>async</code> function-ஐ மட்டுமே இடைநிறுத்தும். Browser-ன் main thread விடுவிக்கப்படுவதால், promise pending-ஆக இருக்கும்போது மற்ற events, rendering, user input தொடரலாம்.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>நினைவில் கொள்ள வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <ul>
+      <li><strong>Async வேலை பின்னர் முடியும்.</strong> Promise என்பது வந்து சேரக்கூடிய அல்லது தோல்வியடையக்கூடிய ஒரு value-க்கான placeholder.</li>
+      <li><strong><code>.then()</code>-ல் இருந்து promises-ஐ return செய்யுங்கள்.</strong> அது chain-ஐ வரிசையாக வைத்திருக்கும்; return-ஐ மறந்தால் பிந்தைய steps மிக விரைவாக இயங்கும்.</li>
+      <li><strong><code>async</code>/<code>await</code> தான் படிக்க எளிதான default.</strong> தோல்விக்கு <code>try</code>/<code>catch</code>, சுயாதீன வேலைக்கு <code>Promise.all</code> பயன்படுத்துங்கள்.</li>
+    </ul>
+  </div>
+</article>

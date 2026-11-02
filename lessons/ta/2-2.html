@@ -1,0 +1,214 @@
+<article class="lesson" id="lesson-2-2" data-lesson="2-2">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 02 · CSS: வெளித்தோற்றம்</p>
+    <h1>Box model மற்றும் spacing</h1>
+    <p class="lesson-lede">பக்கத்தில் உள்ள ஒவ்வொரு element-ம் நான்கு அடுக்குகள் கொண்ட ஒரு செவ்வகப் பெட்டி. அந்த அடுக்குகளைப் பார்க்கத் தெரிந்தால், "இது ஏன் 20 pixel அதிக அகலமாக இருக்கிறது?" என்பது யூகம் அல்ல, ஒரு கணக்கீடாக மாறும்.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 2.2</span>
+      <span class="chip">60–75 நிமிடம்</span>
+      <span class="chip">தொடக்கநிலை</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>இதன் முடிவில், நீங்கள்</h3>
+        <ul>
+          <li>Box model-இன் நான்கு அடுக்குகளுக்குப் பெயர் சொல்ல முடியும்.</li>
+          <li>ஆச்சரியங்கள் இல்லாமல் <code>box-sizing: border-box</code>-ஐப் பயன்படுத்த முடியும்.</li>
+          <li>Shorthand-கள் மற்றும் ஒரே மாதிரியான scale கொண்டு spacing-ஐச் சரிசெய்ய முடியும்.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>உங்களுக்குத் தேவை</h3>
+        <ul>
+          <li>பாடம் 2.1 முடிக்கப்பட்டிருக்க வேண்டும்.</li>
+          <li>இணைக்கப்பட்ட stylesheet கொண்டு style செய்யக்கூடிய ஒரு பக்கம்.</li>
+          <li>அந்தப் பக்கத்தில் DevTools திறந்திருக்க வேண்டும்.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>ஒவ்வொரு element-ம் ஒரு பெட்டி</h2>
+  <p>உள்ளிருந்து வெளியே: <strong>content</strong> என்பது text அல்லது image, <strong>padding</strong> என்பது border-க்கு உள்ளே உள்ள இடம், <strong>border</strong> என்பது தெரியும் விளிம்பு, <strong>margin</strong> என்பது border-க்கு வெளியே உள்ள இடம். Padding-ம் border-ம் element-க்குச் சொந்தம்; margin அதை அண்டை element-களிலிருந்து பிரிக்கிறது.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">.box {
+  width: 300px;              /* content width */
+  padding: 20px;             /* inside the border */
+  border: 2px solid #333;    /* the edge */
+  margin: 24px;              /* outside the border */
+}</script>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">அடுக்கு</th><th scope="col">என்ன செய்கிறது</th><th scope="col">கிளிக் செய்யலாமா?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Content</td><td>Text, image அல்லது உள்ளே உள்ள பெட்டிகளை வைத்திருக்கும்.</td><td>ஆம்</td></tr>
+        <tr><td>Padding</td><td>Content-ஐ border-இலிருந்து தள்ளி வைக்கும்; background நிறத்தைப் பயன்படுத்தும்.</td><td>ஆம்</td></tr>
+        <tr><td>Border</td><td>Padding-ஐயும் content-ஐயும் சுற்றி ஒரு விளிம்பு வரையும்.</td><td>ஆம்</td></tr>
+        <tr><td>Margin</td><td>இந்தப் பெட்டிக்கும் மற்றவற்றுக்கும் இடையே காலி இடம்; எப்போதும் transparent.</td><td>இல்லை</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>box-sizing கணக்கை மாற்றுகிறது</h2>
+  <p>Default-ஆக CSS <code>content-box</code>-ஐப் பயன்படுத்தும். <code>width: 300px</code> உள்ள element-க்கு <code>20px</code> padding-ம் <code>2px</code> border-ம் இருந்தால், உண்மையில் <code>300 + 40 + 4 = 344px</code> இடத்தை எடுக்கும். நீங்கள் நினைப்பது அரிதாகவே இதுவாக இருக்கும், குறிப்பாகக் குறுகிய layout-க்குள்.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.card {
+  width: 300px;   /* now the total width, including padding and border */
+  padding: 20px;
+  border: 2px solid #333;
+}</script>
+  </div>
+
+  <p><code>border-box</code> உடன், நீங்கள் சொல்லும் width-ே இறுதி வெளி அகலம். Content பகுதி பொருந்தும்படி சுருங்கும்: <code>300 - 40 - 4 = 256px</code>. இந்த reset-ஐ ஒவ்வொரு project-இன் மேலேயும் வையுங்கள்; மனக்கணக்கு செய்வதை நிறுத்துங்கள்.</p>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">பெட்டியை ஆராயுங்கள்</span>
+    <p>DevTools-இல் ஒரு element-ஐத் தேர்ந்தெடுத்து <em>Layout</em> அல்லது <em>Computed</em> panel-ஐத் திறங்கள். Box diagram content, padding, border, margin-ஐ நேரடி எண்களுடன் காட்டும். ஒரு அடுக்கின் மேல் hover செய்தால் பக்கத்தில் அது highlight ஆகும். ஒரு declaration-இன் checkbox-ஐ toggle செய்தால் விளைவை உடனே பார்ப்பீர்கள்.</p>
+  </div>
+
+  <h2>Shorthand மற்றும் longhand</h2>
+  <p>Shorthand-கள் பல பக்கங்களை ஒரே நேரத்தில் அமைக்கும். Value-கள் மேலிருந்து கடிகார திசையில்: top, right, bottom, left. இரண்டு value-கள் என்றால் முதலில் vertical, பிறகு horizontal; ஒரு value நான்கு பக்கங்களுக்கும் பொருந்தும். ஒரு பக்கம் மட்டும் மாறினால் longhand பயன்படுத்துங்கள்.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">/* Longhand */
+padding-top: 16px;
+padding-right: 24px;
+padding-bottom: 16px;
+padding-left: 24px;
+
+/* Same result, clockwise: top right bottom left */
+padding: 16px 24px 16px 24px;
+
+/* Vertical | horizontal */
+padding: 16px 24px;
+
+/* All four sides */
+padding: 16px;
+
+/* Border shorthand: width | style | color */
+border: 1px solid #d8d0c0;</script>
+  </div>
+
+  <h2>Margin-கள் collapse ஆகும்</h2>
+  <p>அண்டை element-களுக்கு இடையேயான vertical margin-கள் கூட்டப்படுவதில்லை. ஒரு paragraph-க்கு <code>margin-bottom: 24px</code> என்றும் அடுத்ததற்கு <code>margin-top: 16px</code> என்றும் இருந்தால், இடைவெளி இரண்டில் பெரியதான <code>24px</code>. ஒரு child-இன் top margin அதன் parent வழியாகவும் collapse ஆகலாம்; உள்ளே இடம் உருவாக்குவதற்குப் பதிலாக முழு parent-ஐயும் கீழே தள்ளும்.</p>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">வழக்கமான தீர்வு</span>
+    <p>Parent-க்கு padding அல்லது border சேர்க்கவும், அல்லது parent-ஐ flex container ஆக்கவும். Flex, grid layout-களில் margin collapse ஆகாது; spacing-க்கு <code>gap</code> பயன்படுத்துகின்றன. Margin மறைந்தது போலத் தோன்றினால், தற்செயலான எண்களைச் சேர்ப்பதற்கு முன் parent-ஐ ஆராயுங்கள்.</p>
+  </div>
+
+  <h2>Spacing scale பயன்படுத்துங்கள்</h2>
+  <p>சிறிய அளவிலான value-களைத் தேர்ந்தெடுத்து மீண்டும் பயன்படுத்துங்கள். நான்கு pixel அடிப்படை பொதுவானது: <code>4, 8, 12, 16, 24, 32, 48, 64</code>. ஒரே மாதிரியான படிகள் பக்கம் ஒன்று சேர்க்கப்பட்டதாக அல்ல, வடிவமைக்கப்பட்டதாகத் தோன்றச் செய்யும். அடுத்த பாடத்தில் இவற்றை custom property-களாகச் சேமிப்போம்.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Token</th><th scope="col">மதிப்பு</th><th scope="col">வழக்கமான பயன்பாடு</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>--space-1</code></td><td>4px</td><td>சிறிய icon இடைவெளிகள்</td></tr>
+        <tr><td><code>--space-2</code></td><td>8px</td><td>Label-இலிருந்து input வரை</td></tr>
+        <tr><td><code>--space-3</code></td><td>16px</td><td>Paragraph இடைவெளி</td></tr>
+        <tr><td><code>--space-4</code></td><td>24px</td><td>Card-இன் padding</td></tr>
+        <tr><td><code>--space-5</code></td><td>32px</td><td>Section இடைவெளிகள்</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <section class="practice" data-practice data-min="40">
+    <div class="practice__head">
+      <span class="kicker">பயிற்சி · 20 நிமிடம்</span>
+      <h2>Card-க்கு மூச்சுவிட இடம் கொடுங்கள்</h2>
+    </div>
+    <p>இந்த card மிக நெருக்கமாக உள்ளது: text விளிம்பைத் தொடுகிறது, button மிகச் சிறிய target. Card-இன் <code>24px</code> padding உட்பட அகலம் <code>320px</code> ஆகவும், heading-க்குக் கீழே <code>8px</code> ஆகவும், paragraph-க்குக் கீழே <code>16px</code>-ம் <code>1.6</code> line-height-ம் ஆகவும், button-க்கு <code>12px 18px</code> padding-ம் <code>44px</code> குறைந்தபட்ச உயரமும் இருக்கும்படி CSS-ஐ மீண்டும் எழுதுங்கள். Global <code>border-box</code> reset-ஐச் சேர்க்கவும்.</p>
+
+    <div class="code-block" data-code>
+      <script type="text/plain"><article class="card">
+  <h2>Focus timer</h2>
+  <p>Twenty-five minutes of work, then a five-minute break.</p>
+  <a class="button" href="#">Start</a>
+</article>
+
+.card { width: 320px; padding: 4px; border: 1px solid #d8d0c0; }
+.card h2 { margin: 0; font-size: 1.1rem; }
+.card p { margin: 0; }
+.button { display: inline-block; padding: 2px 6px; background: #14532d; color: #fff; text-decoration: none; }</script>
+    </div>
+
+    <label class="visually-hidden" for="practice-2-2">உங்கள் CSS</label>
+    <textarea class="practice__code" id="practice-2-2" data-attempt spellcheck="false" placeholder="CSS-ஐ இங்கே மீண்டும் எழுதுங்கள்..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+.card {
+  width: 320px;
+  padding: 24px;
+  border: 1px solid #d8d0c0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.card p {
+  margin: 0 0 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.button {
+  display: inline-block;
+  min-height: 44px;
+  padding: 12px 18px;
+  border-radius: 4px;
+  background: #14532d;
+  color: #fff;
+  text-decoration: none;
+}</script>
+  </section>
+
+  <h2>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary><code>width: 300px</code> உடன் <code>padding: 20px</code> சேர்ந்தால் ஏன் 300px-ஐ விட அகலமாகத் தெரிகிறது?</summary>
+      <p>Default <code>content-box</code> sizing, சொல்லப்பட்ட width-க்கு வெளியே padding-ஐயும் border-ஐயும் சேர்க்கிறது. <code>box-sizing: border-box</code>-ஐ global-ஆக அமைத்தால், சொல்லும் width இரண்டையும் உள்ளடக்கும்; content பகுதி பொருந்தும்படி சுருங்கும்.</p>
+    </details>
+    <details class="qa">
+      <summary>இரண்டு paragraph-களுக்கும் <code>margin: 16px</code> உள்ளது, ஆனால் இடைவெளி 32px அல்ல, 16px. ஏன்?</summary>
+      <p>அண்டை vertical margin-கள் collapse ஆகின்றன: browser அவற்றைக் கூட்டாமல் பெரிய margin-ஐப் பயன்படுத்துகிறது. இது சாதாரணம். சரியான, collapse ஆகாத spacing தேவைப்பட்டால் <code>gap</code> உள்ள flex container பயன்படுத்துங்கள்.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>நினைவில் வைக்க வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <ul>
+      <li><strong>நான்கு அடுக்குகள்:</strong> content, padding, border, margin. எவை கிளிக் செய்யக்கூடியவை, எவை transparent என்பதைத் தெரிந்துகொள்ளுங்கள்.</li>
+      <li><strong>எல்லா இடத்திலும் border-box பயன்படுத்துங்கள்.</strong> அப்போது சொல்லும் width, பக்கத்தில் நீங்கள் பார்ப்பதற்குப் பொருந்தும்.</li>
+      <li><strong>Spacing ஒரு முறை.</strong> ஒரே மாதிரியான சிறிய scale, தனித்தனி pixel value-களின் குவியலை விட மேல்.</li>
+    </ul>
+  </div>
+</article>

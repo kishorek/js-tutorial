@@ -1,0 +1,241 @@
+<article class="lesson" id="lesson-1-4" data-lesson="1-4">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 01 · HTML: பக்கத்தின் எலும்புக்கூடு</p>
+    <h1>திட்டம்: என்னைப் பற்றி → செய்முறைப் பக்கம்</h1>
+    <p class="lesson-lede">முதல் மைல்கல்லை முடியுங்கள்: உண்மையான உள்ளடக்கம், சரியான தலைப்பு அவுட்லைன், ஒரு படம், ஒரு பட்டியல், ஒரு சிறிய படிவம்—இவற்றுடன் இணைக்கப்பட்ட இரண்டு பக்க வலைத்தளம். இன்னும் CSS இல்லை. முதலில் கட்டமைப்பு.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 1.4 · திட்டம்</span>
+      <span class="chip">2–3 மணி நேரம்</span>
+      <span class="chip">தொகுதி மைல்கல்</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>வழங்க வேண்டியவை</h3>
+        <ul>
+          <li>சுயவிவரமும் படிவமும் கொண்ட <code>about-me.html</code>.</li>
+          <li>படமும் பட்டியல்களும் கொண்ட <code>recipe.html</code>.</li>
+          <li>இரு திசைகளிலும் வேலை செய்யும் relative இணைப்புகள்.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>வெளியேறும் சரிபார்ப்பு</h3>
+        <ul>
+          <li>ஒவ்வொரு பக்கமும் கட்டமைப்பில் சரியானது.</li>
+          <li>ஒவ்வொரு input-க்கும் label உள்ளது.</li>
+          <li>குறிப்புகள் இல்லாமல் head மற்றும் body வேறுபாட்டை விளக்க முடியும்.</li>
+          <li>320px அளவில் பக்க அளவில் கிடைமட்ட ஸ்க்ரோல் இல்லை.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>திட்ட விவரம்</h2>
+  <p>ஒரு சிறிய தனிப்பட்ட வலைத்தளத்தை உருவாக்குகிறீர்கள்: “என்னைப் பற்றி” பக்கம் மற்றும் ஒரு செய்முறைப் பக்கம். இரண்டு பக்கங்களும் ஒன்றையொன்று இணைக்கின்றன. உள்ளடக்கம் உங்களுடையது; கட்டமைப்புதான் பயிற்சி.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">பக்கம்</th><th scope="col">இதைக் கொண்டிருக்க வேண்டும்</th><th scope="col">ஏன்</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>about-me.html</code></td><td><code>header</code>, <code>nav</code>, <code>main</code>, ஒரு <code>h1</code>, அறிமுகப் பத்தி, projects பட்டியல், contact படிவம், <code>footer</code>.</td><td>லேண்ட்மார்க், தலைப்புகள், பட்டியல்கள், label-களைப் பயிற்சி செய்ய.</td></tr>
+        <tr><td><code>recipe.html</code></td><td><code>header</code>, <code>nav</code>, <code>main</code>, <code>h1</code>, <code>figure</code>/<code>img</code>/<code>figcaption</code>, ingredients <code>ul</code>, method <code>ol</code>, <code>footer</code>.</td><td>alt உரையுடன் படங்களையும் அர்த்தமுள்ள பட்டியல்களையும் பயிற்சி செய்ய.</td></tr>
+        <tr><td>இரண்டும்</td><td>ஒன்றையொன்று இணைக்கும் relative இணைப்புகள்; விளக்கமான இணைப்பு உரை; உடைந்த படங்கள் இல்லை; சரியான கூடு அமைப்பு.</td><td>பாதைகளையும் அணுகல்தன்மையின் அடிப்படைகளையும் பயிற்சி செய்ய.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>எடிட்டரில் உருவாக்குங்கள்</h2>
+  <p>எடிட்டரில் உள்ள எலும்புக்கூட்டுடன் தொடங்குங்கள். ஒரு நேரத்தில் ஒரு பக்கத்தை உருவாக்கி, பிறகு இரண்டாவது கோப்பை உங்கள் சொந்த எடிட்டரில் உருவாக்குங்கள். இங்குள்ள நேரடி முன்னோட்டம் “என்னைப் பற்றி” பக்கத்திற்கானது; மாதிரி விடையைத் தொடக்கப் புள்ளியாக அல்ல, மதிப்பாய்வாகப் பயன்படுத்துங்கள்.</p>
+
+  <section class="practice" data-practice data-min="150">
+    <div class="practice__head">
+      <span class="kicker">திட்ட பணியிடம்</span>
+      <h2>உங்கள் இரண்டு பக்க உருவாக்கம்</h2>
+    </div>
+
+    <div class="editor" data-editor>
+      <div class="editor__bar">
+        <span class="editor__label">about-me.html</span>
+        <div class="editor__actions">
+          <button type="button" class="btn btn--small" data-action="run">இயக்கு</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="reset">மீட்டமை</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="copy">நகலெடு</button>
+        </div>
+      </div>
+      <div class="editor__grid">
+        <label class="visually-hidden" for="project-1-4">திட்டக் கோட் எடிட்டர்</label>
+        <textarea id="project-1-4" class="editor__code" data-attempt spellcheck="false"></textarea>
+        <div class="editor__preview">
+          <div class="editor__preview-bar">நேரடி முன்னோட்டம்</div>
+          <iframe title="உங்கள் “என்னைப் பற்றி” பக்கத்தின் முன்னோட்டம்" sandbox=""></iframe>
+        </div>
+      </div>
+      <p class="editor__status" aria-live="polite" data-status>முன்னோட்டம் ஏற்றப்பட்டது. உங்கள் பக்கத்தை உருவாக்கி, பிறகு இயக்கு பொத்தானை அழுத்துங்கள்.</p>
+      <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Your Name</title>
+</head>
+<body>
+  <!-- Build the page here. -->
+</body>
+</html></script>
+    </div>
+
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>குறிப்பு தீர்வைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு குறிப்பு தீர்வு திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Maya Chen</title>
+</head>
+<body>
+  <header>
+    <nav aria-label="Main">
+      <a href="about-me.html" aria-current="page">About</a>
+      <a href="recipe.html">Recipe</a>
+    </nav>
+    <h1>Maya Chen</h1>
+    <p>Designer, beginner developer, and enthusiastic pasta maker.</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="intro">
+      <h2 id="intro">A little about me</h2>
+      <p>I am learning <strong>HTML</strong> so I can build
+      <em>my own</em> ideas instead of waiting for someone else
+      to build them. I like small tools, clear writing, and
+      recipes with very little washing up.</p>
+    </section>
+
+    <section aria-labelledby="now">
+      <h2 id="now">What I'm learning</h2>
+      <ul>
+        <li>Semantic page structure</li>
+        <li>Links and images</li>
+        <li>Accessible forms</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="contact">
+      <h2 id="contact">Say hello</h2>
+      <form method="post" action="/contact">
+        <p>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </p>
+        <p>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </p>
+        <p>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+        </p>
+        <button type="submit">Send message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built in Week 1.</p>
+  </footer>
+</body>
+</html></script>
+  </section>
+
+  <h2>மதிப்பாய்வு சரிபார்ப்பு பட்டியல்</h2>
+  <ul>
+    <li>ஒரு பக்கத்திற்கு ஒரு <code>h1</code>; பகுதிகள் <code>h2</code> பயன்படுத்துகின்றன.</li>
+    <li>ஒவ்வொரு input-க்கும் அதன் <code>id</code>-உடன் பொருந்தும் <code>label</code> உள்ளது.</li>
+    <li>படத்திற்கு அர்த்தமுள்ள <code>alt</code> உரையும் நிலையான அளவுகளும் உள்ளன.</li>
+    <li>இரண்டு relative இணைப்புகளும் இரு திசைகளிலும் வேலை செய்கின்றன.</li>
+    <li><code>body</code>-க்கு வெளியே உரை இல்லை; டேக்குகள் குறுக்கிடவில்லை.</li>
+    <li>DevTools-ஐத் திறந்து, <code>h1</code>-ஐ ஆய்வு செய்து, <code>head</code> மற்றும் <code>body</code>-ஐக் கண்டுபிடிக்க முடியும்.</li>
+  </ul>
+
+  <h2>தொகுதி 1 வினாடி வினா</h2>
+  <div class="quiz" data-quiz>
+    <form>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="head மெட்டாடேட்டாவைக் கொண்டுள்ளது; body தெரியும் உள்ளடக்கத்தைக் கொண்டுள்ளது.">
+        <legend><span class="quiz__num">01</span> title எலிமெண்ட் எங்கே இருக்க வேண்டும்?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span><code>body</code>-க்குள்</span></label>
+        <label class="option"><input type="radio" name="q1" value="b"><span><code>head</code>-க்குள்</span></label>
+        <label class="option"><input type="radio" name="q1" value="c"><span><code>html</code>-க்குப் பிறகு</span></label>
+        <label class="option"><input type="radio" name="q1" value="d"><span><code>footer</code>-க்குள்</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Relative இணைப்பு தற்போதைய கோப்பின் கோப்புறையிலிருந்து தீர்க்கப்படும். அதே கோப்புறையில் உள்ள .html கோப்பே சரியான இலக்கு.">
+        <legend><span class="quiz__num">02</span> எந்த இணைப்பு அதே கோப்புறையில் உள்ள கோப்பைச் சுட்டுகிறது?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span><code>https://example.com/recipe.html</code></span></label>
+        <label class="option"><input type="radio" name="q2" value="b"><span><code>../recipe.html</code></span></label>
+        <label class="option"><input type="radio" name="q2" value="c"><span><code>recipe.html</code></span></label>
+        <label class="option"><input type="radio" name="q2" value="d"><span><code>#recipe.html</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <fieldset class="quiz__q" data-question data-answer="d" data-explanation="Alt உரை படம் என்ன தெரிவிக்கிறது என்பதை விவரிக்க வேண்டும்; அது ஒரு படம் என்று திரும்பச் சொல்லக்கூடாது.">
+        <legend><span class="quiz__num">03</span> எந்த alt உரை மிகவும் பயனுள்ளது?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span><code>alt="image"</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="b"><span><code>alt="picture of food"</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="c"><span>ஒரு chart-க்கு <code>alt=""</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="d"><span><code>alt="Lemon pasta in a white bowl"</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="label-இன் for அட்டிரிபியூட் input-இன் id-உடன் பொருந்த வேண்டும். அப்போதுதான் label கிளிக் செய்யக்கூடியதாகிறது; புலத்திற்கு அணுகல் பெயரும் கிடைக்கிறது.">
+        <legend><span class="quiz__num">04</span> label-ஐ input-உடன் எப்படி இணைப்பது?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span><code>label for="email"</code> மற்றும் <code>input id="email"</code></span></label>
+        <label class="option"><input type="radio" name="q4" value="b"><span><code>label name="email"</code> மற்றும் <code>input class="email"</code></span></label>
+        <label class="option"><input type="radio" name="q4" value="c"><span>input-ஐ ஒரு <code>div</code>-க்குள் வைப்பது</span></label>
+        <label class="option"><input type="radio" name="q4" value="d"><span>placeholder-ஐ மட்டும் பயன்படுத்துவது</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="section தொடர்புடைய உள்ளடக்கத்தை ஒரு தலைப்பின் கீழ் குழுவாக்குகிறது. article தனியாக நிற்கக்கூடிய தன்னிறைவான உள்ளடக்கம்.">
+        <legend><span class="quiz__num">05</span> தன்னிறைவான திட்ட அட்டைக்கு எந்த எலிமெண்ட் சிறந்தது?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span><code>&lt;div&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q5" value="b"><span><code>&lt;article&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q5" value="c"><span><code>&lt;span&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q5" value="d"><span><code>&lt;main&gt;</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <div class="quiz__actions">
+        <button type="submit" class="btn">விடைகளைச் சரிபார்</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>வினாடி வினாவை மீட்டமை</button>
+        <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
+      </div>
+    </form>
+  </div>
+
+  <h2>உங்களைச் சரிபாருங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>“என்னைப் பற்றி” பக்கம் ஏன் செய்முறைப் பக்கத்திற்குத் திரும்ப இணைக்க வேண்டும்?</summary>
+      <p>ஒரு வலைத்தளம் என்பது இணைக்கப்பட்ட பக்கங்களின் தொகுப்பு. வழிசெலுத்தல் படிப்பவருக்குத் திரும்பும் வழியைக் கொடுக்கிறது; உங்கள் relative பாதைகள் இரு திசைகளிலும் வேலை செய்கின்றன என்பதையும் நிரூபிக்கிறது.</p>
+    </details>
+    <details class="qa">
+      <summary>Relative இணைப்பு 404 பக்கத்தைத் திறந்தால் முதலில் என்ன சரிபார்க்க வேண்டும்?</summary>
+      <p>கோப்பின் பெயர், extension, கோப்புறை உறவு ஆகியவற்றைச் சரிபார்க்கவும். <code>recipe.html</code>-க்கான இணைப்பு இரண்டு கோப்புகளும் ஒரே கோப்புறையில் இருந்தால் மட்டுமே வேலை செய்யும்.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>தொகுதி 1 முடிந்தது</h2>
+    <ul>
+      <li><strong>பாணிக்கு முன் கட்டமைப்பு.</strong> சரியான அவுட்லைன் பிற்கால ஒவ்வொரு அடுக்கையும் எளிதாக்குகிறது.</li>
+      <li><strong>இணைப்புகள், படங்கள், label-கள், பட்டியல்கள்—அனைத்தும் பொருளைத் தாங்குகின்றன.</strong> வேலையை விவரிக்கும் எலிமெண்ட்டைப் பயன்படுத்துங்கள்.</li>
+      <li><strong>நீங்கள் ஒரு வலைத்தளத்தை உருவாக்கிவிட்டீர்கள்.</strong> இரண்டு பக்கங்கள், உண்மையான உள்ளடக்கம், வேலை செய்யும் பாதைகள், அணுகல்தன்மையுள்ள படிவம்.</li>
+    </ul>
+  </div>
+</article>

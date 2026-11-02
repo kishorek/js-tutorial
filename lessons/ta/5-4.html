@@ -1,0 +1,220 @@
+<article class="lesson" id="lesson-5-4" data-lesson="5-4">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 05 · DOM &amp; நிகழ்வுகள்</p>
+    <h1>திட்டப்பணி: to-do பட்டியல் + வினாடி வினா app</h1>
+    <p class="lesson-lede">தொகுதி மைல்கல்லை உருவாக்குங்கள்: ஒவ்வொரு control-um state-ஐ மாற்றி, திரை அதைப் பின்தொடரும் ஒரு app. to-do பட்டியலுடன் தொடங்கி, சிறிய வினாடி வினாவுக்கு அதே state-and-render முறையை மீண்டும் பயன்படுத்துங்கள்.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 5.4 · திட்டப்பணி</span>
+      <span class="chip">2–3 மணி நேரம்</span>
+      <span class="chip">தொகுதி மைல்கல்</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>வழங்க வேண்டியவை</h3>
+        <ul>
+          <li>சேர்க்க, toggle, நீக்க மற்றும் filter செய்யும் வசதிகொண்ட to-do பட்டியல்.</li>
+          <li>questions array, score மற்றும் reset கொண்ட வினாடி வினா.</li>
+          <li>Keyboard-ல் அணுகக்கூடிய controls மற்றும் காலி நிலை.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>வெளியேறும் சரிபார்ப்பு</h3>
+        <ul>
+          <li>முதலில் state மாறும்; render அதைப் பின்தொடரும்.</li>
+          <li>பயனர் உரை ஒருபோதும் HTML string-ல் செல்லாது.</li>
+          <li>ஒவ்வொரு control-க்கும் அணுகக்கூடிய பெயர் இருக்கும்.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>திட்ட விவரம்</h2>
+  <p>இரண்டு app-களும் பாடம் 5.3-இல் உள்ள அதே loop-ஐப் பயன்படுத்துகின்றன: data-ஐ மாற்றுங்கள், <code>render</code>-ஐ அழையுங்கள், DOM அதைப் பின்தொடரட்டும். முதலில் to-do பட்டியலை உருவாக்குங்கள். வினாடி வினா, வேறு வடிவ state-உடன் அதே முறையை மீண்டும் செய்யும் இரண்டாவது பக்கம்.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">அம்சம்</th><th scope="col">தேவை</th></tr></thead>
+      <tbody>
+        <tr><td>சேர்த்தல்</td><td>உரையை trim செய்யுங்கள், காலி value-ஐப் புறக்கணியுங்கள், input-ஐக் காலி செய்யுங்கள், focus-ஐ அங்கேயே வையுங்கள்.</td></tr>
+        <tr><td>Toggle</td><td>ஒரு item-ஐ முடிந்ததாகக் குறியிட்டு, மீதமுள்ள எண்ணிக்கையைப் புதுப்பியுங்கள்.</td></tr>
+        <tr><td>நீக்குதல்</td><td>தேர்ந்தெடுத்த item-ஐ மட்டும் நீக்குங்கள்; array-இன் மீதமுள்ளவற்றை அப்படியே வையுங்கள்.</td></tr>
+        <tr><td>Filter</td><td>அனைத்து, active அல்லது done items-ஐக் காட்டுங்கள்; தெளிவான காலி செய்தியுடன்.</td></tr>
+        <tr><td>வினாடி வினா</td><td>Questions-ஐ array-ல் சேமித்து, score-ஐக் கண்காணித்து, இரண்டையும் reset செய்யுங்கள்.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h2>to-do app-ஐ உருவாக்குங்கள்</h2>
+  <p>Starter-ல் markup மற்றும் சிறிது CSS ஏற்கனவே உள்ளன. உங்கள் வேலை state, render function மற்றும் listeners. Toggle மற்றும் delete-க்கு ஒரே delegated click listener-ஐயும், சேர்ப்பதற்கு ஒரு submit listener-ஐயும் பயன்படுத்துங்கள்.</p>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">திட்டப் பணியிடம் · 90 நிமிடம்</span>
+      <h2>உங்கள் to-do app</h2>
+    </div>
+    <div class="editor" data-editor>
+      <div class="editor__bar">
+        <span class="editor__label">todo.html</span>
+        <div class="editor__actions">
+          <button type="button" class="btn btn--small" data-action="run">இயக்கு</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="reset">மீட்டமை</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="copy">நகலெடு</button>
+        </div>
+      </div>
+      <div class="editor__grid">
+        <label class="visually-hidden" for="practice-5-4">திட்டக் குறியீட்டு எடிட்டர்</label>
+        <textarea id="practice-5-4" class="editor__code" data-attempt spellcheck="false"></textarea>
+        <div class="editor__preview">
+          <div class="editor__preview-bar">நேரடி முன்னோட்டம்</div>
+          <iframe title="உங்கள் to-do app-இன் முன்னோட்டம்" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+      <p class="editor__status" aria-live="polite" data-status>முன்னோட்டம் ஏற்றப்பட்டது. ஒவ்வொரு மாற்றத்திற்குப் பிறகும் இயக்கு என்பதை அழுத்துங்கள்.</p>
+      <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>To-do</title>
+<style>body{font-family:system-ui;max-width:30rem;margin:2rem auto;padding:0 1rem}form{display:flex;gap:.5rem}input{flex:1;padding:.5rem}li{display:flex;gap:.5rem;align-items:center;margin:.4rem 0}.done span{text-decoration:line-through;opacity:.6}.empty{color:#666}</style>
+</head>
+<body>
+<h1>To-do</h1>
+<label for="todo-input">New task</label>
+<form id="todo-form"><input id="todo-input"><button>Add</button></form>
+<p id="count" aria-live="polite"></p>
+<ul id="todo-list"></ul>
+<div role="group" aria-label="Filter tasks"><button type="button" data-filter="all">All</button><button type="button" data-filter="active">Active</button><button type="button" data-filter="done">Done</button></div>
+<script>
+  // Start with state, render, and event listeners.
+@ENDSCRIPT
+</body>
+</html></script>
+    </div>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>குறிப்பு விடையைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு குறிப்பு விடை திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>To-do</title>
+<style>body{font-family:system-ui;max-width:30rem;margin:2rem auto;padding:0 1rem}form{display:flex;gap:.5rem}input{flex:1;padding:.5rem}li{display:flex;gap:.5rem;align-items:center;margin:.4rem 0}.done span{text-decoration:line-through;opacity:.6}.empty{color:#666}</style>
+</head>
+<body>
+<h1>To-do</h1>
+<label for="todo-input">New task</label>
+<form id="todo-form"><input id="todo-input"><button>Add</button></form>
+<p id="count" aria-live="polite"></p>
+<ul id="todo-list"></ul>
+<div role="group" aria-label="Filter tasks"><button type="button" data-filter="all">All</button><button type="button" data-filter="active">Active</button><button type="button" data-filter="done">Done</button></div>
+<script>
+const form = document.querySelector("#todo-form"), input = document.querySelector("#todo-input");
+const list = document.querySelector("#todo-list"), count = document.querySelector("#count");
+let todos = [{ id: 1, text: "Read the DOM lesson", done: true }, { id: 2, text: "Build the to-do app", done: false }];
+let filter = "all";
+function render() {
+  const visible = todos.filter(todo => filter === "all" || todo.done === (filter === "done"));
+  list.innerHTML = visible.map(todo => `<li data-id="${todo.id}" class="${todo.done ? "done" : ""}">
+    <input type="checkbox" data-action="toggle" ${todo.done ? "checked" : ""}>
+    <span></span> <button type="button" data-action="remove">Delete</button></li>`).join("")
+    || '<li class="empty">Nothing here yet.</li>';
+  list.querySelectorAll("li[data-id]").forEach((row, i) => {
+    row.querySelector("input").setAttribute("aria-label", "Toggle " + visible[i].text);
+    row.querySelector("span").textContent = visible[i].text;
+  });
+  count.textContent = todos.filter(todo => !todo.done).length + " left";
+}
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  const text = input.value.trim();
+  if (!text) return;
+  todos.push({ id: Date.now(), text, done: false });
+  input.value = ""; input.focus(); render();
+});
+list.addEventListener("click", event => {
+  const action = event.target.dataset.action;
+  if (!action) return;
+  const id = Number(event.target.closest("li").dataset.id);
+  if (action === "remove") todos = todos.filter(todo => todo.id !== id);
+  else todos = todos.map(todo => todo.id === id ? { ...todo, done: !todo.done } : todo);
+  render();
+});
+document.querySelectorAll("[data-filter]").forEach(button => button.addEventListener("click", () => {
+  filter = button.dataset.filter; render();
+}));
+render();
+@ENDSCRIPT
+</body>
+</html></script>
+  </section>
+  <h2>வினாடி வினா திரையைச் சேர்க்கவும்</h2>
+  <p>இரண்டாவது பக்கத்தில் <code>&lt;div id="quiz"&gt;&lt;/div&gt;</code> பயன்படுத்துங்கள். Questions-ஐ array-ல் வைத்து, தற்போதைய index மற்றும் score-ஐக் கண்காணித்து, ஒரு நேரத்தில் ஒரு question-ஐ render செய்யுங்கள். Reset button இரண்டு எண்களையும் பூஜ்ஜியத்திற்கு மீட்டமைக்கும்.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">const questions = [
+  { text: "querySelector returns…", options: ["All matches", "The first match"], answer: 1 },
+  { text: "Which event fires on submit?", options: ["click", "submit"], answer: 1 }
+];
+const panel = document.querySelector("#quiz"); let index = 0, score = 0;
+function showQuestion() {
+  panel.replaceChildren();
+  if (index === questions.length) {
+    const result = document.createElement("p"), reset = document.createElement("button");
+    result.textContent = `Score: ${score} / ${questions.length}`; reset.textContent = "Play again";
+    reset.addEventListener("click", () => { index = 0; score = 0; showQuestion(); });
+    panel.append(result, reset); return;
+  }
+  const question = questions[index], heading = document.createElement("h2");
+  heading.textContent = question.text; panel.append(heading);
+  question.options.forEach((option, i) => {
+    const button = document.createElement("button");
+    button.type = "button"; button.textContent = option;
+    button.addEventListener("click", () => {
+      if (i === question.answer) score += 1;
+      index += 1; showQuestion();
+    });
+    panel.append(button);
+  });
+}
+showQuestion();</script>
+  </div>
+  <h2>Accessibility மற்றும் நடத்தை</h2>
+  <ul>
+    <li>ஒவ்வொரு input-க்கும் label உள்ளது; icon மட்டும் உள்ள ஒவ்வொரு button-க்கும் அணுகக்கூடிய பெயர் உள்ளது.</li>
+    <li>Form-ஐ submit செய்யக் கூடாத buttons-ல் <code>type="button"</code> பயன்படுத்துங்கள்.</li>
+    <li>Focus தெரியும்படி வைத்திருந்து, item சேர்த்த பிறகு அதை input-க்குத் திருப்புங்கள்.</li>
+    <li>மீதமுள்ள எண்ணிக்கையை <code>aria-live="polite"</code> மூலம் அறிவிக்கவும்.</li>
+    <li>பயனர் உரையை ஒருபோதும் <code>innerHTML</code> மூலம் செருகாதீர்கள்; <code>textContent</code> மூலம் அமையுங்கள்.</li>
+    <li>Keyboard மட்டுமே பயன்படுத்திச் சோதியுங்கள்: add, toggle, delete, filter மற்றும் reset.</li>
+  </ul>
+  <h3>பொதுவான கேள்விகள்</h3>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Refresh செய்த பிறகு to-do பட்டியல் சேமிக்கப்பட வேண்டுமா?</summary>
+      <p>இப்போதைக்கு இல்லை. தொகுதி 6-ல் <code>localStorage</code>-உடன் persistence வரும். இப்போதைக்கு state-ஐ memory-ல் வைத்திருங்கள்; starter array மாதிரி data-ஐ வழங்கட்டும்.</p>
+    </details>
+    <details class="qa">
+      <summary>List markup-க்கு ஏன் template string பயன்படுத்த வேண்டும்?</summary>
+      <p>Template-ல் நம்பகமான structure மற்றும் எண்ணிக்கையான ids மட்டுமே இருக்கின்றன. பார்வையாளரின் உரை தனியாக <code>textContent</code> மூலமே செருகப்படுகிறது; அதனால் அது markup ஆக முடியாது.</p>
+    </details>
+  </div>
+  <h2>தொகுதி 5 வினாடி வினா</h2>
+  <div class="quiz" data-quiz><form>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="querySelector முதல் பொருந்தத்தைத் திருப்பித் தரும்; querySelectorAll ஒவ்வொரு பொருந்தத்தையும் கொண்ட NodeList-ஐத் திருப்பித் தரும்."><legend><span class="quiz__num">01</span> முதல் பொருந்தும் element-ஐத் திருப்பித் தரும் method எது?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span><code>querySelectorAll</code></span></label><label class="option"><input type="radio" name="q1" value="b"><span><code>querySelector</code></span></label><label class="option"><input type="radio" name="q1" value="c"><span><code>getElementsByTagName</code></span></label> <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="ஒவ்வொரு திருத்தத்திலும் input event இயங்கும்; நேரடி counter-க்கு அதுதான் தேவை."><legend><span class="quiz__num">02</span> Text field-ல் ஒவ்வொரு திருத்தத்திலும் எந்த event இயங்கும்?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span><code>input</code></span></label><label class="option"><input type="radio" name="q2" value="b"><span><code>change</code></span></label><label class="option"><input type="radio" name="q2" value="c"><span><code>submit</code></span></label> <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="textContent value-ஐ உரையாகவே கையாளும்; அதனால் markup எழுத்துகள் elements அல்லது handlers ஆக முடியாது."><legend><span class="quiz__num">03</span> பார்வையாளர் உள்ளீட்டுக்கு <code>textContent</code>-ஐ ஏன் பயன்படுத்த வேண்டும்?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span>மற்ற எல்லா method-களையும் விட இது வேகமானது.</span></label><label class="option"><input type="radio" name="q3" value="b"><span>இது உரையை bold markup ஆகச் சேர்க்கிறது.</span></label><label class="option"><input type="radio" name="q3" value="c"><span>இது உரையை ஒருபோதும் HTML ஆக parse செய்யாது.</span></label> <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="State தான் உண்மையின் மூலம். அதைப் புதுப்பித்து, திரை பொருந்தும் வகையில் render-ஐ அழையுங்கள்."><legend><span class="quiz__num">04</span> State மாறிய உடனே என்ன நடக்க வேண்டும்?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span>முழுப் பக்கத்தையும் reload செய்ய வேண்டும்.</span></label><label class="option"><input type="radio" name="q4" value="b"><span>Render function-ஐ அழைக்க வேண்டும்.</span></label><label class="option"><input type="radio" name="q4" value="c"><span>State array-ஐக் காலி செய்ய வேண்டும்.</span></label> <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="preventDefault browser-இன் இயல்பான submit navigation-ஐ நிறுத்தி, கட்டுப்பாட்டை உங்கள் handler-க்கு விட்டுவிடும்."><legend><span class="quiz__num">05</span> Form-ல் <code>event.preventDefault()</code> எதை நிறுத்துகிறது?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span>இயல்பான page navigation-ஐ.</span></label><label class="option"><input type="radio" name="q5" value="b"><span>எதிர்கால event listeners அனைத்தையும்.</span></label><label class="option"><input type="radio" name="q5" value="c"><span>Form-இன் input values-ஐ.</span></label> <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <div class="quiz__actions">
+        <button type="submit" class="btn">பதில்களைச் சரிபார்</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>வினாடியை மீட்டமை</button>
+        <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
+      </div>
+    </form></div>
+  <div class="recap">
+    <h2>தொகுதி 5 முடிந்தது</h2>
+    <ul>
+      <li><strong>பாதுகாப்பாகத் தேர்ந்தெடுத்து மாற்றுங்கள்.</strong> DOM-ஐ query செய்து, உரையை உரையாகவே வைத்து, புதிய nodes-ஐ வேண்டுமென்றே உருவாக்குங்கள்.</li>
+      <li><strong>Events தான் app-ஐ இயக்குகின்றன.</strong> Input-ஐப் படித்து, தேவையற்ற defaults-ஐத் தடுத்து, திரும்பத் திரும்ப வரும் controls-ஐ delegate செய்யுங்கள்.</li>
+      <li><strong>State, பிறகு render.</strong> ஒரு array, ஒரு render function, ஒவ்வொரு செயலுக்கும் ஒரே முன்னறிவிக்கக்கூடிய வழி.</li>
+    </ul>
+  </div>
+</article>

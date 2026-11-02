@@ -1,0 +1,188 @@
+<article class="lesson" id="lesson-7-2" data-lesson="7-2">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 07 · வெளியிடு</p>
+    <h1>அணுகல்தன்மை மற்றும் செயல்திறன் தணிக்கை</h1>
+    <p class="lesson-lede">Mouse மற்றும் வேகமான இணைப்பு இருந்தால் மட்டுமே வேலை செய்யும் தளம் மக்களை இழக்கும் தளம். ஒவ்வொரு முறையும் அதே தணிக்கையைச் செய்யுங்கள்: keyboard, focus, contrast, labels, images, motion, மற்றும் பார்வையாளர்கள் download செய்ய நீங்கள் கேட்கும் bytes.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 7.2</span>
+      <span class="chip">60–75 நிமிடம்</span>
+      <span class="chip">இடைநிலை</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>இதன் முடிவில், நீங்கள்</h3>
+        <ul>
+          <li>Keyboard மற்றும் screen-reader சோதனையைச் செய்ய முடியும்.</li>
+          <li>பொதுவான WCAG தோல்விகளைக் கண்டறிந்து சரிசெய்ய முடியும்.</li>
+          <li>தவிர்க்கக்கூடிய layout shift-ஐயும் download எடையையும் குறைக்க முடியும்.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>உங்களுக்குத் தேவை</h3>
+        <ul>
+          <li>இந்தப் பாடத்திட்டத்தில் நீங்கள் உருவாக்கிய ஒரு பக்கம்.</li>
+          <li>Chrome DevTools மற்றும் Lighthouse.</li>
+          <li>Keyboard மட்டுமே பயன்படுத்தி பத்து நிமிடங்கள்.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>அணுகல்தன்மை ஒரு அடிப்படை</h2>
+  <p>WCAG என்பது Web Content Accessibility Guidelines. முழுமையை அல்ல, AA நிலையை இலக்காகக் கொள்ளுங்கள். நான்கு கொள்கைகளை <strong>POUR</strong> என்று நினைவில் வைப்பது எளிது: உள்ளடக்கம் perceivable, operable, understandable, robust ஆக இருக்க வேண்டும். அன்றாட code-ல் இது ஆறு பழக்கங்களைக் குறிக்கும்.</p>
+
+  <ul>
+    <li><strong>Keyboard முதலில்.</strong> ஒவ்வொரு இணைப்பு, button, field, menu-வும் Tab, Shift+Tab, Enter, Space, மற்றும் எதிர்பார்க்கும் இடங்களில் arrow keys-உடன் வேலை செய்ய வேண்டும்.</li>
+    <li><strong>தெளிவாகத் தெரியும் focus.</strong> focus outline-ஐ மாற்றீடு இல்லாமல் ஒருபோதும் நீக்காதீர்கள். தெளிவான ring, keyboard பயனர்கள் எங்கே இருக்கிறார்கள் என்பதைக் காட்டும்.</li>
+    <li><strong>Contrast.</strong> உடல் உரை அதன் பின்னணிக்கு எதிராக குறைந்தது 4.5:1 தேவை. பெரிய உரை மற்றும் interface எல்லைகளுக்கு குறைந்தது 3:1 தேவை.</li>
+    <li><strong>பெயர்கள்.</strong> ஒவ்வொரு input-க்கும் உண்மையான <code>label</code> இருக்க வேண்டும். அர்த்தமுள்ள ஒவ்வொரு படத்திற்கும் பயனுள்ள <code>alt</code> உரை இருக்க வேண்டும். அலங்காரப் படங்கள் <code>alt=""</code> பயன்படுத்தும்.</li>
+    <li><strong>அமைப்பு.</strong> ஒரு <code>main</code>, தர்க்கமான heading வரிசை, <code>header</code>, <code>nav</code>, <code>footer</code> போன்ற landmarks பயன்படுத்துங்கள். ஒரு skip link சேர்க்கவும்.</li>
+    <li><strong>Motion.</strong> <code>prefers-reduced-motion</code>-ஐ மதியுங்கள்; எதையும் புரிந்துகொள்ள animation மட்டுமே வழியாக இருக்கக் கூடாது.</li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Overlay-கள் தீர்வு அல்ல</span>
+    <p>Accessibility widget, button போல் நடிக்கும் div, label இல்லாத input, படிக்க முடியாத contrast ஆகியவற்றைச் சரிசெய்ய முடியாது. HTML, CSS-ஐ அடிப்படையிலேயே சரிசெய்யுங்கள்.</p>
+  </div>
+
+  <h2>ஒவ்வொரு முறையும் அதே தணிக்கையைச் செய்யுங்கள்</h2>
+  <p>இந்த checklist-ஐ print செய்யுங்கள் அல்லது editor-க்கு அருகில் வைத்திருங்கள். சிறிய தளத்தில் முழு pass-க்கு சுமார் பதினைந்து நிமிடங்கள் ஆகும்.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">பகுதி</th><th scope="col">சரிபார்ப்பு</th><th scope="col">வெற்றி எப்படி இருக்கும்</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Keyboard</td><td>முழுப் பக்கத்திலும் Tab அழுத்துங்கள்.</td><td>ஒவ்வொரு control-உம் அடையக்கூடியதாக, சரியான வரிசையில், trap இல்லாமல் இருக்கும்.</td></tr>
+        <tr><td>Focus</td><td>ஒவ்வொரு control-இலும் focus ring-ஐப் பாருங்கள்.</td><td>பின்னணிக்கு எதிராகத் தெளிவாகத் தெரியும்.</td></tr>
+        <tr><td>Structure</td><td>Heading outline-ஐயும் landmarks-ஐயும் படியுங்கள்.</td><td>ஒரு <code>h1</code>, தவிர்க்கப்பட்ட நிலைகள் இல்லை, ஒரு <code>main</code>.</td></tr>
+        <tr><td>Text</td><td>200% வரை zoom செய்து contrast-ஐச் சரிபாருங்கள்.</td><td>உரை வெட்டப்படவில்லை; body உரை 4.5:1-ஐ பூர்த்தி செய்கிறது.</td></tr>
+        <tr><td>Images</td><td>ஒவ்வொரு <code>img</code>-ஐயும் பாருங்கள்.</td><td>பயனுள்ள <code>alt</code>, மேலும் <code>width</code>, <code>height</code>.</td></tr>
+        <tr><td>Forms</td><td>ஒவ்வொரு label-ஐயும் click செய்து காலியாக submit செய்யுங்கள்.</td><td>Labels தங்கள் field-ஐ focus செய்யும்; பிழைகள் அறிவிக்கப்பட்டு தெளிவாக இருக்கும்.</td></tr>
+        <tr><td>Motion</td><td>OS-ல் reduced motion-ஐ இயக்குங்கள்.</td><td>அத்தியாவசியமான எதுவும் animation-ஐச் சார்ந்திருக்காது.</td></tr>
+        <tr><td>Assets</td><td>படங்களின் எடை, fonts, CSS, JS-ஐச் சரிபாருங்கள்.</td><td>படங்களுக்கு அளவு உள்ளது; fonts swap ஆகும்; scripts defer ஆகியுள்ளன.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>கண்ணுக்குத் தெரியும் தோல்விகளைச் சரிசெய்யுங்கள்</h2>
+  <p>இந்த card ஒரு பொதுவான முதல் draft. Click செய்யலாம் போல் தெரியும், ஆனால் keyboard-ல் பயன்படுத்த முடியாது, படத்திற்கு மாற்று உரை இல்லை, குறைந்த contrast உரை பல வாசகர்களுக்கு மறைந்துவிடும்.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><div class="card" onclick="openProject()">
+  <img src="project.jpg">
+  <div class="title">Project one</div>
+  <span style="color:#aaa">A tiny reading tracker.</span>
+</div></script>
+  </div>
+
+  <p>மீண்டும் எழுதப்பட்ட பதிப்பு உண்மையான article, உண்மையான இணைப்பு, பயனுள்ள மாற்று உரை, ஒதுக்கப்பட்ட பட இடம், fold-க்குக் கீழே உள்ள படத்திற்கு lazy loading, படிக்கக்கூடிய contrast ஆகியவற்றைப் பயன்படுத்துகிறது.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><article class="card">
+  <img src="project.jpg"
+       alt="The reading tracker dashboard showing three saved books"
+       width="640" height="360" loading="lazy">
+  <h2><a href="project.html">Project one</a></h2>
+  <p>A tiny reading tracker with a calm, focused interface.</p>
+</article></script>
+  </div>
+
+  <p>Focus, motion-க்கும் CSS தேவை. outline-ஐ வலுவாக வைத்திருங்கள்; பார்வையாளர் கேட்கும்போது motion-ஐ குறைக்கவும்.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">a:focus-visible {
+  outline: 3px solid #0b5fff;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}</script>
+  </div>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">Checklist அல்ல, keyboard-உடன் சோதியுங்கள்</span>
+    <p>Mouse-ஐ ஒதுக்கி வைத்து முக்கிய வேலையை முடியுங்கள். focus எங்கே போனது என்று உங்களுக்குத் தெரியாவிட்டால், keyboard பயனருக்கும் தெரியாது. பிறகு ஐந்து நிமிடம் screen reader-ஐ முயற்சியுங்கள்; VoiceOver, NVDA, TalkBack இலவசம்.</p>
+  </div>
+
+  <h2>செயல்திறன் அனுபவத்தின் ஒரு பகுதி</h2>
+  <p>மெதுவான சாதனங்கள், நம்பமுடியாத network-களுக்கு performance என்பது அணுகல்தன்மை. மிகப் பெரிய தெரியும் படம், fonts, JavaScript ஆகியவற்றிலிருந்து தொடங்குங்கள்.</p>
+
+  <ul>
+    <li><strong>பட இடத்தை ஒதுக்குங்கள்.</strong> கோப்பு வரும்போது layout துள்ளாமல் இருக்க <code>width</code>, <code>height</code> அமைக்கவும்.</li>
+    <li><strong>Fold-க்குக் கீழே lazy-load செய்யுங்கள்.</strong> கீழே உள்ள படங்களுக்கு <code>loading="lazy"</code> பயன்படுத்துங்கள். Hero படத்தை lazy-load செய்யாதீர்கள்; அது largest contentful paint-ஐ பாதிக்கும்.</li>
+    <li><strong>Fonts swap ஆகட்டும்.</strong> <code>font-display: swap</code> பயன்படுத்துங்கள், நீங்கள் பயன்படுத்தும் weights மட்டும் load செய்யுங்கள், ஒரே family-ஐ விரும்புங்கள்.</li>
+    <li><strong>குறைவான JavaScript அனுப்புங்கள்.</strong> பயன்படுத்தாத library-களை நீக்குங்கள், scripts-ஐ defer செய்யுங்கள், தேவையை விட பெரிய கோப்புகளுக்கு Network panel-ஐப் பாருங்கள்.</li>
+    <li><strong>Mobile-ல் அளவிடுங்கள்.</strong> Mobile setting, throttled connection-உடன் Lighthouse இயக்குங்கள். Desktop score என்பது உங்கள் பார்வையாளர்கள் பெறும் score அல்ல.</li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Score-கள் ஒரு smoke alarm</span>
+    <p>Lighthouse-ல் சரியான score வந்தால் பக்கம் அணுகக்கூடியது என்று நிரூபணமாகாது. தானியங்கிக் கருவிகள் பிரச்சினையின் ஒரு பகுதியை மட்டுமே பிடிக்கும்; keyboard சோதனையும் மனித மதிப்பீடும் மீதியைப் பிடிக்கும்.</p>
+  </div>
+
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">பயிற்சி · 30 நிமிடம்</span>
+      <h2>Promo block-ஐ தணிக்கை செய்து சரிசெய்யுங்கள்</h2>
+    </div>
+    <p>இந்த snippet-ல் குறைந்தது ஐந்து அணுகல்தன்மைப் பிரச்சினைகளைக் கண்டறிந்து, பிறகு மீண்டும் எழுதுங்கள். Heading உள்ள section, உண்மையான இணைப்பு அல்லது button, label உள்ள email field, பயனுள்ள alt உரை, படத்தின் அளவுகள், படிக்கக்கூடிய contrast பயன்படுத்துங்கள். படம் fold-க்குக் கீழே உள்ளது என்று வைத்துக்கொள்ளுங்கள்.</p>
+    <div class="code-block" data-code>
+      <script type="text/plain"><div class="promo" onclick="signup()">
+  <img src="workshop.jpg">
+  <h3>Free workshop</h3>
+  <p style="color:#aaa">Saturday, 10am</p>
+  <input type="email" placeholder="Email">
+  <span>Sign up</span>
+</div></script>
+    </div>
+    <label class="visually-hidden" for="practice-7-2">நீங்கள் சரிசெய்த snippet</label>
+    <textarea class="practice__code" id="practice-7-2" data-attempt spellcheck="false" placeholder="சரிசெய்த markup-ஐ இங்கே எழுதுங்கள்..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>Problems: the div click handler is not keyboard accessible; the image has no alt text or dimensions; the heading level is arbitrary; the inline color fails contrast; the placeholder is the only label; the span is not a real button.
+
+<section class="promo" aria-labelledby="promo-title">
+  <img src="workshop.jpg"
+       alt="People sketching at a shared table in a bright studio"
+       width="640" height="360" loading="lazy">
+  <h2 id="promo-title">Free workshop</h2>
+  <p>Saturday, 10am. No experience needed.</p>
+  <form action="/signup" method="post">
+    <label for="workshop-email">Email address</label>
+    <input id="workshop-email" name="email" type="email"
+           autocomplete="email" required>
+    <button type="submit">Sign up</button>
+  </form>
+</section></script>
+  </section>
+
+  <h2>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Lighthouse score 100 என்றால் பக்கம் அணுகக்கூடியது என்று அர்த்தமா?</summary>
+      <p>இல்லை. தானியங்கிச் சோதனைகள் சில இல்லாத பெயர்கள், contrast தோல்விகள், அமைப்புப் பிரச்சினைகளைப் பிடிக்கும்; ஆனால் keyboard வரிசை அர்த்தமுள்ளதா, screen-reader அனுபவம் தெளிவாக உள்ளதா என்பதை அவை மதிப்பிட முடியாது. உண்மையான interaction-ஐச் சோதியுங்கள்.</p>
+    </details>
+    <details class="qa">
+      <summary>ஒவ்வொரு படத்திற்கும் <code>loading="lazy"</code> சேர்க்கக் கூடாது ஏன்?</summary>
+      <p>Lazy loading, browser தேவை என்று நினைக்கும் வரை படத்தைத் தாமதப்படுத்தும். Hero அல்லது fold-க்கு மேலே உள்ள மிகப்பெரிய படத்தில் அது பக்கத்தை மெதுவாக உணர வைக்கும். Fold-க்குக் கீழே உள்ள படங்களுக்கு இதைப் பயன்படுத்துங்கள்.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>நினைவில் வைக்க வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <ul>
+      <li><strong>Keyboard, focus, contrast, labels, alt, landmarks.</strong> ஒவ்வொரு பக்கத்திலும் அதே ஆறு சரிபார்ப்புகளைச் செய்யுங்கள்.</li>
+      <li><strong>Performance என்பது பயனர் அனுபவம்.</strong> இடத்தை ஒதுக்குங்கள், படங்களை compress செய்யுங்கள், ஒவ்வொரு kilobyte JavaScript-ஐயும் கேள்வி கேளுங்கள்.</li>
+      <li><strong>Score-கள் மட்டுமல்ல, மக்களுடன் தணிக்கை செய்யுங்கள்.</strong> தானியங்கிக் கருவிகள் உரையாடலைத் தொடங்கும்; உண்மையான பயன்பாடு அதை முடிக்கும்.</li>
+    </ul>
+  </div>
+</article>

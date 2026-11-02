@@ -1,0 +1,186 @@
+<article class="lesson" id="lesson-3-2" data-lesson="3-2">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 03 · Layout &amp; responsive design</p>
+    <h1>Mobile-first responsive design</h1>
+    <p class="lesson-lede">ஒரு responsive page மூன்று தனித்தனி layouts அல்ல. சிறியதாகத் தொடங்கி, screen-க்கு இடம் கிடைக்கும்போது columns-ஐயும் scale-ஐயும் சேர்க்கும் ஒரே layout. Mobile-first அந்த logic-ஐ நீங்கள் CSS எழுதும் வரிசையில் வைத்திருக்கிறது.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 3.2</span>
+      <span class="chip">60–75 நிமிடங்கள்</span>
+      <span class="chip">தொடக்கநிலை</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>இதன் முடிவில், உங்களால் முடியும்</h3>
+        <ul>
+          <li>Layout-ஐ சேர்க்கும் <code>min-width</code> media queries எழுதுவது.</li>
+          <li>Breakpoints-ஐ device பெயர்களில் இருந்து அல்ல, content-ல் இருந்து தேர்ந்தெடுப்பது.</li>
+          <li><code>clamp()</code> மற்றும் responsive images-ஐ பாதுகாப்பாகப் பயன்படுத்துவது.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>உங்களுக்குத் தேவை</h3>
+        <ul>
+          <li>பாடம் 3.1: CSS Grid.</li>
+          <li>Sections மற்றும் குறைந்தது ஒரு image உள்ள page.</li>
+          <li>Widths test செய்ய DevTools device toolbar தேவை.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Viewport-ல் தொடங்குங்கள்</h2>
+  <p>Viewport meta tag இல்லாமல், ஒரு phone தன் screen ஏறக்குறைய <code>980px</code> அகலம் என்று நினைத்து result-ஐ சுருக்கும். உங்கள் page தூரத்திலிருந்து எடுத்த desktop site photo போலத் தெரியும்; ஒவ்வொரு media query-um தவறான அளவில் trigger ஆகும்.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><meta name="viewport" content="width=device-width, initial-scale=1"></script>
+  </div>
+
+  <p>ஒவ்வொரு page-இன் <code>head</code>-ல் இதை வையுங்கள். முதல் பகுதி layout width-ஐ device width-க்கு சமமாக்குகிறது; இரண்டாவது initial zoom-ஐ சாதாரணமாக அமைக்கிறது. <code>user-scalable=no</code> சேர்க்க வேண்டாம். Zoom ஒரு accessibility feature.</p>
+
+  <h2>min-width கொண்டு styles-ஐ அடுக்குங்கள்</h2>
+  <p>Mobile-first என்றால் base CSS குறுகிய layout-ஐ விவரிக்கிறது. இடம் இருக்கும்போது மட்டும் media queries கூடுதல் சிக்கல்களைச் சேர்க்கின்றன. இரண்டு rules-க்கும் ஒரே specificity இருப்பதால், condition true ஆகும்போது பிறகு வரும் <code>min-width</code> block வெற்றி பெறும்.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">.split {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 700px) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 2.5rem;
+  }
+}</script>
+  </div>
+
+  <p><code>max-width</code> பயன்படுத்தும் desktop-first rule-உடன் இதை ஒப்பிடுங்கள். Base styles அகலமான screen-ஐ எடுத்துக்கொண்டு, screen சுருங்கும்போது columns-ஐ நீக்குகின்றன. இதுவும் வேலை செய்யும், ஆனால் குறுகிய நிலைக்கான முடிவுகளை வரையறுப்பதற்குப் பதிலாக அவற்றை override செய்வதில் நேரம் செலவாகும்.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">அகலம்</th><th scope="col">என்ன சரிபார்க்க வேண்டும்</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>320px</code></td><td>பக்கவாட்டு scroll இல்லை, body text படிக்கக்கூடியதாக இருக்க வேண்டும், tap targets குறைந்தது <code>44px</code> உயரம், heading overflow ஆகக்கூடாது.</td></tr>
+        <tr><td><code>768px</code></td><td>இரண்டு column sections align ஆக வேண்டும், images stretch ஆகக்கூடாது, navigation இன்னும் பொருந்த வேண்டும்.</td></tr>
+        <tr><td><code>1440px</code></td><td>Line lengths <code>65ch</code> அருகில் இருக்க வேண்டும், content edges-ஐ ஒட்டக்கூடாது, மிகப்பெரிய காலி இடங்கள் இருக்கக்கூடாது.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Breakpoints content-ஐப் பின்பற்றுகின்றன</h2>
+  <p>Phones, tablets என்று பெயர் சொல்லி breakpoints தேர்ந்தெடுக்க வேண்டாம். Browser-ஐ மெதுவாக resize செய்து, layout வேலை செய்யாமல் போகும் இடத்தில் breakpoint சேர்க்கவும்: text வரி மிக நீளமாகிறது, cards மிகக் குறுகுகின்றன, அல்லது navigation மோசமாக wrap ஆகிறது.</p>
+
+  <ul>
+    <li>பிரச்சினை தோன்றுவதற்கு சற்று முந்தைய அகலத்தில் breakpoint எழுதுங்கள்.</li>
+    <li><code>em</code>-அடிப்படையிலான queries பயனரின் font settings-க்கு ஏற்ப scale ஆகும்: <code>768px</code>-ஐ விட <code>48em</code> பொதுவாக சிறந்த தேர்வு.</li>
+    <li>பெரும்பாலான projects-க்கு இரண்டு அல்லது மூன்று breakpoints போதும்; ஒவ்வொரு device-க்கும் ஒன்று தேவையில்லை.</li>
+    <li>சரியான மதிப்புகளை மட்டுமல்ல, breakpoints-க்கு இடையிலான இடைவெளியையும் test செய்யுங்கள்.</li>
+  </ul>
+
+  <p>Fluid type தேவையான queries எண்ணிக்கையைக் குறைக்கிறது. <code>clamp(minimum, preferred, maximum)</code> ஒரு மதிப்பு viewport-உடன் வளர அனுமதிக்கிறது; ஆனால் நீங்கள் அமைத்த எல்லைகளுக்கு வெளியே போகாது.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">h1 {
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.5rem);
+  line-height: 1.05;
+}
+
+.lede {
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+  max-width: 62ch;
+}</script>
+  </div>
+
+  <p>நடுவில் உள்ள மதிப்பு fluid வேலையைச் செய்கிறது; வெளிப்புற மதிப்புகள் result படிக்கக்கூடியதாக வைத்திருக்கின்றன. Headings மற்றும் பெரிய spacing-க்கு <code>clamp()</code> பயன்படுத்துங்கள்; ஒவ்வொரு மதிப்புக்கும் வேண்டாம். Body text <code>1rem</code> அருகில் இருக்க வேண்டும்.</p>
+
+  <h2>Images மற்றும் horizontal overflow</h2>
+  <p>தன் container-ஐ விட அகலமான image தான் பக்கவாட்டு scrolling-க்கு மிகப் பொதுவான காரணம். Images இயல்பாகவே சரியாக நடந்துகொள்ளச் செய்யுங்கள்.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.hero img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+<img src="hero-800.jpg"
+     srcset="hero-400.jpg 400w, hero-800.jpg 800w, hero-1600.jpg 1600w"
+     sizes="(min-width: 900px) 50vw, 100vw"
+     alt="மடிக்கணினி மற்றும் ஒரு notebook உள்ள மேசை"
+     width="800" height="450"></script>
+  </div>
+
+  <ul>
+    <li><code>max-width: 100%</code> மற்றும் <code>height: auto</code> column-க்குள் பொருந்தும் அதே நேரத்தில் aspect ratio-ஐ வைத்திருக்கும்.</li>
+    <li><code>srcset</code> மற்றும் <code>sizes</code> browser தான் ஆக்கிரமிக்கப்போகும் இடத்திற்கு ஏற்ற file-ஐ download செய்ய அனுமதிக்கின்றன.</li>
+    <li>இடத்தை ஒதுக்கி layout shift-ஐ குறைக்க எப்போதும் <code>width</code> மற்றும் <code>height</code> attributes வைத்திருங்கள்.</li>
+    <li>நிலையான aspect ratio முக்கியமானபோது <code>object-fit: cover</code> பயன்படுத்துங்கள்; image நசுங்காமல் crop ஆகும்.</li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">பிரச்சினையை மறைக்க வேண்டாம்</span>
+    <p><code>body</code>-ல் <code>overflow-x: hidden</code> போட்டால் பக்கவாட்டு scrolling மறையும்; ஆனால் அதற்குக் காரணமானதை சரிசெய்யாமல் விடுவீர்கள். DevTools-ல் அகலமான element-ஐ கண்டுபிடித்து அதன் sizing-ஐ சரிசெய்யுங்கள். திட்டமிட்ட decorative bleed-க்கு மட்டும் overflow clipping-ஐ வைத்திருக்கவும்.</p>
+  </div>
+
+  <section class="practice" data-practice data-min="40">
+    <div class="practice__head">
+      <span class="kicker">பயிற்சி · 25 நிமிடங்கள்</span>
+      <h2>இரண்டு column section-ஐ stack செய்யுங்கள்</h2>
+    </div>
+    <p>இரண்டு children உள்ள <code>.split</code> section-க்கு mobile-first CSS எழுதுங்கள். <code>700px</code>-க்குக் கீழே children <code>1.5rem</code> gap-உடன் ஒரே column-ல் stack ஆக வேண்டும். <code>700px</code> மற்றும் அதற்கு மேல் <code>2.5rem</code> gap-உடன் இரண்டு சமமான columns-ல் அமைய வேண்டும். நீளமான content page-ஐ அகலமாக்காமல் இருக்க <code>minmax(0, 1fr)</code> பயன்படுத்துங்கள்.</p>
+    <label class="visually-hidden" for="practice-3-2">உங்கள் responsive CSS</label>
+    <textarea class="practice__code" id="practice-3-2" data-attempt spellcheck="false" placeholder=".split { ... }"></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.split > * {
+  min-width: 0;
+}
+
+@media (min-width: 700px) {
+  .split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem;
+    align-items: start;
+  }
+}</script>
+  </section>
+
+  <h2>உங்களைச் சரிபாருங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary><code>max-width</code>-ஐ விட <code>min-width</code> query பொதுவாக ஏன் சிறந்தது?</summary>
+      <p>சிறிய screen layout-ஐ default ஆக வைத்து, இடம் இருக்கும்போது மட்டும் rules சேர்க்க அனுமதிக்கிறது. இது CSS-ஐ சுருக்கமாக வைத்து, குறுகிய screen ஒரு desktop assumption-ஐ பெறுவதற்கான வாய்ப்பைக் குறைக்கிறது.</p>
+    </details>
+    <details class="qa">
+      <summary><code>clamp()</code> media queries-ன் தேவையை நீக்கிவிடுமா?</summary>
+      <p>இல்லை. இது மதிப்புகளை மென்மையாக scale செய்கிறது; ஆனால் grid-ஐ மறுசீரமைக்க, navigation-ஐ மாற்ற, அல்லது content-ஐ reorder செய்ய முடியாது. அளவுக்கு <code>clamp()</code>, structure-க்கு media queries பயன்படுத்துங்கள்.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>நினைவில் வைக்க வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <ul>
+      <li><strong>Viewport முதலில்.</strong> Meta tag இல்லாமல், ஒவ்வொரு responsive முடிவும் தவறான அகலத்திற்கு எதிராக அளவிடப்படும்.</li>
+      <li><strong>சிறிய screens தான் default.</strong> Columns மற்றும் spacing சேர்க்க <code>min-width</code> பயன்படுத்துங்கள்.</li>
+      <li><strong>Device பெயர்களை அல்ல, content-ஐ test செய்யுங்கள்.</strong> 320, 768, 1440 ஆகியவற்றைச் சரிபார்த்து, overflow-ஐ மறைப்பதற்குப் பதிலாக அதன் காரணத்தைச் சரிசெய்யுங்கள்.</li>
+    </ul>
+  </div>
+</article>

@@ -1,0 +1,203 @@
+<article class="lesson" id="lesson-4-1" data-lesson="4-1">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 04 · JavaScript அடிப்படைகள்</p>
+    <h1>மதிப்புகள், மாறிகள் மற்றும் வகைகள்</h1>
+    <p class="lesson-lede">JavaScript சிறிய தரவுத் துண்டுகளிலிருந்தும், அவற்றுக்கு நாம் கொடுக்கும் பெயர்களிலிருந்தும் தொடங்குகிறது. மதிப்புகள் எப்படிச் சேமிக்கப்படுகின்றன, அவற்றின் வகை என்ன, ஆச்சரியங்கள் இல்லாமல் அவற்றை எப்படி ஒப்பிடுவது என்பதைக் கற்றுக்கொள்ளுங்கள்.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 4.1</span>
+      <span class="chip">60–75 நிமிடங்கள்</span>
+      <span class="chip">தொடக்கநிலை</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>இறுதியில் நீங்கள் செய்யக்கூடியவை</h3>
+        <ul>
+          <li>ஒரு பக்கத்தில் JavaScript-ஐச் சேர்த்து console-ஐப் படிக்க முடியும்.</li>
+          <li><code>let</code> மற்றும் <code>const</code> கொண்டு மதிப்புகளை அறிவிக்க முடியும்.</li>
+          <li>தொடக்கநிலைக்கான ஐந்து வகைகளுக்குப் பெயர் சொல்லி, <code>typeof</code> கொண்டு அவற்றைச் சரிபார்க்க முடியும்.</li>
+          <li>Template literals மற்றும் strict equality-ஐ நம்பிக்கையுடன் பயன்படுத்த முடியும்.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>உங்களுக்குத் தேவையானவை</h3>
+        <ul>
+          <li>DevTools உள்ள browser.</li>
+          <li>தொகுதி 1-இல் பயன்படுத்திய உங்கள் எடிட்டர்.</li>
+          <li>சிறிய typo பிழைகளுக்குப் பொறுமை.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>JavaScript எங்கே இடம்பெறுகிறது</h2>
+  <p>HTML பக்கத்திற்குக் கட்டமைப்பைத் தருகிறது. CSS அதற்கு வடிவம் தருகிறது. JavaScript செயல்பாட்டைச் சேர்க்கிறது. நீங்கள் அதை <code>&lt;script&gt;</code> element மூலம் சேர்க்கிறீர்கள்; பொதுவாக <code>&lt;body&gt;</code> முடிவில் சேர்க்கிறீர்கள், அப்போது script இயங்குவதற்கு முன் பக்கத்தின் உள்ளடக்கம் தயாராக இருக்கும்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>First script</title>
+</head>
+<body>
+  <h1>Hello</h1>
+
+  <script>
+    console.log("Hello from JavaScript");
+  @ENDSCRIPT
+</body>
+</html></script>
+  </div>
+  <p><code>console.log()</code> ஒரு மதிப்பை console-ல் அச்சிடுகிறது. பெரும்பாலான browsers-ல் <strong>F12</strong> அழுத்துங்கள் அல்லது பக்கத்தில் right-click செய்து <strong>Inspect</strong>-ஐத் தேர்ந்தெடுங்கள்; பிறகு <strong>Console</strong> tab-ஐத் திறவுங்கள். பக்கத்தில் எதுவும் தெரியாது; அந்தச் செய்தி உங்களுக்கானது.</p>
+  <div class="callout callout--tip">
+    <span class="callout__label">பிழைத்திருத்தப் பழக்கம்</span>
+    <p>உங்கள் code ஏன் வேலை செய்யவில்லை என்று ஊகிப்பதற்கு முன், உறுதியில்லாத மதிப்பை log செய்யுங்கள். Console செய்தி ஆதாரம். ஊகம் ஆதாரம் அல்ல.</p>
+  </div>
+  <h2>மாறிகள் மதிப்புகளுக்குப் பெயரிடுகின்றன</h2>
+  <p>மாறி (variable) என்பது memory-ல் சேமிக்கப்பட்ட ஒரு மதிப்புக்கான பெயர். அது மாறப்போகிறது என்றால் <code>let</code> கொண்டும், மாறப்போவதில்லை என்றால் <code>const</code> கொண்டும் அறிவிக்கவும். மீண்டும் மதிப்பு வைக்க வேண்டிய காரணம் வரும் வரை <code>const</code>-ஐ விரும்புங்கள்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const firstName = "Maya";
+let cupsOfCoffee = 2;
+const learningJavaScript = true;
+
+console.log(firstName);       // Maya
+console.log(cupsOfCoffee);    // 2
+
+cupsOfCoffee = cupsOfCoffee + 1;
+console.log(cupsOfCoffee);    // 3
+
+// const cannot be reassigned:
+// firstName = "Sam";         // TypeError</script>
+  </div>
+  <ul>
+    <li>பெயர்கள் case-sensitive: <code>firstName</code> மற்றும் <code>firstname</code> வேறுபட்டவை.</li>
+    <li>சாதாரண மாறிகளுக்கு <code>camelCase</code> பயன்படுத்துங்கள்.</li>
+    <li>ஒரு பெயர் எண்ணில் தொடங்கக்கூடாது; இடைவெளிகளும் இருக்கக்கூடாது.</li>
+    <li><code>let</code>, <code>const</code> அல்லது <code>return</code> போன்ற reserved words-ஐ பெயர்களாகப் பயன்படுத்த வேண்டாம்.</li>
+  </ul>
+  <h3>அடிப்படை வகைகள்</h3>
+  <p>ஒவ்வொரு மதிப்புக்கும் ஒரு வகை உண்டு. தொடக்கநிலையில் ஐந்து வகைகளை அடிக்கடி சந்திப்பீர்கள்.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">வகை</th><th scope="col">எடுத்துக்காட்டு</th><th scope="col">எதற்குப் பயன்படும்</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>String</td><td><code>"hello"</code></td><td>உரை; நீங்கள் கணக்கிடப் பயன்படுத்தாத இலக்கங்கள் உட்பட.</td></tr>
+        <tr><td>Number</td><td><code>42</code>, <code>3.14</code></td><td>எந்த எண் மதிப்பும், முழு எண்ணோ தசமமோ.</td></tr>
+        <tr><td>Boolean</td><td><code>true</code>, <code>false</code></td><td>ஆம்/இல்லை முடிவுகள்.</td></tr>
+        <tr><td>Null</td><td><code>null</code></td><td>வேண்டுமென்றே வைக்கப்படும் காலி மதிப்பு.</td></tr>
+        <tr><td>Undefined</td><td><code>undefined</code></td><td>இன்னும் அமைக்கப்படாத மதிப்பு.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><code>typeof</code> ஒரு மதிப்பின் வகையைச் சொல்கிறது. நீங்கள் நினைத்ததை அல்ல, உண்மையில் இருப்பதை விரைவாகச் சரிபார்க்க இது ஒரு வழி.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">console.log(typeof "hello");   // "string"
+console.log(typeof 42);        // "number"
+console.log(typeof true);      // "boolean"
+console.log(typeof undefined); // "undefined"
+console.log(typeof null);      // "object" (a famous JavaScript quirk)</script>
+  </div>
+  <h3>Strings மற்றும் template literals</h3>
+  <p>Strings-ல் single quotes, double quotes அல்லது backticks பயன்படுத்தலாம். Backticks ஒரு <strong>template literal</strong>-ஐ உருவாக்குகின்றன: <code>${...}</code> கொண்டு மதிப்புகளைச் செருகலாம், பல வரிகளில் எழுதலாம்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const name = "Maya";
+const coffees = 3;
+
+const sentence = `Good morning, ${name}. You have had ${coffees} coffees.`;
+console.log(sentence);
+
+const oldWay = "Good morning, " + name + ". You have had " + coffees + " coffees.";
+console.log(oldWay);
+
+const multiLine = `Line one
+Line two`;
+console.log(multiLine);</script>
+  </div>
+  <p>உரையையும் மதிப்புகளையும் கலக்கும்போது template literals-ஐ விரும்புங்கள். Plus குறியீடுகளின் சங்கிலிகளைவிட அவை படிக்க எளிது, உடையவும் கடினம்.</p>
+  <p>Strings-க்கு பயனுள்ள properties மற்றும் methods உண்டு. <code>.length</code> எழுத்துகளை எண்ணும், <code>.toUpperCase()</code> புதிய uppercase string-ஐத் திருப்பித் தரும், <code>.includes()</code> ஒரு substring இருக்கிறதா என்று பார்க்கும்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const word = "JavaScript";
+
+console.log(word.length);             // 10
+console.log(word.toUpperCase());      // JAVASCRIPT
+console.log(word.includes("Script")); // true
+console.log(word[0]);                 // J</script>
+  </div>
+  <h2>Type coercion மற்றும் strict equality</h2>
+  <p>JavaScript சில நேரங்களில் ஒரு மதிப்பை மற்றொரு வகையாகத் தானாக மாற்றுகிறது. இதை <strong>type coercion</strong> என்கிறார்கள். குழப்பம் வரும் வரை இது வசதியாக இருக்கும்.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">console.log("5" + 2);  // "52" — the number becomes text
+console.log("5" - 2);  // 3    — the text becomes a number
+console.log(true + 1); // 2    — true becomes 1
+console.log("" == 0);  // true — coercion strikes</script>
+  </div>
+  <div class="callout callout--warn">
+    <span class="callout__label">மூன்று சமக்குறிகளைப் பயன்படுத்துங்கள்</span>
+    <p><code>==</code> coercion நடந்த பிறகு ஒப்பிடுகிறது. <code>===</code> மதிப்பையும் <em>மற்றும்</em> வகையையும் ஒப்பிடுகிறது. குறிப்பிட்ட காரணம் இல்லாத வரை எல்லா இடங்களிலும் <code>===</code> மற்றும் <code>!==</code> பயன்படுத்துங்கள்.</p>
+  </div>
+  <div class="code-block" data-code>
+<script type="text/plain">console.log(5 == "5");   // true
+console.log(5 === "5");  // false
+
+console.log(0 == false);  // true
+console.log(0 === false); // false
+
+console.log(5 !== "5");   // true</script>
+  </div>
+  <p>வேண்டுமென்றே மாற்ற <code>Number("5")</code>, <code>String(5)</code> அல்லது <code>Boolean(value)</code> பயன்படுத்துங்கள். தெளிவாக எழுதுவது அடுத்து படிப்பவரை — பெரும்பாலும் எதிர்கால உங்களை — சிக்கலில் இருந்து காப்பாற்றும்.</p>
+  <h3>மதிப்புகளை நகர்த்திப் பாருங்கள்</h3>
+  <p>இந்த நான்கு நடவடிக்கைகள் தொடக்கநிலை பிழைத்திருத்தத்தின் பெரும்பகுதியைக் கவர்கின்றன. ஒவ்வொன்றையும் console-ல் இயக்கி, மதிப்புகளை மாற்றிப் பாருங்கள்.</p>
+  <ol>
+    <li><strong>Log செய்யுங்கள்.</strong> <code>console.log(value)</code> தற்போதைய மதிப்பைக் காட்டும்.</li>
+    <li><strong>அதன் வகையைச் சரிபார்க்கவும்.</strong> எண்ணை எதிர்பார்த்த இடத்தில் உரை இருந்தால் <code>console.log(typeof value)</code> அதைக் கண்டுபிடிக்கும்.</li>
+    <li><strong>கண்டிப்பாக ஒப்பிடுங்கள்.</strong> <code>==</code>-ஐ <code>===</code> ஆக மாற்றி, branch இன்னும் இயங்குகிறதா என்று பாருங்கள்.</li>
+    <li><strong>அதைப் புதிய பெயரில் நகலெடுங்கள்.</strong> ஒரு மதிப்பு எதிர்பாராத விதமாக மாறினால், அதை இரண்டாவது மாறிக்கு ஒப்படைத்து இரண்டையும் log செய்யுங்கள்.</li>
+  </ol>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">பயிற்சி · 20 நிமிடங்கள்</span>
+      <h2>Console-ல் உங்களை அறிமுகப்படுத்துங்கள்</h2>
+    </div>
+    <p>உங்கள் பெயருக்கு ஒரு <code>const</code>, வயதுக்கு ஒரு <code>let</code>, JavaScript பிடிக்குமா என்பதற்கு ஒரு <code>const</code> boolean அறிவிக்கவும். Template literal கொண்டு ஒரு வாக்கியத்தை log செய்யுங்கள். பிறகு வயதை ஒன்று அதிகரித்து இரண்டாவது வாக்கியத்தை log செய்யுங்கள். மூன்று மதிப்புகளின் வகையையும் log செய்து முடிக்கவும்.</p>
+    <label class="visually-hidden" for="practice-4-1">உங்கள் பயிற்சிக் குறியீடு</label>
+    <textarea class="practice__code" id="practice-4-1" data-attempt spellcheck="false" placeholder="உங்கள் JavaScript-ஐ இங்கே தட்டச்சு செய்யுங்கள்..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>மாதிரி விடையைக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் ஒரு முயற்சி செய்யுங்கள். பிறகு மாதிரி விடை திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+<script type="text/plain" data-answer>const name = "Maya";
+let age = 28;
+const likesJavaScript = true;
+
+console.log(`My name is ${name}.`);
+console.log(`I am ${age} years old.`);
+console.log(`Do I like JavaScript? ${likesJavaScript}`);
+
+console.log(typeof name);            // "string"
+console.log(typeof age);             // "number"
+console.log(typeof likesJavaScript); // "boolean"
+
+age = age + 1;
+console.log(`${name} is now ${age}.`);</script>
+  </section>
+  <h2>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>எப்போது <code>const</code>-க்குப் பதிலாக <code>let</code> பயன்படுத்த வேண்டும்?</summary>
+      <p>மாறிக்கு மீண்டும் மதிப்பு வைக்கப்படும் போது மட்டும் <code>let</code> பயன்படுத்துங்கள்; எடுத்துக்காட்டாக ஒரு counter அல்லது தொடர்ந்து கூட்டப்படும் total. பெயர் எப்போதும் ஒரே மதிப்பையே குறிக்கும் என்றால் <code>const</code> பயன்படுத்துங்கள். <code>const</code> object-ன் properties-ஐ இன்னும் மாற்றலாம்; பெயர் மட்டும் வேறு object-ஐ குறிக்க முடியாது.</p>
+    </details>
+    <details class="qa">
+      <summary><code>5 == "5"</code> ஏன் true, ஆனால் <code>5 === "5"</code> ஏன் false?</summary>
+      <p>Double equals ஒப்பிடுவதற்கு முன் string-ஐ number ஆக மாற்றுகிறது; அதனால் இரு பக்கமும் <code>5</code> ஆகிறது. Triple equals வகையையும் சரிபார்க்கிறது. Number-க்கும் string-க்கும் வகை வேறு; எனவே முடிவு <code>false</code>.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>நினைவில் கொள்ள வேண்டிய முக்கிய விஷயங்கள்</h2>
+    <ul>
+      <li><strong>மதிப்புகளுக்கு வகைகள் உண்டு.</strong> Strings, numbers, booleans, <code>null</code> மற்றும் <code>undefined</code> ஆகியவை தொடக்கநிலை வேலைகளின் பெரும்பகுதியைக் கவர்கின்றன.</li>
+      <li><strong>பெயர்கள் விளக்கமாக இருக்க வேண்டும்.</strong> <code>const</code>-ஐ விரும்புங்கள்; உண்மையில் மீண்டும் மதிப்பு வைப்பது தேவைப்பட்டால் <code>let</code> பயன்படுத்துங்கள்.</li>
+      <li><strong>Strict equality ஆச்சரியங்களைத் தவிர்க்கிறது.</strong> <code>===</code> மற்றும் <code>!==</code> பயன்படுத்துங்கள்; சந்தேகம் இருந்தால் மதிப்புகளை log செய்யுங்கள்.</li>
+    </ul>
+  </div>
+</article>

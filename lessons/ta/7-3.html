@@ -1,0 +1,220 @@
+<article class="lesson" id="lesson-7-3" data-lesson="7-3">
+  <header class="lesson-head">
+    <p class="eyebrow">தொகுதி 07 · வெளியிடு</p>
+    <h1>Git, deploy, மற்றும் portfolio v2</h1>
+    <p class="lesson-lede">இறுதி project உங்கள் laptop-ஐ விட்டு வெளியேறும். வேலையை version control-ல் வையுங்கள், GitHub Pages-ல் வெளியிடுங்கள், ஆவணப்படுத்துங்கள், முகப்புப் பக்கத்தை ஒரு அந்நியருக்கு அனுப்பும் அளவுக்கு நல்லதாக்குங்கள்.</p>
+    <div class="chips">
+      <span class="chip chip--accent">பாடம் 7.3 · Project</span>
+      <span class="chip">3–4 மணி நேரம்</span>
+      <span class="chip">இறுதி project</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>வழங்க வேண்டியவை</h3>
+        <ul>
+          <li>README மற்றும் சுத்தமான history உள்ள public GitHub repository.</li>
+          <li>GitHub Pages-ல் live-ஆக இருக்கும் மூன்று பக்க portfolio.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>வெளியேறும் சரிபார்ப்பு</h3>
+        <ul>
+          <li>ஒவ்வொரு பக்கமும் 320px-ல், keyboard-உடன் வேலை செய்கிறது.</li>
+          <li>ஒரு interactive feature வேலை செய்கிறது; ஒரு அந்நியரும் தளத்தைப் புரிந்துகொள்ள முடியும்.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Git-ல் வையுங்கள்</h2>
+  <p>Git snapshot-களைப் பதிவு செய்கிறது. சிறிய, வேலை செய்யும் மாற்றங்களை commit செய்யுங்கள்; அப்போது எந்த edit layout-ஐ உடைத்தது என்று யூகிப்பதற்குப் பதிலாக நல்ல நிலைக்குத் திரும்பலாம்.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">cd portfolio
+git init
+git add .
+git commit -m "Build portfolio v2"
+git branch -M main
+git remote add origin https://github.com/YOUR-NAME/portfolio.git
+git push -u origin main</script>
+  </div>
+  <p>ஒவ்வொரு commit-க்கும் முன் <code>git status</code> இயக்குங்கள், <code>.DS_Store</code>, <code>node_modules/</code>, local environment files-க்கு <code>.gitignore</code> சேர்க்கவும், secrets-ஐ ஒருபோதும் commit செய்யாதீர்கள். Public repository எப்போதும் public.</p>
+
+  <h2>GitHub Pages-ல் வெளியிடுங்கள்</h2>
+  <ol>
+    <li><code>portfolio</code> என்ற பெயரில் <strong>public</strong> repository உருவாக்கி, உங்கள் <code>main</code> branch-ஐ push செய்யுங்கள்.</li>
+    <li><strong>Settings → Pages</strong> திறந்து, <strong>Deploy from a branch</strong> தேர்ந்தெடுத்து, பிறகு <code>main</code> மற்றும் <code>/ (root)</code> தேர்ந்தெடுக்கவும். Save செய்யுங்கள்.</li>
+    <li>Deployment முடியும் வரை காத்திருங்கள், <code>https://YOUR-NAME.github.io/portfolio/</code> திறந்து, incognito-விலும் phone-லும் ஒவ்வொரு இணைப்பையும் சோதியுங்கள்.</li>
+  </ol>
+  <div class="callout callout--warn">
+    <span class="callout__label">Custom domain</span>
+    <p>இந்தப் பாடத்திட்டத்திற்கு அது தேவையில்லை. பின்னர் சேர்த்தால், domain-உடன் <code>CNAME</code> கோப்பு உருவாக்கி, DNS <code>CNAME</code> record-ஐ <code>YOUR-NAME.github.io</code>-க்கு சுட்டி, Pages settings-ல் HTTPS இயக்குங்கள். முதலில் இலவச Pages URL வேலை செய்கிறதா என்று உறுதிப்படுத்துங்கள்.</p>
+  </div>
+
+  <h2>Portfolio v2 மற்றும் README</h2>
+  <p>இறுதி தளத்தில் மூன்று பக்கங்கள், ஒவ்வொன்றுக்கும் ஒரு வேலை. சிறிய திரையில் வேலை செய்ய வேண்டும், அணுகல்தன்மை pass-ஐ கடக்க வேண்டும், பயனுள்ள ஏதாவது செய்யும் ஒரு interactive feature இருக்க வேண்டும்.</p>
+  <ul>
+    <li><strong>மூன்று பக்கங்கள்:</strong> Home, About, Projects; அனைத்தும் இணைக்கப்பட்டு 320px-ல் பயன்படுத்தக்கூடியதாக.</li>
+    <li><strong>அணுகக்கூடியது:</strong> keyboard access, தெரியும் focus, labels, alt உரை, contrast.</li>
+    <li><strong>Interactive:</strong> filter, theme switch, அல்லது state உள்ள வேறு feature.</li>
+    <li><strong>ஆவணப்படுத்தப்பட்டு deploy செய்யப்பட்டது:</strong> README மற்றும் console errors இல்லாத public URL.</li>
+  </ul>
+  <div class="code-block" data-code>
+    <script type="text/plain"># Portfolio v2
+
+Live: https://YOUR-NAME.github.io/portfolio/
+
+## Run locally
+Open the folder in a code editor and use a local server.</script>
+  </div>
+
+  <h2>முகப்புப் பக்கத்தை உருவாக்குங்கள்</h2>
+  <p>Starter-ல் shell-உம் navigation-உம் உள்ளன. ஒரு <code>h1</code>, அறிமுகம், மூன்று project <code>article</code> cards, மற்றும் web projects-க்கு filter செய்யும் button சேர்க்கவும். Button தன் label-ஐயும் <code>aria-pressed</code> நிலையையும் புதுப்பிக்க வேண்டும். Reference-ஐக் காட்டும் முன் Tab, Enter-உடன் சோதியுங்கள்.</p>
+
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">இறுதி project workspace</span>
+      <h2>முகப்புப் பக்கத்தை வெளியிடுங்கள்</h2>
+    </div>
+    <div class="editor" data-editor>
+      <div class="editor__grid">
+        <label class="visually-hidden" for="practice-7-3">Portfolio editor</label>
+        <textarea id="practice-7-3" class="editor__code" data-attempt spellcheck="false"></textarea>
+        <div class="editor__preview">
+          <div class="editor__preview-bar">Live preview</div>
+          <iframe title="உங்கள் portfolio முகப்புப் பக்கத்தின் preview" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+      <p class="editor__status" aria-live="polite" data-status>Preview load ஆனது. பக்கத்தை உருவாக்கி, பிறகு Run அழுத்துங்கள்.</p>
+      <button type="button" class="btn btn--small" data-action="run">Preview இயக்கு</button>
+      <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maya Chen · Portfolio</title>
+</head>
+<body>
+  <a href="#main">Skip to content</a>
+  <header><nav aria-label="Main"><a href="index.html" aria-current="page">Home</a> <a href="about.html">About</a> <a href="projects.html">Projects</a></nav></header>
+  <main id="main"><h1>Your Name</h1><p>Build the portfolio home page here.</p></main>
+</body>
+</html></script>
+    </div>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reference solution-ஐக் காட்டு</button>
+      <p class="practice__note" data-gate-note>முதலில் முயற்சி செய்யுங்கள். பிறகு reference solution திறக்கும்.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maya Chen · Portfolio</title>
+</head>
+<body>
+  <a href="#main">Skip to content</a>
+  <header><nav aria-label="Main">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+  </nav></header>
+  <main id="main">
+    <h1>Maya Chen</h1>
+    <p>Small, useful websites built with HTML, CSS, and JavaScript.</p>
+    <section aria-labelledby="work-title">
+      <h2 id="work-title">Selected work</h2>
+      <button type="button" id="filter" aria-pressed="false">Show web only</button>
+      <div id="project-list">
+        <article data-kind="web"><h3>Reading tracker</h3><p>A calm dashboard for three books.</p></article>
+        <article data-kind="writing"><h3>Field notes</h3><p>Short essays about learning in public.</p></article>
+        <article data-kind="web"><h3>Recipe index</h3><p>A keyboard-friendly recipe collection.</p></article>
+      </div>
+    </section>
+  </main>
+  <script>
+    const button = document.querySelector("#filter"); const cards = document.querySelectorAll("#project-list article");
+    button.addEventListener("click", () => {
+      const webOnly = button.getAttribute("aria-pressed") === "true";
+      button.setAttribute("aria-pressed", String(!webOnly));
+      button.textContent = webOnly ? "Show web only" : "Show all work";
+      cards.forEach((card) => {
+        card.hidden = !webOnly && card.dataset.kind !== "web";
+      });
+    });
+  @ENDSCRIPT
+</body>
+</html></script>
+  </section>
+
+  <h2>வெளியிடும் checklist</h2>
+  <ul>
+    <li>Repository public; <code>main</code> தற்போதையது; history-ல் secrets இல்லை.</li>
+    <li>Pages <code>main</code>, <code>/ (root)</code>-இலிருந்து deploy ஆகிறது; live URL HTTPS-ல் load ஆகிறது.</li>
+    <li>மூன்று பக்கங்களும் load ஆகின்றன, navigation தற்போதையது, எந்த இணைப்பும் படமும் உடையவில்லை.</li>
+    <li>Keyboard pass முடிந்தது; focus தெரிகிறது; தளம் 320px-ல் வேலை செய்கிறது.</li>
+    <li>README-ல் live URL, local steps உள்ளன; ஒருவர் தளத்தைப் பயன்படுத்துவதை நீங்கள் பார்த்தீர்கள்.</li>
+  </ul>
+
+  <h2>இறுதி பாடத்திட்ட quiz</h2>
+  <div class="quiz" data-quiz>
+    <form>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="சார்பு இணைப்பு தற்போதைய கோப்பின் folder-இலிருந்து தொடங்கும். index.html-க்கு அருகில் உள்ள பக்கம் about.html மட்டுமே.">
+        <legend><span class="quiz__num">01</span> ஒரே folder-ல் உள்ள <code>index.html</code>-இலிருந்து <code>about.html</code>-ஐ எந்த இணைப்பு திறக்கும்?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span><code>/about.html</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="b"><span><code>about.html</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="c"><span><code>../about.html</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="aria-current=page, active பக்கத்தை assistive technology-க்குக் காட்டி, CSS-க்கு நம்பகமான hook கொடுக்கிறது.">
+        <legend><span class="quiz__num">02</span> Navigation-ல் தற்போதைய பக்கத்தை எப்படிக் குறிக்க வேண்டும்?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span>Bold font மட்டும்</span></label>
+        <label class="option"><input type="radio" name="q2" value="b"><span><code>class="active"</code> மட்டும்</span></label>
+        <label class="option"><input type="radio" name="q2" value="c"><span><code>aria-current="page"</code> உடன்</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="width, height layout இடத்தை ஒதுக்குகின்றன; படம் download ஆகும்போது பக்கம் துள்ளாது.">
+        <legend><span class="quiz__num">03</span> பட layout shift-ஐ மிக நேரடியாகத் தடுப்பது எது?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span><code>width</code>, <code>height</code> அமைப்பது</span></label>
+        <label class="option"><input type="radio" name="q3" value="b"><span>எல்லா இடத்திலும் <code>loading="lazy"</code> சேர்ப்பது</span></label>
+        <label class="option"><input type="radio" name="q3" value="c"><span>பெரிய படக் கோப்பைப் பயன்படுத்துவது</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="உண்மையான இணைப்பு அல்லது button focus ஆகக்கூடியது, Enter அல்லது Space-க்கு பதிலளிக்கும். Click handler உள்ள div இயல்பாகவே keyboard-க்கு அணுகக்கூடியது அல்ல.">
+        <legend><span class="quiz__num">04</span> Click செய்யக்கூடிய <code>div</code>-க்கு சிறந்த தீர்வு என்ன?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span>Cursor style சேர்ப்பது</span></label>
+        <label class="option"><input type="radio" name="q4" value="b"><span><code>a</code> அல்லது <code>button</code> பயன்படுத்துவது</span></label>
+        <label class="option"><input type="radio" name="q4" value="c"><span>Mouseover handler சேர்ப்பது</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="GitHub Pages repository-ஐ public URL மூலம் வழங்குகிறது. Push செய்து Pages இயக்கும் வரை local files வழங்கப்படும் பொருள் அல்ல.">
+        <legend><span class="quiz__num">05</span> GitHub Pages portfolio-ஐ live ஆக்குவது எது?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span>கோப்புகளை local-ல் save செய்வது</span></label>
+        <label class="option"><input type="radio" name="q5" value="b"><span>உங்கள் browser-ல் HTML திறப்பது</span></label>
+        <label class="option"><input type="radio" name="q5" value="c"><span>Repo-ஐ push செய்து Pages இயக்குவது</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <div class="quiz__actions">
+        <button type="submit" class="btn">விடைகளைச் சரிபார்</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>Quiz-ஐ மீட்டமை</button>
+        <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
+      </div>
+    </form>
+  </div>
+
+  <h2>உங்களைச் சோதித்துக் கொள்ளுங்கள்</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>GitHub Pages URL-ல் repository பெயர் ஏன் வருகிறது?</summary>
+      <p>Project தளம் <code>https://YOUR-NAME.github.io/repository-name/</code>-இலிருந்து வழங்கப்படுகிறது. அதனால்தான் சார்புப் பாதைகள் முக்கியம்: முன்னால் வரும் slash domain root-ஐ சுட்டுகிறது, உங்கள் project folder-ஐ அல்ல.</p>
+    </details>
+    <details class="qa">
+      <summary>Deploy செய்த தளம் 404 திரும்பினால் முதலில் என்ன சரிபார்க்க வேண்டும்?</summary>
+      <p>Repository public-ஆ, Pages சரியான branch, root folder-க்கு அமைக்கப்பட்டதா, அந்த root-ல் <code>index.html</code> இருக்கிறதா, deployment முடிந்ததா என்பதை உறுதிப்படுத்துங்கள். பிறகு private window-ல் மீண்டும் முயற்சியுங்கள்.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>பாடத்திட்டம் முடிந்தது</h2>
+    <ul>
+      <li><strong>ஒரு தளத்தை உருவாக்கி விளக்க முடியும்.</strong> HTML structure, CSS layout, JavaScript behavior, மற்றும் உண்மையான deployment.</li>
+      <li><strong>உங்கள் வேலையை நீங்களே தணிக்கை செய்ய முடியும்.</strong> Keyboard, focus, contrast, images, performance ஆகியவை வெளியிடுவதின் பகுதி.</li>
+      <li><strong>நீங்கள் அதை வெளியிட்டீர்கள்.</strong> மூன்று பக்கங்கள், ஒரு interactive feature, README, பகிரக்கூடிய URL உள்ள live portfolio v2.</li>
+    </ul>
+  </div>
+</article>
