@@ -1,0 +1,211 @@
+<article class="lesson" id="lesson-6-3" data-lesson="6-3">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 06 · Async &amp; APIs</p>
+    <h1>Loading, empty, and error states</h1>
+    <p class="lesson-lede">A network request can be slow, return nothing, or fail. A good interface tells the truth at every moment. Learn to model four states and render them without guessing.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 6.3</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Name and model the four UI states.</li>
+          <li>Render from a single state object.</li>
+          <li>Show useful errors and offer a retry.</li>
+          <li>Announce updates with <code>aria-live</code>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Lesson 6.2 <code>fetch</code> and JSON.</li>
+          <li>A page with an element to update.</li>
+          <li>DevTools open while you test failures.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>Name the four states</h2>
+  <p>Most data-driven interfaces have four states. If you only build the success state, every slow request looks broken and every failure looks frozen.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">State</th><th scope="col">Meaning</th><th scope="col">What the user sees</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Loading</strong></td><td>The request is still running.</td><td>A short status message or skeleton; controls disabled.</td></tr>
+        <tr><td><strong>Empty</strong></td><td>The request succeeded but found nothing.</td><td>A clear "no results" message with a next step.</td></tr>
+        <tr><td><strong>Error</strong></td><td>The request failed or timed out.</td><td>A plain-language message and a retry action.</td></tr>
+        <tr><td><strong>Success</strong></td><td>Data arrived and is ready.</td><td>The actual content, rendered from the data.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>There is also a fifth, quieter state: <strong>idle</strong>, before the first request. Treat it as "nothing has happened yet" and show a short instruction. Do not reuse the empty message; "no results" is confusing before a search.</p>
+  <h2>Render from one state object</h2>
+  <p>Keep the state in one object and let a single <code>render()</code> function decide what the screen shows. The UI becomes a function of the state, not a pile of unrelated DOM changes.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">const state = {
+  status: "idle",
+  data: null,
+  message: ""
+};
+const output = document.querySelector("#weather-output");
+function render() {
+  if (state.status === "loading") {
+    output.textContent = "Loading weather...";
+    return;
+  }
+  if (state.status === "error") {
+    output.textContent = state.message;
+    return;
+  }
+  if (state.status === "empty") {
+    output.textContent = "No city matched that search. Try another name.";
+    return;
+  }
+  if (state.status === "success") {
+    output.textContent = `${state.data.name}, ${state.data.country}`;
+    return;
+  }
+  output.textContent = "Search for a city to begin.";
+}
+function setState(next) {
+  Object.assign(state, next);
+  render();
+}</script>
+  </div>
+  <p>Every transition goes through <code>setState()</code>: set loading, then success, empty, or error. That gives you one place to update the screen and one place to debug.</p>
+  <div class="callout callout--tip">
+    <span class="callout__label">Clear stale data</span>
+    <p>When a new request starts, decide whether to keep the old result visible. For a small weather card, clearing it avoids showing yesterday's temperature next to a loading message.</p>
+  </div>
+  <h2>Catch errors and show something useful</h2>
+  <p>Wrap the request in <code>try</code>/<code>catch</code>. Throw your own error when <code>response.ok</code> is false. Log the technical detail for yourself, but show the user a message they can act on.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">async function load(city) {
+  setState({ status: "loading", message: "" });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+  try {
+    const response = await fetch("https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(city) + "&count=1", { signal: controller.signal });
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status}`);
+    }
+    const data = await response.json();
+    if (!data.results || data.results.length === 0) {
+      setState({ status: "empty" });
+      return;
+    }
+    setState({ status: "success", data: data.results[0] });
+  } catch (error) {
+    if (error.name === "AbortError") {
+      setState({
+        status: "error",
+        message: "That took too long. Check your connection and try again."
+      });
+    } else {
+      console.error(error);
+      setState({
+        status: "error",
+        message: "We could not load the weather. Please try again."
+      });
+    }
+  } finally {
+    clearTimeout(timeout);
+  }
+}</script>
+  </div>
+  <p>The timeout uses an <code>AbortController</code>. When the timer fires, <code>controller.abort()</code> cancels the request and the catch block sees an error named <code>AbortError</code>. The <code>finally</code> block clears the timer whether the request succeeds or fails.</p>
+  <p>A retry button should call the same <code>load()</code> function with the last city. Disable it while loading so a double click does not start two requests. If the failure is a <code>404</code>, a retry will not help; tell the user to change the search instead.</p>
+  <div class="callout callout--warn">
+    <span class="callout__label">Do not swallow the error</span>
+    <p>An empty <code>catch</code> block hides the bug and leaves the user staring at a blank screen. Always move the UI into an error state and log the original error for debugging.</p>
+  </div>
+  <h2>Announce changes with aria-live</h2>
+  <p>Screen reader users do not see a spinner appear. Mark the status area as a live region so changes are announced without moving focus.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain"><p id="weather-output" role="status" aria-live="polite"></p>
+<button type="button" data-retry disabled>Try again</button></script>
+  </div>
+  <p><code>role="status"</code> already implies a polite live region. Keep the region small: put the changing message inside it, not the whole page. Avoid <code>aria-live="assertive"</code> for routine loading updates, because it interrupts whatever the user is reading.</p>
+  <p>When an error appears, make sure the message is visible and in the live region. If a retry button appears, give it a real label such as "Try again", not an icon with no accessible name.</p>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Render three states for a fake fetch</h2>
+    </div>
+    <p>Create a <code>state</code> object and a <code>render()</code> function that updates an element with <code>id="output"</code>. Write <code>fakeFetch()</code> so it resolves with a temperature or rejects after about 700 ms. Write <code>load()</code> to set loading, call <code>render()</code>, await the fetch, then set success or error and render again. Use <code>try</code>/<code>catch</code>.</p>
+    <label class="visually-hidden" for="practice-6-3">Your exercise code</label>
+    <textarea class="practice__code" id="practice-6-3" data-attempt spellcheck="false" placeholder="Write your state and render functions here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>const state = {
+  status: "idle",
+  temperature: null,
+  message: ""
+};
+const output = document.querySelector("#output");
+function render() {
+  if (state.status === "loading") {
+    output.textContent = "Loading...";
+  } else if (state.status === "error") {
+    output.textContent = state.message;
+  } else if (state.status === "success") {
+    output.textContent = `Current temperature: ${state.temperature}°C`;
+  } else {
+    output.textContent = "Press load to check the temperature.";
+  }
+}
+function fakeFetch() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (Math.random() > 0.4) {
+        resolve({ temperature: 18 });
+      } else {
+        reject(new Error("Network request failed"));
+      }
+    }, 700);
+  });
+}
+async function load() {
+  state.status = "loading";
+  render();
+  try {
+    const data = await fakeFetch();
+    state.temperature = data.temperature;
+    state.status = "success";
+  } catch (error) {
+    state.message = "Could not load the temperature. Try again.";
+    state.status = "error";
+    console.error(error);
+  }
+  render();
+}
+load();</script>
+  </section>
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>What is the difference between the empty and error states?</summary>
+      <p>Empty means the request worked but returned no matching data, such as an unknown city. Error means the request did not complete correctly. Empty usually asks for a different search; error usually offers a retry.</p>
+    </details>
+    <details class="qa">
+      <summary>Why clear the timeout in a <code>finally</code> block?</summary>
+      <p>The timer should not fire after a fast response. <code>finally</code> runs on both success and failure, so it is the reliable place to cancel the pending timeout and avoid a stray abort later.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Model the state, then render it.</strong> Loading, empty, error, and success should each have a designed screen.</li>
+      <li><strong>Failures need a next step.</strong> Show a plain-language message, log the technical error, and offer retry when it can help.</li>
+      <li><strong>Announce changes.</strong> A small polite live region keeps screen reader users informed without stealing focus.</li>
+    </ul>
+  </div>
+</article>

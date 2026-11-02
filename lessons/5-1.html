@@ -1,0 +1,179 @@
+<article class="lesson" id="lesson-5-1" data-lesson="5-1">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 05 · DOM &amp; events</p>
+    <h1>Selecting and changing the DOM</h1>
+    <p class="lesson-lede">JavaScript becomes useful when it can read and change the page in front of you. The DOM is that page as a tree of objects: learn to select a node, change it, create one, and remove one without breaking the rest.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 5.1</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Select one element or many with CSS selectors.</li>
+          <li>Change text, classes, styles, and attributes safely.</li>
+          <li>Create, append, and remove elements.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Your About Me page from Module 1.</li>
+          <li>Module 4: functions and arrays.</li>
+          <li>A browser with DevTools open.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>The document is a tree</h2>
+  <p>The browser turns your HTML into a tree of objects called the <strong>DOM</strong>. The global <code>document</code> object is the entrance. You search it with the same CSS selectors you already use in a stylesheet.</p>
+  <ul>
+    <li><code>document.querySelector("h1")</code> returns the first match, or <code>null</code>.</li>
+    <li><code>document.querySelectorAll(".card")</code> returns every match as a <code>NodeList</code>.</li>
+    <li>IDs, classes, attributes, and descendant selectors all work: <code>#app</code>, <code>.card</code>, <code>[data-open]</code>, <code>nav a</code>.</li>
+  </ul>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const heading = document.querySelector("#page-title");
+const buttons = document.querySelectorAll("[data-action]");
+
+if (heading) {
+  console.log(heading.textContent);
+}
+
+buttons.forEach(button => {
+  console.log(button.dataset.action);
+});</script>
+  </div>
+
+  <p>A <code>NodeList</code> from <code>querySelectorAll</code> supports <code>forEach</code>. If you need <code>map</code> or <code>filter</code>, convert it first with <code>Array.from(buttons)</code>.</p>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">Guard the null</span>
+    <p><code>querySelector</code> returns <code>null</code> when nothing matches. Check it before reading <code>textContent</code>, or you will get <code>Cannot read properties of null</code>.</p>
+  </div>
+
+  <h2>Change text without breaking the page</h2>
+  <p><code>textContent</code> reads or writes plain text. It never parses HTML, so angle brackets appear as characters instead of becoming elements.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const note = document.querySelector("#note");
+
+note.textContent = "Saved at 10:42";
+console.log(note.textContent); // Saved at 10:42
+
+note.textContent = "<strong>Not bold</strong>";
+// The visitor sees the tags, not bold text.</script>
+  </div>
+
+  <p><code>innerHTML</code> parses a string as markup. That is useful when the string is yours. It is dangerous when the string contains something a visitor typed.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const status = document.querySelector("#status");
+
+// Trusted, fixed markup written by you:
+status.innerHTML = "<strong>Saved</strong>";
+
+// Never do this with a comment or a name from a form:
+// preview.innerHTML = userInput;</script>
+  </div>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Safety rule</span>
+    <p>If the text came from a person, put it in with <code>textContent</code> or a text node. A string passed to <code>innerHTML</code> can contain elements and event handlers, which means it can run code.</p>
+  </div>
+
+  <h2>Classes, styles, and attributes</h2>
+  <p>Most visual changes belong in CSS. JavaScript should add, remove, or toggle a class, not hard-code a pile of styles.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const panel = document.querySelector("#panel");
+
+panel.classList.add("is-open");
+panel.classList.remove("is-loading");
+panel.classList.toggle("is-busy", true);
+console.log(panel.classList.contains("is-open"));
+
+panel.style.background = "#f7f2e7";
+panel.style.setProperty("--gap", "12px");
+
+panel.setAttribute("aria-expanded", "true");
+console.log(panel.getAttribute("data-id"));
+panel.removeAttribute("hidden");</script>
+  </div>
+
+  <p>CSS property names in a string use kebab-case; in the <code>style</code> object they use camelCase. Custom properties need <code>setProperty("--name", value)</code>. Accessibility attributes such as <code>aria-expanded</code> belong in <code>setAttribute</code>.</p>
+
+  <h2>Create, append, and remove</h2>
+  <p>Build a new element with <code>document.createElement</code>, fill it, then attach it. A new node stays invisible until it is added to something already in the document.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const list = document.querySelector("#list");
+
+const item = document.createElement("li");
+item.textContent = "Read chapter 5";
+item.dataset.id = "42";
+list.append(item);
+
+const old = document.querySelector('[data-id="41"]');
+if (old) {
+  old.remove();
+}</script>
+  </div>
+
+  <p><code>append</code> adds at the end, <code>prepend</code> adds at the start, and <code>replaceChildren(...)</code> swaps all children at once. Removing a node with <code>remove()</code> takes it out of the page, but your variable still points at it.</p>
+
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Highlight the headline, add a row</h2>
+    </div>
+    <p>Assume the page contains <code>&lt;h1 id="title"&gt;</code>, <code>&lt;ul id="list"&gt;</code>, and one element with <code>class="old"</code>. Write JavaScript that toggles the class <code>is-highlighted</code> on the headline, changes its text, creates a new <code>li</code> with text, appends it to the list, removes the old element, and logs how many items remain.</p>
+    <label class="visually-hidden" for="practice-5-1">Your exercise code</label>
+    <textarea class="practice__code" id="practice-5-1" data-attempt spellcheck="false" placeholder="const title = ..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>const title = document.querySelector("#title");
+title.classList.toggle("is-highlighted");
+title.textContent = "My updated page";
+
+const list = document.querySelector("#list");
+const item = document.createElement("li");
+item.textContent = "A new list item";
+list.append(item);
+
+const old = document.querySelector(".old");
+if (old) {
+  old.remove();
+}
+
+console.log("Items now:", list.children.length);</script>
+  </section>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why does <code>querySelector</code> sometimes return <code>null</code>?</summary>
+      <p>No element matched the selector, or the script ran before the element existed. Check the selector in DevTools, and put the script after the markup or add the <code>defer</code> attribute.</p>
+    </details>
+    <details class="qa">
+      <summary>When is <code>innerHTML</code> acceptable?</summary>
+      <p>When the string is fixed markup that you wrote and control. Use <code>textContent</code> for names, comments, search terms, and anything else a person supplied.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Select with CSS.</strong> <code>querySelector</code> gives one node; <code>querySelectorAll</code> gives a list.</li>
+      <li><strong>Text is not markup.</strong> Use <code>textContent</code> for anything a visitor can type.</li>
+      <li><strong>Build, then attach.</strong> Create an element, fill it, append it, and remove it when it is no longer needed.</li>
+    </ul>
+  </div>
+</article>

@@ -1,0 +1,211 @@
+<article class="lesson" id="lesson-4-2" data-lesson="4-2">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 04 · JavaScript foundations</p>
+    <h1>Conditionals and logic</h1>
+    <p class="lesson-lede">Programs need to choose. Learn how JavaScript turns comparisons into decisions, how truthiness quietly shapes every condition, and when a ternary or switch keeps code clearer than a pile of ifs.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 4.2</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Write <code>if</code>, <code>else if</code>, and <code>else</code> branches.</li>
+          <li>Compare values with the correct operator.</li>
+          <li>Combine conditions with <code>&amp;&amp;</code>, <code>||</code>, and <code>!</code>.</li>
+          <li>Choose between a ternary and a <code>switch</code>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Lesson 4.1 variables and types.</li>
+          <li>A console you can type into.</li>
+          <li>A few values to test.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>Making decisions with if</h2>
+  <p>An <code>if</code> statement runs a block only when its condition is true. JavaScript checks the branches from top to bottom and runs the first one that matches.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const temperature = 18;
+if (temperature > 25) {
+  console.log("Wear shorts.");
+} else if (temperature > 15) {
+  console.log("A light jacket is enough.");
+} else {
+  console.log("Bring a coat.");
+}</script>
+  </div>
+  <p>Only one branch runs. Once a condition is true, the rest are skipped, even if they would also be true. That is why order matters: put the most specific case first.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const score = 95;
+if (score >= 90) {
+  console.log("A");
+} else if (score >= 80) {
+  console.log("B");
+} else if (score >= 70) {
+  console.log("C");
+} else {
+  console.log("Keep practising.");
+}</script>
+  </div>
+  <h3>Comparison operators</h3>
+  <p>Conditions are built from comparisons. Each one produces a boolean: <code>true</code> or <code>false</code>.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Operator</th><th scope="col">Means</th><th scope="col">Example</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>===</code></td><td>Equal value and type</td><td><code>5 === 5</code> is true</td></tr>
+        <tr><td><code>!==</code></td><td>Not equal value or type</td><td><code>5 !== "5"</code> is true</td></tr>
+        <tr><td><code>&gt;</code></td><td>Greater than</td><td><code>9 &gt; 4</code> is true</td></tr>
+        <tr><td><code>&lt;</code></td><td>Less than</td><td><code>2 &lt; 1</code> is false</td></tr>
+        <tr><td><code>&gt;=</code></td><td>Greater than or equal</td><td><code>4 &gt;= 4</code> is true</td></tr>
+        <tr><td><code>&lt;=</code></td><td>Less than or equal</td><td><code>3 &lt;= 5</code> is true</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Comparisons work on strings too, but they compare character codes rather than meaning. <code>"apple" &lt; "banana"</code> is true because of alphabetical order, while <code>"10" &lt; "9"</code> is true because the character <code>"1"</code> comes before <code>"9"</code>. Convert to numbers when you mean numbers.</p>
+  <h2>Combining conditions</h2>
+  <p>Three logical operators let you join or reverse conditions.</p>
+  <ul>
+    <li><code>&amp;&amp;</code> (AND) is true only when both sides are true.</li>
+    <li><code>||</code> (OR) is true when at least one side is true.</li>
+    <li><code>!</code> (NOT) reverses a boolean.</li>
+  </ul>
+  <div class="code-block" data-code>
+<script type="text/plain">const age = 20;
+const hasTicket = true;
+const isBanned = false;
+if (age >= 18 && hasTicket && !isBanned) {
+  console.log("Enter.");
+} else {
+  console.log("Stay outside.");
+}
+const isWeekend = false;
+const isHoliday = true;
+if (isWeekend || isHoliday) {
+  console.log("The office is closed.");
+}</script>
+  </div>
+  <p>Both sides of an AND must be true, so JavaScript stops checking as soon as it finds a false value. With OR, it stops as soon as it finds a true value. This is called <strong>short-circuit evaluation</strong>. It is useful, but do not hide side effects inside conditions.</p>
+  <div class="callout callout--warn">
+    <span class="callout__label">Assignment is not comparison</span>
+    <p>A single <code>=</code> stores a value. A triple <code>===</code> compares two values. Writing <code>if (score = 10)</code> assigns <code>10</code> and the condition is always true. Most editors warn about this; take the warning seriously.</p>
+  </div>
+  <h3>Truthiness</h3>
+  <p>Conditions do not require a boolean. JavaScript converts any value to true or false. The falsy values are few, and worth memorising.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">// All of these are falsy:
+console.log(Boolean(false));     // false
+console.log(Boolean(0));         // false
+console.log(Boolean(""));        // false
+console.log(Boolean(null));      // false
+console.log(Boolean(undefined)); // false
+console.log(Boolean(NaN));       // false
+// Almost everything else is truthy:
+console.log(Boolean("0"));       // true
+console.log(Boolean([]));        // true
+console.log(Boolean({}));        // true</script>
+  </div>
+  <p>An empty string is falsy, but the string <code>"0"</code> is truthy. An empty array is also truthy, which surprises many beginners. Use explicit comparisons when the difference matters.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const name = "";
+if (name) {
+  console.log(`Hello, ${name}.`);
+} else {
+  console.log("Please enter a name.");
+}
+const count = 0;
+// Wrong for zero: this reports no count.
+if (count) {
+  console.log("Count is set.");
+}
+// Right: check for the value you mean.
+if (count !== undefined) {
+  console.log(`Count is ${count}.`);
+}</script>
+  </div>
+  <h2>Ternary and switch</h2>
+  <p>When you need to choose one of two values, a ternary expression is compact. Read it as "condition ? value when true : value when false".</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const isMember = true;
+const price = isMember ? 8 : 12;
+console.log(`Ticket: $${price}`);
+const age = 16;
+const label = age >= 18 ? "adult" : "minor";
+console.log(label);</script>
+  </div>
+  <p>Use a ternary for a single choice between two values. If you need several branches, or the expressions become long, use <code>if</code> or <code>switch</code> instead.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const day = "Sat";
+switch (day) {
+  case "Sat":
+  case "Sun":
+    console.log("Weekend");
+    break;
+  case "Mon":
+    console.log("Start of the week");
+    break;
+  default:
+    console.log("Weekday");
+}</script>
+  </div>
+  <p><code>switch</code> compares with strict equality. Each <code>case</code> falls through to the next unless you add <code>break</code>. Grouping <code>"Sat"</code> and <code>"Sun"</code> works because the first case has no statement before the second one.</p>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 20 minutes</span>
+      <h2>Price a cinema ticket</h2>
+    </div>
+    <p>Declare an age and a membership boolean. Set a ticket price with <code>if</code>/<code>else if</code>/<code>else</code>: under 13 pays $5, under 18 pays $8, everyone else pays $12. Members get $2 off. Log one sentence using a template literal that names the customer type and the final price.</p>
+    <label class="visually-hidden" for="practice-4-2">Your exercise code</label>
+    <textarea class="practice__code" id="practice-4-2" data-attempt spellcheck="false" placeholder="Type your JavaScript here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+<script type="text/plain" data-answer>const age = 15;
+const isMember = true;
+let price;
+
+if (age < 13) {
+  price = 5;
+} else if (age < 18) {
+  price = 8;
+} else {
+  price = 12;
+}
+
+if (isMember) {
+  price = price - 2;
+}
+
+const customer = isMember ? "member" : "guest";
+console.log(`A ${customer} aged ${age} pays $${price}.`);</script>
+  </section>
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why does <code>if ("0")</code> run even though the string looks like zero?</summary>
+      <p>Truthiness is about the value, not the text. The only falsy string is the empty string <code>""</code>. A string containing a zero character is non-empty, so it is truthy. Compare explicitly when zero must be treated as empty.</p>
+    </details>
+    <details class="qa">
+      <summary>When should I use <code>switch</code> instead of <code>if</code>?</summary>
+      <p>Use <code>switch</code> when one value is compared against several exact possibilities and each branch is short. Use <code>if</code> when conditions involve ranges, multiple variables, or logical operators.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Branches run in order.</strong> The first true condition wins, so put specific cases first.</li>
+      <li><strong>Use <code>===</code> and explicit checks.</strong> Truthiness is handy, but zero and empty values can mislead.</li>
+      <li><strong>Match the syntax to the job.</strong> Ternary for one choice, <code>if</code> for logic, <code>switch</code> for exact matches.</li>
+    </ul>
+  </div>
+</article>

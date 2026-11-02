@@ -1,0 +1,198 @@
+<article class="lesson" id="lesson-1-2" data-lesson="1-2">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 01 · HTML: the skeleton</p>
+    <h1>Links, images, and lists</h1>
+    <p class="lesson-lede">A page becomes a website when it can point somewhere. Learn to connect pages, show images without excluding people, and structure lists that make sense.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 1.2</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Write relative and absolute links that work.</li>
+          <li>Add an image with useful alternative text.</li>
+          <li>Choose between unordered and ordered lists.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Your About Me page from Lesson 1.1.</li>
+          <li>Any image file on your computer.</li>
+          <li>A second HTML file to link to.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Links connect pages</h2>
+  <p>The anchor element turns text or an image into a link. The <code>href</code> attribute says where the link goes.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><a href="about-me.html">About me</a>
+<a href="https://developer.mozilla.org" target="_blank" rel="noopener">MDN reference</a>
+<a href="#recipe">Jump to the recipe</a></script>
+  </div>
+
+  <ul>
+    <li><strong>Relative link:</strong> <code>about-me.html</code> looks for a file in the same folder.</li>
+    <li><strong>Parent folder:</strong> <code>../index.html</code> goes up one folder.</li>
+    <li><strong>Absolute link:</strong> a full URL, including <code>https://</code>.</li>
+    <li><strong>Page anchor:</strong> <code>#recipe</code> jumps to the element with <code>id="recipe"</code>.</li>
+  </ul>
+
+  <p>Use descriptive link text. "Read the recipe" is useful. "Click here" tells the reader nothing, especially if they are using a screen reader to scan a list of links.</p>
+
+  <div class="callout">
+    <span class="callout__label">External links</span>
+    <p>When a link opens a new tab with <code>target="_blank"</code>, add <code>rel="noopener"</code>. It protects your page from the new tab gaining access to it.</p>
+  </div>
+
+  <h2>Images need alternative text</h2>
+  <p>The image element is a void element. It has no closing tag. The <code>src</code> attribute points to the file; <code>alt</code> describes what the image communicates.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><img src="images/pasta.jpg"
+     alt="A bowl of lemon pasta with Parmesan and parsley"
+     width="640" height="360">
+
+<figure>
+  <img src="images/pasta.jpg" alt="Lemon pasta in a white bowl" width="640" height="360">
+  <figcaption>Dinner, twenty minutes after the water boiled.</figcaption>
+</figure></script>
+  </div>
+
+  <ul>
+    <li>If the image conveys information, describe that information.</li>
+    <li>If the image is purely decorative, use <code>alt=""</code> so screen readers skip it.</li>
+    <li>Do not start with "image of" or "picture of"; screen readers already announce that.</li>
+    <li>Set <code>width</code> and <code>height</code> when you can. They reserve space and reduce layout shift while the image loads.</li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Common mistake</span>
+    <p>A missing <code>alt</code> attribute is not the same as an empty one. A missing value makes the browser guess; <code>alt=""</code> explicitly tells assistive technology that the image adds no information.</p>
+  </div>
+
+  <h2>Lists organize information</h2>
+  <p>Use <code>&lt;ul&gt;</code> when order does not matter, and <code>&lt;ol&gt;</code> when it does. Every item goes inside an <code>&lt;li&gt;</code>.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><h2>Ingredients</h2>
+<ul>
+  <li>200 g pasta</li>
+  <li>1 lemon</li>
+  <li>Parmesan</li>
+</ul>
+
+<h2>Method</h2>
+<ol>
+  <li>Boil the pasta in salted water.</li>
+  <li>Zest the lemon and grate the cheese.</li>
+  <li>Toss everything with a little pasta water.</li>
+</ol></script>
+  </div>
+
+  <p>Lists can nest. Put the nested list inside the <code>&lt;li&gt;</code> it belongs to, not between items.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><ul>
+  <li>Citrus
+    <ul>
+      <li>Lemon</li>
+      <li>Orange</li>
+    </ul>
+  </li>
+  <li>Herbs</li>
+</ul></script>
+  </div>
+
+  <section class="practice" data-practice data-min="80">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 20 minutes</span>
+      <h2>Build a recipe index</h2>
+    </div>
+    <p>Create a page with a <code>header</code>, a navigation link back to your About Me page, an <code>h1</code>, a figure with an image and caption, an unordered ingredients list, and an ordered method list. Give the method a heading with <code>id="method"</code> and add a "Jump to method" link at the top.</p>
+    <label class="visually-hidden" for="practice-1-2">Your exercise code</label>
+    <textarea class="practice__code" id="practice-1-2" data-attempt spellcheck="false" placeholder="Type your recipe page here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lemon Pasta</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="about-me.html">About me</a>
+      <a href="#method">Jump to method</a>
+    </nav>
+    <h1>Lemon Pasta</h1>
+    <p>A bright, fast dinner for one.</p>
+  </header>
+
+  <main>
+    <figure>
+      <img src="images/pasta.jpg"
+           alt="Lemon pasta in a white bowl, topped with parsley"
+           width="640" height="360">
+      <figcaption>Ready in about twenty minutes.</figcaption>
+    </figure>
+
+    <section>
+      <h2>Ingredients</h2>
+      <ul>
+        <li>200 g pasta</li>
+        <li>1 lemon</li>
+        <li>40 g Parmesan</li>
+        <li>A handful of parsley</li>
+      </ul>
+    </section>
+
+    <section id="method">
+      <h2>Method</h2>
+      <ol>
+        <li>Boil the pasta in well-salted water.</li>
+        <li>Zest the lemon and grate the cheese.</li>
+        <li>Toss with pasta water until glossy.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <p>Recipe notes by ___.</p>
+  </footer>
+</body>
+</html></script>
+  </section>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why is <code>alt="image of pasta"</code> a weak description?</summary>
+      <p>Screen readers already announce that the element is an image. The description should communicate the content, not repeat the format. "Lemon pasta in a white bowl" is more useful.</p>
+    </details>
+    <details class="qa">
+      <summary>What is the difference between <code>about.html</code> and <code>https://example.com/about.html</code>?</summary>
+      <p>The first is a relative path resolved from the current page. The second is an absolute URL with a protocol and domain.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Links are anchors.</strong> The <code>href</code> decides the destination; the text should describe it.</li>
+      <li><strong>Images need alt text.</strong> Describe information; use <code>alt=""</code> for decoration.</li>
+      <li><strong>Lists carry meaning.</strong> Unordered for groups, ordered for sequence.</li>
+    </ul>
+  </div>
+</article>

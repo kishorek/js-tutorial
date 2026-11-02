@@ -1,0 +1,213 @@
+<article class="lesson" id="lesson-4-3" data-lesson="4-3">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 04 · JavaScript foundations</p>
+    <h1>Loops and collections</h1>
+    <p class="lesson-lede">Real programs work with more than one value. Learn to store lists in arrays, visit every item with a loop, and transform data with map, filter, and reduce instead of writing the same loop again and again.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 4.3</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Create arrays and read or change their items.</li>
+          <li>Repeat work with <code>for</code>, <code>while</code>, and <code>for...of</code>.</li>
+          <li>Transform lists with <code>map</code>, <code>filter</code>, and <code>reduce</code>.</li>
+          <li>Choose the loop that fits the task.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Lesson 4.2 conditions and truthiness.</li>
+          <li>A console for quick experiments.</li>
+          <li>Patience with off-by-one errors.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>Arrays hold ordered lists</h2>
+  <p>An array stores several values in order. Square brackets create one, and each item has an index. Indexes start at zero, so the first item is at <code>0</code>, not <code>1</code>.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const fruits = ["apple", "banana", "cherry"];
+console.log(fruits.length);            // 3
+console.log(fruits[0]);                // "apple"
+console.log(fruits[2]);                // "cherry"
+console.log(fruits[fruits.length - 1]); // "cherry"
+fruits.push("date");
+console.log(fruits);                   // ["apple", "banana", "cherry", "date"]
+const last = fruits.pop();
+console.log(last);                     // "date"
+console.log(fruits.length);            // 3</script>
+  </div>
+  <ul>
+    <li><code>push(item)</code> adds to the end and returns the new length.</li>
+    <li><code>pop()</code> removes the last item and returns it.</li>
+    <li><code>shift()</code> and <code>unshift()</code> work at the start, but are slower on large arrays.</li>
+    <li>Reading past the end gives <code>undefined</code>; it does not throw an error.</li>
+  </ul>
+  <p>Arrays can hold any type, including other arrays. For beginners, keeping one kind of value per array makes the code easier to reason about.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const mixed = ["Maya", 28, true];
+const grid = [
+  [1, 2, 3],
+  [4, 5, 6]
+];
+console.log(mixed[1]);    // 28
+console.log(grid[1][0]);  // 4</script>
+  </div>
+  <h2>for loops repeat work</h2>
+  <p>A <code>for</code> loop has three parts: a starting point, a condition that keeps it running, and an update after each pass. The middle part is checked before every iteration.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">for (let i = 0; i < 5; i = i + 1) {
+  console.log(`Step ${i}`);
+}
+// i++ is shorthand for i = i + 1
+for (let i = 0; i < 3; i++) {
+  console.log(i);
+}</script>
+  </div>
+  <p>When looping over an array with indexes, start at <code>0</code> and stop while the index is less than <code>array.length</code>. Using <code>&lt;=</code> reads one item past the end and gives <code>undefined</code>.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const scores = [72, 88, 95, 61];
+let total = 0;
+for (let i = 0; i < scores.length; i++) {
+  total = total + scores[i];
+}
+console.log(total);                  // 316
+console.log(total / scores.length);  // 79</script>
+  </div>
+  <p>A <code>while</code> loop repeats as long as a condition is true. Use it when you do not know the number of passes in advance, but make sure something changes inside the loop.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">let count = 3;
+while (count > 0) {
+  console.log(count);
+  count = count - 1;
+}
+console.log("Lift off!");</script>
+  </div>
+  <div class="callout callout--warn">
+    <span class="callout__label">Avoid the infinite loop</span>
+    <p>If the condition never becomes false, the page freezes. Check that the loop body updates the value used in the condition. In a browser, you may need to close the tab.</p>
+  </div>
+  <h3>for...of reads values directly</h3>
+  <p>When you only need each value, <code>for...of</code> is shorter and harder to get wrong than an index loop. It visits the values in order.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const scores = [72, 88, 95];
+let total = 0;
+for (const score of scores) {
+  total = total + score;
+}
+console.log(total / scores.length); // 85
+for (const fruit of ["apple", "pear"]) {
+  console.log(fruit.toUpperCase());
+}</script>
+  </div>
+  <p>Use the classic <code>for</code> loop when you need the index as well as the value, or when you need to skip items. Use <code>for...of</code> when you just want each item.</p>
+  <h2>Transform with map, filter, and reduce</h2>
+  <p>Many loops follow the same three patterns: change every item, keep some items, or boil the list down to one value. JavaScript provides a method for each.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Method</th><th scope="col">Job</th><th scope="col">Returns</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>map</code></td><td>Transform every item</td><td>A new array of the same length</td></tr>
+        <tr><td><code>filter</code></td><td>Keep items that pass a test</td><td>A new, usually shorter array</td></tr>
+        <tr><td><code>reduce</code></td><td>Combine all items into one value</td><td>A single value</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="code-block" data-code>
+<script type="text/plain">const prices = [10, 25, 4, 18];
+const doubled = prices.map(function (price) {
+  return price * 2;
+});
+const expensive = prices.filter(function (price) {
+  return price >= 18;
+});
+const sum = prices.reduce(function (runningTotal, price) {
+  return runningTotal + price;
+}, 0);
+console.log(doubled);   // [20, 50, 8, 36]
+console.log(expensive); // [25, 18]
+console.log(sum);       // 57</script>
+  </div>
+  <p>The callback you pass to <code>map</code> runs once per item and returns the replacement. The callback for <code>filter</code> returns true to keep an item and false to drop it. The callback for <code>reduce</code> receives the running result and the current item; the second argument to <code>reduce</code> is the starting value.</p>
+  <div class="callout callout--tip">
+    <span class="callout__label">Keep the original</span>
+    <p><code>map</code>, <code>filter</code>, and <code>reduce</code> do not change the original array. They return a new value. That makes them safe to chain and easy to test.</p>
+  </div>
+  <p>You can chain them. This example keeps prices over 10, doubles them, and adds the result:</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const prices = [10, 25, 4, 18];
+const result = prices
+  .filter(function (price) {
+    return price > 10;
+  })
+  .map(function (price) {
+    return price * 2;
+  })
+  .reduce(function (total, price) {
+    return total + price;
+  }, 0);
+console.log(result); // 86</script>
+  </div>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 20 minutes</span>
+      <h2>Sum the evens, then transform</h2>
+    </div>
+    <p>Start with an array of numbers. Use a <code>for...of</code> loop to add only the even numbers and log the total. Then use <code>map</code> to double every number and <code>filter</code> to keep the numbers greater than 10. Log both new arrays.</p>
+    <label class="visually-hidden" for="practice-4-3">Your exercise code</label>
+    <textarea class="practice__code" id="practice-4-3" data-attempt spellcheck="false" placeholder="Type your JavaScript here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+<script type="text/plain" data-answer>const numbers = [3, 8, 12, 5, 20, 7, 14];
+
+let evenTotal = 0;
+
+for (const number of numbers) {
+  if (number % 2 === 0) {
+    evenTotal = evenTotal + number;
+  }
+}
+
+console.log(`Even total: ${evenTotal}`);
+
+const doubled = numbers.map(function (number) {
+  return number * 2;
+});
+
+const large = numbers.filter(function (number) {
+  return number > 10;
+});
+
+console.log(doubled);
+console.log(large);</script>
+  </section>
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why does <code>array[array.length]</code> return <code>undefined</code>?</summary>
+      <p>Indexes run from <code>0</code> to <code>length - 1</code>. Asking for the index equal to the length points one position past the last item. Use <code>array[array.length - 1]</code> for the final item.</p>
+    </details>
+    <details class="qa">
+      <summary>When should I use <code>reduce</code> instead of a loop?</summary>
+      <p>Use <code>reduce</code> when the result is a single value built from every item, such as a sum, a count, or a lookup object. For side effects or early exit, a plain loop is often clearer.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Arrays start at zero.</strong> <code>length</code> is one more than the last index.</li>
+      <li><strong>Choose the loop for the job.</strong> Index loop for positions, <code>for...of</code> for values, <code>while</code> for unknown counts.</li>
+      <li><strong>map, filter, and reduce replace repeated loop patterns.</strong> They return new values and leave the original array alone.</li>
+    </ul>
+  </div>
+</article>

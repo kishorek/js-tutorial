@@ -1,0 +1,219 @@
+<article class="lesson" id="lesson-4-4" data-lesson="4-4">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 04 · JavaScript foundations</p>
+    <h1>Functions and scope</h1>
+    <p class="lesson-lede">Functions turn a block of steps into a named tool you can reuse, test, and pass around. Learn parameters, return values, arrow syntax, scope, and the difference between a pure function and one that fights the rest of your code.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 4.4</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Write declarations, expressions, and arrow functions.</li>
+          <li>Pass arguments and return a useful value.</li>
+          <li>Predict which variables a function can see.</li>
+          <li>Use callbacks and recognise a pure function.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Lesson 4.3 arrays and loop methods.</li>
+          <li>Lesson 4.2 conditions.</li>
+          <li>A console for small experiments.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>Functions name reusable work</h2>
+  <p>A function declaration starts with the <code>function</code> keyword, a name, a parameter list, and a body. Declaring it does not run it. You run it by calling the name with parentheses.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function greet(name) {
+  return `Hello, ${name}!`;
+}
+const message = greet("Maya");
+console.log(message); // "Hello, Maya!"
+console.log(greet("Sam")); // "Hello, Sam!"</script>
+  </div>
+  <p>The word <code>name</code> inside the parentheses is a <strong>parameter</strong>, a placeholder for a value. The value you pass when calling, such as <code>"Maya"</code>, is an <strong>argument</strong>. Inside the function, the parameter behaves like a normal variable.</p>
+  <h2>Parameters and return values</h2>
+  <p><code>return</code> sends a value back to the caller and stops the function immediately. Without a return statement, a function returns <code>undefined</code>.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function add(a, b) {
+  return a + b;
+}
+const result = add(3, 4);
+console.log(result); // 7
+function logSum(a, b) {
+  console.log(a + b);
+}
+const nothing = logSum(1, 2); // prints 3
+console.log(nothing);         // undefined</script>
+  </div>
+  <p>Logging and returning are different jobs. A function that logs is useful for a human watching the console. A function that returns is useful to the rest of the program, because another function can use the result.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function double(number) {
+  return number * 2;
+}
+function addTen(number) {
+  return number + 10;
+}
+console.log(double(addTen(5))); // 30</script>
+  </div>
+  <p>Code after <code>return</code> never runs. If you need to compute something before returning, do the work first.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function describeScore(score) {
+  if (score >= 90) {
+    return "Excellent";
+  }
+  if (score >= 70) {
+    return "Passing";
+  }
+  return "Try again";
+}
+console.log(describeScore(95)); // "Excellent"
+console.log(describeScore(75)); // "Passing"
+console.log(describeScore(40)); // "Try again"</script>
+  </div>
+  <h2>Expressions and arrow functions</h2>
+  <p>A function expression stores a function in a variable. The function may be anonymous, which is common when passing it to another method.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const square = function (number) {
+  return number * number;
+};
+console.log(square(4)); // 16</script>
+  </div>
+  <p>An arrow function is a shorter expression syntax. With one parameter, the parentheses are optional. With a single expression, the braces and <code>return</code> are optional too.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const cube = (number) => {
+  return number * number * number;
+};
+const double = number => number * 2;
+console.log(cube(2));   // 8
+console.log(double(5)); // 10</script>
+  </div>
+  <p>Arrow functions are excellent for short callbacks. They differ from ordinary functions in how they handle <code>this</code>, but you will not need that distinction until you work with objects and events in Module 5.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const prices = [10, 25, 4];
+const withTax = prices.map(price => price * 1.2);
+const cheap = prices.filter(price => price < 20);
+console.log(withTax); // [12, 30, 4.8]
+console.log(cheap);   // [10, 4]</script>
+  </div>
+  <h3>Defaults and scope</h3>
+  <p>A default parameter supplies a value when the caller omits an argument. Defaults are evaluated when the function runs, not when it is declared.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function makeLabel(text, prefix = "Note") {
+  return `${prefix}: ${text}`;
+}
+console.log(makeLabel("Buy milk"));          // "Note: Buy milk"
+console.log(makeLabel("Buy milk", "Todo"));  // "Todo: Buy milk"
+function total(price, taxRate = 0.2) {
+  return price * (1 + taxRate);
+}
+console.log(total(100));     // 120
+console.log(total(100, 0.1)); // 110</script>
+  </div>
+  <p><strong>Scope</strong> is the set of names a piece of code can see. A variable declared inside a function is local: it exists only during that call. A variable declared outside is global to the file and visible inside functions.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const taxRate = 0.2;
+function withTax(price) {
+  const tax = price * taxRate;
+  return price + tax;
+}
+console.log(withTax(50)); // 60
+// console.log(tax);      // ReferenceError: tax is not defined
+if (true) {
+  const blockOnly = "inside";
+  console.log(blockOnly);
+}
+// console.log(blockOnly); // ReferenceError</script>
+  </div>
+  <p>Block scope also applies to <code>let</code> and <code>const</code> inside loops and <code>if</code> blocks. Prefer local variables: they are easier to reason about and cannot be changed by unrelated code.</p>
+  <div class="callout callout--warn">
+    <span class="callout__label">Avoid accidental globals</span>
+    <p>Assigning to a name that was never declared creates a global in non-strict code. Always declare with <code>const</code> or <code>let</code> so a typo becomes an error instead of a hidden variable.</p>
+  </div>
+  <h3>Pure functions and callbacks</h3>
+  <p>A <strong>pure function</strong> returns the same output for the same input and changes nothing outside itself. Pure functions are easy to test because you can call them repeatedly without side effects.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function applyTax(price, rate) {
+  return price * (1 + rate);
+}
+console.log(applyTax(100, 0.2)); // 120
+console.log(applyTax(100, 0.2)); // 120
+let total = 0;
+function addToTotal(price) {
+  total = total + price; // impure: changes outside state
+  return total;
+}
+addToTotal(10);
+addToTotal(10);
+console.log(total); // 20</script>
+  </div>
+  <p>Impure functions are not forbidden. They are necessary for saving data, updating a page, or logging. The habit to build is to keep calculation pure and push side effects to the edges of the program.</p>
+  <p>A <strong>callback</strong> is a function passed to another function so it can be called later. The array methods from Lesson 4.3 use callbacks. You can write your own too.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">function repeat(times, action) {
+  for (let i = 0; i < times; i++) {
+    action(i);
+  }
+}
+repeat(3, function (index) {
+  console.log(`Round ${index + 1}`);
+});
+repeat(2, index => console.log(`Short round ${index + 1}`));</script>
+  </div>
+  <p>Passing a function as a value is what makes callbacks possible. Notice that <code>action</code> is called with parentheses; passing <code>action()</code> instead would call it immediately and pass its result.</p>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Calculate an order total</h2>
+    </div>
+    <p>Write a function that accepts an array of prices and a tax rate with a default of <code>0.2</code>. Add the prices with a loop, apply the tax, and return the final total. Call it once with a custom rate and once with the default, then log both results with two decimal places.</p>
+    <label class="visually-hidden" for="practice-4-4">Your exercise code</label>
+    <textarea class="practice__code" id="practice-4-4" data-attempt spellcheck="false" placeholder="Type your JavaScript here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+<script type="text/plain" data-answer>function calculateTotal(prices, taxRate = 0.2) {
+  let subtotal = 0;
+
+  for (const price of prices) {
+    subtotal = subtotal + price;
+  }
+
+  const tax = subtotal * taxRate;
+  return subtotal + tax;
+}
+
+const order = [12, 7.5, 25];
+
+console.log(`With 10% tax: $${calculateTotal(order, 0.1).toFixed(2)}`);
+console.log(`With default tax: $${calculateTotal(order).toFixed(2)}`);</script>
+  </section>
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>What happens if a function has no <code>return</code> statement?</summary>
+      <p>It returns <code>undefined</code>. The function still runs, so logging inside it still prints, but the caller receives no useful value. If you need the result elsewhere, return it.</p>
+    </details>
+    <details class="qa">
+      <summary>Why can a function see <code>taxRate</code> but not a variable declared inside another function?</summary>
+      <p>Scope looks outward, not sideways. A function can read names from the surrounding file, but a local variable belongs only to the call that created it. Each function's inner names stay private.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Functions are named steps with inputs and an output.</strong> Parameters receive arguments; <code>return</code> sends a result back.</li>
+      <li><strong>Scope keeps names local.</strong> Declare with <code>const</code> or <code>let</code> and prefer variables that live only where they are needed.</li>
+      <li><strong>Pure functions are predictable.</strong> Keep calculations pure, use callbacks for reusable behavior, and let side effects happen at the edges.</li>
+    </ul>
+  </div>
+</article>

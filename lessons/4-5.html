@@ -1,0 +1,217 @@
+<article class="lesson" id="lesson-4-5" data-lesson="4-5">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 04 · JavaScript foundations</p>
+    <h1>Project: arrays, objects, and the calculator</h1>
+    <p class="lesson-lede">Put the whole module to work. Model data with objects, query lists with array methods, then build a working calculator whose logic is separate from its buttons.</p>
+    <div class="chips"><span class="chip chip--accent">Lesson 4.5 · Project</span><span class="chip">2–3 hours</span><span class="chip">Module milestone</span></div>
+    <div class="brief">
+      <div>
+        <h3>Deliverables</h3>
+        <ul>
+          <li>A <code>calculate(a, b, op)</code> function for four operations.</li>
+          <li>Display, digit buttons, operators, clear, and equals.</li>
+          <li>Divide-by-zero handling that shows <code>Error</code>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Exit check</h3>
+        <ul>
+          <li>Logic works without the page.</li>
+          <li>Every button changes the display correctly.</li>
+          <li>Clear resets the whole calculation.</li>
+          <li>No inline event handlers.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>Objects group related values</h2>
+  <p>An object stores named properties. Use dot notation for a known name and bracket notation when the name is stored in a variable. Arrays of objects let each item describe one record.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">const ticket = { event: "Jazz night", price: 18, available: true };
+console.log(ticket.event, ticket.price); // "Jazz night" 18
+ticket.price = 20; ticket.seats = 42;
+
+const expenses = [
+  { label: "Coffee", amount: 4.5, category: "food" },
+  { label: "Bus pass", amount: 30, category: "travel" },
+  { label: "Lunch", amount: 12, category: "food" }
+];
+const total = expenses.reduce((sum, item) => sum + item.amount, 0);
+const food = expenses.filter(item => item.category === "food");
+const labels = expenses.map(item => item.label);
+const bus = expenses.find(item => item.label === "Bus pass");
+console.log(total, food.length, labels, bus.amount); // 46.5 2 [...] 30</script>
+  </div>
+  <ul>
+    <li><code>find</code> returns the first match, or <code>undefined</code>.</li>
+    <li><code>filter</code> returns a new array of every match.</li>
+    <li><code>map</code> returns one transformed value per item.</li>
+    <li><code>reduce</code> combines the list into a single value.</li>
+  </ul>
+  <h2>Build the calculator</h2>
+  <p>Start from the shell in the editor. Keep the calculation in a function, then let the buttons collect numbers and call it. The display is output; the logic should be testable on its own.</p>
+  <div class="callout callout--warn">
+    <span class="callout__label">This previews the DOM</span>
+    <p>The solution uses <code>document.querySelector</code> and <code>addEventListener</code>. You do not need to master those yet. Module 5 explains selecting elements, wiring events, and updating the page properly.</p>
+  </div>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Project workspace · 2–3 hours</span>
+      <h2>Your calculator</h2>
+    </div>
+    <div class="editor" data-editor>
+      <div class="editor__bar"><span class="editor__label">calculator.html</span><div class="editor__actions"><button type="button" class="btn btn--small" data-action="run">Run</button><button type="button" class="btn btn--ghost btn--small" data-action="reset">Reset</button><button type="button" class="btn btn--ghost btn--small" data-action="copy">Copy</button></div></div>
+      <div class="editor__grid">
+        <label class="visually-hidden" for="practice-4-5">Calculator project editor</label>
+        <textarea id="practice-4-5" class="editor__code" data-attempt spellcheck="false"></textarea>
+        <div class="editor__preview"><div class="editor__preview-bar">Live preview</div><iframe title="Preview of your calculator" sandbox="allow-scripts"></iframe></div>
+      </div>
+      <p class="editor__status" aria-live="polite" data-status>Preview loaded. Build the calculator, then press Run.</p>
+      <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+body { display: grid; place-items: center; min-height: 100vh; margin: 0; background: #f4f1ea; font-family: system-ui, sans-serif; } .calc { width: min(320px, 92vw); padding: 16px; border-radius: 14px; background: #1c1a16; color: #fff; } .calc__display { min-height: 60px; margin-bottom: 12px; padding: 12px; border-radius: 8px; background: #2c2924; font: 2rem ui-monospace, monospace; text-align: right; overflow-wrap: anywhere; }
+.calc__keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; } button { padding: 15px 0; border: 0; border-radius: 8px; background: #3a3630; color: #fff; font-size: 1rem; cursor: pointer; } .key--op { background: #8a6d3b; } .key--equals { grid-column: span 4; background: #c0392b; } .key--clear { background: #5a554c; }
+</style>
+</head>
+<body>
+<main class="calc">
+<div class="calc__display" data-display aria-live="polite">0</div>
+<div class="calc__keys">
+<button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button><button data-key="/" class="key--op">÷</button>
+<button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button><button data-key="*" class="key--op">×</button>
+<button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button><button data-key="-" class="key--op">−</button>
+<button data-key="0">0</button><button data-key=".">.</button><button data-key="clear" class="key--clear">C</button><button data-key="+" class="key--op">+</button><button data-key="=" class="key--equals">=</button>
+</div>
+</main>
+<script>
+// Write calculate() and connect the buttons here.
+@ENDSCRIPT
+</body>
+</html></script>
+    </div>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal reference solution</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the reference solution unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+body { display: grid; place-items: center; min-height: 100vh; margin: 0; background: #f4f1ea; font-family: system-ui, sans-serif; } .calc { width: min(320px, 92vw); padding: 16px; border-radius: 14px; background: #1c1a16; color: #fff; } .calc__display { min-height: 60px; margin-bottom: 12px; padding: 12px; border-radius: 8px; background: #2c2924; font: 2rem ui-monospace, monospace; text-align: right; overflow-wrap: anywhere; }
+.calc__keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; } button { padding: 15px 0; border: 0; border-radius: 8px; background: #3a3630; color: #fff; font-size: 1rem; cursor: pointer; } .key--op { background: #8a6d3b; } .key--equals { grid-column: span 4; background: #c0392b; } .key--clear { background: #5a554c; }
+</style>
+</head>
+<body>
+<main class="calc">
+<div class="calc__display" data-display aria-live="polite">0</div>
+<div class="calc__keys">
+<button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button><button data-key="/" class="key--op">÷</button>
+<button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button><button data-key="*" class="key--op">×</button>
+<button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button><button data-key="-" class="key--op">−</button>
+<button data-key="0">0</button><button data-key=".">.</button><button data-key="clear" class="key--clear">C</button><button data-key="+" class="key--op">+</button><button data-key="=" class="key--equals">=</button>
+</div>
+</main>
+<script>
+const display = document.querySelector("[data-display]");
+let current = "0", previous = null, operator = null, resetNext = false;
+function calculate(a, b, op) {
+  const x = Number(a), y = Number(b);
+  if (op === "+") return x + y; if (op === "-") return x - y;
+  if (op === "*") return x * y; if (op === "/") return y === 0 ? "Error" : x / y;
+  return y;
+}
+function show(value) {
+  if (value === "Error") { current = value; display.textContent = value; return; }
+  current = String(Math.round(Number(value) * 1e10) / 1e10); display.textContent = current;
+}
+
+function press(key) {
+  if (key >= "0" && key <= "9") {
+    current = current === "0" || resetNext ? key : current + key;
+    resetNext = false; display.textContent = current;
+  } else if (key === ".") {
+    if (resetNext) { current = "0"; resetNext = false; }
+    if (!current.includes(".")) { current += "."; display.textContent = current; }
+  } else if (key === "clear") {
+    current = "0"; previous = null; operator = null; resetNext = false; show("0");
+  } else if (key === "=") {
+    if (operator === null) return;
+    show(calculate(previous, current, operator)); previous = null; operator = null; resetNext = true;
+  } else {
+    if (operator !== null && !resetNext) {
+      const result = calculate(previous, current, operator);
+      if (result === "Error") { show("Error"); previous = null; operator = null; resetNext = true; return; }
+      current = String(result); show(result);
+    }
+    previous = current; operator = key; resetNext = true;
+  }
+}
+
+document.querySelectorAll("[data-key]").forEach(function (button) {
+  button.addEventListener("click", function () { press(button.dataset.key); });
+});
+@ENDSCRIPT
+</body>
+</html></script>
+  </section>
+  <h2>Review checklist</h2>
+  <ul>
+    <li><code>calculate(7, 8, "+")</code> returns <code>15</code>; <code>calculate(9, 3, "*")</code> returns <code>27</code>.</li>
+    <li><code>5 / 0</code> shows <code>Error</code>, not <code>Infinity</code>.</li>
+    <li>Typing <code>0.5</code> works, and a number has only one decimal point.</li>
+    <li><code>C</code> resets the display, the stored number, and the operator.</li>
+    <li>Chained operations such as <code>7 + 8 + 2</code> give <code>17</code>.</li>
+    <li>Every button uses <code>addEventListener</code>; no <code>onclick</code> attributes.</li>
+    <li>The console shows no errors after a full sequence.</li>
+  </ul>
+  <h3>Check yourself</h3>
+  <div class="qa-list">
+    <details class="qa"><summary>Why keep <code>calculate</code> separate from the button handler?</summary><p>Separating them lets you test the arithmetic directly, reuse it, and change the interface without rewriting the logic. The handler only collects input and shows output.</p></details>
+    <details class="qa"><summary>Why does dividing by zero show <code>Error</code> instead of <code>Infinity</code>?</summary><p>The <code>calculate</code> function checks for a zero divisor and returns a message. JavaScript would otherwise produce <code>Infinity</code>, which is mathematically valid but not useful in a calculator.</p></details>
+  </div>
+  <h2>Module 4 quiz</h2>
+  <div class="quiz" data-quiz>
+    <form>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="const prevents reassignment. A const object can still have its properties changed.">
+        <legend><span class="quiz__num">01</span> Which keyword prevents a variable from being reassigned?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span><code>let</code></span></label><label class="option"><input type="radio" name="q1" value="b"><span><code>const</code></span></label><label class="option"><input type="radio" name="q1" value="c"><span><code>var</code></span></label><label class="option"><input type="radio" name="q1" value="d"><span><code>function</code></span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Strict equality compares both value and type, without coercion.">
+        <legend><span class="quiz__num">02</span> What does <code>===</code> compare?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span>Value only</span></label><label class="option"><input type="radio" name="q2" value="b"><span>Type only</span></label><label class="option"><input type="radio" name="q2" value="c"><span>Value and type</span></label><label class="option"><input type="radio" name="q2" value="d"><span>Memory address</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="map transforms every item and returns a new array of the same length.">
+        <legend><span class="quiz__num">03</span> Which method transforms every array item into a new array?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span><code>filter</code></span></label><label class="option"><input type="radio" name="q3" value="b"><span><code>map</code></span></label><label class="option"><input type="radio" name="q3" value="c"><span><code>reduce</code></span></label><label class="option"><input type="radio" name="q3" value="d"><span><code>push</code></span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="A function without a return statement returns undefined. Side effects such as logging still happen.">
+        <legend><span class="quiz__num">04</span> What does a function return if it has no <code>return</code> statement?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span><code>null</code></span></label><label class="option"><input type="radio" name="q4" value="b"><span><code>0</code></span></label><label class="option"><input type="radio" name="q4" value="c"><span><code>undefined</code></span></label><label class="option"><input type="radio" name="q4" value="d"><span>The last expression</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="Returning keeps calculation separate from display, so you can reuse and test it without a page.">
+        <legend><span class="quiz__num">05</span> Why should <code>calculate</code> return a value instead of logging it?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span>Logging is always slower.</span></label><label class="option"><input type="radio" name="q5" value="b"><span>Returning makes the logic reusable and testable.</span></label><label class="option"><input type="radio" name="q5" value="c"><span>JavaScript requires a return in every function.</span></label><label class="option"><input type="radio" name="q5" value="d"><span>Returning updates the page automatically.</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <div class="quiz__actions">
+        <button type="submit" class="btn">Check answers</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>Reset quiz</button>
+        <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
+      </div>
+    </form>
+  </div>
+  <div class="recap">
+    <h2>Module 4 complete</h2>
+    <ul>
+      <li><strong>Data has shape.</strong> Objects name related values; arrays keep them in order.</li>
+      <li><strong>Small functions compose.</strong> A pure <code>calculate</code> plus event wiring is easier to debug than one giant script.</li>
+      <li><strong>You built an interactive tool.</strong> Numbers go in, logic runs, and the display updates. Module 5 explains the DOM layer in depth.</li>
+    </ul>
+  </div>
+</article>

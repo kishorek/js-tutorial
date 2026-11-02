@@ -1,0 +1,208 @@
+<article class="lesson" id="lesson-7-1" data-lesson="7-1">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 07 · Ship it</p>
+    <h1>Multi-page architecture</h1>
+    <p class="lesson-lede">Three pages are a system, not three lucky guesses. Plan the folders, name the paths, and keep the shared shell consistent so every new page takes minutes instead of an afternoon.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 7.1</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Intermediate</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Lay out a small site in folders that still make sense in a month.</li>
+          <li>Write relative paths that work on your machine and on a host.</li>
+          <li>Keep one shared shell and show the active page in navigation.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Your portfolio v1 from Module 2.</li>
+          <li>A code editor and a browser.</li>
+          <li>Two existing pages to connect.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Draw the map first</h2>
+  <p>Decide what the site contains before you create files. Version 2 needs three pages: home, about, and projects. Everything else is an asset. A flat page layout with asset folders is easy to read and easy to deploy.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">portfolio/
+├── index.html
+├── about.html
+├── projects.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── main.js
+└── images/
+    ├── portrait.jpg
+    └── project-01.jpg</script>
+  </div>
+
+  <ul>
+    <li><code>index.html</code> is the default file for the folder. Hosts serve it automatically.</li>
+    <li>Keep all pages in one folder when there are only three. Deep folders add path mistakes before they add clarity.</li>
+    <li>Put styles, scripts, and images in their own folders so an asset can move without hunting through pages.</li>
+  </ul>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">Name for the URL</span>
+    <p>Use lowercase file names with hyphens: <code>projects.html</code>, <code>project-01.jpg</code>. Some hosts are case-sensitive; <code>Projects.html</code> is a different file from <code>projects.html</code>.</p>
+  </div>
+
+  <h2>Every page has one job</h2>
+  <p>Shared structure makes a site feel like one place. Shared structure does not mean shared content. Each page needs one <code>h1</code>, a clear purpose, and a reason to exist beyond "another page".</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Page</th><th scope="col">Job</th><th scope="col">Proof it is done</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>index.html</code></td><td>Say who you are and what you build.</td><td>A clear <code>h1</code>, short intro, featured work.</td></tr>
+        <tr><td><code>about.html</code></td><td>Give the story and the skills behind the work.</td><td>A bio, a skills list, a contact link.</td></tr>
+        <tr><td><code>projects.html</code></td><td>Show the work with enough context to understand it.</td><td>At least three project entries with links.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The shell — skip link, header, navigation, footer — appears on every page. Only the middle changes. When you edit the navigation, edit all three pages in the same pass. The same rule applies to the footer.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><header class="site-header">
+  <a href="index.html">Maya Chen</a>
+  <nav aria-label="Main">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+  </nav>
+</header></script>
+  </div>
+
+  <p><code>aria-current="page"</code> is the accessible active state. Do not rely on color alone. Move the attribute to the link for the page the visitor is on; the CSS can style it.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const page = location.pathname.split("/").pop() || "index.html";
+
+document.querySelectorAll("nav a").forEach((link) => {
+  if (link.getAttribute("href") === page) {
+    link.setAttribute("aria-current", "page");
+  }
+});</script>
+  </div>
+
+  <p>The script above is a convenience, not a requirement. Hard-coding the attribute is more robust and easier to understand while you are learning. Use the script only after the static version works.</p>
+
+  <h2>Relative paths are a contract</h2>
+  <p>A relative path resolves from the file that contains it. From <code>index.html</code>, <code>projects.html</code> is a sibling; from <code>css/styles.css</code>, an image is <code>../images/portrait.jpg</code>.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">From</th><th scope="col">To</th><th scope="col">Write</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>index.html</code></td><td><code>about.html</code></td><td><code>about.html</code></td></tr>
+        <tr><td><code>projects.html</code></td><td>the stylesheet</td><td><code>css/styles.css</code></td></tr>
+        <tr><td><code>about.html</code></td><td>the home page</td><td><code>index.html</code></td></tr>
+        <tr><td><code>css/styles.css</code></td><td><code>images/portrait.jpg</code></td><td><code>../images/portrait.jpg</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Skip the leading slash</span>
+    <p>Do not start internal links with <code>/</code> unless you know the site lives at the domain root. GitHub Pages project sites live under <code>/repository-name/</code>, so <code>/about.html</code> breaks there. Keep paths relative.</p>
+  </div>
+
+  <h2>Separate the layers</h2>
+  <p>Inline styles and inline scripts are fine for a demo and painful across three pages. Keep one stylesheet and one script. Link them from each page using paths relative to that page.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maya Chen · Home</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Shared shell and page content -->
+  <script src="js/main.js" defer>@ENDSCRIPT
+</body>
+</html></script>
+  </div>
+
+  <ul>
+    <li>One stylesheet means one color palette, one spacing scale, one place to fix a mobile bug.</li>
+    <li>One script with <code>defer</code> runs after the HTML is parsed. It can safely find elements on the page.</li>
+    <li>When the site grows past a handful of pages, reach for a static site generator or web components. Do not add a framework just to avoid three copies of a header.</li>
+  </ul>
+
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 30 minutes</span>
+      <h2>Plan a three-page site</h2>
+    </div>
+    <p>Write the folder tree for <code>index.html</code>, <code>about.html</code>, and <code>projects.html</code>, plus <code>css/styles.css</code>, <code>js/main.js</code>, and an <code>images/</code> folder. List the relative link from each page to the other two and to both assets. Then write the navigation markup with <code>projects.html</code> active.</p>
+    <label class="visually-hidden" for="practice-7-1">Your site plan</label>
+    <textarea class="practice__code" id="practice-7-1" data-attempt spellcheck="false" placeholder="Sketch the tree and paths here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>portfolio/
+├── index.html
+├── about.html
+├── projects.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── main.js
+└── images/
+    └── ...
+
+Links
+index.html    -> about.html, projects.html, css/styles.css, js/main.js
+about.html    -> index.html, projects.html, css/styles.css, js/main.js
+projects.html -> index.html, about.html, css/styles.css, js/main.js
+
+<header class="site-header">
+  <a href="index.html">Maya Chen</a>
+  <nav aria-label="Main">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html" aria-current="page">Projects</a>
+  </nav>
+</header></script>
+  </section>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why do root-relative links like <code>/about.html</code> break on GitHub Pages?</summary>
+      <p>A project site is served from <code>/repository-name/</code>, not the domain root. <code>/about.html</code> points above the project; <code>about.html</code> resolves from the current page.</p>
+    </details>
+    <details class="qa">
+      <summary>How do I avoid copying the header into every page?</summary>
+      <p>In plain static HTML you cannot include one file directly. Keep the markup identical, change only the active link, and keep all styling in one stylesheet. When the site grows, use a static site generator or a component system instead of a framework you do not need.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Plan the map first.</strong> Pages, assets, and names before markup.</li>
+      <li><strong>Paths are relative to the file.</strong> Test every link from every page.</li>
+      <li><strong>One shell, one stylesheet, one script.</strong> Duplication is a maintenance bug.</li>
+    </ul>
+  </div>
+</article>

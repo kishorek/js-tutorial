@@ -1,0 +1,188 @@
+<article class="lesson" id="lesson-7-2" data-lesson="7-2">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 07 · Ship it</p>
+    <h1>Accessibility and performance audit</h1>
+    <p class="lesson-lede">A site that only works with a mouse and a fast connection is a site that loses people. Run the same audit every time: keyboard, focus, contrast, labels, images, motion, and the bytes you ask visitors to download.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 7.2</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Intermediate</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Run a keyboard and screen-reader sanity check.</li>
+          <li>Find and fix the most common WCAG failures.</li>
+          <li>Cut avoidable layout shift and download weight.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>A page you built in this course.</li>
+          <li>Chrome DevTools and Lighthouse.</li>
+          <li>Ten minutes with the keyboard only.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Access is a baseline</h2>
+  <p>WCAG is the Web Content Accessibility Guidelines. Aim for level AA, not perfection. The four principles are easier to remember as <strong>POUR</strong>: content must be perceivable, operable, understandable, and robust. In everyday code that means six habits.</p>
+
+  <ul>
+    <li><strong>Keyboard first.</strong> Every link, button, field, and menu must work with Tab, Shift+Tab, Enter, Space, and the arrow keys where expected.</li>
+    <li><strong>Visible focus.</strong> Never remove the focus outline without replacing it. A clear ring tells keyboard users where they are.</li>
+    <li><strong>Contrast.</strong> Body text needs at least 4.5:1 against its background. Large text and interface boundaries need at least 3:1.</li>
+    <li><strong>Names.</strong> Every input has a real <code>label</code>. Every meaningful image has useful <code>alt</code> text. Decorative images use <code>alt=""</code>.</li>
+    <li><strong>Structure.</strong> Use one <code>main</code>, a logical heading order, and landmarks such as <code>header</code>, <code>nav</code>, and <code>footer</code>. Add a skip link.</li>
+    <li><strong>Motion.</strong> Respect <code>prefers-reduced-motion</code> and never make an animation the only way to understand something.</li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Overlays are not a fix</span>
+    <p>An accessibility widget cannot repair a div pretending to be a button, an unlabeled input, or unreadable contrast. Fix the HTML and CSS at the source.</p>
+  </div>
+
+  <h2>Run the same audit every time</h2>
+  <p>Print this checklist or keep it beside your editor. A full pass takes about fifteen minutes on a small site.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Area</th><th scope="col">Check</th><th scope="col">Pass looks like</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Keyboard</td><td>Tab through the whole page.</td><td>Every control is reachable, in a sensible order, with no trap.</td></tr>
+        <tr><td>Focus</td><td>Watch the focus ring on every control.</td><td>It is clearly visible against the background.</td></tr>
+        <tr><td>Structure</td><td>Read the heading outline and landmarks.</td><td>One <code>h1</code>, no skipped levels, one <code>main</code>.</td></tr>
+        <tr><td>Text</td><td>Zoom to 200% and check contrast.</td><td>No clipped text; body copy meets 4.5:1.</td></tr>
+        <tr><td>Images</td><td>Inspect every <code>img</code>.</td><td>Useful <code>alt</code>, plus <code>width</code> and <code>height</code>.</td></tr>
+        <tr><td>Forms</td><td>Click every label and submit empty.</td><td>Labels focus their fields; errors are announced and clear.</td></tr>
+        <tr><td>Motion</td><td>Enable reduced motion in the OS.</td><td>Nothing essential depends on animation.</td></tr>
+        <tr><td>Assets</td><td>Check image weight, fonts, CSS, and JS.</td><td>Images are sized; fonts swap; scripts are deferred.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Fix the failures you can see</h2>
+  <p>This card is a common first draft. It looks clickable, but it is not usable with a keyboard, the image has no alternative, and the low-contrast text disappears for many readers.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><div class="card" onclick="openProject()">
+  <img src="project.jpg">
+  <div class="title">Project one</div>
+  <span style="color:#aaa">A tiny reading tracker.</span>
+</div></script>
+  </div>
+
+  <p>The rewrite uses a real article, a real link, useful alternative text, reserved image space, lazy loading for an image below the fold, and readable contrast.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><article class="card">
+  <img src="project.jpg"
+       alt="The reading tracker dashboard showing three saved books"
+       width="640" height="360" loading="lazy">
+  <h2><a href="project.html">Project one</a></h2>
+  <p>A tiny reading tracker with a calm, focused interface.</p>
+</article></script>
+  </div>
+
+  <p>Focus and motion need CSS as well. Keep the outline strong, and reduce motion when the visitor asks for it.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">a:focus-visible {
+  outline: 3px solid #0b5fff;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}</script>
+  </div>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">Test with a keyboard, not a checklist</span>
+    <p>Put the mouse away and complete the main task. If you cannot see where focus went, a keyboard user cannot either. Then try a screen reader for five minutes; VoiceOver, NVDA, and TalkBack are free.</p>
+  </div>
+
+  <h2>Performance is part of the experience</h2>
+  <p>Performance is accessibility for slow devices and unreliable networks. Start with the largest visible image, the fonts, and the JavaScript.</p>
+
+  <ul>
+    <li><strong>Reserve image space.</strong> Set <code>width</code> and <code>height</code> so the layout does not jump when the file arrives.</li>
+    <li><strong>Lazy-load below the fold.</strong> Use <code>loading="lazy"</code> for images further down. Do not lazy-load the hero image; it hurts the largest contentful paint.</li>
+    <li><strong>Make fonts swap.</strong> Use <code>font-display: swap</code>, load only the weights you use, and prefer one family.</li>
+    <li><strong>Ship less JavaScript.</strong> Remove unused libraries, defer scripts, and check the Network panel for files that are larger than they need to be.</li>
+    <li><strong>Measure on mobile.</strong> Run Lighthouse with the mobile setting and a throttled connection. A desktop score is not the score your visitors get.</li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Scores are a smoke alarm</span>
+    <p>A perfect Lighthouse score does not prove the page is accessible. Automated tools catch only part of the problem; keyboard testing and human judgment catch the rest.</p>
+  </div>
+
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 30 minutes</span>
+      <h2>Audit and repair a promo block</h2>
+    </div>
+    <p>Find at least five accessibility problems in this snippet, then rewrite it. Use a section with a heading, a real link or button, a labelled email field, useful alt text, image dimensions, and readable contrast. Assume the image is below the fold.</p>
+    <div class="code-block" data-code>
+      <script type="text/plain"><div class="promo" onclick="signup()">
+  <img src="workshop.jpg">
+  <h3>Free workshop</h3>
+  <p style="color:#aaa">Saturday, 10am</p>
+  <input type="email" placeholder="Email">
+  <span>Sign up</span>
+</div></script>
+    </div>
+    <label class="visually-hidden" for="practice-7-2">Your repaired snippet</label>
+    <textarea class="practice__code" id="practice-7-2" data-attempt spellcheck="false" placeholder="Write the repaired markup here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>Problems: the div click handler is not keyboard accessible; the image has no alt text or dimensions; the heading level is arbitrary; the inline color fails contrast; the placeholder is the only label; the span is not a real button.
+
+<section class="promo" aria-labelledby="promo-title">
+  <img src="workshop.jpg"
+       alt="People sketching at a shared table in a bright studio"
+       width="640" height="360" loading="lazy">
+  <h2 id="promo-title">Free workshop</h2>
+  <p>Saturday, 10am. No experience needed.</p>
+  <form action="/signup" method="post">
+    <label for="workshop-email">Email address</label>
+    <input id="workshop-email" name="email" type="email"
+           autocomplete="email" required>
+    <button type="submit">Sign up</button>
+  </form>
+</section></script>
+  </section>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Does a Lighthouse score of 100 mean the page is accessible?</summary>
+      <p>No. Automated tests catch some missing names, contrast failures, and structural issues, but they cannot judge whether the keyboard order makes sense or whether a screen-reader experience is clear. Test the real interaction.</p>
+    </details>
+    <details class="qa">
+      <summary>Why not add <code>loading="lazy"</code> to every image?</summary>
+      <p>Lazy loading delays the image until the browser thinks it is needed. On the hero or largest above-the-fold image that can make the page feel slower. Use it for images below the fold.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Keyboard, focus, contrast, labels, alt, landmarks.</strong> Run the same six checks on every page.</li>
+      <li><strong>Performance is user experience.</strong> Reserve space, compress images, and question every kilobyte of JavaScript.</li>
+      <li><strong>Audit with people, not only scores.</strong> Automated tools start the conversation; real use finishes it.</li>
+    </ul>
+  </div>
+</article>

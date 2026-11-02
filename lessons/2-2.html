@@ -1,0 +1,214 @@
+<article class="lesson" id="lesson-2-2" data-lesson="2-2">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 02 · CSS: the skin</p>
+    <h1>The box model and spacing</h1>
+    <p class="lesson-lede">Every element on a page is a rectangular box with four layers. Once you can see those layers, "why is this 20 pixels too wide?" becomes a calculation instead of a guess.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 2.2</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Name the four layers of the box model.</li>
+          <li>Use <code>box-sizing: border-box</code> without surprises.</li>
+          <li>Fix spacing with shorthands and a consistent scale.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Lesson 2.1 completed.</li>
+          <li>A page you can style with a linked stylesheet.</li>
+          <li>DevTools open on that page.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Every element is a box</h2>
+  <p>From the inside out: the <strong>content</strong> is the text or image, <strong>padding</strong> is space inside the border, the <strong>border</strong> is the visible edge, and <strong>margin</strong> is space outside the border. Padding and border belong to the element; margin separates it from its neighbours.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">.box {
+  width: 300px;              /* content width */
+  padding: 20px;             /* inside the border */
+  border: 2px solid #333;    /* the edge */
+  margin: 24px;              /* outside the border */
+}</script>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Layer</th><th scope="col">What it does</th><th scope="col">Clickable?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Content</td><td>Holds the text, image, or child boxes.</td><td>Yes</td></tr>
+        <tr><td>Padding</td><td>Pushes content away from the border; uses the background color.</td><td>Yes</td></tr>
+        <tr><td>Border</td><td>Draws an edge around padding and content.</td><td>Yes</td></tr>
+        <tr><td>Margin</td><td>Empty space between this box and others; always transparent.</td><td>No</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>box-sizing changes the math</h2>
+  <p>By default, CSS uses <code>content-box</code>. A <code>width: 300px</code> element with <code>20px</code> padding and a <code>2px</code> border actually occupies <code>300 + 40 + 4 = 344px</code>. That is rarely what you mean, especially inside a narrow layout.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.card {
+  width: 300px;   /* now the total width, including padding and border */
+  padding: 20px;
+  border: 2px solid #333;
+}</script>
+  </div>
+
+  <p>With <code>border-box</code>, the declared width is the final outer width. The content area shrinks to fit: <code>300 - 40 - 4 = 256px</code>. Put that reset at the top of every project and stop doing mental arithmetic.</p>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">Inspect the box</span>
+    <p>In DevTools, select an element and open the <em>Layout</em> or <em>Computed</em> panel. The box diagram shows content, padding, border, and margin with live numbers. Hover a layer to highlight it on the page. Toggle a declaration's checkbox to see the effect immediately.</p>
+  </div>
+
+  <h2>Shorthand and longhand</h2>
+  <p>Shorthands set several sides at once. Values run clockwise from the top: top, right, bottom, left. Two values mean vertical then horizontal; one value applies to all four sides. Use longhand when only one side changes.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">/* Longhand */
+padding-top: 16px;
+padding-right: 24px;
+padding-bottom: 16px;
+padding-left: 24px;
+
+/* Same result, clockwise: top right bottom left */
+padding: 16px 24px 16px 24px;
+
+/* Vertical | horizontal */
+padding: 16px 24px;
+
+/* All four sides */
+padding: 16px;
+
+/* Border shorthand: width | style | color */
+border: 1px solid #d8d0c0;</script>
+  </div>
+
+  <h2>Margins collapse</h2>
+  <p>Vertical margins between siblings do not add up. If one paragraph has <code>margin-bottom: 24px</code> and the next has <code>margin-top: 16px</code>, the gap is <code>24px</code>, the larger of the two. A child's top margin can also collapse through its parent, pushing the whole parent down instead of creating space inside it.</p>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">The usual fix</span>
+    <p>Add padding or a border to the parent, or make the parent a flex container. Flex and grid layouts do not collapse margins; they use <code>gap</code> for spacing. If a margin seems to vanish, inspect the parent before adding random numbers.</p>
+  </div>
+
+  <h2>Use a spacing scale</h2>
+  <p>Pick a small set of values and reuse them. A four-pixel base is common: <code>4, 8, 12, 16, 24, 32, 48, 64</code>. Consistent steps make a page feel designed rather than assembled. In the next lesson we will store these as custom properties.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Typical use</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>--space-1</code></td><td>4px</td><td>Small icon gaps</td></tr>
+        <tr><td><code>--space-2</code></td><td>8px</td><td>Label to input</td></tr>
+        <tr><td><code>--space-3</code></td><td>16px</td><td>Paragraph spacing</td></tr>
+        <tr><td><code>--space-4</code></td><td>24px</td><td>Card padding</td></tr>
+        <tr><td><code>--space-5</code></td><td>32px</td><td>Section gaps</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <section class="practice" data-practice data-min="40">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 20 minutes</span>
+      <h2>Give the card room to breathe</h2>
+    </div>
+    <p>This card is cramped: the text touches the edge and the button is a tiny target. Rewrite the CSS so the card is <code>320px</code> wide including its <code>24px</code> padding, the heading has <code>8px</code> below it, the paragraph has <code>16px</code> below it and a <code>1.6</code> line-height, and the button has <code>12px 18px</code> padding with a <code>44px</code> minimum height. Add the global <code>border-box</code> reset.</p>
+
+    <div class="code-block" data-code>
+      <script type="text/plain"><article class="card">
+  <h2>Focus timer</h2>
+  <p>Twenty-five minutes of work, then a five-minute break.</p>
+  <a class="button" href="#">Start</a>
+</article>
+
+.card { width: 320px; padding: 4px; border: 1px solid #d8d0c0; }
+.card h2 { margin: 0; font-size: 1.1rem; }
+.card p { margin: 0; }
+.button { display: inline-block; padding: 2px 6px; background: #14532d; color: #fff; text-decoration: none; }</script>
+    </div>
+
+    <label class="visually-hidden" for="practice-2-2">Your CSS</label>
+    <textarea class="practice__code" id="practice-2-2" data-attempt spellcheck="false" placeholder="Rewrite the CSS here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+.card {
+  width: 320px;
+  padding: 24px;
+  border: 1px solid #d8d0c0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.card p {
+  margin: 0 0 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.button {
+  display: inline-block;
+  min-height: 44px;
+  padding: 12px 18px;
+  border-radius: 4px;
+  background: #14532d;
+  color: #fff;
+  text-decoration: none;
+}</script>
+  </section>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why does <code>width: 300px</code> plus <code>padding: 20px</code> render wider than 300px?</summary>
+      <p>The default <code>content-box</code> sizing adds padding and border outside the declared width. Set <code>box-sizing: border-box</code> globally so the declared width includes both, and the content area shrinks to fit.</p>
+    </details>
+    <details class="qa">
+      <summary>Both paragraphs have <code>margin: 16px</code>, yet the gap is 16px, not 32px. Why?</summary>
+      <p>Adjacent vertical margins collapse: the browser uses the larger margin instead of adding them. This is normal. Use a flex container with <code>gap</code> when you need exact, non-collapsing spacing.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Four layers:</strong> content, padding, border, margin. Know which ones are clickable and which are transparent.</li>
+      <li><strong>Use border-box everywhere.</strong> Declared widths then match what you see on the page.</li>
+      <li><strong>Spacing is a system.</strong> A small scale beats a pile of one-off pixel values.</li>
+    </ul>
+  </div>
+</article>

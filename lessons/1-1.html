@@ -1,0 +1,273 @@
+<article class="lesson" id="lesson-1-1" data-lesson="1-1">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 01 · HTML: the skeleton</p>
+    <h1>Your first page</h1>
+    <p class="lesson-lede">Write a complete webpage from scratch, open it in a browser, inspect it, and explain every line. No prior code, no copy-paste.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 1.1</span>
+      <span class="chip">75–90 min</span>
+      <span class="chip">Beginner</span>
+      <span class="chip">No prerequisites</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Explain what HTML, CSS, and JavaScript each do.</li>
+          <li>Write a valid HTML5 skeleton from memory.</li>
+          <li>Structure text with headings, paragraphs, strong, and emphasis.</li>
+          <li>Build and inspect a small About Me page.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>A browser and a text editor.</li>
+          <li>A folder for your files.</li>
+          <li>Pen and paper for predictions.</li>
+          <li>Willingness to type and make mistakes.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Three languages, one page</h2>
+  <p>Think about a house. The frame, walls, and room labels decide what exists and where it goes. The paint and furniture decide how it looks. The wiring decides what responds when you flip a switch.</p>
+  <p>A webpage has the same three layers:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Language</th><th scope="col">Its job</th><th scope="col">Without it</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>HTML</strong></td><td>Structure and meaning: what each piece of content <em>is</em>.</td><td>A wall of unstyled text with no hierarchy.</td></tr>
+        <tr><td><strong>CSS</strong></td><td>Presentation: color, type, spacing, layout, animation.</td><td>Readable, but it looks like a document from 1995.</td></tr>
+        <tr><td><strong>JavaScript</strong></td><td>Behavior: respond to clicks, validate input, fetch data, update the page.</td><td>Readable and attractive, but static.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>We start with HTML on purpose. A beautiful house on a rotten frame is still a rotten house. Once the structure is correct, CSS is straightforward and JavaScript has something solid to change.</p>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">Semantic HTML</span>
+    <p>Choose elements for their meaning, not their default appearance. A heading is a heading because it starts a section, not because it is big. Screen readers, search engines, and future you all depend on that meaning.</p>
+  </div>
+
+  <h2>The skeleton every page needs</h2>
+  <p>Every HTML5 page starts with the same outer shell. Type this until it becomes muscle memory.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My First Page</title>
+</head>
+<body>
+  <h1>Hello, world!</h1>
+  <p>This is my first webpage.</p>
+</body>
+</html></script>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Part</th><th scope="col">What it does</th><th scope="col">Why it matters</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>Tells the browser to use modern standards mode.</td><td>Without it, browsers may render the page as if it were 1999.</td></tr>
+        <tr><td><code>&lt;html lang="en"&gt;</code></td><td>The root element and page language.</td><td>Screen readers pronounce content correctly.</td></tr>
+        <tr><td><code>&lt;head&gt;</code></td><td>Information <em>about</em> the page.</td><td>Nothing in the head is visible in the page body.</td></tr>
+        <tr><td><code>&lt;meta charset="UTF-8"&gt;</code></td><td>Character encoding.</td><td>Prevents accents and symbols from turning into garbage.</td></tr>
+        <tr><td><code>&lt;meta name="viewport" …&gt;</code></td><td>Mobile page scaling.</td><td>Without it, the page looks tiny on phones.</td></tr>
+        <tr><td><code>&lt;title&gt;</code></td><td>Browser tab text.</td><td>Used by tabs, bookmarks, and search results.</td></tr>
+        <tr><td><code>&lt;body&gt;</code></td><td>Everything the visitor can see.</td><td>Headings, images, buttons, and footers live here.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">Memory hook</span>
+    <p><strong>Head = backstage. Body = the stage.</strong> If you want a visitor to see it, it goes in the body. If it is information for the browser, it goes in the head.</p>
+  </div>
+
+  <h2>Tags, elements, attributes</h2>
+  <p>Most elements have three parts: an opening tag, content, and a closing tag.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><p class="intro">Hello, world!</p></script>
+  </div>
+
+  <ul>
+    <li><strong>Opening tag:</strong> <code>&lt;p class="intro"&gt;</code> starts the element.</li>
+    <li><strong>Attribute:</strong> <code>class="intro"</code> configures it from inside the opening tag.</li>
+    <li><strong>Content:</strong> <code>Hello, world!</code> is what the paragraph contains.</li>
+    <li><strong>Closing tag:</strong> <code>&lt;/p&gt;</code> ends the element.</li>
+  </ul>
+
+  <p>Close tags inside-out. The last tag opened must be the first one closed. <code>&lt;p&gt;&lt;strong&gt;Hi&lt;/strong&gt;&lt;/p&gt;</code> is correct. <code>&lt;p&gt;&lt;strong&gt;Hi&lt;/p&gt;&lt;/strong&gt;</code> is not.</p>
+  <p>A few elements have no content and no closing tag: <code>&lt;meta&gt;</code>, <code>&lt;img&gt;</code>, and <code>&lt;br&gt;</code>. They are called <strong>void elements</strong>.</p>
+
+  <h2>Headings and paragraphs</h2>
+  <p>Headings are an outline, not a font-size menu. Use <code>&lt;h1&gt;</code> once for the page's main topic, <code>&lt;h2&gt;</code> for major sections, and <code>&lt;h3&gt;</code> for subsections.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><h1>Maya's Learning Log</h1>
+<p>I am learning <strong>HTML</strong> because I want to build <em>my own</em> websites.</p>
+
+<h2>Today's win</h2>
+<p>I wrote my first page from scratch.</p></script>
+  </div>
+
+  <p><code>&lt;strong&gt;</code> marks <strong>importance</strong>. <code>&lt;em&gt;</code> marks <strong>emphasis</strong>, like a stressed word when speaking. Both change appearance by default, but their real value is meaning. Do not use them just to make text bold or italic; CSS does that job.</p>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Common mistake</span>
+    <p>Browsers are forgiving, up to a point. A missing closing tag can make half the page disappear or nest inside the wrong element. The browser will guess, and its guess is often not what you meant.</p>
+  </div>
+
+  <h2>Try it yourself</h2>
+  <p>Edit the page below, then press <strong>Run</strong>. Predict what each change will do before you run it.</p>
+
+  <div class="editor" data-editor>
+    <div class="editor__bar">
+      <span class="editor__label">index.html</span>
+      <div class="editor__actions">
+        <button type="button" class="btn btn--small" data-action="run">Run</button>
+        <button type="button" class="btn btn--ghost btn--small" data-action="reset">Reset</button>
+        <button type="button" class="btn btn--ghost btn--small" data-action="copy">Copy</button>
+      </div>
+    </div>
+    <div class="editor__grid">
+      <label class="visually-hidden" for="demo-1-1">HTML code editor</label>
+      <textarea id="demo-1-1" class="editor__code" spellcheck="false"></textarea>
+      <div class="editor__preview">
+        <div class="editor__preview-bar">Live preview</div>
+        <iframe title="Live preview of your HTML" sandbox=""></iframe>
+      </div>
+    </div>
+    <p class="editor__status" aria-live="polite" data-status>Preview loaded. Edit the code, then press Run.</p>
+    <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My First Page</title>
+</head>
+<body>
+  <h1>Hello, world!</h1>
+  <p>This is my first webpage.</p>
+</body>
+</html></script>
+  </div>
+
+  <ol>
+    <li>Change the <code>h1</code> to your own name.</li>
+    <li>Replace the paragraph with something true about you.</li>
+    <li>Add an <code>h2</code> that says <em>Why I'm learning this</em>, followed by a new <code>p</code>.</li>
+    <li>Wrap one word in <code>&lt;strong&gt;</code> and another in <code>&lt;em&gt;</code>.</li>
+    <li>Change the <code>title</code> and watch the tab label in the preview.</li>
+  </ol>
+
+  <div class="practice" data-practice data-min="60">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 20 minutes</span>
+      <h2>Build: About Me</h2>
+    </div>
+    <p>Create a valid page with one <code>h1</code>, an intro paragraph containing <code>strong</code> and <code>em</code>, an <code>h2</code> that says <em>What I'm learning</em>, a second paragraph, and a <code>footer</code> containing <em>Built in Week 1</em>.</p>
+    <label class="visually-hidden" for="practice-1-1">Your exercise code</label>
+    <textarea class="practice__code" id="practice-1-1" data-attempt spellcheck="false" placeholder="Type your HTML here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Maya Chen</title>
+</head>
+<body>
+  <h1>Maya Chen</h1>
+  <p>I am a designer and a complete beginner at code.
+  I am learning <strong>HTML</strong> so I can build
+  <em>my own</em> ideas instead of waiting for someone
+  else to build them.</p>
+
+  <h2>What I'm learning</h2>
+  <p>Right now I am learning how to structure a page with
+  headings, paragraphs, and semantic elements.</p>
+
+  <footer>
+    <p>Built in Week 1.</p>
+  </footer>
+</body>
+</html></script>
+  </div>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why does the title go in the head instead of the body?</summary>
+      <p>The title describes the whole page to the browser, bookmarks, and search results. It is metadata, not visible page content. Visible content belongs in the body.</p>
+    </details>
+    <details class="qa">
+      <summary>What is the difference between an element and a tag?</summary>
+      <p>A tag is one label in angle brackets. An element is the complete unit: opening tag, content, and closing tag. Attributes are settings inside the opening tag.</p>
+    </details>
+  </div>
+
+  <div class="quiz" data-quiz>
+    <form>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="The body holds everything the visitor can see.">
+        <legend><span class="quiz__num">01</span> Which element contains visible page content?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span><code>&lt;head&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="b"><span><code>&lt;title&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="c"><span><code>&lt;body&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="d"><span><code>&lt;!DOCTYPE html&gt;</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="The title element controls the text shown in the browser tab.">
+        <legend><span class="quiz__num">02</span> Which element sets the browser tab text?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span><code>&lt;h1&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q2" value="b"><span><code>&lt;title&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q2" value="c"><span><code>&lt;meta charset="UTF-8"&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q2" value="d"><span><code>&lt;body&gt;</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="The strong element opens inside the paragraph, so it must close before the paragraph closes.">
+        <legend><span class="quiz__num">03</span> Which snippet is nested correctly?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span><code>&lt;p&gt;&lt;strong&gt;Hi&lt;/strong&gt;&lt;/p&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="b"><span><code>&lt;p&gt;&lt;strong&gt;Hi&lt;/p&gt;&lt;/strong&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="c"><span><code>&lt;p&gt;&lt;strong&gt;Hi&lt;/p&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="d"><span><code>&lt;strong&gt;&lt;p&gt;Hi&lt;/strong&gt;&lt;/p&gt;</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <div class="quiz__actions">
+        <button type="submit" class="btn">Check answers</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>Reset quiz</button>
+        <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
+      </div>
+    </form>
+  </div>
+
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>HTML is structure and meaning.</strong> CSS is presentation. JavaScript is behavior.</li>
+      <li><strong>The skeleton:</strong> doctype → html → head + body.</li>
+      <li><strong>Close tags inside-out.</strong> Last opened, first closed.</li>
+      <li><strong>One h1 per page.</strong> Headings are an outline; CSS is for visual size.</li>
+      <li><strong>Head is backstage, body is the stage.</strong></li>
+    </ul>
+  </div>
+</article>

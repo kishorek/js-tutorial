@@ -1,0 +1,221 @@
+<article class="lesson" id="lesson-2-4" data-lesson="2-4">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 02 · CSS: the skin</p>
+    <h1>Flexbox + portfolio v1</h1>
+    <p class="lesson-lede">Flexbox arranges items in one direction and shares the leftover space. That is enough for a header, a hero, and a row of project cards. Ship the module project: a complete responsive one-page portfolio.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 2.4 · Project</span>
+      <span class="chip">2–3 hours</span>
+      <span class="chip">Module milestone</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>Deliverables</h3>
+        <ul>
+          <li>One <code>index.html</code> with header, nav, hero, projects, and footer.</li>
+          <li>A Flexbox layout and one media query for mobile.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Exit check</h3>
+        <ul>
+          <li>No sideways scrolling at 360px.</li>
+          <li>You can explain main axis vs cross axis.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>Flexbox in one minute</h2>
+  <p><code>display: flex</code> turns a container into a flex container and its direct children into flex items. Items sit along the <strong>main axis</strong>, horizontal by default; the <strong>cross axis</strong> runs the other way. <code>justify-content</code> distributes space on the main axis, <code>align-items</code> aligns items on the cross axis, and <code>gap</code> spaces them without collapsing margins.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">.site-header {
+  display: flex;
+  flex-wrap: wrap;                 /* allow a second line */
+  align-items: center;             /* cross axis */
+  justify-content: space-between;  /* main axis */
+  gap: 1rem;
+}
+.projects { display:flex; flex-wrap:wrap; gap:1rem; }
+.project {
+  flex: 1 1 240px;   /* grow | shrink | basis */
+}
+@media (max-width:560px) { .site-header { flex-direction:column; align-items:flex-start; } }</script>
+  </div>
+  <ul>
+    <li><code>justify-content</code> takes <code>flex-start</code>, <code>center</code>, <code>space-between</code>; <code>align-items</code> takes <code>stretch</code>, <code>flex-start</code>, <code>center</code>, <code>baseline</code>.</li>
+    <li><code>flex-wrap: wrap</code> lets items move to a new line instead of shrinking forever.</li>
+    <li><code>flex: 1 1 240px</code> means grow, shrink, and start from a <code>240px</code> basis. Add <code>min-width: 0</code> to a text-heavy item so it can shrink.</li>
+  </ul>
+  <p>Below <code>560px</code> the header switches to a column so the brand and links stack instead of squeezing.</p>
+  <h2>Project: portfolio v1</h2>
+  <p>Build one page that introduces you and shows three projects. Start from the editor below and press Run often.</p>
+  <ul>
+    <li>A <code>header</code> with your name and a <code>nav</code> linking to Work, About, and Contact.</li>
+    <li>A hero with one <code>h1</code>, one short paragraph, and a projects section with three <code>article</code> cards.</li>
+    <li>CSS tokens, the <code>border-box</code> reset, Flexbox, and one media query at <code>560px</code>.</li>
+    <li>No page-level horizontal scrolling at <code>360px</code>; every link has a visible focus state.</li>
+  </ul>
+  <section class="practice" data-practice data-min="40">
+    <div class="practice__head">
+      <span class="kicker">Project workspace</span>
+      <h2>Your portfolio v1</h2>
+    </div>
+    <div class="editor" data-editor>
+      <div class="editor__bar">
+        <span class="editor__label">index.html</span>
+        <div class="editor__actions">
+          <button type="button" class="btn btn--small" data-action="run">Run</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="reset">Reset</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="copy">Copy</button>
+        </div>
+      </div>
+      <div class="editor__grid">
+        <label class="visually-hidden" for="project-2-4">Portfolio code editor</label>
+        <textarea id="project-2-4" class="editor__code" data-attempt spellcheck="false"></textarea>
+        <div class="editor__preview">
+          <div class="editor__preview-bar">Live preview</div>
+          <iframe title="Preview of your portfolio" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+      <p class="editor__status" aria-live="polite" data-status>Preview loaded. Build your page, then press Run.</p>
+      <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name — Portfolio</title>
+  <style>
+    /* Tokens and reset here. */
+    /* Build header, nav, hero, projects, footer. */
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Your Name</h1>
+    <p>Build your portfolio here. Start with the header, then the hero.</p>
+  </main>
+</body>
+</html></script>
+    </div>
+
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal reference solution</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the reference solution unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maya Chen — Portfolio</title>
+  <style>
+    :root { --ink:#1c1a16; --muted:#5d574d; --paper:#f7f2e7; --card:#fffdf7; --accent:#14532d; --rule:#d8d0c0; --space:1rem; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:system-ui, -apple-system, "Segoe UI", sans-serif; line-height:1.6; }
+    .wrap { width:min(100% - 2rem, 960px); margin:0 auto; }
+    .site-header { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:var(--space); padding:1.25rem 0; border-bottom:1px solid var(--rule); }
+    .brand { color:var(--ink); font-weight:800; text-decoration:none; }
+    .site-nav { display:flex; flex-wrap:wrap; gap:1rem; } .site-nav a { color:var(--muted); text-decoration:none; }
+    .site-nav a:hover, .site-nav a:focus-visible { color:var(--accent); text-decoration:underline; }
+    .hero { padding:3rem 0 2.5rem; }
+    .hero h1 { max-width:18ch; margin:0; font-size:clamp(2rem, 6vw, 3.25rem); line-height:1.05; }
+    .hero p, .project p { margin:0; color:var(--muted); }
+    .hero p { max-width:55ch; margin-top:var(--space); }
+    .projects { display:flex; flex-wrap:wrap; gap:var(--space); padding:0 0 3rem; }
+    .project { flex:1 1 240px; padding:1.25rem; background:var(--card); border:1px solid var(--rule); border-radius:8px; }
+    .site-footer { padding:1.5rem 0 2.5rem; border-top:1px solid var(--rule); color:var(--muted); font-size:.9rem; }
+    @media (max-width: 560px) {
+      .site-header { align-items:flex-start; flex-direction:column; }
+      .hero { padding-top:2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header wrap">
+    <a class="brand" href="#top">Maya Chen</a>
+    <nav class="site-nav" aria-label="Main"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  </header>
+  <main id="top" class="wrap">
+    <section class="hero" id="about">
+      <h1>I design small, useful things for the web.</h1>
+      <p>Beginner developer and designer. Learning CSS layout, accessibility, and how to make a page feel calm.</p>
+    </section>
+    <section id="work" aria-labelledby="work-title">
+      <h2 id="work-title">Selected work</h2>
+      <div class="projects">
+        <article class="project"><h3>Recipe index</h3><p>A linked two-page HTML site with images, lists, and a form.</p></article>
+        <article class="project"><h3>Study planner</h3><p>A semantic table and signup form, built without a framework.</p></article>
+        <article class="project"><h3>This portfolio</h3><p>One page, a Flexbox layout, and one responsive breakpoint.</p></article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer wrap" id="contact"><p>Say hello: maya@example.com</p></footer>
+</body>
+</html></script>
+  </section>
+  <h2>Review checklist</h2>
+  <ul>
+    <li><strong>Structure (2):</strong> header, nav, hero, projects, footer; one <code>h1</code>; three project <code>article</code> elements.</li>
+    <li><strong>Flexbox (3):</strong> header and project row use <code>display: flex</code>; <code>gap</code> spaces items; alignment is intentional.</li>
+    <li><strong>Responsive + finish (5):</strong> at <code>360px</code> the nav stacks and nothing overflows; at <code>1200px</code> content is centered; contrast passes and every link has a visible focus state.</li>
+  </ul>
+  <h2>Module 2 quiz</h2>
+  <div class="quiz" data-quiz>
+    <form>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="An id contributes to the second specificity column, which outranks any number of classes.">
+        <legend><span class="quiz__num">01</span> Which rule wins on <code>&lt;p class="note" id="intro"&gt;</code>?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span><code>p { color: blue }</code></span></label><label class="option"><input type="radio" name="q1" value="b"><span><code>.note { color: green }</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="c"><span><code>#intro { color: red }</code></span></label><label class="option"><input type="radio" name="q1" value="d"><span><code>p.note { color: gray }</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="Padding is inside the border, takes the background color, and enlarges the clickable area.">
+        <legend><span class="quiz__num">02</span> Which layer is space inside the border?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span>Margin</span></label><label class="option"><input type="radio" name="q2" value="b"><span>Padding</span></label>
+        <label class="option"><input type="radio" name="q2" value="c"><span>Outline</span></label><label class="option"><input type="radio" name="q2" value="d"><span>Content</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="With border-box, the declared width includes padding and border, so the outer width stays 300px.">
+        <legend><span class="quiz__num">03</span> With <code>border-box</code>, what is the outer width?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span><code>300px</code></span></label><label class="option"><input type="radio" name="q3" value="b"><span><code>344px</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="c"><span><code>340px</code></span></label><label class="option"><input type="radio" name="q3" value="d"><span><code>256px</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="justify-content distributes free space along the main axis. align-items works on the cross axis.">
+        <legend><span class="quiz__num">04</span> Which property distributes space on the main axis?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span><code>align-items</code></span></label><label class="option"><input type="radio" name="q4" value="b"><span><code>justify-content</code></span></label>
+        <label class="option"><input type="radio" name="q4" value="c"><span><code>flex-wrap</code></span></label><label class="option"><input type="radio" name="q4" value="d"><span><code>flex-direction</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Gap adds space between flex items without outer margins and does not collapse.">
+        <legend><span class="quiz__num">05</span> What is the cleanest way to space flex items?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span>Margins on every child</span></label><label class="option"><input type="radio" name="q5" value="b"><span>Padding on the container</span></label>
+        <label class="option"><input type="radio" name="q5" value="c"><span><code>gap</code> on the container</span></label><label class="option"><input type="radio" name="q5" value="d"><span><code>!important</code> on margins</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <div class="quiz__actions">
+        <button type="submit" class="btn">Check answers</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>Reset quiz</button>
+        <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
+      </div>
+    </form>
+  </div>
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why does <code>flex-wrap: wrap</code> matter for the project row?</summary>
+      <p>Without wrapping, flex items shrink to fit one line and the cards become unreadable. Wrapping moves a card to the next row when its <code>240px</code> basis no longer fits.</p>
+    </details>
+    <details class="qa">
+      <summary>Why not use <code>justify-content: space-between</code> on the project row?</summary>
+      <p>Space-between pins the first and last card to the edges and leaves uneven internal gaps. <code>gap</code> gives every card the same space; save space-between for a header with two ends.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>Module 2 complete</h2>
+    <ul>
+      <li><strong>Flexbox is one-dimensional.</strong> Choose a main axis, then distribute and align.</li>
+      <li><strong>Wrap before you shrink.</strong> A wrapping row with <code>flex: 1 1 240px</code> handles most card layouts.</li>
+    </ul>
+  </div>
+</article>

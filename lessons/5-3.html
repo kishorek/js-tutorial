@@ -1,0 +1,220 @@
+<article class="lesson" id="lesson-5-3" data-lesson="5-3">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 05 · DOM &amp; events</p>
+    <h1>State and rendering lists</h1>
+    <p class="lesson-lede">Lists get messy when every click edits the page directly. Keep the truth in a small state array, write one render function, and let every action flow through the same path.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 5.3</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Store list data in a state array of objects.</li>
+          <li>Render that array with a single function.</li>
+          <li>Add, toggle, remove, and filter items safely.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Lesson 5.1 and 5.2 completed.</li>
+          <li>Comfort with <code>map</code> and <code>filter</code>.</li>
+          <li>A page with a list, a form, and an empty container.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>State first, then render</h2>
+  <p><strong>State</strong> is the data the screen depends on. For a list, that is an array of objects. Do not treat the visible list items as the source of truth; they are only one rendering of the array.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">let items = [
+  { id: 1, text: "Read the DOM lesson", done: true },
+  { id: 2, text: "Build a list", done: false }
+];
+const list = document.querySelector("#list");
+function render() {
+  list.replaceChildren();
+  items.forEach(item => {
+    const row = document.createElement("li");
+    row.dataset.id = item.id;
+    row.className = item.done ? "done" : "";
+    const text = document.createElement("span");
+    text.textContent = item.text;
+    row.append(text);
+    list.append(row);
+  });
+}
+
+render();</script>
+  </div>
+
+  <p>Every change follows the same three steps: update the state, call <code>render</code>, and let the screen catch up. The render function never decides what is true; it only describes the current array.</p>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">Why start over</span>
+    <p>Clearing and rebuilding a short list is fast and predictable. It removes a whole class of bugs where one row is updated but another is left stale. For very large lists, update individual nodes later.</p>
+  </div>
+
+  <h2>Add, toggle, and remove</h2>
+  <p>An id connects a button in the DOM to one object in state. Put it in a <code>data-id</code> attribute and read it with <code>dataset.id</code>. Remember that attribute values arrive as strings. Each rendered row also needs a button with <code>data-action</code> set to <code>toggle</code> or <code>remove</code>; the exercise builds that complete row.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const form = document.querySelector("#item-form");
+const input = document.querySelector("#item-input");
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  const text = input.value.trim();
+  if (!text) return;
+  items.push({ id: Date.now(), text, done: false });
+  input.value = "";
+  render();
+});
+list.addEventListener("click", event => {
+  const button = event.target.closest("button[data-action]");
+  if (!button) return;
+  const id = Number(button.closest("li").dataset.id);
+  if (button.dataset.action === "remove") {
+    items = items.filter(item => item.id !== id);
+  } else {
+    items = items.map(item =>
+      item.id === id ? { ...item, done: !item.done } : item
+    );
+  }
+  render();
+});</script>
+  </div>
+
+  <p>One listener on <code>list</code> still works after every render because it listens on the parent, not on the buttons. <code>filter</code> creates a new array without the removed item; <code>map</code> creates a new array with one object replaced. Both then feed the next render.</p>
+
+  <p>User text goes into the DOM with <code>textContent</code>, never through an HTML string. If an item's text contains <code>&lt;b&gt;</code>, the visitor should see the characters, not bold text.</p>
+
+  <h2>Empty states and filters</h2>
+  <p>A filter is state too. Store the current choice in a variable, build the visible subset, and render that subset. An empty result deserves a message instead of a blank box.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">let filter = "all"; // "all", "active", or "done"
+function visibleItems() {
+  return items.filter(item => {
+    if (filter === "active") return !item.done;
+    if (filter === "done") return item.done;
+    return true;
+  });
+}
+function renderList() {
+  const visible = visibleItems();
+  list.replaceChildren();
+  if (visible.length === 0) {
+    const empty = document.createElement("li");
+    empty.className = "empty";
+    empty.textContent = "Nothing here yet.";
+    list.append(empty);
+    return;
+  }
+  visible.forEach(item => {
+    const row = document.createElement("li");
+    row.dataset.id = item.id;
+    row.textContent = item.text;
+    list.append(row);
+  });
+}</script>
+  </div>
+
+  <p>When the filter button changes, set the variable and call the render function again. Keep the empty message in the same list so the layout does not jump to a separate element.</p>
+
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 30 minutes</span>
+      <h2>Render, add, and toggle a list</h2>
+    </div>
+    <p>Assume the page has <code>&lt;ul id="list"&gt;</code>, <code>&lt;form id="add-form"&gt;</code>, and <code>&lt;input id="new-item"&gt;</code>. Start with an array of two objects. Render every item with a text span and a toggle button, show an empty message when the array is empty, add a trimmed item on submit, and toggle <code>done</code> with one delegated click listener.</p>
+    <label class="visually-hidden" for="practice-5-3">Your exercise code</label>
+    <textarea class="practice__code" id="practice-5-3" data-attempt spellcheck="false" placeholder="let items = ..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>let items = [
+  { id: 1, text: "Buy milk", done: false },
+  { id: 2, text: "Walk the dog", done: true }
+];
+const list = document.querySelector("#list");
+const form = document.querySelector("#add-form");
+const input = document.querySelector("#new-item");
+
+function render() {
+  list.replaceChildren();
+
+  if (items.length === 0) {
+    const empty = document.createElement("li");
+    empty.textContent = "Nothing on the list.";
+    list.append(empty);
+    return;
+  }
+
+  items.forEach(item => {
+    const row = document.createElement("li");
+    row.dataset.id = item.id;
+    row.classList.toggle("done", item.done);
+
+    const text = document.createElement("span");
+    text.textContent = item.text;
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.dataset.action = "toggle";
+    toggle.textContent = item.done ? "Undo" : "Done";
+
+    row.append(text, toggle);
+    list.append(row);
+  });
+}
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  const text = input.value.trim();
+  if (!text) return;
+
+  items.push({ id: Date.now(), text, done: false });
+  input.value = "";
+  render();
+});
+
+list.addEventListener("click", event => {
+  const button = event.target.closest("button[data-action='toggle']");
+  if (!button) return;
+
+  const id = Number(button.closest("li").dataset.id);
+  items = items.map(item =>
+    item.id === id ? { ...item, done: !item.done } : item
+  );
+  render();
+});
+
+render();</script>
+  </section>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why rebuild the whole list instead of changing one row?</summary>
+      <p>A full render always matches the state array, so filters, counts, and empty messages cannot drift out of sync. It is also less code to maintain for small lists.</p>
+    </details>
+    <details class="qa">
+      <summary>Why use an id instead of the item's position?</summary>
+      <p>Positions change when an item is removed or filtered out. A stable id still points to the right object after the array is rebuilt.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>State is the source of truth.</strong> The DOM is a projection of the array, not the array itself.</li>
+      <li><strong>Change state, then render.</strong> One path for add, toggle, remove, and filter keeps behaviour predictable.</li>
+      <li><strong>Use ids and textContent.</strong> Data attributes connect controls to items; plain text keeps user input safe.</li>
+    </ul>
+  </div>
+</article>

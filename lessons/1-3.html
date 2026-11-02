@@ -1,0 +1,217 @@
+<article class="lesson" id="lesson-1-3" data-lesson="1-3">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 01 · HTML: the skeleton</p>
+    <h1>Tables, forms, and semantic structure</h1>
+    <p class="lesson-lede">Tables are for data, forms are for input, and landmarks give a page a shape that assistive technology can navigate. This is where HTML starts to feel like a language instead of a list of tags.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 1.3</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Build a table with a caption and header cells.</li>
+          <li>Create a form with labels, grouped fields, and a submit button.</li>
+          <li>Choose semantic landmarks for a page layout.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Lesson 1.2 completed.</li>
+          <li>A browser with DevTools.</li>
+          <li>A page that already has a heading outline.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Tables are for tabular data</h2>
+  <p>Use a table when information has rows and columns that relate to each other. Do not use one to position a page layout; CSS Grid does that job better.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><table>
+  <caption>Week 1 study plan</caption>
+  <thead>
+    <tr>
+      <th scope="col">Day</th>
+      <th scope="col">Focus</th>
+      <th scope="col">Minutes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Monday</th>
+      <td>HTML structure</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th scope="row">Tuesday</th>
+      <td>Links and images</td>
+      <td>60</td>
+    </tr>
+  </tbody>
+</table></script>
+  </div>
+
+  <ul>
+    <li><code>&lt;caption&gt;</code> names the table. Put it immediately after the opening tag.</li>
+    <li><code>&lt;thead&gt;</code> and <code>&lt;tbody&gt;</code> group header and body rows.</li>
+    <li><code>&lt;th scope="col"&gt;</code> labels a column; <code>scope="row"</code> labels a row.</li>
+    <li>Keep one idea per cell and make numbers easy to scan.</li>
+  </ul>
+
+  <h2>Forms collect input</h2>
+  <p>A form needs a label for every field, a sensible input type, and a button. Labels are not decoration: clicking the label should focus its field, and screen readers use it as the field's name.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><form action="/subscribe" method="post">
+  <fieldset>
+    <legend>Your details</legend>
+
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" autocomplete="name" required>
+
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" autocomplete="email" required>
+
+    <label for="goal">What do you want to build?</label>
+    <textarea id="goal" name="goal" rows="4"></textarea>
+  </fieldset>
+
+  <button type="submit">Send</button>
+</form></script>
+  </div>
+
+  <ul>
+    <li>Match every <code>for</code> to an input's <code>id</code>.</li>
+    <li>Use <code>type="email"</code>, <code>type="number"</code>, or <code>type="date"</code> when it fits; mobile keyboards adapt.</li>
+    <li><code>required</code> makes the field mandatory before submission.</li>
+    <li><code>fieldset</code> and <code>legend</code> group related controls.</li>
+    <li>A form without a backend still validates in the browser. We will wire JavaScript to it later.</li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Do not use a placeholder as a label</span>
+    <p>Placeholders disappear as soon as someone types, and they are not a reliable accessible name. Keep a real <code>label</code> and use placeholder text only for an example.</p>
+  </div>
+
+  <h2>Give the page landmarks</h2>
+  <p>Semantic elements tell the browser what each region does. A visitor can see the header; a screen reader can jump straight to <code>main</code> or <code>nav</code>.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><body>
+  <header>
+    <nav aria-label="Main">...</nav>
+  </header>
+
+  <main>
+    <section aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+      <article>...</article>
+    </section>
+  </main>
+
+  <aside aria-label="About this site">...</aside>
+  <footer>...</footer>
+</body></script>
+  </div>
+
+  <p>Only one <code>main</code> per page. Use <code>section</code> for a themed group of content and <code>article</code> for something that could stand on its own, like a blog post or a project card.</p>
+
+  <section class="practice" data-practice data-min="120">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Build an accessible signup page</h2>
+    </div>
+    <p>Create a page with a <code>header</code>, <code>main</code>, and <code>footer</code>. Inside <code>main</code>, add a table of three study sessions and a form with a name field, an email field, a goals textarea, and a submit button. Every input needs a label. The table needs a caption and column headers.</p>
+    <label class="visually-hidden" for="practice-1-3">Your exercise code</label>
+    <textarea class="practice__code" id="practice-1-3" data-attempt spellcheck="false" placeholder="Type your page here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study signup</title>
+</head>
+<body>
+  <header>
+    <h1>Study circle</h1>
+    <p>Three sessions, one small group.</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="schedule">
+      <h2 id="schedule">Schedule</h2>
+      <table>
+        <caption>This week's sessions</caption>
+        <thead>
+          <tr>
+            <th scope="col">Day</th>
+            <th scope="col">Topic</th>
+            <th scope="col">Minutes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Monday</th><td>HTML</td><td>60</td></tr>
+          <tr><th scope="row">Wednesday</th><td>CSS</td><td>75</td></tr>
+          <tr><th scope="row">Friday</th><td>JavaScript</td><td>90</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="signup">
+      <h2 id="signup">Join the next session</h2>
+      <form method="post" action="/signup">
+        <p>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </p>
+        <p>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </p>
+        <p>
+          <label for="goal">What do you want to build?</label>
+          <textarea id="goal" name="goal" rows="4"></textarea>
+        </p>
+        <button type="submit">Request a place</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>Small print goes here.</p>
+  </footer>
+</body>
+</html></script>
+  </section>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why should a table have a caption?</summary>
+      <p>The caption gives the table a name and context before a screen reader starts reading rows and columns. It also helps sighted users understand what they are looking at.</p>
+    </details>
+    <details class="qa">
+      <summary>What is the difference between <code>section</code> and <code>article</code>?</summary>
+      <p>A section groups related content under a heading. An article is self-contained content that could be reused elsewhere, such as a post or a project card.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Tables are for data, not layout.</strong> Caption it and label headers.</li>
+      <li><strong>Every form field needs a label.</strong> Match <code>for</code> and <code>id</code>.</li>
+      <li><strong>Landmarks make a page navigable.</strong> Header, nav, main, aside, footer.</li>
+    </ul>
+  </div>
+</article>

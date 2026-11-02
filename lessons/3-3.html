@@ -1,0 +1,223 @@
+<article class="lesson" id="lesson-3-3" data-lesson="3-3">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 03 · Layout &amp; responsive design</p>
+    <h1>Accessibility + landing page</h1>
+    <p class="lesson-lede">Accessibility is not a final pass. It is the same structure and layout decisions, checked from the perspective of someone using a keyboard, a screen reader, or a small screen in bright sunlight.</p>
+    <div class="chips"><span class="chip chip--accent">Lesson 3.3 · Project</span><span class="chip">2–3 hours</span><span class="chip">Module milestone</span></div>
+    <div class="brief">
+      <div>
+        <h3>Deliverables</h3>
+        <ul>
+          <li>A responsive landing page in the live editor.</li>
+          <li>Semantic landmarks, labeled controls, useful alt text.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Exit check</h3>
+        <ul>
+          <li>Keyboard access and visible focus.</li>
+          <li>No sideways scroll at <code>320px</code>.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>Landmarks give the page a map</h2>
+  <p>Semantic elements create regions that assistive technology can list and jump between. The skip link comes first so a keyboard user can bypass repeated navigation.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain"><a class="skip-link" href="#main">Skip to content</a>
+<header>
+  <nav aria-label="Main"><a href="#work">Work</a></nav>
+</header>
+<main id="main" tabindex="-1"><h1>Small sites, carefully built.</h1></main>
+<footer><p>Built by hand.</p></footer></script>
+  </div>
+  <ul>
+    <li>One <code>h1</code>, then <code>h2</code> for sections and <code>h3</code> inside them; never skip levels for visual size.</li>
+    <li>One <code>main</code> holds the primary content; <code>header</code>, <code>nav</code>, and <code>footer</code> frame it.</li>
+    <li>The skip link must appear on focus; <code>display: none</code> removes it from the keyboard.</li>
+  </ul>
+  <h2>Names, alternatives, and focus</h2>
+  <p>A control without a name is a mystery. Every input needs a <code>label</code> whose <code>for</code> matches its <code>id</code>. Every meaningful image needs alt text; decoration uses <code>alt=""</code>.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain"><label for="email">Email address</label>
+<input id="email" name="email" type="email" autocomplete="email" required>
+
+<img src="studio.jpg" width="640" height="420"
+     alt="Two people reviewing sketches at a wooden table">
+
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid #1f2421;
+  outline-offset: 3px;
+}</script>
+  </div>
+  <p>Never write <code>outline: none</code> without replacing it. Aim for <code>4.5:1</code> contrast on body text and <code>3:1</code> on large text, icons, and focus rings.</p>
+  <div class="callout callout--warn">
+    <span class="callout__label">Contrast is not a style preference</span>
+    <p>Light gray text on white looks elegant in a mockup and disappears in daylight. Check the color values, not the screenshot.</p>
+  </div>
+  <h2>Keyboard access and motion</h2>
+  <p>Tab through the page. Focus order should match reading order. Use real <code>a</code> and <code>button</code> elements, not clickable <code>div</code>s.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}</script>
+  </div>
+  <p>This query respects an operating-system preference without removing content. Do not hide essential information behind motion.</p>
+  <h2>Run a basic audit</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Area</th><th scope="col">Pass condition</th></tr></thead>
+      <tbody>
+        <tr><td>Landmarks</td><td><code>header</code>, <code>nav</code>, <code>main</code>, and <code>footer</code> appear once, in order.</td></tr>
+        <tr><td>Headings</td><td>One <code>h1</code>; no skipped levels; each heading describes the content below.</td></tr>
+        <tr><td>Keyboard</td><td>Tab reaches every control in reading order; no keyboard trap.</td></tr>
+        <tr><td>Focus</td><td>A strong visible ring appears on every interactive element.</td></tr>
+        <tr><td>Names</td><td>Every field has a label; every meaningful image has alt text.</td></tr>
+        <tr><td>Contrast</td><td>Body text at least <code>4.5:1</code>; large text and UI marks at least <code>3:1</code>.</td></tr>
+        <tr><td>Reflow</td><td>At <code>320px</code> and <code>200%</code> zoom there is no page-level sideways scroll.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <section class="practice" data-practice data-min="40">
+    <div class="practice__head">
+      <span class="kicker">Project workspace</span>
+      <h2>Build the landing page</h2>
+    </div>
+    <p><strong>Requirements.</strong> Build a skip link, <code>header</code> with labeled <code>nav</code>, a hero with one <code>h1</code> and a call-to-action link, three feature cards, a closing call to action, and a <code>footer</code>. Use Grid or Flexbox and one <code>min-width</code> media query. Test at <code>320px</code>, <code>768px</code>, and <code>1440px</code>, then tab through every control.</p>
+    <div class="editor" data-editor>
+      <div class="editor__bar">
+        <span class="editor__label">index.html</span>
+        <div class="editor__actions">
+          <button type="button" class="btn btn--small" data-action="run">Run</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="reset">Reset</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="copy">Copy</button>
+        </div>
+      </div>
+      <div class="editor__grid">
+        <label class="visually-hidden" for="project-3-3">Landing page editor</label>
+        <textarea id="project-3-3" class="editor__code" data-attempt spellcheck="false"></textarea>
+        <div class="editor__preview">
+          <div class="editor__preview-bar">Live preview</div>
+          <iframe title="Preview of your landing page" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+      <p class="editor__status" aria-live="polite" data-status>Preview loaded. Build your page, then press Run.</p>
+      <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your studio</title>
+  <style>/* Start small, then add columns. */</style>
+</head>
+<body>
+  <main>
+    <h1>Your studio</h1>
+    <p>Build the landing page here: header, hero, features, call to action, footer.</p>
+  </main>
+</body>
+</html></script>
+    </div>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal reference solution</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the reference solution unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Field Notes — a small studio</title>
+<style>
+:root { --ink:#1f2421; --paper:#fbf8f1; --accent:#1f5f5b; --rule:#d8d2c4; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:system-ui,sans-serif; line-height:1.6; }
+.skip-link { position:absolute; left:-9999px; }
+.skip-link:focus { left:1rem; top:1rem; padding:.75rem 1rem; background:var(--ink); color:#fff; z-index:10; }
+.nav { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; max-width:72rem; margin:0 auto; padding:1rem 1.25rem; }
+.nav ul { display:flex; gap:1rem; margin:0; padding:0; list-style:none; }
+a { color:var(--ink); }
+a:focus-visible { outline:3px solid var(--ink); outline-offset:3px; }
+main { max-width:72rem; margin:0 auto; padding:0 1.25rem; }
+.hero { display:grid; gap:1.5rem; padding:3.5rem 0 2.5rem; }
+.hero h1 { margin:0; font-size:clamp(2.2rem,6vw,4rem); line-height:1.02; }
+.hero p { max-width:58ch; margin:0 0 1rem; font-size:1.1rem; }
+.btn { display:inline-block; padding:.85rem 1.2rem; border-radius:6px; background:var(--accent); color:#fff; font-weight:700; text-decoration:none; }
+.features { display:grid; gap:1rem; padding:1rem 0 2rem; }
+article { padding:1.4rem; border:1px solid var(--rule); border-radius:8px; background:#fff; }
+.cta { margin:2rem 0; padding:2.5rem 1.5rem; border-radius:8px; background:var(--accent); color:#fff; text-align:center; }
+.cta .btn { margin-top:.75rem; background:#fff; color:var(--accent); }
+footer { border-top:1px solid var(--rule); padding:1.5rem 1.25rem; text-align:center; font-size:.9rem; }
+@media (min-width:700px) { .hero { grid-template-columns:1.4fr 1fr; align-items:center; } .features { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+</style></head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header><nav class="nav" aria-label="Main"><a href="#">Field Notes</a><ul><li><a href="#work">Work</a></li><li><a href="#contact">Contact</a></li></ul></nav></header>
+<main id="main" tabindex="-1">
+<section class="hero" aria-labelledby="hero-title"><div><h1 id="hero-title">Small sites, carefully built.</h1><p>We design and build clear, fast websites for people who care about the details.</p><a class="btn" href="#contact">Start a project</a></div></section>
+<section id="work" aria-labelledby="work-title"><h2 id="work-title">What we do</h2><div class="features">
+<article><h3>Design</h3><p>Layouts that stay readable on the smallest screen first.</p></article><article><h3>Build</h3><p>Semantic HTML and CSS that works without a framework.</p></article><article><h3>Review</h3><p>Keyboard, contrast, and motion checks before launch.</p></article>
+</div></section>
+<section id="contact" class="cta" aria-labelledby="contact-title"><h2 id="contact-title">Have something in mind?</h2><p>Tell us about the site you need.</p><a class="btn" href="mailto:hello@example.com">Say hello</a></section>
+</main>
+<footer><p>© 2026 Field Notes. Built by hand.</p></footer>
+</body></html></script>
+  </section>
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why must a skip link become visible on focus?</summary>
+      <p>A keyboard user needs to see where focus is before pressing Enter. Hiding it permanently makes it unusable.</p>
+    </details>
+    <details class="qa">
+      <summary>When is <code>alt=""</code> correct?</summary>
+      <p>When the image is decorative and adds no information beyond the surrounding text.</p>
+    </details>
+  </div>
+  <h2>Module 3 quiz</h2>
+  <div class="quiz" data-quiz>
+    <form>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="Main holds the primary content and should appear once per page.">
+        <legend><span class="quiz__num">01</span> Which element wraps the primary content exactly once?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span><code>&lt;section&gt;</code></span></label><label class="option"><input type="radio" name="q1" value="b"><span><code>&lt;main&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="c"><span><code>&lt;article&gt;</code></span></label><label class="option"><input type="radio" name="q1" value="d"><span><code>&lt;aside&gt;</code></span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="The for attribute must match the input id, which gives the field an accessible name.">
+        <legend><span class="quiz__num">02</span> How do you give an input an accessible name?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span><code>label for="email"</code> plus <code>input id="email"</code></span></label><label class="option"><input type="radio" name="q2" value="b"><span>A placeholder only</span></label>
+        <label class="option"><input type="radio" name="q2" value="c"><span>A nearby <code>div</code></span></label><label class="option"><input type="radio" name="q2" value="d"><span><code>input class="email"</code></span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="Decorative images carry no information, so an empty alt tells assistive technology to skip them.">
+        <legend><span class="quiz__num">03</span> Which alt text suits a purely decorative image?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span><code>alt="divider"</code></span></label><label class="option"><input type="radio" name="q3" value="b"><span><code>alt="decorative image"</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="c"><span><code>alt=""</code></span></label><label class="option"><input type="radio" name="q3" value="d"><span>No alt attribute</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="d" data-explanation="A visible focus indicator is required; :focus-visible gives the right result with a strong outline.">
+        <legend><span class="quiz__num">04</span> What is the accessible way to style keyboard focus?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span><code>outline: none</code></span></label><label class="option"><input type="radio" name="q4" value="b"><span>Remove all hover styles</span></label>
+        <label class="option"><input type="radio" name="q4" value="c"><span>Never style it at all</span></label><label class="option"><input type="radio" name="q4" value="d"><span>Use <code>:focus-visible</code> with a strong outline</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="The query detects an operating-system preference for less animation.">
+        <legend><span class="quiz__num">05</span> What does <code>prefers-reduced-motion</code> detect?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span>A slow network connection</span></label><label class="option"><input type="radio" name="q5" value="b"><span>A user preference for less animation</span></label>
+        <label class="option"><input type="radio" name="q5" value="c"><span>An older browser version</span></label><label class="option"><input type="radio" name="q5" value="d"><span>A small screen width</span></label><p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <div class="quiz__actions">
+        <button type="submit" class="btn">Check answers</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>Reset quiz</button>
+        <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
+      </div>
+    </form>
+  </div>
+  <div class="recap">
+    <h2>Module 3 complete</h2>
+    <ul>
+      <li><strong>Grid builds the structure.</strong> Named areas and <code>minmax(0, 1fr)</code> make layouts predictable.</li>
+      <li><strong>Start small, add space.</strong> Viewport meta and <code>min-width</code> queries keep one layout working everywhere.</li>
+      <li><strong>Accessibility is testable.</strong> Keyboard, focus, names, contrast, and reflow can each be checked.</li>
+    </ul>
+  </div>
+</article>

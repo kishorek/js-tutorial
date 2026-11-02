@@ -1,0 +1,220 @@
+<article class="lesson" id="lesson-5-4" data-lesson="5-4">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 05 · DOM &amp; events</p>
+    <h1>Project: to-do list + quiz app</h1>
+    <p class="lesson-lede">Build the module milestone: one app where every control changes state and the screen follows. Start with a to-do list, then reuse the same state-and-render pattern for a small quiz.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 5.4 · Project</span>
+      <span class="chip">2–3 hours</span>
+      <span class="chip">Module milestone</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>Deliverables</h3>
+        <ul>
+          <li>A to-do list with add, toggle, delete, and filters.</li>
+          <li>A quiz with a questions array, score, and reset.</li>
+          <li>Keyboard-accessible controls and an empty state.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Exit check</h3>
+        <ul>
+          <li>State changes first; render follows.</li>
+          <li>User text never enters an HTML string.</li>
+          <li>Every control has an accessible name.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>The brief</h2>
+  <p>Both apps use the same loop from Lesson 5.3: change the data, call <code>render</code>, and let the DOM catch up. Build the to-do list first. The quiz is a second page that repeats the pattern with a different shape of state.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Feature</th><th scope="col">Requirement</th></tr></thead>
+      <tbody>
+        <tr><td>Add</td><td>Trim the text, ignore an empty value, clear the input, and keep focus there.</td></tr>
+        <tr><td>Toggle</td><td>Mark one item done and update the remaining count.</td></tr>
+        <tr><td>Delete</td><td>Remove only the chosen item; keep the rest of the array intact.</td></tr>
+        <tr><td>Filter</td><td>Show all, active, or done items, with a clear empty message.</td></tr>
+        <tr><td>Quiz</td><td>Store questions in an array, track a score, and reset both.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h2>Build the to-do app</h2>
+  <p>The starter already has the markup and a little CSS. Your job is the state, the render function, and the listeners. Use one delegated click listener for toggle and delete, and one submit listener for adding.</p>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Project workspace · 90 minutes</span>
+      <h2>Your to-do app</h2>
+    </div>
+    <div class="editor" data-editor>
+      <div class="editor__bar">
+        <span class="editor__label">todo.html</span>
+        <div class="editor__actions">
+          <button type="button" class="btn btn--small" data-action="run">Run</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="reset">Reset</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="copy">Copy</button>
+        </div>
+      </div>
+      <div class="editor__grid">
+        <label class="visually-hidden" for="practice-5-4">Project code editor</label>
+        <textarea id="practice-5-4" class="editor__code" data-attempt spellcheck="false"></textarea>
+        <div class="editor__preview">
+          <div class="editor__preview-bar">Live preview</div>
+          <iframe title="Preview of your to-do app" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+      <p class="editor__status" aria-live="polite" data-status>Preview loaded. Press Run after each change.</p>
+      <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>To-do</title>
+<style>body{font-family:system-ui;max-width:30rem;margin:2rem auto;padding:0 1rem}form{display:flex;gap:.5rem}input{flex:1;padding:.5rem}li{display:flex;gap:.5rem;align-items:center;margin:.4rem 0}.done span{text-decoration:line-through;opacity:.6}.empty{color:#666}</style>
+</head>
+<body>
+<h1>To-do</h1>
+<label for="todo-input">New task</label>
+<form id="todo-form"><input id="todo-input"><button>Add</button></form>
+<p id="count" aria-live="polite"></p>
+<ul id="todo-list"></ul>
+<div role="group" aria-label="Filter tasks"><button type="button" data-filter="all">All</button><button type="button" data-filter="active">Active</button><button type="button" data-filter="done">Done</button></div>
+<script>
+  // Start with state, render, and event listeners.
+@ENDSCRIPT
+</body>
+</html></script>
+    </div>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal reference solution</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the reference solution unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>To-do</title>
+<style>body{font-family:system-ui;max-width:30rem;margin:2rem auto;padding:0 1rem}form{display:flex;gap:.5rem}input{flex:1;padding:.5rem}li{display:flex;gap:.5rem;align-items:center;margin:.4rem 0}.done span{text-decoration:line-through;opacity:.6}.empty{color:#666}</style>
+</head>
+<body>
+<h1>To-do</h1>
+<label for="todo-input">New task</label>
+<form id="todo-form"><input id="todo-input"><button>Add</button></form>
+<p id="count" aria-live="polite"></p>
+<ul id="todo-list"></ul>
+<div role="group" aria-label="Filter tasks"><button type="button" data-filter="all">All</button><button type="button" data-filter="active">Active</button><button type="button" data-filter="done">Done</button></div>
+<script>
+const form = document.querySelector("#todo-form"), input = document.querySelector("#todo-input");
+const list = document.querySelector("#todo-list"), count = document.querySelector("#count");
+let todos = [{ id: 1, text: "Read the DOM lesson", done: true }, { id: 2, text: "Build the to-do app", done: false }];
+let filter = "all";
+function render() {
+  const visible = todos.filter(todo => filter === "all" || todo.done === (filter === "done"));
+  list.innerHTML = visible.map(todo => `<li data-id="${todo.id}" class="${todo.done ? "done" : ""}">
+    <input type="checkbox" data-action="toggle" ${todo.done ? "checked" : ""}>
+    <span></span> <button type="button" data-action="remove">Delete</button></li>`).join("")
+    || '<li class="empty">Nothing here yet.</li>';
+  list.querySelectorAll("li[data-id]").forEach((row, i) => {
+    row.querySelector("input").setAttribute("aria-label", "Toggle " + visible[i].text);
+    row.querySelector("span").textContent = visible[i].text;
+  });
+  count.textContent = todos.filter(todo => !todo.done).length + " left";
+}
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  const text = input.value.trim();
+  if (!text) return;
+  todos.push({ id: Date.now(), text, done: false });
+  input.value = ""; input.focus(); render();
+});
+list.addEventListener("click", event => {
+  const action = event.target.dataset.action;
+  if (!action) return;
+  const id = Number(event.target.closest("li").dataset.id);
+  if (action === "remove") todos = todos.filter(todo => todo.id !== id);
+  else todos = todos.map(todo => todo.id === id ? { ...todo, done: !todo.done } : todo);
+  render();
+});
+document.querySelectorAll("[data-filter]").forEach(button => button.addEventListener("click", () => {
+  filter = button.dataset.filter; render();
+}));
+render();
+@ENDSCRIPT
+</body>
+</html></script>
+  </section>
+  <h2>Add the quiz screen</h2>
+  <p>Use a second page with <code>&lt;div id="quiz"&gt;&lt;/div&gt;</code>. Keep the questions in an array, track the current index and score, and render one question at a time. The reset button returns both numbers to zero.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">const questions = [
+  { text: "querySelector returns…", options: ["All matches", "The first match"], answer: 1 },
+  { text: "Which event fires on submit?", options: ["click", "submit"], answer: 1 }
+];
+const panel = document.querySelector("#quiz"); let index = 0, score = 0;
+function showQuestion() {
+  panel.replaceChildren();
+  if (index === questions.length) {
+    const result = document.createElement("p"), reset = document.createElement("button");
+    result.textContent = `Score: ${score} / ${questions.length}`; reset.textContent = "Play again";
+    reset.addEventListener("click", () => { index = 0; score = 0; showQuestion(); });
+    panel.append(result, reset); return;
+  }
+  const question = questions[index], heading = document.createElement("h2");
+  heading.textContent = question.text; panel.append(heading);
+  question.options.forEach((option, i) => {
+    const button = document.createElement("button");
+    button.type = "button"; button.textContent = option;
+    button.addEventListener("click", () => {
+      if (i === question.answer) score += 1;
+      index += 1; showQuestion();
+    });
+    panel.append(button);
+  });
+}
+showQuestion();</script>
+  </div>
+  <h2>Accessibility and behavior</h2>
+  <ul>
+    <li>Every input has a label; every icon-only button has an accessible name.</li>
+    <li>Use <code>type="button"</code> on buttons that should not submit a form.</li>
+    <li>Keep focus visible and return it to the input after adding an item.</li>
+    <li>Announce the remaining count with <code>aria-live="polite"</code>.</li>
+    <li>Never insert user text with <code>innerHTML</code>; set it with <code>textContent</code>.</li>
+    <li>Test with the keyboard only: add, toggle, delete, filter, and reset.</li>
+  </ul>
+  <h3>Common questions</h3>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Should the to-do list save after refresh?</summary>
+      <p>Not yet. Persistence arrives with <code>localStorage</code> in Module 6. For now, keep state in memory and let the starter array provide sample data.</p>
+    </details>
+    <details class="qa">
+      <summary>Why use a template string for the list markup?</summary>
+      <p>The template holds only trusted structure and numeric ids. The visitor's text is still inserted separately with <code>textContent</code>, so it cannot become markup.</p>
+    </details>
+  </div>
+  <h2>Module 5 quiz</h2>
+  <div class="quiz" data-quiz><form>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="querySelector returns the first match; querySelectorAll returns a NodeList of every match."><legend><span class="quiz__num">01</span> Which method returns the first matching element?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span><code>querySelectorAll</code></span></label><label class="option"><input type="radio" name="q1" value="b"><span><code>querySelector</code></span></label><label class="option"><input type="radio" name="q1" value="c"><span><code>getElementsByTagName</code></span></label> <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="The input event fires on every edit, which is what a live counter needs."><legend><span class="quiz__num">02</span> Which event fires on every edit to a text field?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span><code>input</code></span></label><label class="option"><input type="radio" name="q2" value="b"><span><code>change</code></span></label><label class="option"><input type="radio" name="q2" value="c"><span><code>submit</code></span></label> <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="textContent treats the value as text, so markup characters cannot become elements or handlers."><legend><span class="quiz__num">03</span> Why use <code>textContent</code> for visitor input?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span>It is faster than every other method.</span></label><label class="option"><input type="radio" name="q3" value="b"><span>It adds the text as bold markup.</span></label><label class="option"><input type="radio" name="q3" value="c"><span>It never parses the text as HTML.</span></label> <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="State is the source of truth. Update it, then call render so the screen matches."><legend><span class="quiz__num">04</span> What should happen immediately after state changes?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span>Reload the whole page.</span></label><label class="option"><input type="radio" name="q4" value="b"><span>Call the render function.</span></label><label class="option"><input type="radio" name="q4" value="c"><span>Clear the state array.</span></label> <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="preventDefault stops the browser's default submit navigation, leaving your handler in control."><legend><span class="quiz__num">05</span> What does <code>event.preventDefault()</code> stop on a form?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span>The default page navigation.</span></label><label class="option"><input type="radio" name="q5" value="b"><span>All future event listeners.</span></label><label class="option"><input type="radio" name="q5" value="c"><span>The form's input values.</span></label> <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <div class="quiz__actions">
+        <button type="submit" class="btn">Check answers</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>Reset quiz</button>
+        <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
+      </div>
+    </form></div>
+  <div class="recap">
+    <h2>Module 5 complete</h2>
+    <ul>
+      <li><strong>Select and change safely.</strong> Query the DOM, keep text as text, and build new nodes deliberately.</li>
+      <li><strong>Events drive the app.</strong> Read input, prevent unwanted defaults, and delegate repeating controls.</li>
+      <li><strong>State, then render.</strong> One array, one render function, and one predictable path for every action.</li>
+    </ul>
+  </div>
+</article>

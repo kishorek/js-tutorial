@@ -1,0 +1,220 @@
+<article class="lesson" id="lesson-7-3" data-lesson="7-3">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 07 · Ship it</p>
+    <h1>Git, deploy, and portfolio v2</h1>
+    <p class="lesson-lede">The final project leaves your laptop. Put the work under version control, publish it on GitHub Pages, document it, and make the home page good enough to send to a stranger.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 7.3 · Project</span>
+      <span class="chip">3–4 hours</span>
+      <span class="chip">Final project</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>Deliverables</h3>
+        <ul>
+          <li>A public GitHub repository with a README and clean history.</li>
+          <li>A live three-page portfolio on GitHub Pages.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Exit check</h3>
+        <ul>
+          <li>Every page works at 320px and with a keyboard.</li>
+          <li>One interactive feature works, and a stranger can understand the site.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Put it in Git</h2>
+  <p>Git records snapshots. Commit small, working changes so you can return to a good state instead of guessing which edit broke the layout.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">cd portfolio
+git init
+git add .
+git commit -m "Build portfolio v2"
+git branch -M main
+git remote add origin https://github.com/YOUR-NAME/portfolio.git
+git push -u origin main</script>
+  </div>
+  <p>Run <code>git status</code> before every commit, add a <code>.gitignore</code> for <code>.DS_Store</code>, <code>node_modules/</code>, and local environment files, and never commit secrets. A public repository is public forever.</p>
+
+  <h2>Publish with GitHub Pages</h2>
+  <ol>
+    <li>Create a <strong>public</strong> repository named <code>portfolio</code> and push your <code>main</code> branch.</li>
+    <li>Open <strong>Settings → Pages</strong>, choose <strong>Deploy from a branch</strong>, then <code>main</code> and <code>/ (root)</code>. Save.</li>
+    <li>Wait for the deployment, open <code>https://YOUR-NAME.github.io/portfolio/</code>, and test every link in incognito and on a phone.</li>
+  </ol>
+  <div class="callout callout--warn">
+    <span class="callout__label">Custom domain</span>
+    <p>You do not need one for this course. If you add one later, create a <code>CNAME</code> file with the domain, point a DNS <code>CNAME</code> record at <code>YOUR-NAME.github.io</code>, and enable HTTPS in Pages settings. Confirm the free Pages URL works first.</p>
+  </div>
+
+  <h2>Portfolio v2 and the README</h2>
+  <p>The final site has three pages and one job each. It must work on a small screen, pass the accessibility pass, and include one interactive feature that does something useful.</p>
+  <ul>
+    <li><strong>Three pages:</strong> Home, About, and Projects, all linked and usable at 320px.</li>
+    <li><strong>Accessible:</strong> keyboard access, visible focus, labels, alt text, contrast.</li>
+    <li><strong>Interactive:</strong> a filter, theme switch, or other feature with state.</li>
+    <li><strong>Documented and deployed:</strong> a README plus a public URL with no console errors.</li>
+  </ul>
+  <div class="code-block" data-code>
+    <script type="text/plain"># Portfolio v2
+
+Live: https://YOUR-NAME.github.io/portfolio/
+
+## Run locally
+Open the folder in a code editor and use a local server.</script>
+  </div>
+
+  <h2>Build the home page</h2>
+  <p>The starter has the shell and navigation. Add an <code>h1</code>, an intro, three project <code>article</code> cards, and a button that filters to web projects. The button must update its label and <code>aria-pressed</code> state. Test with Tab and Enter before revealing the reference.</p>
+
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Final project workspace</span>
+      <h2>Ship the home page</h2>
+    </div>
+    <div class="editor" data-editor>
+      <div class="editor__grid">
+        <label class="visually-hidden" for="practice-7-3">Portfolio editor</label>
+        <textarea id="practice-7-3" class="editor__code" data-attempt spellcheck="false"></textarea>
+        <div class="editor__preview">
+          <div class="editor__preview-bar">Live preview</div>
+          <iframe title="Preview of your portfolio home page" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+      <p class="editor__status" aria-live="polite" data-status>Preview loaded. Build your page, then press Run.</p>
+      <button type="button" class="btn btn--small" data-action="run">Run preview</button>
+      <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maya Chen · Portfolio</title>
+</head>
+<body>
+  <a href="#main">Skip to content</a>
+  <header><nav aria-label="Main"><a href="index.html" aria-current="page">Home</a> <a href="about.html">About</a> <a href="projects.html">Projects</a></nav></header>
+  <main id="main"><h1>Your Name</h1><p>Build the portfolio home page here.</p></main>
+</body>
+</html></script>
+    </div>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal reference solution</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the reference solution unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maya Chen · Portfolio</title>
+</head>
+<body>
+  <a href="#main">Skip to content</a>
+  <header><nav aria-label="Main">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+  </nav></header>
+  <main id="main">
+    <h1>Maya Chen</h1>
+    <p>Small, useful websites built with HTML, CSS, and JavaScript.</p>
+    <section aria-labelledby="work-title">
+      <h2 id="work-title">Selected work</h2>
+      <button type="button" id="filter" aria-pressed="false">Show web only</button>
+      <div id="project-list">
+        <article data-kind="web"><h3>Reading tracker</h3><p>A calm dashboard for three books.</p></article>
+        <article data-kind="writing"><h3>Field notes</h3><p>Short essays about learning in public.</p></article>
+        <article data-kind="web"><h3>Recipe index</h3><p>A keyboard-friendly recipe collection.</p></article>
+      </div>
+    </section>
+  </main>
+  <script>
+    const button = document.querySelector("#filter"); const cards = document.querySelectorAll("#project-list article");
+    button.addEventListener("click", () => {
+      const webOnly = button.getAttribute("aria-pressed") === "true";
+      button.setAttribute("aria-pressed", String(!webOnly));
+      button.textContent = webOnly ? "Show web only" : "Show all work";
+      cards.forEach((card) => {
+        card.hidden = !webOnly && card.dataset.kind !== "web";
+      });
+    });
+  @ENDSCRIPT
+</body>
+</html></script>
+  </section>
+
+  <h2>Ship it checklist</h2>
+  <ul>
+    <li>Repository is public; <code>main</code> is current; no secrets in the history.</li>
+    <li>Pages deploys from <code>main</code> and <code>/ (root)</code>; the live URL loads over HTTPS.</li>
+    <li>All three pages load, navigation is current, and no link or image is broken.</li>
+    <li>Keyboard pass complete; focus is visible; the site works at 320px.</li>
+    <li>README has the live URL and local steps; you watched one person use the site.</li>
+  </ul>
+
+  <h2>Final course quiz</h2>
+  <div class="quiz" data-quiz>
+    <form>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="A relative link resolves from the current file's folder. The page beside index.html is simply about.html.">
+        <legend><span class="quiz__num">01</span> Which link opens <code>about.html</code> from <code>index.html</code> in the same folder?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span><code>/about.html</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="b"><span><code>about.html</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="c"><span><code>../about.html</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="aria-current=page exposes the active page to assistive technology and gives CSS a reliable hook.">
+        <legend><span class="quiz__num">02</span> How should the current page be marked in navigation?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span>With a bold font only</span></label>
+        <label class="option"><input type="radio" name="q2" value="b"><span>With <code>class="active"</code> only</span></label>
+        <label class="option"><input type="radio" name="q2" value="c"><span>With <code>aria-current="page"</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="Width and height reserve layout space, so the page does not jump while the image downloads.">
+        <legend><span class="quiz__num">03</span> What most directly prevents image layout shift?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span>Set <code>width</code> and <code>height</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="b"><span>Add <code>loading="lazy"</code> everywhere</span></label>
+        <label class="option"><input type="radio" name="q3" value="c"><span>Use a larger image file</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="A real link or button is focusable and responds to Enter or Space. A div with a click handler is not keyboard accessible by default.">
+        <legend><span class="quiz__num">04</span> What is the best fix for a clickable <code>div</code>?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span>Add a cursor style</span></label>
+        <label class="option"><input type="radio" name="q4" value="b"><span>Use an <code>a</code> or <code>button</code></span></label>
+        <label class="option"><input type="radio" name="q4" value="c"><span>Add a mouseover handler</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="GitHub Pages serves the repository through a public URL. The local files are not the deliverable until they are pushed and Pages is enabled.">
+        <legend><span class="quiz__num">05</span> What makes a GitHub Pages portfolio live?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span>Saving the files locally</span></label>
+        <label class="option"><input type="radio" name="q5" value="b"><span>Opening the HTML in your browser</span></label>
+        <label class="option"><input type="radio" name="q5" value="c"><span>Pushing the repo and enabling Pages</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p></fieldset>
+      <div class="quiz__actions">
+        <button type="submit" class="btn">Check answers</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>Reset quiz</button>
+        <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
+      </div>
+    </form>
+  </div>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why does the GitHub Pages URL include the repository name?</summary>
+      <p>A project site is served from <code>https://YOUR-NAME.github.io/repository-name/</code>. That is why relative paths matter: a leading slash points at the domain root, not your project folder.</p>
+    </details>
+    <details class="qa">
+      <summary>What should I check first when the deployed site returns 404?</summary>
+      <p>Confirm the repository is public, Pages is set to the correct branch and root folder, <code>index.html</code> exists at that root, and the deployment has finished. Then retry in a private window.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Course complete</h2>
+    <ul>
+      <li><strong>You can build and explain a site.</strong> HTML structure, CSS layout, JavaScript behavior, and a real deployment.</li>
+      <li><strong>You can audit your own work.</strong> Keyboard, focus, contrast, images, and performance are part of shipping.</li>
+      <li><strong>You shipped it.</strong> A live portfolio v2 with three pages, one interactive feature, a README, and a URL you can share.</li>
+    </ul>
+  </div>
+</article>

@@ -1,0 +1,213 @@
+<article class="lesson" id="lesson-3-1" data-lesson="3-1">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 03 · Layout &amp; responsive design</p>
+    <h1>CSS Grid</h1>
+    <p class="lesson-lede">Flexbox distributes items along one line. Grid controls rows and columns at the same time, which makes galleries, dashboards, and whole page layouts predictable instead of accidental.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 3.1</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Create columns and rows with <code>fr</code> and <code>repeat()</code>.</li>
+          <li>Build tracks that resize with <code>minmax()</code> and <code>auto-fit</code>.</li>
+          <li>Lay out a page with named grid areas.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Module 2: the box model and Flexbox.</li>
+          <li>A page with a few cards or sections.</li>
+          <li>DevTools open so you can inspect the grid.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Grid works in two dimensions</h2>
+  <p>Turn an element into a grid container with <code>display: grid</code>. Its direct children become grid items. The <code>gap</code> property spaces them without margins.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid #d8d2c4;
+  border-radius: 6px;
+  background: #fffdf7;
+}</script>
+  </div>
+
+  <ul>
+    <li><strong>Container:</strong> the element with <code>display: grid</code>.</li>
+    <li><strong>Item:</strong> every direct child of that container.</li>
+    <li><strong>Track:</strong> one column or one row.</li>
+    <li><strong>Cell:</strong> the space where a row and column meet.</li>
+  </ul>
+
+  <p>Grid and Flexbox are partners, not rivals. Use Grid when you know the shape of the layout in both directions. Use Flexbox when items should flow along a single axis.</p>
+
+  <h2>Fractions, repeat, and minmax</h2>
+  <p>The <code>fr</code> unit shares the space that is left after fixed sizes and gaps. Three <code>1fr</code> columns are equal. A <code>2fr</code> column gets twice the free space of a <code>1fr</code> column.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: minmax(180px, auto);
+  gap: 1rem;
+}
+
+.featured {
+  grid-column: 1 / -1;
+}</script>
+  </div>
+
+  <ul>
+    <li><code>repeat(3, 1fr)</code> is shorthand for <code>1fr 1fr 1fr</code>.</li>
+    <li><code>minmax(0, 1fr)</code> lets a track shrink below its content width, which prevents long words from breaking the layout.</li>
+    <li><code>grid-column: 1 / -1</code> spans from the first line to the last, making an item full width.</li>
+    <li><code>grid-auto-rows</code> sizes rows you did not declare.</li>
+  </ul>
+
+  <p>For a gallery that responds without a media query, replace the fixed count with <code>auto-fit</code>. The browser fits as many <code>220px</code> tracks as it can, then stretches them to fill the row.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}</script>
+  </div>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">auto-fit vs auto-fill</span>
+    <p><code>auto-fit</code> collapses empty tracks, so existing cards stretch to fill the row. <code>auto-fill</code> keeps the empty tracks, so cards stay at their minimum size and leave a gap. Choose based on whether you want the cards to grow.</p>
+  </div>
+
+  <h2>Rows and alignment</h2>
+  <p>Declare rows when the vertical structure matters, such as a page that must fill the viewport with a footer at the bottom.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">.page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+.page > header,
+.page > footer {
+  padding: 1rem 1.5rem;
+}
+
+main {
+  padding: 1.5rem;
+}</script>
+  </div>
+
+  <ul>
+    <li><code>justify-items</code> aligns items inside their column; <code>justify-content</code> aligns the whole grid inside the container.</li>
+    <li><code>align-items</code> and <code>align-content</code> do the same on the vertical axis.</li>
+    <li><code>place-items: center</code> sets both alignment properties at once.</li>
+    <li>An <code>auto</code> row grows to fit its content; a <code>1fr</code> row absorbs the remaining space.</li>
+  </ul>
+
+  <h2>Named areas describe the page</h2>
+  <p><code>grid-template-areas</code> draws the layout as text. Every named cell must form a rectangle, and every item claims its area with <code>grid-area</code>.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">.page {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  gap: 24px;
+  min-height: 100vh;
+}
+
+.page-header  { grid-area: header; }
+.page-sidebar { grid-area: sidebar; }
+.page-main    { grid-area: main; }
+.page-footer  { grid-area: footer; }
+
+@media (max-width: 700px) {
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "sidebar"
+      "footer";
+  }
+}</script>
+  </div>
+
+  <p>The named areas become documentation. A teammate can read the layout in five lines. On a narrow screen, only the column count and the area map change; the item rules stay put.</p>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Common mistake</span>
+    <p>Do not put a hole in the middle of an area. If one row says <code>"header header"</code> and the next says <code>"main sidebar"</code>, the shape is still valid. But <code>"header ."</code> creates an unnamed cell and will surprise you later. Use a period only when you truly want empty space.</p>
+  </div>
+
+  <section class="practice" data-practice data-min="40">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Responsive card gallery</h2>
+    </div>
+    <p>Write the CSS for a gallery of six cards. On wide screens it shows three equal columns. Below <code>760px</code> it becomes one column. Use <code>repeat()</code>, <code>minmax(0, 1fr)</code>, and <code>gap</code>. Do not use <code>auto-fit</code> yet; this exercise is about an explicit breakpoint.</p>
+    <label class="visually-hidden" for="practice-3-1">Your gallery CSS</label>
+    <textarea class="practice__code" id="practice-3-1" data-attempt spellcheck="false" placeholder=".gallery { ... }"></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.gallery > * {
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}</script>
+  </section>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>When should you reach for Grid instead of Flexbox?</summary>
+      <p>When the layout needs to line up in both rows and columns, such as a gallery or a page skeleton. Flexbox is simpler when items only need to flow or distribute along one axis.</p>
+    </details>
+    <details class="qa">
+      <summary>Why write <code>minmax(0, 1fr)</code> instead of just <code>1fr</code>?</summary>
+      <p>A plain <code>1fr</code> track has an automatic minimum based on its content. A long unbroken word can force the column wider than the screen. <code>minmax(0, 1fr)</code> sets that minimum to zero so the track can shrink.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Grid is two-dimensional.</strong> Define columns and rows on the container.</li>
+      <li><strong><code>fr</code> shares free space.</strong> Pair it with <code>minmax(0, 1fr)</code> for safe flexible tracks.</li>
+      <li><strong>Named areas make layout readable.</strong> Change the map at a breakpoint instead of rewriting every item.</li>
+    </ul>
+  </div>
+</article>

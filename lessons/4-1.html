@@ -1,0 +1,203 @@
+<article class="lesson" id="lesson-4-1" data-lesson="4-1">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 04 · JavaScript foundations</p>
+    <h1>Values, variables, and types</h1>
+    <p class="lesson-lede">JavaScript begins with small pieces of data and the names we give them. Learn how values are stored, what type they have, and how to compare them without surprises.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 4.1</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Add JavaScript to a page and read the console.</li>
+          <li>Declare values with <code>let</code> and <code>const</code>.</li>
+          <li>Name the five beginner types and check them with <code>typeof</code>.</li>
+          <li>Use template literals and strict equality with confidence.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>A browser with DevTools.</li>
+          <li>Your editor from Module 1.</li>
+          <li>Patience for tiny typo errors.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>Where JavaScript goes</h2>
+  <p>HTML gives the page structure. CSS styles it. JavaScript adds behavior. You add it with a <code>&lt;script&gt;</code> element, usually at the end of <code>&lt;body&gt;</code> so the page content exists before the script runs.</p>
+  <div class="code-block" data-code>
+<script type="text/plain"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>First script</title>
+</head>
+<body>
+  <h1>Hello</h1>
+
+  <script>
+    console.log("Hello from JavaScript");
+  @ENDSCRIPT
+</body>
+</html></script>
+  </div>
+  <p><code>console.log()</code> prints a value to the console. In most browsers, press <strong>F12</strong> or right-click the page and choose <strong>Inspect</strong>, then open the <strong>Console</strong> tab. Nothing appears on the page itself; the message is for you.</p>
+  <div class="callout callout--tip">
+    <span class="callout__label">Debug habit</span>
+    <p>Before guessing why code fails, log the value you are unsure about. A console message is evidence. Guessing is not.</p>
+  </div>
+  <h2>Variables name values</h2>
+  <p>A variable is a label for a value stored in memory. Declare it with <code>let</code> when it will change, and <code>const</code> when it will not. Prefer <code>const</code> until you have a reason to reassign.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const firstName = "Maya";
+let cupsOfCoffee = 2;
+const learningJavaScript = true;
+
+console.log(firstName);       // Maya
+console.log(cupsOfCoffee);    // 2
+
+cupsOfCoffee = cupsOfCoffee + 1;
+console.log(cupsOfCoffee);    // 3
+
+// const cannot be reassigned:
+// firstName = "Sam";         // TypeError</script>
+  </div>
+  <ul>
+    <li>Names are case-sensitive: <code>firstName</code> and <code>firstname</code> are different.</li>
+    <li>Use <code>camelCase</code> for ordinary variables.</li>
+    <li>A name cannot start with a number or contain spaces.</li>
+    <li>Do not use reserved words such as <code>let</code>, <code>const</code>, or <code>return</code> as names.</li>
+  </ul>
+  <h3>The basic types</h3>
+  <p>Every value has a type. Beginners meet five of them constantly.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Example</th><th scope="col">Use it for</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>String</td><td><code>"hello"</code></td><td>Text, including digits you do not calculate with.</td></tr>
+        <tr><td>Number</td><td><code>42</code>, <code>3.14</code></td><td>Any numeric value, whole or decimal.</td></tr>
+        <tr><td>Boolean</td><td><code>true</code>, <code>false</code></td><td>Yes/no decisions.</td></tr>
+        <tr><td>Null</td><td><code>null</code></td><td>An intentional empty value.</td></tr>
+        <tr><td>Undefined</td><td><code>undefined</code></td><td>A value that has not been set yet.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><code>typeof</code> tells you the type of a value. It is a quick way to check what you actually have instead of what you assumed.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">console.log(typeof "hello");   // "string"
+console.log(typeof 42);        // "number"
+console.log(typeof true);      // "boolean"
+console.log(typeof undefined); // "undefined"
+console.log(typeof null);      // "object" (a famous JavaScript quirk)</script>
+  </div>
+  <h3>Strings and template literals</h3>
+  <p>Strings can use single quotes, double quotes, or backticks. Backticks create a <strong>template literal</strong>: you can insert values with <code>${...}</code> and write across lines.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const name = "Maya";
+const coffees = 3;
+
+const sentence = `Good morning, ${name}. You have had ${coffees} coffees.`;
+console.log(sentence);
+
+const oldWay = "Good morning, " + name + ". You have had " + coffees + " coffees.";
+console.log(oldWay);
+
+const multiLine = `Line one
+Line two`;
+console.log(multiLine);</script>
+  </div>
+  <p>Prefer template literals when you mix text and values. They are easier to read and harder to break than chains of plus signs.</p>
+  <p>Strings have useful properties and methods. <code>.length</code> counts characters, <code>.toUpperCase()</code> returns a new uppercase string, and <code>.includes()</code> checks for a substring.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">const word = "JavaScript";
+
+console.log(word.length);             // 10
+console.log(word.toUpperCase());      // JAVASCRIPT
+console.log(word.includes("Script")); // true
+console.log(word[0]);                 // J</script>
+  </div>
+  <h2>Coercion and strict equality</h2>
+  <p>JavaScript sometimes converts a value to another type automatically. This is called <strong>type coercion</strong>. It is convenient until it is confusing.</p>
+  <div class="code-block" data-code>
+<script type="text/plain">console.log("5" + 2);  // "52" — the number becomes text
+console.log("5" - 2);  // 3    — the text becomes a number
+console.log(true + 1); // 2    — true becomes 1
+console.log("" == 0);  // true — coercion strikes</script>
+  </div>
+  <div class="callout callout--warn">
+    <span class="callout__label">Use three equals</span>
+    <p><code>==</code> compares after coercion. <code>===</code> compares value <em>and</em> type. Use <code>===</code> and <code>!==</code> everywhere unless you have a specific reason not to.</p>
+  </div>
+  <div class="code-block" data-code>
+<script type="text/plain">console.log(5 == "5");   // true
+console.log(5 === "5");  // false
+
+console.log(0 == false);  // true
+console.log(0 === false); // false
+
+console.log(5 !== "5");   // true</script>
+  </div>
+  <p>To convert deliberately, use <code>Number("5")</code>, <code>String(5)</code>, or <code>Boolean(value)</code>. Being explicit keeps the next reader — often future you — out of trouble.</p>
+  <h3>Move values around</h3>
+  <p>These four moves cover most beginner debugging. Run each one in the console and change the values.</p>
+  <ol>
+    <li><strong>Log it.</strong> <code>console.log(value)</code> shows the current value.</li>
+    <li><strong>Check its type.</strong> <code>console.log(typeof value)</code> catches text where you expected a number.</li>
+    <li><strong>Compare strictly.</strong> Replace <code>==</code> with <code>===</code> and see whether the branch still runs.</li>
+    <li><strong>Copy it into a new name.</strong> If a value changes unexpectedly, assign it to a second variable and log both.</li>
+  </ol>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 20 minutes</span>
+      <h2>Introduce yourself in the console</h2>
+    </div>
+    <p>Declare a <code>const</code> for your name, a <code>let</code> for your age, and a <code>const</code> boolean for whether you like JavaScript. Log one sentence with a template literal. Then increase your age by one and log a second sentence. Finish by logging the type of all three values.</p>
+    <label class="visually-hidden" for="practice-4-1">Your exercise code</label>
+    <textarea class="practice__code" id="practice-4-1" data-attempt spellcheck="false" placeholder="Type your JavaScript here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+<script type="text/plain" data-answer>const name = "Maya";
+let age = 28;
+const likesJavaScript = true;
+
+console.log(`My name is ${name}.`);
+console.log(`I am ${age} years old.`);
+console.log(`Do I like JavaScript? ${likesJavaScript}`);
+
+console.log(typeof name);            // "string"
+console.log(typeof age);             // "number"
+console.log(typeof likesJavaScript); // "boolean"
+
+age = age + 1;
+console.log(`${name} is now ${age}.`);</script>
+  </section>
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>When should I use <code>let</code> instead of <code>const</code>?</summary>
+      <p>Use <code>let</code> only when the variable will be reassigned, such as a counter or a running total. If the name will always point to the same value, use <code>const</code>. A <code>const</code> object can still have its properties changed; the name simply cannot point to a different object.</p>
+    </details>
+    <details class="qa">
+      <summary>Why is <code>5 == "5"</code> true but <code>5 === "5"</code> false?</summary>
+      <p>The double equals converts the string to a number before comparing, so both sides become <code>5</code>. The triple equals also checks the type. A number and a string are different types, so the result is <code>false</code>.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Values have types.</strong> Strings, numbers, booleans, <code>null</code>, and <code>undefined</code> cover most beginner work.</li>
+      <li><strong>Names should explain.</strong> Prefer <code>const</code>; use <code>let</code> when reassignment is real.</li>
+      <li><strong>Strict equality avoids surprises.</strong> Use <code>===</code> and <code>!==</code>, and log values when you are unsure.</li>
+    </ul>
+  </div>
+</article>

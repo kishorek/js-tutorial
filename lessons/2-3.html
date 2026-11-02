@@ -1,0 +1,218 @@
+<article class="lesson" id="lesson-2-3" data-lesson="2-3">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 02 · CSS: the skin</p>
+    <h1>Type, color, and visual rhythm</h1>
+    <p class="lesson-lede">Good styling is mostly a few decisions repeated consistently: a readable type scale, a small palette with enough contrast, and spacing that comes from one system. This lesson turns those decisions into tokens you can reuse.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 2.3</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Build a font stack and a type scale in <code>rem</code>.</li>
+          <li>Check color contrast and avoid color-only meaning.</li>
+          <li>Define custom properties for color, type, and spacing.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Lessons 2.1 and 2.2 completed.</li>
+          <li>A page with real headings and paragraphs.</li>
+          <li>A browser and a contrast checker.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Type starts with a system</h2>
+  <p>A font stack lists the fonts you want, best first, and ends with a generic family. Use a system stack for fast, native-looking text. Set body size in <code>rem</code>, keep line-height unitless, and use weight to create hierarchy before you reach for a new size.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;      /* 16px unless the root changes */
+  line-height: 1.6;     /* unitless: relative to this font size */
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 2.25rem;   /* rem is always relative to the root */
+  line-height: 1.1;
+  font-weight: 700;
+}</script>
+  </div>
+
+  <ul>
+    <li><strong><code>rem</code></strong> is relative to the root font size. Use it for page-level sizes so a user's browser preference is respected.</li>
+    <li><strong><code>em</code></strong> is relative to the current element's font size. Use it when a component should scale as a whole.</li>
+    <li><strong>Unitless line-height</strong> such as <code>1.6</code> scales with the font instead of locking to pixels. Body text usually sits between <code>1.4</code> and <code>1.7</code>; headings between <code>1.05</code> and <code>1.3</code>.</li>
+    <li><strong>Weight</strong> is a quick hierarchy tool: <code>400</code> body, <code>600</code> or <code>700</code> headings. Do not use a light weight for small text.</li>
+  </ul>
+
+  <p>A type scale is a short list of sizes with a consistent ratio. Pick four or five steps and stop. Fewer sizes make the page calmer and the code easier to change.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Step</th><th scope="col">Size</th><th scope="col">Use</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Small</td><td>0.875rem</td><td>Meta, captions, labels</td></tr>
+        <tr><td>Base</td><td>1rem</td><td>Body copy</td></tr>
+        <tr><td>Large</td><td>1.25rem</td><td>Card titles, ledes</td></tr>
+        <tr><td>XL</td><td>1.563rem</td><td>Section headings</td></tr>
+        <tr><td>2XL</td><td>1.953rem</td><td>Page headings</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Color needs contrast, not just taste</h2>
+  <p>Text must stay readable for people with low vision, on a phone in daylight, and on a cheap monitor. WCAG asks for a contrast ratio of at least <code>4.5:1</code> for normal text and <code>3:1</code> for large text (about <code>24px</code>, or <code>18.66px</code> bold). Muted text still has to pass; "soft gray" is not an excuse.</p>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Do not rely on color alone</span>
+    <p>If an error is red, also include a message or an icon. If a link is green, underline it on hover and focus. Color is a reinforcement, not the only signal. Check every pair with a contrast tool before shipping.</p>
+  </div>
+
+  <p>Keep the palette small: an ink for text, a muted ink for secondary text, a page background, a card background, one accent, and one rule color. A restrained palette makes a single accent feel deliberate.</p>
+
+  <h2>Tokens create visual rhythm</h2>
+  <p>CSS custom properties (variables) store a decision once and reuse it. Define them on <code>:root</code> so the whole page inherits them, then reference them with <code>var()</code>. Change the token, and every component follows.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">:root {
+  --ink: #1c1a16;
+  --muted: #5d574d;
+  --paper: #f7f2e7;
+  --card: #fffdf7;
+  --accent: #14532d;
+  --rule: #d8d0c0;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --leading: 1.6;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --radius: 8px;
+  --shadow: 0 1px 2px rgba(28, 26, 22, .08);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-size: var(--text-base);
+  line-height: var(--leading);
+}
+
+.card {
+  padding: var(--space-4);
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}</script>
+  </div>
+
+  <p>Custom property names are case-sensitive and inherit like other properties. A fallback such as <code>var(--accent, #14532d)</code> keeps a component usable if the token is missing. For depth, one thin border plus one soft shadow is enough; save large shadows for overlays. Always keep a visible <code>:focus-visible</code> outline.</p>
+
+  <section class="practice" data-practice data-min="40">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Style an article with tokens</h2>
+    </div>
+    <p>Use the token block below and this HTML. Style the article with tokens only for color and spacing: body text in <code>--ink</code> on <code>--paper</code>, a <code>60ch</code> card in <code>--card</code> with a <code>--rule</code> border and <code>--radius</code>, meta text in <code>--muted</code> at <code>0.875rem</code> uppercase, the title in <code>--accent</code> at <code>2rem</code> with line-height <code>1.1</code>, and the lede at <code>1.125rem</code>. Add a readable system font stack and <code>1.6</code> body line-height.</p>
+
+    <div class="code-block" data-code>
+      <script type="text/plain">/* Available tokens */
+:root {
+  --ink:#1c1a16; --muted:#5d574d; --paper:#f7f2e7; --card:#fffdf7;
+  --accent:#14532d; --rule:#d8d0c0; --radius:8px;
+  --space-2:.5rem; --space-3:1rem; --space-4:1.5rem; --space-5:2rem;
+}
+
+<article class="article">
+  <p class="article__meta">Notes · 4 min read</p>
+  <h1 class="article__title">A quieter home page</h1>
+  <p class="article__lede">Fewer colours, more space, and type you can read without leaning in.</p>
+  <p>Start with one accent, one type scale, and a spacing system. Repeat them until the page feels calm.</p>
+</article></script>
+    </div>
+
+    <label class="visually-hidden" for="practice-2-3">Your CSS</label>
+    <textarea class="practice__code" id="practice-2-3" data-attempt spellcheck="false" placeholder="Write your CSS here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.article {
+  max-width: 60ch;
+  margin: var(--space-5) auto;
+  padding: var(--space-5);
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+
+.article__meta {
+  margin: 0 0 var(--space-2);
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.article__title {
+  margin: 0 0 var(--space-3);
+  color: var(--accent);
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.article__lede {
+  margin: 0 0 var(--space-4);
+  color: var(--muted);
+  font-size: 1.125rem;
+}</script>
+  </section>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>When should I use <code>rem</code> instead of <code>em</code>?</summary>
+      <p>Use <code>rem</code> for the page's type scale and global spacing so it follows the root size and user preferences. Use <code>em</code> inside a component when padding or a nested size should scale with that component's own font size.</p>
+    </details>
+    <details class="qa">
+      <summary>Is gray text on a white background always a contrast problem?</summary>
+      <p>Not always, but it often is. The ratio matters, not the color name. Check the exact pair: normal text needs <code>4.5:1</code>. A medium gray such as <code>#5d574d</code> on <code>#f7f2e7</code> can pass while a pale gray fails.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Type is a scale.</strong> A few <code>rem</code> sizes and unitless line-heights beat a pile of one-off values.</li>
+      <li><strong>Contrast is a requirement.</strong> Check text pairs, and never use color as the only signal.</li>
+      <li><strong>Tokens make rhythm repeatable.</strong> Store color, type, and spacing decisions once on <code>:root</code>.</li>
+    </ul>
+  </div>
+</article>

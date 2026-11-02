@@ -1,0 +1,164 @@
+<article class="lesson" id="lesson-5-2" data-lesson="5-2">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 05 · DOM &amp; events</p>
+    <h1>Events, input, and forms</h1>
+    <p class="lesson-lede">A page becomes interactive when it listens. Learn how events travel, how to read what a visitor typed, and how to handle a form without losing their work to a page reload.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 5.2</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Attach listeners for clicks, input, submit, and keys.</li>
+          <li>Read values from inputs, checkboxes, and selects.</li>
+          <li>Stop a form reload and handle events from many children.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Lesson 5.1: selecting and changing nodes.</li>
+          <li>A form with labels from Module 1.</li>
+          <li>A page with one button and one text input.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>An event is a message</h2>
+  <p>When something happens, the browser creates an event object and sends it to the element. You listen with <code>addEventListener(type, handler)</code>.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const save = document.querySelector("#save");
+
+save.addEventListener("click", event => {
+  console.log("Clicked:", event.target);
+});
+
+save.addEventListener("click", () => {
+  console.log("This second listener also runs.");
+});</script>
+  </div>
+
+  <p>The handler receives the event. <code>event.target</code> is the element that fired it; <code>event.currentTarget</code> is the element the listener is attached to. They are the same on a simple button, but different when a parent listens for its children.</p>
+
+  <p>Use <code>addEventListener</code> instead of an <code>onclick</code> attribute. It keeps behaviour in JavaScript, allows more than one listener, and is easier to remove later with <code>removeEventListener</code>.</p>
+
+  <h2>Read the value as it changes</h2>
+  <p>The <code>input</code> event fires every time the value changes. Read <code>input.value</code> for text, <code>input.checked</code> for a checkbox, and <code>select.value</code> for a drop-down.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const nameInput = document.querySelector("#name");
+const greeting = document.querySelector("#greeting");
+
+nameInput.addEventListener("input", () => {
+  const name = nameInput.value.trim();
+  greeting.textContent = name ? `Hello, ${name}` : "Hello, stranger";
+});</script>
+  </div>
+
+  <p><code>input</code> fires on every keystroke or paste. <code>change</code> waits until the field loses focus or the choice is committed. For a live counter or preview, choose <code>input</code>.</p>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">Values are strings</span>
+    <p><code>input.value</code> is always a string, even for a number field. Convert with <code>Number(input.value)</code> before doing maths, and check for an empty string first.</p>
+  </div>
+
+  <h2>Submit a form without reloading</h2>
+  <p>A form submits by default: the browser sends the data and loads a new page. To handle it in JavaScript, listen for <code>submit</code> and call <code>event.preventDefault()</code>.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const form = document.querySelector("#signup");
+const status = document.querySelector("#status");
+
+form.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const data = new FormData(form);
+  const email = data.get("email");
+
+  status.textContent = "Saved for " + email;
+});</script>
+  </div>
+
+  <p><code>FormData</code> reads fields by their <code>name</code> attributes, not their ids. Every field still needs a <code>label</code> connected to an <code>id</code> for people using assistive technology. Built-in rules such as <code>required</code> and <code>type="email"</code> run before <code>submit</code>; server-side validation is still necessary.</p>
+
+  <h2>Keyboard events and delegation</h2>
+  <p>Keyboard users need the same actions as mouse users. Listen for <code>keydown</code> and compare <code>event.key</code> with a name such as <code>"Enter"</code> or <code>"Escape"</code>. Do not compare numeric <code>keyCode</code> values.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">const search = document.querySelector("#search");
+
+search.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    search.value = "";
+  }
+});
+
+const results = document.querySelector("#results");
+
+results.addEventListener("click", event => {
+  const button = event.target.closest("button[data-id]");
+  if (!button) return;
+  console.log("Open result", button.dataset.id);
+});</script>
+  </div>
+
+  <p>The second listener is <strong>event delegation</strong>. One listener on the parent handles every matching child, including children added later. <code>closest</code> walks up from the clicked element to find the button, so clicking the button's text still works.</p>
+
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Build a character counter and summary</h2>
+    </div>
+    <p>Assume the page has <code>&lt;textarea id="bio"&gt;</code>, <code>&lt;p id="count"&gt;</code>, a form with <code>id="profile"</code> and named fields <code>name</code> and <code>email</code>, plus <code>&lt;p id="summary"&gt;</code>. Update the character count while typing, add the class <code>is-over</code> above 120 characters, then prevent submission and show "Name · email" in the summary.</p>
+    <label class="visually-hidden" for="practice-5-2">Your exercise code</label>
+    <textarea class="practice__code" id="practice-5-2" data-attempt spellcheck="false" placeholder="const bio = ..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>const bio = document.querySelector("#bio");
+const count = document.querySelector("#count");
+
+bio.addEventListener("input", () => {
+  const length = bio.value.length;
+  count.textContent = `${length} / 120 characters`;
+  count.classList.toggle("is-over", length > 120);
+});
+
+const form = document.querySelector("#profile");
+const summary = document.querySelector("#summary");
+
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  const data = new FormData(form);
+  summary.textContent = `${data.get("name")} · ${data.get("email")}`;
+});</script>
+  </section>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>What is the difference between <code>input</code> and <code>change</code>?</summary>
+      <p><code>input</code> fires on every edit, including each keystroke. <code>change</code> fires when the edit is committed, usually on blur or when a select value is chosen.</p>
+    </details>
+    <details class="qa">
+      <summary>Why does the page reload when I submit a form?</summary>
+      <p>That is the browser's default behaviour. Your <code>submit</code> handler runs first; <code>event.preventDefault()</code> stops the navigation so your code can update the page instead.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Listen, then read.</strong> Attach a listener and use the event object to learn what happened.</li>
+      <li><strong>Prevent the default only when you handle it.</strong> A submit handler that forgets <code>preventDefault</code> loses the page.</li>
+      <li><strong>One parent can handle many children.</strong> Delegation with <code>closest</code> survives new rows.</li>
+    </ul>
+  </div>
+</article>

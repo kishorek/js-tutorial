@@ -1,0 +1,191 @@
+<article class="lesson" id="lesson-6-2" data-lesson="6-2">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 06 · Async &amp; APIs</p>
+    <h1>fetch, JSON, and API keys</h1>
+    <p class="lesson-lede">Your page can ask another computer for data. Learn the request/response cycle, how <code>fetch</code> and JSON fit together, and why secret keys must never ship in browser code.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 6.2</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Read an HTTP request and response.</li>
+          <li>Fetch JSON and check <code>response.ok</code>.</li>
+          <li>Build request URLs with query parameters.</li>
+          <li>Explain CORS and why secret keys need a server.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Lesson 6.1 promises and <code>async</code>/<code>await</code>.</li>
+          <li>A browser with DevTools open.</li>
+          <li>An internet connection for the live examples.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>A request goes out, a response comes back</h2>
+  <p>An API is a contract: you send an HTTP request to a URL, and a server sends back a response. The request has a method, such as <code>GET</code> to read data or <code>POST</code> to send it. The response has a status code, headers, and usually a body.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Status</th><th scope="col">Meaning</th><th scope="col">What to do</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>200</code></td><td>Success</td><td>Read the body.</td></tr>
+        <tr><td><code>400</code></td><td>Bad request</td><td>Fix the URL or parameters.</td></tr>
+        <tr><td><code>401</code></td><td>Not authorized</td><td>Add valid credentials on the server.</td></tr>
+        <tr><td><code>404</code></td><td>Not found</td><td>Check the path or search term.</td></tr>
+        <tr><td><code>429</code></td><td>Too many requests</td><td>Slow down or cache results.</td></tr>
+        <tr><td><code>500</code></td><td>Server error</td><td>Retry later; it is not your URL.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Most modern APIs send <strong>JSON</strong>: text that looks like JavaScript objects and arrays. A weather response might contain a nested <code>current</code> object with a temperature and a weather code.</p>
+  <h2>fetch returns a promise</h2>
+  <p><code>fetch()</code> starts a request and returns a promise. The promise resolves as soon as the response headers arrive, even for a <code>404</code>. That is why you must check <code>response.ok</code> before reading the body.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">const url = "https://api.open-meteo.com/v1/forecast?latitude=51.5&longitude=-0.12&current=temperature_2m,weather_code&timezone=auto";
+async function showWeather() {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data.current.temperature_2m);
+    console.log(data.current.weather_code);
+  } catch (error) {
+    console.error("Weather error:", error.message);
+  }
+}
+showWeather();</script>
+  </div>
+  <p><code>response.json()</code> is asynchronous too. It reads the body and parses the JSON text into JavaScript values, so it also needs <code>await</code>. If the body is not valid JSON, it rejects.</p>
+  <div class="callout callout--warn">
+    <span class="callout__label">fetch does not reject on 404</span>
+    <p>A network failure rejects the promise. An HTTP error such as <code>404</code> or <code>500</code> still fulfills it. Always check <code>response.ok</code>, or you will try to parse an error page as data.</p>
+  </div>
+  <h2>Build the URL with query parameters</h2>
+  <p>Query parameters are the <code>key=value</code> pairs after the <code>?</code>. They filter a search, choose fields, or set options. Separate them with <code>&amp;</code> and encode user input with <code>encodeURIComponent()</code>.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">const params = new URLSearchParams({
+  name: "London",
+  count: "1"
+});
+const url = "https://geocoding-api.open-meteo.com/v1/search?" + params;
+console.log(url);
+// ...search?name=London&count=1</script>
+  </div>
+  <p>Open-Meteo needs two steps. First, geocoding turns a city name into coordinates. Then the forecast endpoint uses those coordinates. Both are free and need no key.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">async function getPlace(name) {
+  const geoUrl = "https://geocoding-api.open-meteo.com/v1/search?name="
+    + encodeURIComponent(name) + "&count=1";
+  const response = await fetch(geoUrl);
+  if (!response.ok) {
+    throw new Error(`Search failed: ${response.status}`);
+  }
+  const data = await response.json();
+  const place = data.results && data.results[0];
+  if (!place) {
+    return null;
+  }
+  return place;
+}
+async function getWeather(place) {
+  const weatherUrl = "https://api.open-meteo.com/v1/forecast?latitude="
+    + place.latitude + "&longitude=" + place.longitude
+    + "&current=temperature_2m,weather_code&timezone=auto";
+  const response = await fetch(weatherUrl);
+  if (!response.ok) {
+    throw new Error(`Weather failed: ${response.status}`);
+  }
+  return (await response.json()).current;
+}</script>
+  </div>
+  <p><strong>CORS</strong> is the browser's rule for cross-origin requests. If the API does not send the right <code>Access-Control-Allow-Origin</code> header, the browser blocks your code from reading the response. You cannot fix that in client JavaScript; the API must allow your origin, or you need a server proxy.</p>
+  <div class="callout callout--tip">
+    <span class="callout__label">Reading a CORS error</span>
+    <p>The request may appear in the Network panel with a response, while the console reports a CORS failure. The browser received data but refused to expose it to your page.</p>
+  </div>
+  <h2>API keys stay on the server</h2>
+  <p>Some APIs use a key to identify and bill the caller. A <strong>public</strong> key is designed to be visible and restricted by domain. A <strong>secret</strong> key is not. Anything in HTML, CSS, or client JavaScript can be read by every visitor.</p>
+  <p>Hiding a key in a variable, a comment, or an obfuscated file is not security. The browser must send the key with the request, so it is visible in DevTools. A secret key in client code can be copied and used against your account.</p>
+  <p>When a key is required, put it in a small server or serverless function. The key lives in an environment variable on the server. Your browser calls your endpoint; your endpoint calls the API and returns only the data the page needs.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">// Browser: call your own endpoint, never the keyed API directly.
+async function loadWeather() {
+  const response = await fetch("/api/weather?city=London");
+}
+// Server (pseudocode): the key stays here.
+const key = process.env.WEATHER_API_KEY;
+const upstream = await fetch(
+  "https://example.com/weather?city=" + city,
+  { headers: { Authorization: "Bearer " + key } }
+);</script>
+  </div>
+  <div class="callout callout--warn">
+    <span class="callout__label">Never commit a key</span>
+    <p>Do not put secrets in a public repository, a screenshot, or a shared chat. If a secret key leaks, revoke it and create a new one. Open-Meteo needs no key, which makes it a safe place to practise.</p>
+  </div>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Search a city and log the result</h2>
+    </div>
+    <p>Write an <code>async</code> function called <code>findPlace(name)</code>. Use the Open-Meteo geocoding endpoint with <code>count=1</code>. Check <code>response.ok</code>, parse the JSON, and log the place's name, country, latitude, and longitude. If there is no match, log a friendly message instead of throwing.</p>
+    <label class="visually-hidden" for="practice-6-2">Your exercise code</label>
+    <textarea class="practice__code" id="practice-6-2" data-attempt spellcheck="false" placeholder="Write your fetch function here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>async function findPlace(name) {
+  const url = "https://geocoding-api.open-meteo.com/v1/search?name="
+    + encodeURIComponent(name) + "&count=1";
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Search failed: ${response.status}`);
+    }
+    const data = await response.json();
+    const place = data.results && data.results[0];
+    if (!place) {
+      console.log(`No match for "${name}". Try another spelling.`);
+      return;
+    }
+    console.log(`${place.name}, ${place.country}`);
+    console.log(`Latitude: ${place.latitude}`);
+    console.log(`Longitude: ${place.longitude}`);
+  } catch (error) {
+    console.error("Could not search:", error.message);
+  }
+}
+findPlace("Tokyo");</script>
+  </section>
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why does a <code>404</code> response not throw by itself?</summary>
+      <p>The fetch promise rejects only when the request cannot be completed, such as a network failure. An HTTP <code>404</code> is still a completed response, so the promise fulfills. Check <code>response.ok</code> and throw your own error when it is false.</p>
+    </details>
+    <details class="qa">
+      <summary>If a key is hidden in a JavaScript variable, is it safe?</summary>
+      <p>No. The browser must send the key to the API, so it appears in DevTools, source files, or the Network panel. Secret keys belong on a server, read from environment variables, behind an endpoint your page can call.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>fetch is asynchronous.</strong> Await the response, check <code>response.ok</code>, then await <code>response.json()</code>.</li>
+      <li><strong>URLs carry the request.</strong> Encode user input and use query parameters for search terms and options.</li>
+      <li><strong>CORS and keys are server concerns.</strong> A blocked response needs an API or proxy that allows your origin; secrets never belong in the browser.</li>
+    </ul>
+  </div>
+</article>

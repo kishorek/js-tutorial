@@ -1,0 +1,186 @@
+<article class="lesson" id="lesson-3-2" data-lesson="3-2">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 03 · Layout &amp; responsive design</p>
+    <h1>Mobile-first responsive design</h1>
+    <p class="lesson-lede">A responsive page is not three separate layouts. It is one layout that starts small, then gains columns and scale as the screen earns the space. Mobile-first keeps that logic in the order you write the CSS.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 3.2</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Write <code>min-width</code> media queries that add layout.</li>
+          <li>Choose breakpoints from content, not device names.</li>
+          <li>Use <code>clamp()</code> and responsive images safely.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Lesson 3.1: CSS Grid.</li>
+          <li>A page with sections and at least one image.</li>
+          <li>DevTools device toolbar for testing widths.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Start with the viewport</h2>
+  <p>Without a viewport meta tag, a phone pretends its screen is about <code>980px</code> wide and shrinks the result. Your page looks like a desktop site photographed from far away, and every media query fires at the wrong size.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><meta name="viewport" content="width=device-width, initial-scale=1"></script>
+  </div>
+
+  <p>Put it in <code>head</code> on every page. The first part makes the layout width equal the device width; the second sets the initial zoom to normal. Do not add <code>user-scalable=no</code>. Zoom is an accessibility feature.</p>
+
+  <h2>Layer styles with min-width</h2>
+  <p>Mobile-first means the base CSS describes the narrow layout. Media queries then add complexity only when there is room. Because both rules have the same specificity, the later <code>min-width</code> block wins when the condition is true.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">.split {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 700px) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 2.5rem;
+  }
+}</script>
+  </div>
+
+  <p>Compare that with a desktop-first rule using <code>max-width</code>. The base styles assume a wide screen, then undo columns as the screen shrinks. It works, but you spend the narrow case overriding decisions instead of defining them.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Width</th><th scope="col">What to check</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>320px</code></td><td>No sideways scroll, readable body text, tap targets at least <code>44px</code> tall, heading does not overflow.</td></tr>
+        <tr><td><code>768px</code></td><td>Two-column sections line up, images do not stretch, navigation still fits.</td></tr>
+        <tr><td><code>1440px</code></td><td>Line lengths stay near <code>65ch</code>, content does not hug the edges, no enormous empty areas.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Breakpoints follow the content</h2>
+  <p>Do not choose breakpoints by naming phones and tablets. Resize the browser slowly and add a breakpoint where the layout stops working: a line of text gets too long, cards get too narrow, or navigation wraps badly.</p>
+
+  <ul>
+    <li>Write the breakpoint at the width just before the problem appears.</li>
+    <li><code>em</code>-based queries scale with the user's font settings: <code>48em</code> is usually a better choice than <code>768px</code>.</li>
+    <li>Most projects need two or three breakpoints, not one per device.</li>
+    <li>Test the gap between breakpoints, not only the exact values.</li>
+  </ul>
+
+  <p>Fluid type reduces the number of queries you need. <code>clamp(minimum, preferred, maximum)</code> lets a value grow with the viewport but never outside the limits you set.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">h1 {
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.5rem);
+  line-height: 1.05;
+}
+
+.lede {
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+  max-width: 62ch;
+}</script>
+  </div>
+
+  <p>The middle value does the fluid work; the outer values keep the result readable. Use <code>clamp()</code> for headings and large spacing, not for every value. Body text should stay near <code>1rem</code>.</p>
+
+  <h2>Images and horizontal overflow</h2>
+  <p>An image wider than its container is the most common cause of sideways scrolling. Make images behave by default.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.hero img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+<img src="hero-800.jpg"
+     srcset="hero-400.jpg 400w, hero-800.jpg 800w, hero-1600.jpg 1600w"
+     sizes="(min-width: 900px) 50vw, 100vw"
+     alt="A desk with a laptop and a notebook"
+     width="800" height="450"></script>
+  </div>
+
+  <ul>
+    <li><code>max-width: 100%</code> and <code>height: auto</code> keep the aspect ratio while fitting the column.</li>
+    <li><code>srcset</code> and <code>sizes</code> let the browser download a file that matches the space it will occupy.</li>
+    <li>Always keep <code>width</code> and <code>height</code> attributes to reserve space and reduce layout shift.</li>
+    <li>Use <code>object-fit: cover</code> when a fixed aspect ratio matters; the image crops instead of squashing.</li>
+  </ul>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Do not hide the problem</span>
+    <p><code>overflow-x: hidden</code> on <code>body</code> makes sideways scrolling disappear without fixing what caused it. Find the wide element in DevTools, then correct its sizing. Reserve overflow clipping for intentional decorative bleed.</p>
+  </div>
+
+  <section class="practice" data-practice data-min="40">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Stack a two-column section</h2>
+    </div>
+    <p>Write mobile-first CSS for a <code>.split</code> section with two children. Below <code>700px</code> the children stack in one column with a <code>1.5rem</code> gap. At <code>700px</code> and wider they sit in two equal columns with a <code>2.5rem</code> gap. Use <code>minmax(0, 1fr)</code> so long content cannot widen the page.</p>
+    <label class="visually-hidden" for="practice-3-2">Your responsive CSS</label>
+    <textarea class="practice__code" id="practice-3-2" data-attempt spellcheck="false" placeholder=".split { ... }"></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.split > * {
+  min-width: 0;
+}
+
+@media (min-width: 700px) {
+  .split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem;
+    align-items: start;
+  }
+}</script>
+  </section>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why is a <code>min-width</code> query usually better than <code>max-width</code>?</summary>
+      <p>It lets the small-screen layout be the default and adds rules only when space exists. That keeps the CSS shorter and reduces the chance that a narrow screen inherits a desktop assumption.</p>
+    </details>
+    <details class="qa">
+      <summary>Does <code>clamp()</code> remove the need for media queries?</summary>
+      <p>No. It scales values smoothly, but it cannot rearrange a grid, change navigation, or reorder content. Use <code>clamp()</code> for size and media queries for structure.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Viewport first.</strong> Without the meta tag, every responsive decision is measured against the wrong width.</li>
+      <li><strong>Small screens are the default.</strong> Use <code>min-width</code> to add columns and spacing.</li>
+      <li><strong>Test content, not device names.</strong> Check 320, 768, and 1440, and fix the cause of overflow instead of hiding it.</li>
+    </ul>
+  </div>
+</article>

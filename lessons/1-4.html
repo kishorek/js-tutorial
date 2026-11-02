@@ -1,0 +1,241 @@
+<article class="lesson" id="lesson-1-4" data-lesson="1-4">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 01 · HTML: the skeleton</p>
+    <h1>Project: About Me → recipe page</h1>
+    <p class="lesson-lede">Ship the first milestone: a valid, linked two-page site with real content, a proper heading outline, an image, a list, and a small form. No CSS yet. Structure first.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 1.4 · Project</span>
+      <span class="chip">2–3 hours</span>
+      <span class="chip">Module milestone</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>Deliverables</h3>
+        <ul>
+          <li><code>about-me.html</code> with a bio and a form.</li>
+          <li><code>recipe.html</code> with an image and lists.</li>
+          <li>Working relative links in both directions.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Exit check</h3>
+        <ul>
+          <li>Every page validates structurally.</li>
+          <li>Every input has a label.</li>
+          <li>You can explain head vs body without notes.</li>
+          <li>No page-level horizontal scrolling at 320px.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>The brief</h2>
+  <p>You are building a small personal site: an About Me page and a recipe page. The two pages link to each other. The content is yours; the structure is the exercise.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Page</th><th scope="col">Must contain</th><th scope="col">Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>about-me.html</code></td><td><code>header</code>, <code>nav</code>, <code>main</code>, one <code>h1</code>, intro paragraph, projects list, contact form, <code>footer</code>.</td><td>Practice landmarks, headings, lists, and labels.</td></tr>
+        <tr><td><code>recipe.html</code></td><td><code>header</code>, <code>nav</code>, <code>main</code>, <code>h1</code>, <code>figure</code>/<code>img</code>/<code>figcaption</code>, ingredients <code>ul</code>, method <code>ol</code>, <code>footer</code>.</td><td>Practice images with alt text and meaningful lists.</td></tr>
+        <tr><td>Both</td><td>Relative links to each other; descriptive link text; no broken images; valid nesting.</td><td>Practice paths and accessibility basics.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Build it in the editor</h2>
+  <p>Start with the skeleton in the editor. Build one page at a time, then create the second file in your own editor. The live preview here is for the About Me page; use the model answer as a review, not a starting point.</p>
+
+  <section class="practice" data-practice data-min="150">
+    <div class="practice__head">
+      <span class="kicker">Project workspace</span>
+      <h2>Your two-page build</h2>
+    </div>
+
+    <div class="editor" data-editor>
+      <div class="editor__bar">
+        <span class="editor__label">about-me.html</span>
+        <div class="editor__actions">
+          <button type="button" class="btn btn--small" data-action="run">Run</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="reset">Reset</button>
+          <button type="button" class="btn btn--ghost btn--small" data-action="copy">Copy</button>
+        </div>
+      </div>
+      <div class="editor__grid">
+        <label class="visually-hidden" for="project-1-4">Project code editor</label>
+        <textarea id="project-1-4" class="editor__code" data-attempt spellcheck="false"></textarea>
+        <div class="editor__preview">
+          <div class="editor__preview-bar">Live preview</div>
+          <iframe title="Preview of your About Me page" sandbox=""></iframe>
+        </div>
+      </div>
+      <p class="editor__status" aria-live="polite" data-status>Preview loaded. Build your page, then press Run.</p>
+      <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Your Name</title>
+</head>
+<body>
+  <!-- Build the page here. -->
+</body>
+</html></script>
+    </div>
+
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal reference solution</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the reference solution unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Maya Chen</title>
+</head>
+<body>
+  <header>
+    <nav aria-label="Main">
+      <a href="about-me.html" aria-current="page">About</a>
+      <a href="recipe.html">Recipe</a>
+    </nav>
+    <h1>Maya Chen</h1>
+    <p>Designer, beginner developer, and enthusiastic pasta maker.</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="intro">
+      <h2 id="intro">A little about me</h2>
+      <p>I am learning <strong>HTML</strong> so I can build
+      <em>my own</em> ideas instead of waiting for someone else
+      to build them. I like small tools, clear writing, and
+      recipes with very little washing up.</p>
+    </section>
+
+    <section aria-labelledby="now">
+      <h2 id="now">What I'm learning</h2>
+      <ul>
+        <li>Semantic page structure</li>
+        <li>Links and images</li>
+        <li>Accessible forms</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="contact">
+      <h2 id="contact">Say hello</h2>
+      <form method="post" action="/contact">
+        <p>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </p>
+        <p>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </p>
+        <p>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+        </p>
+        <button type="submit">Send message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built in Week 1.</p>
+  </footer>
+</body>
+</html></script>
+  </section>
+
+  <h2>Review checklist</h2>
+  <ul>
+    <li>One <code>h1</code> per page; sections use <code>h2</code>.</li>
+    <li>Every input has a <code>label</code> matching its <code>id</code>.</li>
+    <li>The image has meaningful <code>alt</code> text and fixed dimensions.</li>
+    <li>Both relative links work in both directions.</li>
+    <li>No text sits outside <code>body</code>; no tags are crossed.</li>
+    <li>You can open DevTools, inspect the <code>h1</code>, and find <code>head</code> and <code>body</code>.</li>
+  </ul>
+
+  <h2>Module 1 quiz</h2>
+  <div class="quiz" data-quiz>
+    <form>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="The head contains metadata; the body contains visible content.">
+        <legend><span class="quiz__num">01</span> Where does the title element belong?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span>Inside <code>body</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="b"><span>Inside <code>head</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="c"><span>After <code>html</code></span></label>
+        <label class="option"><input type="radio" name="q1" value="d"><span>Inside <code>footer</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="A relative link resolves from the current file's folder. The .html file in the same folder is the correct target.">
+        <legend><span class="quiz__num">02</span> Which link points to a file in the same folder?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span><code>https://example.com/recipe.html</code></span></label>
+        <label class="option"><input type="radio" name="q2" value="b"><span><code>../recipe.html</code></span></label>
+        <label class="option"><input type="radio" name="q2" value="c"><span><code>recipe.html</code></span></label>
+        <label class="option"><input type="radio" name="q2" value="d"><span><code>#recipe.html</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <fieldset class="quiz__q" data-question data-answer="d" data-explanation="Alt text should describe what the image communicates, not repeat that it is an image.">
+        <legend><span class="quiz__num">03</span> Which alt text is the most useful?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span><code>alt="image"</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="b"><span><code>alt="picture of food"</code></span></label>
+        <label class="option"><input type="radio" name="q3" value="c"><span><code>alt=""</code> for a chart</span></label>
+        <label class="option"><input type="radio" name="q3" value="d"><span><code>alt="Lemon pasta in a white bowl"</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="A label's for attribute must match the input's id. That makes the label clickable and gives the field an accessible name.">
+        <legend><span class="quiz__num">04</span> How do you connect a label to an input?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span><code>label for="email"</code> and <code>input id="email"</code></span></label>
+        <label class="option"><input type="radio" name="q4" value="b"><span><code>label name="email"</code> and <code>input class="email"</code></span></label>
+        <label class="option"><input type="radio" name="q4" value="c"><span>Put the input inside a <code>div</code></span></label>
+        <label class="option"><input type="radio" name="q4" value="d"><span>Use a placeholder only</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="A section groups related content under a heading. An article is self-contained content that could stand alone.">
+        <legend><span class="quiz__num">05</span> Which element is best for a self-contained project card?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span><code>&lt;div&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q5" value="b"><span><code>&lt;article&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q5" value="c"><span><code>&lt;span&gt;</code></span></label>
+        <label class="option"><input type="radio" name="q5" value="d"><span><code>&lt;main&gt;</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+
+      <div class="quiz__actions">
+        <button type="submit" class="btn">Check answers</button>
+        <button type="button" class="btn btn--ghost" data-quiz-reset>Reset quiz</button>
+        <p class="quiz__result" data-quiz-result aria-live="polite" hidden></p>
+      </div>
+    </form>
+  </div>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why should the About Me page link back to the recipe page?</summary>
+      <p>A website is a set of connected pages. The navigation gives the reader a way back and proves that your relative paths work in both directions.</p>
+    </details>
+    <details class="qa">
+      <summary>What should you check first if a relative link opens a 404 page?</summary>
+      <p>Check the filename, the extension, and the folder relationship. A link to <code>recipe.html</code> only works when both files are in the same folder.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Module 1 complete</h2>
+    <ul>
+      <li><strong>Structure before style.</strong> A correct outline makes every later layer easier.</li>
+      <li><strong>Links, images, labels, and lists all carry meaning.</strong> Use the element that describes the job.</li>
+      <li><strong>You built a site.</strong> Two pages, real content, working paths, accessible form.</li>
+    </ul>
+  </div>
+</article>

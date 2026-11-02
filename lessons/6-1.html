@@ -1,0 +1,200 @@
+<article class="lesson" id="lesson-6-1" data-lesson="6-1">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 06 · Async &amp; APIs</p>
+    <h1>Promises and async/await</h1>
+    <p class="lesson-lede">JavaScript does not wait for slow work. Learn how promises represent work that finishes later, and how <code>async</code> and <code>await</code> make that flow read like ordinary code.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 6.1</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Explain the difference between synchronous and asynchronous work.</li>
+          <li>Read and write a short promise chain.</li>
+          <li>Convert a chain to <code>async</code>/<code>await</code> with <code>try</code>/<code>catch</code>.</li>
+          <li>Run independent promises together with <code>Promise.all</code>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Lesson 5.3 state and rendering.</li>
+          <li>A browser console open.</li>
+          <li>Patience for code that finishes later.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>JavaScript does not wait</h2>
+  <p>Synchronous code runs one line at a time, in order. Each line finishes before the next one starts. That is easy to reason about, but a slow operation would freeze everything behind it.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">console.log("first");
+console.log("second");
+console.log("third");</script>
+  </div>
+  <p>Asynchronous code starts a task, moves on, and handles the result later. Timers, network requests, and file reads are asynchronous. The callback runs after the current work finishes, even if the delay is zero milliseconds.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">console.log("start");
+setTimeout(() => {
+  console.log("callback");
+}, 0);
+console.log("end");
+// start
+// end
+// callback</script>
+  </div>
+  <p>For years, callbacks were the main way to handle this. They work, but nesting several of them creates a pyramid that is hard to read and harder to debug. Promises were introduced to flatten that shape.</p>
+  <div class="callout callout--tip">
+    <span class="callout__label">One mental model</span>
+    <p>A promise is a receipt for a value that is not ready yet. You can attach handlers now, and they run when the value arrives.</p>
+  </div>
+  <h2>Promises have three states</h2>
+  <p>A promise is <strong>pending</strong> while the work runs. It becomes <strong>fulfilled</strong> with a value, or <strong>rejected</strong> with an error. Once settled, it cannot change again.</p>
+  <p>Create one with the <code>Promise</code> constructor. Call <code>resolve</code> with the result, or <code>reject</code> with an <code>Error</code>.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">function loadUser(id) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (id > 0) {
+        resolve({ id, name: "Maya" });
+      } else {
+        reject(new Error("Invalid user id"));
+      }
+    }, 800);
+  });
+}
+function loadOrders(userId) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve([{ id: 101 }, { id: 102 }]), 400);
+  });
+}</script>
+  </div>
+  <p>Use <code>.then()</code> to handle a fulfilled value, <code>.catch()</code> to handle a rejection, and <code>.finally()</code> for cleanup that should run either way.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">loadUser(7)
+  .then((user) => {
+    console.log(user.name);
+    return loadOrders(user.id);
+  })
+  .then((orders) => {
+    console.log(`${orders.length} orders`);
+  })
+  .catch((error) => {
+    console.error(error.message);
+  })
+  .finally(() => {
+    console.log("done");
+  });</script>
+  </div>
+  <p>Each <code>.then()</code> returns a new promise. Returning a promise from a handler makes the next <code>.then()</code> wait for it. That is what keeps the chain flat instead of nested.</p>
+  <div class="callout callout--warn">
+    <span class="callout__label">Do not forget to return</span>
+    <p>If a <code>.then()</code> handler starts a promise but does not return it, the next step runs too early. The chain looks correct and quietly produces the wrong order.</p>
+  </div>
+  <h2>async and await</h2>
+  <p>An <code>async</code> function always returns a promise. Inside it, <code>await</code> pauses that function until the promise settles, without blocking the rest of the page. The code reads from top to bottom again.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">async function showUser(id) {
+  try {
+    const user = await loadUser(id);
+    const orders = await loadOrders(user.id);
+    console.log(`${user.name} has ${orders.length} orders.`);
+  } catch (error) {
+    console.error(error.message);
+  } finally {
+    console.log("done");
+  }
+}
+showUser(7);</script>
+  </div>
+  <p>This is the same logic as the chain above. The <code>try</code> block handles success, <code>catch</code> handles a rejected promise, and <code>finally</code> runs afterward. <code>await</code> only works inside an <code>async</code> function or at the top level of a module.</p>
+  <p>Do not mix the styles without a reason. Pick <code>async</code>/<code>await</code> for most code, and use <code>.then()</code> when you are already working with a promise chain or need a small inline handler.</p>
+  <h2>Wait together, not one by one</h2>
+  <p>Two independent requests do not need to run in sequence. <code>Promise.all()</code> starts them together and resolves when every promise fulfills. If any one rejects, the combined promise rejects.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">async function loadDashboard() {
+  try {
+    const [user, orders] = await Promise.all([
+      loadUser(7),
+      loadOrders(7)
+    ]);
+    console.log(`${user.name}: ${orders.length} orders`);
+  } catch (error) {
+    console.error("Dashboard failed:", error.message);
+  }
+}
+loadDashboard();</script>
+  </div>
+  <p>Use <code>Promise.all()</code> when every result is required. If one failure should not cancel the others, use <code>Promise.allSettled()</code> instead and inspect each result.</p>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 25 minutes</span>
+      <h2>Rewrite the chain with async/await</h2>
+    </div>
+    <p>The chain below loads a profile, then its posts. Rewrite it as an <code>async</code> function called <code>showProfile</code>. Use <code>await</code> for both calls, wrap the work in <code>try</code>/<code>catch</code>, and log the post count. Add a <code>finally</code> that logs <code>"finished"</code>.</p>
+    <div class="code-block" data-code>
+      <script type="text/plain">loadProfile(3)
+  .then((profile) => {
+    console.log(profile.name);
+    return loadPosts(profile.id);
+  })
+  .then((posts) => {
+    console.log(`${posts.length} posts`);
+  })
+  .catch((error) => {
+    console.error(error.message);
+  });</script>
+    </div>
+    <label class="visually-hidden" for="practice-6-1">Your exercise code</label>
+    <textarea class="practice__code" id="practice-6-1" data-attempt spellcheck="false" placeholder="Write your async function here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>function loadProfile(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve({ id, name: "Maya" }), 500);
+  });
+}
+function loadPosts(profileId) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve([{ id: 1 }, { id: 2 }, { id: 3 }]), 500);
+  });
+}
+async function showProfile(id) {
+  try {
+    const profile = await loadProfile(id);
+    const posts = await loadPosts(profile.id);
+    console.log(`${profile.name} wrote ${posts.length} posts.`);
+  } catch (error) {
+    console.error("Could not load profile:", error.message);
+  } finally {
+    console.log("finished");
+  }
+}
+showProfile(3);</script>
+  </section>
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>What is the difference between <code>pending</code> and <code>fulfilled</code>?</summary>
+      <p>Pending means the work is still running and the promise has no final value yet. Fulfilled means it finished successfully and now holds a value. A promise can only settle once.</p>
+    </details>
+    <details class="qa">
+      <summary>Why does <code>await</code> not freeze the rest of the page?</summary>
+      <p><code>await</code> pauses only the <code>async</code> function that contains it. The browser's main thread is released, so other events, rendering, and user input can continue while the promise is pending.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Async work finishes later.</strong> A promise is a placeholder for a value that may arrive or fail.</li>
+      <li><strong>Return promises from <code>.then()</code>.</strong> That keeps a chain in order; forgetting the return makes later steps run too early.</li>
+      <li><strong><code>async</code>/<code>await</code> is the readable default.</strong> Use <code>try</code>/<code>catch</code> for failure and <code>Promise.all</code> for independent work.</li>
+    </ul>
+  </div>
+</article>

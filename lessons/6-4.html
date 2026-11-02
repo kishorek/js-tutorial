@@ -1,0 +1,220 @@
+<article class="lesson" id="lesson-6-4" data-lesson="6-4">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 06 · Async &amp; APIs</p>
+    <h1>Storage + weather app</h1>
+    <p class="lesson-lede">Build the module project: a small weather app that searches a city, shows current conditions, survives a refresh, and never leaves the user staring at a blank screen.</p>
+    <div class="chips"><span class="chip chip--accent">Lesson 6.4 · Project</span><span class="chip">2–3 hours</span><span class="chip">Module milestone</span></div>
+    <div class="brief">
+      <div>
+        <h3>Deliverables</h3>
+        <ul>
+          <li>City search with Open-Meteo geocoding.</li>
+          <li>Current temperature and weather description.</li>
+          <li>Loading, empty, error, and success states.</li>
+          <li>Last city saved in <code>localStorage</code>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Exit check</h3>
+        <ul>
+          <li>No unhandled errors in the console.</li>
+          <li>Every state is reachable and visible.</li>
+          <li>Reload restores the last successful city.</li>
+          <li>No secret keys anywhere in the page.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <h2>The brief</h2>
+  <p>Build one page with a search form, a status line, and a result area. Use the free Open-Meteo APIs: geocoding turns a city name into coordinates, then the forecast endpoint returns the current temperature and weather code. No key is required.</p>
+  <h3>Requirements</h3>
+  <ul>
+    <li>A labelled city input and a submit button that work with the keyboard.</li>
+    <li>Geocode with <code>count=1</code>; handle an empty <code>results</code> array.</li>
+    <li>Fetch <code>temperature_2m</code> and <code>weather_code</code> for the first match.</li>
+    <li>Render loading, empty, error, and success from one state function.</li>
+    <li>Save the successful city and restore it on the next visit.</li>
+    <li>Use <code>aria-live="polite"</code> for status and <code>textContent</code> for API text.</li>
+  </ul>
+  <h3>State checklist</h3>
+  <ul>
+    <li><strong>Idle:</strong> a short instruction before the first search.</li>
+    <li><strong>Loading:</strong> a message while either request runs; hide stale results.</li>
+    <li><strong>Empty:</strong> geocoding returned no match; suggest another spelling.</li>
+    <li><strong>Error:</strong> network or HTTP failure; explain and offer the form as retry.</li>
+    <li><strong>Success:</strong> place, rounded temperature, and a readable description.</li>
+    <li><strong>Storage:</strong> save only after success; blocked storage must not break the app.</li>
+  </ul>
+  <h2>Save a city and a unit</h2>
+  <p><code>localStorage</code> keeps data after the tab closes. <code>sessionStorage</code> keeps it only for the current tab. Both store <strong>strings</strong>, so convert objects with <code>JSON.stringify()</code> and read them back with <code>JSON.parse()</code>.</p>
+  <div class="code-block" data-code>
+    <script type="text/plain">function saveSettings(settings) {
+  try { localStorage.setItem("weather-settings", JSON.stringify(settings)); }
+  catch (error) { console.warn("Storage unavailable:", error.message); }
+}
+function readSettings() {
+  try { return JSON.parse(localStorage.getItem("weather-settings")) || {}; }
+  catch (error) { return {}; }
+}
+saveSettings({ city: "Lisbon", unit: "celsius" }); const saved = readSettings();
+console.log(saved.city, saved.unit);</script>
+  </div>
+  <p>Wrap storage calls in <code>try</code>/<code>catch</code>. A browser can block storage in private modes or sandboxed previews, and <code>setItem()</code> throws when the quota is full. In the editor preview, storage may be blocked, so the warning path is part of the exercise.</p>
+  <div class="callout callout--warn">
+    <span class="callout__label">Privacy and limits</span>
+    <p>Storage belongs to your origin and is readable by any script on that page. Do not store tokens, passwords, or personal data. Expect only a few megabytes, and provide a way to clear saved settings.</p>
+  </div>
+  <section class="practice" data-practice data-min="30">
+    <div class="practice__head"><span class="kicker">Project workspace</span><h2>Your weather app</h2></div>
+    <p>Start with the form and the empty script. Build the state function first, then the geocoding request, then the forecast, then storage. Run the preview after each step. The reference solution is a review, not a starting point.</p>
+    <div class="editor" data-editor>
+      <div class="editor__bar"><span class="editor__label">weather.html</span><div class="editor__actions"><button type="button" class="btn btn--small" data-action="run">Run</button><button type="button" class="btn btn--ghost btn--small" data-action="reset">Reset</button><button type="button" class="btn btn--ghost btn--small" data-action="copy">Copy</button></div></div>
+      <div class="editor__grid">
+        <label class="visually-hidden" for="practice-6-4">Weather app code editor</label>
+        <textarea id="practice-6-4" class="editor__code" data-attempt spellcheck="false"></textarea>
+        <div class="editor__preview"><div class="editor__preview-bar">Live preview</div><iframe title="Preview of your weather app" sandbox="allow-scripts"></iframe></div>
+      </div>
+      <p class="editor__status" aria-live="polite" data-status>Preview loaded. Search a city, then press Run.</p>
+      <script type="text/plain" data-starter><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather app</title>
+</head>
+<body>
+  <main>
+    <h1>Weather now</h1>
+    <form id="search">
+      <label for="city">City</label>
+      <input id="city" name="city" placeholder="Try Lisbon" autocomplete="off" required>
+      <button type="submit">Search</button>
+    </form>
+    <p id="status" role="status" aria-live="polite"></p>
+    <section id="result" aria-live="polite" hidden></section>
+  </main>
+  <script>
+    // Select the elements, geocode the city, fetch the forecast,
+    // render four states, then save and restore the city.
+  @ENDSCRIPT
+</body>
+</html></script>
+    </div>
+    <div class="practice__actions"><button type="button" class="btn btn--ghost" data-reveal disabled>Reveal reference solution</button><p class="practice__note" data-gate-note>Make an attempt first. Then the reference solution unlocks.</p></div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather app</title>
+  <style>body{max-width:540px;margin:32px auto;padding:0 16px;font-family:system-ui,sans-serif}form{display:flex;gap:8px}input{flex:1;padding:8px}#status{min-height:1.5em}#result{margin-top:16px;padding:16px;border:1px solid #bbb;white-space:pre-line;font-size:1.25rem}</style>
+</head>
+<body>
+  <main>
+    <h1>Weather now</h1>
+    <form id="search">
+      <label for="city">City</label>
+      <input id="city" name="city" placeholder="Try Lisbon" autocomplete="off" required>
+      <button type="submit">Search</button>
+    </form>
+    <p id="status" role="status" aria-live="polite"></p>
+    <section id="result" aria-live="polite" hidden></section>
+  </main>
+  <script>
+    const form = document.querySelector("#search"); const cityInput = document.querySelector("#city");
+    const statusEl = document.querySelector("#status"); const result = document.querySelector("#result");
+    const WEATHER = { 0: "Clear", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast", 45: "Fog", 48: "Freezing fog", 51: "Light drizzle", 53: "Drizzle", 55: "Heavy drizzle", 61: "Light rain", 63: "Rain", 65: "Heavy rain", 71: "Light snow", 73: "Snow", 75: "Heavy snow", 80: "Rain showers", 81: "Rain showers", 82: "Heavy showers", 95: "Thunderstorm" };
+    const MESSAGES = { idle: "Search for a city to begin.", loading: "Loading weather...", empty: "No city matched. Try another spelling.", error: "Could not load weather. Press Search to retry." };
+    let last = null;
+    function render(statusName) {
+      if (statusName !== "success") {
+        result.hidden = true;
+        statusEl.textContent = MESSAGES[statusName];
+        return;
+      }
+      result.hidden = false; statusEl.textContent = "";
+      result.textContent = `${Math.round(last.celsius)}°C\n${last.place} · ${WEATHER[last.code] || "Unknown conditions"}`;
+    }
+    function readSettings() {
+      try { return JSON.parse(localStorage.getItem("weather-settings")) || {}; } catch (error) { return {}; }
+    }
+    function saveSettings(settings) {
+      try { localStorage.setItem("weather-settings", JSON.stringify(settings)); } catch (error) { console.warn("Storage unavailable:", error.message); }
+    }
+    async function search(city) {
+      render("loading");
+      try {
+        const geoUrl = "https://geocoding-api.open-meteo.com/v1/search?name="
+          + encodeURIComponent(city) + "&count=1";
+        const geoResponse = await fetch(geoUrl); if (!geoResponse.ok) throw new Error(`Search failed: ${geoResponse.status}`);
+        const geo = await geoResponse.json(); const place = geo.results && geo.results[0];
+        if (!place) return render("empty");
+        const forecastUrl = "https://api.open-meteo.com/v1/forecast?latitude="
+          + place.latitude + "&longitude=" + place.longitude
+          + "&current=temperature_2m,weather_code&timezone=auto";
+        const forecastResponse = await fetch(forecastUrl); if (!forecastResponse.ok) throw new Error(`Forecast failed: ${forecastResponse.status}`);
+        const weather = await forecastResponse.json(); last = { place: `${place.name}, ${place.country}`, celsius: weather.current.temperature_2m, code: weather.current.weather_code };
+        saveSettings({ city: place.name, unit: "celsius" }); render("success");
+      } catch (error) {
+        console.error(error); render("error");
+      }
+    }
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); const city = cityInput.value.trim();
+      if (city) search(city);
+    });
+    const saved = readSettings(); cityInput.value = saved.city || "";
+    if (saved.city) search(saved.city); else render("idle");
+  @ENDSCRIPT
+</body>
+</html></script>
+  </section>
+  <h2>Module 6 quiz</h2>
+  <div class="quiz" data-quiz><form>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="Storage stores strings only. Convert objects with JSON.stringify before saving.">
+        <legend><span class="quiz__num">01</span> What can <code>localStorage.setItem()</code> store directly?</legend>
+        <label class="option"><input type="radio" name="q1" value="a"><span>Any JavaScript value</span></label><label class="option"><input type="radio" name="q1" value="b"><span>Strings only</span></label><label class="option"><input type="radio" name="q1" value="c"><span>Only numbers</span></label><label class="option"><input type="radio" name="q1" value="d"><span>Only JSON objects</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="JSON.parse turns JSON text into JavaScript values. JSON.stringify does the reverse.">
+        <legend><span class="quiz__num">02</span> Which method turns stored JSON text into an object?</legend>
+        <label class="option"><input type="radio" name="q2" value="a"><span><code>JSON.stringify()</code></span></label><label class="option"><input type="radio" name="q2" value="b"><span><code>JSON.parse()</code></span></label><label class="option"><input type="radio" name="q2" value="c"><span><code>response.json()</code></span></label><label class="option"><input type="radio" name="q2" value="d"><span><code>localStorage.get()</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="c" data-explanation="A secret key in client code is visible to every visitor. It belongs in a server environment variable behind an endpoint.">
+        <legend><span class="quiz__num">03</span> Where should a secret API key live?</legend>
+        <label class="option"><input type="radio" name="q3" value="a"><span>In an HTML comment</span></label><label class="option"><input type="radio" name="q3" value="b"><span>In a client-side JavaScript variable</span></label><label class="option"><input type="radio" name="q3" value="c"><span>In a server environment variable</span></label><label class="option"><input type="radio" name="q3" value="d"><span>In <code>localStorage</code></span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="a" data-explanation="A 404 still resolves the fetch promise. Check response.ok before parsing the body.">
+        <legend><span class="quiz__num">04</span> What should you check before calling <code>response.json()</code>?</legend>
+        <label class="option"><input type="radio" name="q4" value="a"><span><code>response.ok</code></span></label><label class="option"><input type="radio" name="q4" value="b"><span>The page title</span></label><label class="option"><input type="radio" name="q4" value="c"><span>Whether the city is uppercase</span></label><label class="option"><input type="radio" name="q4" value="d"><span>The length of the URL</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <fieldset class="quiz__q" data-question data-answer="b" data-explanation="The request worked, but there was no match. That is the empty state, not an error.">
+        <legend><span class="quiz__num">05</span> Geocoding succeeds but returns no results. Which state is it?</legend>
+        <label class="option"><input type="radio" name="q5" value="a"><span>Loading</span></label><label class="option"><input type="radio" name="q5" value="b"><span>Empty</span></label><label class="option"><input type="radio" name="q5" value="c"><span>Error</span></label><label class="option"><input type="radio" name="q5" value="d"><span>Success</span></label>
+        <p class="quiz__feedback" data-feedback aria-live="polite" hidden></p>
+      </fieldset>
+      <div class="quiz__actions"><button type="submit" class="btn">Check answers</button><button type="button" class="btn btn--ghost" data-quiz-reset>Reset quiz</button><p class="quiz__result" data-quiz-result aria-live="polite" hidden></p></div>
+    </form>
+  </div>
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why save the city instead of the temperature?</summary><p>Weather changes constantly. A saved city is a stable preference; a saved temperature would be stale as soon as the page reloads. Store the choice, then fetch fresh data.</p>
+    </details>
+    <details class="qa">
+      <summary>Why wrap <code>localStorage</code> calls in <code>try</code>/<code>catch</code>?</summary><p>Storage can be blocked in private modes and sandboxed previews, and <code>setItem()</code> can fail when the quota is full. Catching the error keeps the weather app usable even when saving is not.</p>
+    </details>
+  </div>
+  <div class="recap">
+    <h2>Module 6 complete</h2>
+    <ul>
+      <li><strong>Async code is a sequence of states.</strong> Promises and <code>async</code>/<code>await</code> let you write that sequence clearly.</li>
+      <li><strong>Every request can fail or find nothing.</strong> Design loading, empty, error, and success before you need them.</li>
+      <li><strong>Store only what you can afford to lose.</strong> Wrap storage, keep secrets on the server, and restore the last useful choice.</li>
+    </ul>
+  </div>
+</article>

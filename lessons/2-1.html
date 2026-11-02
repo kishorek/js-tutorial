@@ -1,0 +1,211 @@
+<article class="lesson" id="lesson-2-1" data-lesson="2-1">
+  <header class="lesson-head">
+    <p class="eyebrow">Module 02 · CSS: the skin</p>
+    <h1>Selectors, cascade, and specificity</h1>
+    <p class="lesson-lede">CSS is a list of rules. A selector chooses elements, declarations describe the change, and the cascade decides which rule wins when two rules disagree. Learn that order once and CSS stops feeling random.</p>
+    <div class="chips">
+      <span class="chip chip--accent">Lesson 2.1</span>
+      <span class="chip">60–75 min</span>
+      <span class="chip">Beginner</span>
+    </div>
+    <div class="brief">
+      <div>
+        <h3>By the end, you can</h3>
+        <ul>
+          <li>Link a stylesheet and write a rule.</li>
+          <li>Use element, class, id, descendant, and pseudo-class selectors.</li>
+          <li>Predict which declaration wins and explain why.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>You need</h3>
+        <ul>
+          <li>Your Module 1 pages, especially <code>about-me.html</code>.</li>
+          <li>A browser with DevTools.</li>
+          <li>One CSS file next to your HTML.</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <h2>Connect a stylesheet</h2>
+  <p>CSS lives in its own file and is linked from the <code>&lt;head&gt;</code>. The <code>href</code> is a relative path, just like the links you already wrote. A rule has a selector before the braces and declarations inside. Each declaration is a property, a colon, a value, and a semicolon.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><link rel="stylesheet" href="styles.css">
+
+/* styles.css */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: #1c1a16;
+}</script>
+  </div>
+
+  <p>Write one rule per idea and keep the file in a sensible order: reset, base elements, layout, components, utilities. The browser reads rules from top to bottom.</p>
+
+  <h2>Selectors choose elements</h2>
+  <p>Start with the least powerful selector that does the job. Classes are reusable, so they are the right default for components. Ids are unique to one element on the page; save them for anchors and JavaScript hooks.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">p { color: #333; }                 /* element */
+.card { background: #fff; }      /* class */
+#site-title { color: #14532d; }  /* id */
+.card p { color: #555; }         /* descendant */
+a:hover { color: #a33; }         /* pseudo-class */
+.card__title { font-size: 1.25rem; }</script>
+  </div>
+
+  <ul>
+    <li><strong>Element:</strong> every matching tag, everywhere. Useful for base styles.</li>
+    <li><strong>Class:</strong> written <code>.card</code> and matched with <code>class="card"</code>. Reusable and specific enough for most work.</li>
+    <li><strong>Id:</strong> written <code>#intro</code> and matched with <code>id="intro"</code>. One per page; hard to override later.</li>
+    <li><strong>Descendant:</strong> <code>.card p</code> means any paragraph inside a card, at any depth.</li>
+    <li><strong>Pseudo-class:</strong> a state such as <code>:hover</code>, <code>:focus-visible</code>, or <code>:first-child</code>.</li>
+  </ul>
+
+  <p>Keep selectors shallow. <code>.card__title</code> is easier to read and override than <code>main .card div h3</code>, and it survives markup changes.</p>
+
+  <h2>The cascade breaks ties by order</h2>
+  <p>When two rules set the same property on the same element, the later rule wins if the selectors have equal weight. Predict the color below before you scroll on.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><p class="note">Predict my color.</p>
+
+p { color: #333; }
+p { color: #0b6e4f; }</script>
+  </div>
+
+  <p>The paragraph is green. Both selectors have the same specificity, so source order decides: the second declaration replaces the first. This is why the order of your stylesheet matters.</p>
+
+  <h2>Specificity has weights</h2>
+  <p>Specificity is a four-part score. Compare it from left to right; a single id beats any number of classes. Inline styles are a separate, stronger category, and <code>!important</code> sits above normal declarations.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Selector</th><th scope="col">Score</th><th scope="col">Example</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Inline style</td><td>1-0-0-0</td><td><code>style="color: red"</code></td></tr>
+        <tr><td>Id</td><td>0-1-0-0</td><td><code>#intro</code></td></tr>
+        <tr><td>Class, attribute, pseudo-class</td><td>0-0-1-0</td><td><code>.note</code>, <code>a:hover</code></td></tr>
+        <tr><td>Element, pseudo-element</td><td>0-0-0-1</td><td><code>p</code>, <code>p::first-line</code></td></tr>
+        <tr><td>Universal</td><td>0-0-0-0</td><td><code>*</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Now predict both paragraphs. The first has an id; the second has a class and an element in one selector.</p>
+
+  <div class="code-block" data-code>
+    <script type="text/plain"><p class="note" id="intro">First</p>
+<p class="note">Second</p>
+
+p { color: #333; }
+.note { color: #0b6e4f; }
+p.note { color: #555; }
+#intro { color: #a33; }</script>
+  </div>
+
+  <p>The first paragraph is red: <code>#intro</code> scores 0-1-0-0 and outranks every class rule. The second is gray: <code>p.note</code> scores 0-0-1-1, which beats <code>.note</code> at 0-0-1-0. Count the classes, then the elements; do not add the columns together.</p>
+
+  <div class="callout callout--tip">
+    <span class="callout__label">A card, styled</span>
+    <p>A small, predictable component uses a class for the box and a class for each part: <code>.card</code>, <code>.card__title</code>, <code>.card__text</code>. Each selector scores 0-0-1-0, so the last matching rule wins and nothing is fighting an id.</p>
+  </div>
+
+  <div class="code-block" data-code>
+    <script type="text/plain">.card {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #d8d0c0;
+  border-radius: 6px;
+}
+
+.card__title {
+  margin: 0 0 8px;
+  color: #14532d;
+}
+
+.card__text {
+  margin: 0;
+  color: #555;
+}</script>
+  </div>
+
+  <h2>Inheritance and the last resort</h2>
+  <p>Some properties, such as <code>color</code>, <code>font-family</code>, and <code>line-height</code>, inherit from the parent element. Others, such as <code>margin</code>, <code>padding</code>, and <code>border</code>, do not. Set inherited properties once on <code>body</code> and let the page follow.</p>
+
+  <div class="callout callout--warn">
+    <span class="callout__label">Avoid !important</span>
+    <p><code>!important</code> overrides the normal cascade. The next person has to add another <code>!important</code> to beat yours, and the file becomes a fight. Use it only for a deliberate, documented override of third-party CSS. For your own styles, fix the selector or the order instead.</p>
+  </div>
+
+  <section class="practice" data-practice data-min="40">
+    <div class="practice__head">
+      <span class="kicker">Exercise · 20 minutes</span>
+      <h2>Style the card with classes</h2>
+    </div>
+    <p>Use this HTML. Write CSS so the page text is <code>#1c1a16</code>, the card has a white background, a <code>1px</code> solid <code>#d8d0c0</code> border, and a <code>6px</code> radius. The title should be <code>#14532d</code> at <code>1.25rem</code>; the paragraph should be <code>#555</code>. Use class selectors for every card rule, and do not use <code>!important</code>.</p>
+
+    <div class="code-block" data-code>
+      <script type="text/plain"><article class="card">
+  <h2 class="card__title">Weekend plan</h2>
+  <p class="card__text">Walk, read, and cook something new.</p>
+</article></script>
+    </div>
+
+    <label class="visually-hidden" for="practice-2-1">Your CSS</label>
+    <textarea class="practice__code" id="practice-2-1" data-attempt spellcheck="false" placeholder="Write your CSS here..."></textarea>
+    <div class="practice__actions">
+      <button type="button" class="btn btn--ghost" data-reveal disabled>Reveal model answer</button>
+      <p class="practice__note" data-gate-note>Make an attempt first. Then the model answer unlocks.</p>
+    </div>
+    <div class="practice__solution" data-solution hidden></div>
+    <script type="text/plain" data-answer>body {
+  margin: 0;
+  color: #1c1a16;
+  font-family: system-ui, sans-serif;
+}
+
+.card {
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #d8d0c0;
+  border-radius: 6px;
+}
+
+.card__title {
+  margin: 0 0 8px;
+  color: #14532d;
+  font-size: 1.25rem;
+}
+
+.card__text {
+  margin: 0;
+  color: #555;
+}</script>
+  </section>
+
+  <h2>Check yourself</h2>
+  <div class="qa-list">
+    <details class="qa">
+      <summary>Why does one id beat several classes?</summary>
+      <p>Specificity compares categories from left to right, not by total count. An id contributes to the second column; classes contribute to the third. A score of 0-1-0-0 beats 0-0-9-0 no matter how many class names are stacked up.</p>
+    </details>
+    <details class="qa">
+      <summary>Is <code>!important</code> ever the right choice?</summary>
+      <p>Rarely. It is defensible when you must override CSS you do not control and cannot change the selector, such as a vendor widget. For your own code, increase specificity intentionally or move the rule later. Document any exception.</p>
+    </details>
+  </div>
+
+  <div class="recap">
+    <h2>Key things to remember</h2>
+    <ul>
+      <li><strong>Classes are the default tool.</strong> They are reusable, readable, and easy to override.</li>
+      <li><strong>Specificity is compared column by column.</strong> Inline beats id, id beats class, class beats element.</li>
+      <li><strong>Order decides ties.</strong> If the weight is equal, the later declaration wins; keep your stylesheet organized.</li>
+    </ul>
+  </div>
+</article>
