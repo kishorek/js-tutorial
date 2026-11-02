@@ -177,6 +177,7 @@
   var lang = loadLanguage();
   var COURSE_TA = window.COURSE_TA || null;
   var LESSON_NOTES = window.LESSON_NOTES || {};
+  var PRACTICE_PREVIEWS = window.PRACTICE_PREVIEWS || {};
   var taModuleById = {};
   var taLessonById = {};
 
@@ -622,7 +623,7 @@
       var initial = code.value;
       var timer;
       code.setAttribute('lang', 'en');
-      frame.setAttribute('sandbox', 'allow-scripts');
+      frame.setAttribute('sandbox', 'allow-scripts allow-forms');
 
       function render(message) {
         frame.srcdoc = code.value;
@@ -673,7 +674,127 @@
     });
   }
 
-  function runPractices(root) {
+
+  var IMAGE_PLACEHOLDER = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360"><rect width="100%" height="100%" fill="#efe6d4"/><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#6b6355" font-family="sans-serif" font-size="20">Image preview</text></svg>');
+  var IMAGE_FALLBACK = '<script>(function(){var fallback="' + IMAGE_PLACEHOLDER + '";function fix(img){if(img.complete&&img.naturalWidth===0){img.src=fallback;}}document.querySelectorAll("img").forEach(function(img){img.addEventListener("error",function(){img.src=fallback;},{once:true});fix(img);});})();</script>';
+
+  function buildHtmlPreview(code, config) {
+    var text = code.trim();
+    if (config && config.stripLeadingText) {
+      var firstTag = text.indexOf('<');
+      if (firstTag > 0) {
+        text = text.slice(firstTag);
+      }
+    }
+    text = text.replace(/(<img\b[^>]*\bsrc=")([^"]*)(")/gi, function (match, start, src, end) {
+      if (/^(https?:|data:|\/\/)/i.test(src)) {
+        return match;
+      }
+      return start + IMAGE_PLACEHOLDER + end;
+    });
+    if (!text) {
+      return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><style>body{font-family:system-ui;padding:24px;color:#6b6355}</style></head><body><p>Your page preview will appear here after you press Run.</p></body></html>';
+    }
+    if (/<html[\s>]/i.test(text) || /<!doctype/i.test(text)) {
+      if (/<\/body>/i.test(text)) {
+        return text.replace(/<\/body>/i, IMAGE_FALLBACK + '</body>');
+      }
+      return text + IMAGE_FALLBACK;
+    }
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><style>body{font-family:system-ui;margin:0;padding:24px;background:#fff;color:#1c1a16;line-height:1.6}img{max-width:100%;height:auto}</style></head><body>' + text + IMAGE_FALLBACK + '</body></html>';
+  }
+
+  function buildCssPreview(config, code) {
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><style>' +
+      'body{font-family:system-ui;margin:0;padding:24px;background:#f7f2e7;color:#1c1a16;line-height:1.6}' +
+      (config.baseCss || '') + '\n' + code +
+      '</style></head><body>' + (config.html || '') + '</body></html>';
+  }
+
+  function buildJsPreview(config, code) {
+    var full = (config.prelude || '') + '\n' + code;
+    var encoded = JSON.stringify(full)
+      .replace(/</g, '\\u003c')
+      .replace(/\u2028/g, '\\u2028')
+      .replace(/\u2029/g, '\\u2029');
+    var capture = '<script>(function(){var out=document.getElementById("__console");function write(kind,args){var line=document.createElement("div");var text=Array.prototype.map.call(args,function(value){try{return typeof value==="object"?JSON.stringify(value):String(value);}catch(error){return String(value);}}).join(" ");line.textContent=(kind?kind+": ":"")+text;out.appendChild(line);out.scrollTop=out.scrollHeight;}["log","info","warn","error"].forEach(function(kind){var original=console[kind];console[kind]=function(){write(kind==="log"?"":kind,arguments);if(original){original.apply(console,arguments);}};});window.addEventListener("error",function(event){write("error",[event.message]);});window.addEventListener("unhandledrejection",function(event){write("error",[event.reason&&event.reason.message?event.reason.message:event.reason]);});})();</script>';
+    var executor = '<script>(function(){var code=' + encoded + ';try{eval(code);}catch(error){console.error(error.message);}})();</script>';
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><style>' +
+      'body{font-family:system-ui;margin:0;padding:20px;background:#f7f2e7;color:#1c1a16;line-height:1.6}' +
+      (config.baseCss || '') +
+      '#__console{margin-top:18px;padding:12px;border:1px solid #d8cfbc;border-radius:6px;background:#1d1b17;color:#f4eddd;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;max-height:220px;overflow:auto}' +
+      '#__console:empty::before{content:"Console output will appear here.";color:#99917f}' +
+      '</style></head><body>' + (config.html || '<h1>Console output</h1>') +
+      '<div id="__console" role="status" aria-live="polite"></div>' +
+      capture + executor + '</body></html>';
+  }
+
+  function setupPracticePreview(practice, attempt, answer, lessonId) {
+    var config = PRACTICE_PREVIEWS[lessonId];
+    if (!config || config.mode === 'none' || practice.querySelector('[data-editor]')) {
+      return null;
+    }
+
+    var wrap = document.createElement('div');
+    wrap.className = 'practice__playground';
+    var codePane = document.createElement('div');
+    codePane.className = 'practice__code-pane';
+    attempt.parentNode.insertBefore(wrap, attempt);
+    codePane.appendChild(attempt);
+    wrap.appendChild(codePane);
+
+    var pane = document.createElement('div');
+    pane.className = 'practice__preview-pane';
+    var bar = document.createElement('div');
+    bar.className = 'practice__preview-bar';
+    var label = document.createElement('span');
+    label.textContent = 'Live preview';
+    var runButton = document.createElement('button');
+    runButton.type = 'button';
+    runButton.className = 'btn btn--small';
+    runButton.textContent = 'Run preview';
+    bar.appendChild(label);
+    bar.appendChild(runButton);
+
+    var frame = document.createElement('iframe');
+    frame.setAttribute('title', 'Live preview of your answer');
+    frame.setAttribute('sandbox', 'allow-scripts allow-forms');
+
+    var status = document.createElement('p');
+    status.className = 'practice__preview-status';
+    status.setAttribute('aria-live', 'polite');
+
+    pane.appendChild(bar);
+    pane.appendChild(frame);
+    pane.appendChild(status);
+    wrap.appendChild(pane);
+
+    function run(code, message) {
+      var doc;
+      if (config.mode === 'css') {
+        doc = buildCssPreview(config, code);
+      } else if (config.mode === 'js') {
+        doc = buildJsPreview(config, code);
+      } else {
+        doc = buildHtmlPreview(code, config);
+      }
+      frame.srcdoc = doc;
+      status.textContent = message || 'Preview updated.';
+    }
+
+    runButton.addEventListener('click', function () {
+      run(attempt.value, 'Preview updated.');
+    });
+
+    attempt.addEventListener('input', function () {
+      status.textContent = 'Press Run preview to see your changes.';
+    });
+
+    run('', 'Write code, then press Run preview.');
+    return { run: run };
+  }
+
+  function runPractices(root, lesson) {
     root.querySelectorAll('[data-practice]').forEach(function (practice) {
       var attempt = practice.querySelector('[data-attempt]');
       var reveal = practice.querySelector('[data-reveal]');
@@ -684,6 +805,7 @@
         return;
       }
 
+      var preview = setupPracticePreview(practice, attempt, answer, lesson && lesson.id);
       var initial = attempt.value;
       var minimum = Number(practice.dataset.min || 30);
       var revealed = false;
@@ -724,6 +846,9 @@
         revealed = true;
         sync();
         solution.focus({ preventScroll: true });
+        if (preview && answer) {
+          preview.run(normalizeCode(answer.textContent), 'Showing model answer.');
+        }
       });
 
       solution.setAttribute('tabindex', '-1');
@@ -1022,7 +1147,7 @@
   function initLesson(root, lesson) {
     renderCodeBlocks(root);
     runEditors(root);
-    runPractices(root);
+    runPractices(root, lesson);
     runQuizzes(root);
     addCopyButtons(root);
     injectLessonNotes(root, lesson);
